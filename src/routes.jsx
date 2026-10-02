@@ -3,6 +3,7 @@ import Welcome from './pages/Welcome'
 import Home from './pages/Home'
 import FoodType from './pages/FoodType'
 import Flavor from './pages/Flavor'
+import Adventure from './pages/Adventure'
 
 /**
  * Central route table. Each Figma screen becomes one entry under the layout
@@ -16,6 +17,7 @@ export const routes = [
       { path: 'home', element: <Home /> },
       { path: 'discover/food-type', element: <FoodType /> },
       { path: 'discover/flavor', element: <Flavor /> },
+      { path: 'discover/adventure', element: <Adventure /> },
     ],
   },
 ]

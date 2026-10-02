@@ -66,6 +66,7 @@ export default function Flavor() {
         variant="soft"
         size="discovery"
         disabled={flavors.length === 0}
+        onClick={() => navigate('/discover/adventure')}
         className="absolute top-[859px] left-[26px]"
       >
         Continue
