@@ -16,6 +16,7 @@ const SIZES = {
   md: 'rounded-md px-6 py-3 text-cta',
   cta: 'h-cta w-full rounded-md text-cta',
   discovery: 'h-[80px] w-[386px] rounded-lg text-button tracking-meta',
+  none: '',
 }
 
 export default function Button({

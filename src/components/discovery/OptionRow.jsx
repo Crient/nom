@@ -8,7 +8,7 @@ import { cn } from '../../utils/cn'
  * Figma lays the row out, and the same container recurs on every discovery
  * question screen.
  */
-export default function OptionRow({ top, left, className, children }) {
+export default function OptionRow({ top, left, gap = 30.27, className, children }) {
   return (
     <div
       style={{ top, left }}
@@ -17,7 +17,10 @@ export default function OptionRow({ top, left, className, children }) {
         className,
       )}
     >
-      <div className="flex items-center justify-center gap-[30.27px] px-[21.535px] drop-shadow-tile">
+      <div
+        className="flex items-center justify-center px-[21.535px] drop-shadow-tile"
+        style={{ gap }}
+      >
         {children}
       </div>
     </div>

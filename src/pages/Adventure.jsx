@@ -49,6 +49,7 @@ export default function Adventure() {
         variant="soft"
         size="discovery"
         disabled={!adventurousness}
+        onClick={() => navigate('/discover/region')}
         className="absolute top-[859px] left-[26px]"
       >
         Continue
