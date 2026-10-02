@@ -103,6 +103,12 @@
   --text-body--line-height: 20px;
   --text-body--font-weight: 400;
 
+  /* Same size as Body but with the tighter leading the final frames use for
+     supporting copy and step counters. */
+  --text-body-tight: 15px;
+  --text-body-tight--line-height: 17.746px;
+  --text-body-tight--font-weight: 400;
+
   --text-body-sm: 13px;
   --text-body-sm--line-height: 15px;
   --text-body-sm--font-weight: 400;
@@ -130,6 +136,11 @@
 
   /* Home roles. The frame's sizes do not land on the Foundations scale, so
      each recurring role is tokenized at its measured value. */
+  /* Primary CTA label shared by every discovery question screen. */
+  --text-button: 20px;
+  --text-button--line-height: 13.31px;
+  --text-button--font-weight: 700;
+
   --text-greeting: 28.394px;
   --text-greeting--line-height: 37.556px;
   --text-greeting--font-weight: 600;
@@ -207,8 +218,12 @@
 
   /* Home cards and tiles. */
   --shadow-raised: 0 3.549px 3.549px rgb(0 0 0 / 0.25);
-  --shadow-tile: 0 3.441px 1.721px rgb(0 0 0 / 0.25);
   --shadow-box-ready: 0.885px 0.885px 3.541px #fec62c;
+
+  /* Applied to the row rather than the cards, so the shadow follows each
+     card's rounded outline. Shared by the Home tiles and the discovery
+     option rows. */
+  --drop-shadow-tile: 0 3.441px 1.721px rgb(0 0 0 / 0.25);
 
   /* ------------------------------------------------- spacing & layout size */
   /* Figma does not define a spacing scale, so Tailwind's 4px scale is kept.
