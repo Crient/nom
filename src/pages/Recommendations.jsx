@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 
 import StatusBar from '../components/layout/StatusBar'
@@ -8,6 +8,7 @@ import RecommendationHeader from '../components/recommendations/RecommendationHe
 import SessionChip from '../components/recommendations/SessionChip'
 import Button from '../components/ui/Button'
 import { useDiscoverySession } from '../context/DiscoverySession'
+import { useFavorites } from '../context/Favorites'
 import { dishes } from '../data/dishes'
 import { recommend } from '../utils/recommendationEngine'
 import { formatSessionChips } from '../utils/sessionChips'
@@ -32,7 +33,7 @@ function hasRequiredDiscovery(session) {
 export default function Recommendations() {
   const navigate = useNavigate()
   const session = useDiscoverySession()
-  const [liked, setLiked] = useState({})
+  const { isFavorite, toggleFavorite } = useFavorites()
 
   const results = useMemo(
     () => (hasRequiredDiscovery(session) ? recommend(session, dishes).slice(0, 3) : []),
@@ -45,10 +46,6 @@ export default function Recommendations() {
   }
 
   const [best, second, third] = results
-
-  const toggleLike = (id) => {
-    setLiked((current) => ({ ...current, [id]: !current[id] }))
-  }
 
   return (
     <div className="relative h-[1000px] w-full overflow-hidden bg-surface">
@@ -88,8 +85,8 @@ export default function Recommendations() {
       {best && (
         <BestMatchCard
           result={best}
-          liked={Boolean(liked[best.dish.id])}
-          onToggleLike={() => toggleLike(best.dish.id)}
+          liked={isFavorite(best.dish.id)}
+          onToggleLike={() => toggleFavorite(best.dish.id)}
         />
       )}
 
@@ -97,8 +94,8 @@ export default function Recommendations() {
         <RecommendationCard
           result={second}
           rank={2}
-          liked={Boolean(liked[second.dish.id])}
-          onToggleLike={() => toggleLike(second.dish.id)}
+          liked={isFavorite(second.dish.id)}
+          onToggleLike={() => toggleFavorite(second.dish.id)}
           className="top-[545px]"
         />
       )}
@@ -113,8 +110,8 @@ export default function Recommendations() {
         <RecommendationCard
           result={third}
           rank={3}
-          liked={Boolean(liked[third.dish.id])}
-          onToggleLike={() => toggleLike(third.dish.id)}
+          liked={isFavorite(third.dish.id)}
+          onToggleLike={() => toggleFavorite(third.dish.id)}
           className="top-[682px]"
         />
       )}
