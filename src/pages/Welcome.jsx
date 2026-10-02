@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import BottomNav from '../components/layout/BottomNav'
 import CollectionIcon from '../components/icons/CollectionIcon'
 import Button from '../components/ui/Button'
@@ -26,7 +27,7 @@ const NAV_ITEMS = [
     label: 'Discover',
     icon: <img src={navDiscover} alt="" className="h-[28.777px] w-[25.937px] max-w-none shrink-0" />,
   },
-  { label: 'Collection', icon: <CollectionIcon className="relative size-[25.937px] shrink-0" /> },
+  { label: 'Collection', icon: <CollectionIcon className="shrink-0" /> },
   {
     label: 'Profile',
     icon: <img src={navProfile} alt="" className="size-[28.295px] max-w-none shrink-0" />,
@@ -34,6 +35,8 @@ const NAV_ITEMS = [
 ]
 
 export default function Welcome() {
+  const navigate = useNavigate()
+
   return (
     <div className="relative h-frame w-full overflow-hidden bg-canvas-cream">
       <div className="absolute top-0 left-[-4.75px] h-[705.116px] w-[449.478px] overflow-hidden">
@@ -61,8 +64,8 @@ export default function Welcome() {
         Figure out your next bite
       </p>
 
-      <div className="absolute top-[594.28px] left-0 flex h-[361.111px] w-full flex-col gap-[7.39px] rounded-sheet bg-canvas-cream px-gutter pt-[50.1px] shadow-sheet">
-        <Button size="cta" variant="primary">
+      <div className="absolute top-[594.28px] left-0 flex h-[361.111px] w-full flex-col gap-[7.39px] rounded-sheet bg-canvas-cream px-sheet-gutter pt-[50.1px] shadow-sheet">
+        <Button size="cta" variant="primary" onClick={() => navigate('/home')}>
           Get Started
           <img src={arrowRight} alt="" className="size-[30.634px]" />
         </Button>
