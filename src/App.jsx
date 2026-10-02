@@ -1,4 +1,5 @@
 import { BrowserRouter, useRoutes } from 'react-router-dom'
+import { DiscoverySessionProvider } from './context/DiscoverySession'
 import { routes } from './routes'
 
 function AppRoutes() {
@@ -8,7 +9,9 @@ function AppRoutes() {
 export default function App() {
   return (
     <BrowserRouter>
-      <AppRoutes />
+      <DiscoverySessionProvider>
+        <AppRoutes />
+      </DiscoverySessionProvider>
     </BrowserRouter>
   )
 }

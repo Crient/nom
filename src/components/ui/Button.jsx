@@ -31,7 +31,8 @@ export default function Button({
       type={type}
       className={cn(
         'inline-flex items-center justify-center gap-[14.08px]',
-        'transition-opacity active:opacity-80 disabled:opacity-50',
+        'transition-opacity active:opacity-80',
+        'disabled:cursor-not-allowed disabled:opacity-50 disabled:active:opacity-50',
         VARIANTS[variant],
         SIZES[size],
         className,
