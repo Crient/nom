@@ -4,8 +4,11 @@
  * Session shape: { foodType, flavors, adventurousness, region }
  * surprise-me is never a numeric match value. It drops that dimension from
  * the score and, after ranking, spreads tied results so they are not all the
- * same country (region Surprise Me) or the same familiarity (adventure
+ * same country (region Surprise Me) or the same adventureLevel (adventure
  * Surprise Me).
+ *
+ * Flavor scoring reads dish.preferenceFlavors only. dish.descriptors never
+ * earn points.
  */
 
 export const BASE_WEIGHTS = {
@@ -15,7 +18,7 @@ export const BASE_WEIGHTS = {
   region: 15,
 }
 
-export const FAMILIARITY = {
+export const ADVENTURE_LEVEL = {
   familiar: 1,
   different: 2,
   adventurous: 3,
@@ -83,10 +86,14 @@ function selectedFlavors(session) {
   return Array.isArray(session.flavors) ? session.flavors : []
 }
 
+function dishPreferenceFlavors(dish) {
+  return Array.isArray(dish.preferenceFlavors) ? dish.preferenceFlavors : []
+}
+
 function adventureDistance(session, dish) {
-  const wanted = FAMILIARITY[session.adventurousness]
-  if (!wanted || !dish.familiarity) return null
-  return Math.abs(dish.familiarity - wanted)
+  const wanted = ADVENTURE_LEVEL[session.adventurousness]
+  if (!wanted || !dish.adventureLevel) return null
+  return Math.abs(dish.adventureLevel - wanted)
 }
 
 function adventureFactor(distance) {
@@ -111,9 +118,10 @@ function scoreFlavor(session, dish, available) {
     return { available: 0, earned: 0, matched: [], missed: wanted, skipped: true }
   }
 
+  const preferenceFlavors = dishPreferenceFlavors(dish)
   const perFlavor = wanted.length === 0 ? 0 : available / wanted.length
-  const matched = wanted.filter((flavor) => dish.flavors.includes(flavor))
-  const missed = wanted.filter((flavor) => !dish.flavors.includes(flavor))
+  const matched = wanted.filter((flavor) => preferenceFlavors.includes(flavor))
+  const missed = wanted.filter((flavor) => !preferenceFlavors.includes(flavor))
 
   return {
     available,
@@ -164,7 +172,7 @@ export function scoreDish(session, dish, weights = normalizeWeights(session)) {
     breakdown,
     matchedAttributes: {
       foodType: foodType.matched && !foodType.skipped,
-      flavors: flavor.matched,
+      preferenceFlavors: flavor.matched,
       adventure: adventure.skipped ? null : adventure.fit,
       region: region.matched && !region.skipped,
     },
@@ -243,7 +251,7 @@ function applySurprisePolicies(results, session, index) {
   }
 
   if (isSurpriseMe(session.adventurousness)) {
-    ranked = spreadEqualScores(ranked, (item) => item.dish.familiarity, index)
+    ranked = spreadEqualScores(ranked, (item) => item.dish.adventureLevel, index)
   }
 
   return ranked

@@ -25,8 +25,9 @@ const fixture = [
     flag: '🇰🇭',
     region: 'southeast-asia',
     foodType: 'noodle',
-    flavors: ['spicy', 'comforting'],
-    familiarity: 3,
+    preferenceFlavors: ['spicy', 'comforting'],
+    descriptors: ['savory'],
+    adventureLevel: 3,
   },
   {
     id: 'beta-rice',
@@ -35,8 +36,9 @@ const fixture = [
     flag: '🇯🇵',
     region: 'east-asia',
     foodType: 'rice',
-    flavors: ['comforting'],
-    familiarity: 1,
+    preferenceFlavors: ['comforting'],
+    descriptors: [],
+    adventureLevel: 1,
   },
   {
     id: 'gamma-noodle',
@@ -45,8 +47,9 @@ const fixture = [
     flag: '🇻🇳',
     region: 'southeast-asia',
     foodType: 'noodle',
-    flavors: ['spicy'],
-    familiarity: 2,
+    preferenceFlavors: ['spicy'],
+    descriptors: ['bold'],
+    adventureLevel: 2,
   },
   {
     id: 'delta-noodle',
@@ -55,8 +58,9 @@ const fixture = [
     flag: '🇪🇹',
     region: 'africa',
     foodType: 'noodle',
-    flavors: ['spicy', 'comforting'],
-    familiarity: 3,
+    preferenceFlavors: ['spicy', 'comforting'],
+    descriptors: ['savory'],
+    adventureLevel: 3,
   },
 ]
 
@@ -127,23 +131,43 @@ describe('flavor', () => {
     expect(result.breakdown.flavor.matched).toEqual(['spicy'])
     expect(result.breakdown.flavor.missed).toEqual(['comforting'])
   })
+
+  it('does not treat a savory descriptor as a spicy preference match', () => {
+    const savoryOnly = {
+      id: 'savory-only',
+      name: 'Savory Only',
+      country: 'Cambodia',
+      flag: '🇰🇭',
+      region: 'southeast-asia',
+      foodType: 'noodle',
+      preferenceFlavors: ['comforting'],
+      descriptors: ['savory', 'smoky'],
+      adventureLevel: 3,
+    }
+
+    const result = scoreDish(PAINTED_SESSION, savoryOnly)
+    expect(result.breakdown.flavor.earned).toBe(15)
+    expect(result.breakdown.flavor.matched).toEqual(['comforting'])
+    expect(result.breakdown.flavor.missed).toEqual(['spicy'])
+    expect(result.matchedAttributes.preferenceFlavors).toEqual(['comforting'])
+  })
 })
 
 describe('adventure', () => {
-  it('awards full adventure weight for an exact familiarity match', () => {
+  it('awards full adventure weight for an exact adventureLevel match', () => {
     const result = scoreDish(PAINTED_SESSION, fixture[0])
     expect(result.breakdown.adventure.earned).toBe(20)
     expect(result.breakdown.adventure.distance).toBe(0)
     expect(result.breakdown.adventure.fit).toBe(ADVENTURE_FIT.exact)
   })
 
-  it('awards 60% of adventure weight when familiarity is one level away', () => {
+  it('awards 60% of adventure weight when adventureLevel is one level away', () => {
     const result = scoreDish(PAINTED_SESSION, fixture[2])
     expect(result.breakdown.adventure.earned).toBeCloseTo(20 * ADVENTURE_FIT.oneLevel)
     expect(result.breakdown.adventure.distance).toBe(1)
   })
 
-  it('awards 20% of adventure weight when familiarity is two levels away', () => {
+  it('awards 20% of adventure weight when adventureLevel is two levels away', () => {
     const result = scoreDish(PAINTED_SESSION, fixture[1])
     expect(result.breakdown.adventure.earned).toBeCloseTo(20 * ADVENTURE_FIT.twoLevels)
     expect(result.breakdown.adventure.distance).toBe(2)
@@ -193,8 +217,8 @@ describe('Surprise Me', () => {
     expect(byId(surprise, 'alpha-noodle').score).toBeCloseTo(100)
   })
 
-  it('does not treat adventure surprise-me as familiarity 1, 2, or 3', () => {
-    const familiarDish = { ...fixture[0], id: 'alpha-familiar', familiarity: 1 }
+  it('does not treat adventure surprise-me as adventureLevel 1, 2, or 3', () => {
+    const familiarDish = { ...fixture[0], id: 'alpha-familiar', adventureLevel: 1 }
     const surpriseSession = { ...PAINTED_SESSION, adventurousness: SURPRISE_ME }
 
     const exactAdventurous = scoreDish(PAINTED_SESSION, fixture[0])
@@ -241,13 +265,19 @@ describe('score bounds and ranking', () => {
   it('does not mutate the source catalog', () => {
     const snapshot = dishes.map((dish) => ({
       id: dish.id,
-      flavors: [...dish.flavors],
-      familiarity: dish.familiarity,
+      preferenceFlavors: [...dish.preferenceFlavors],
+      descriptors: [...dish.descriptors],
+      adventureLevel: dish.adventureLevel,
     }))
     recommend(PAINTED_SESSION, dishes)
-    expect(dishes.map((dish) => ({ id: dish.id, flavors: dish.flavors, familiarity: dish.familiarity }))).toEqual(
-      snapshot,
-    )
+    expect(
+      dishes.map((dish) => ({
+        id: dish.id,
+        preferenceFlavors: dish.preferenceFlavors,
+        descriptors: dish.descriptors,
+        adventureLevel: dish.adventureLevel,
+      })),
+    ).toEqual(snapshot)
   })
 })
 
