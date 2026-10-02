@@ -52,6 +52,16 @@
   --color-rarity-epic: #686ec1;
   --color-rarity-legendary: #b06d20;
 
+  /* Measured from the final screens but absent from 01 - Foundations.
+     Several sit within a few percent of a Foundations colour, so they may be
+     drift rather than intent — see the notes in the welcome screen handoff. */
+  --color-brand-teal: #00c7bf;
+  --color-brand-teal-shadow: #056569;
+  --color-canvas-cream: #f6fbf3;
+  --color-sky: #a7e6fd;
+  --color-secondary-fill: #e2fcfa;
+  --color-on-primary: #eeeeee;
+
   /* ------------------------------------------------------------ typography */
   --font-*: initial;
 
@@ -95,6 +105,25 @@
   --text-label--line-height: 15px;
   --text-label--font-weight: 400;
 
+  /* Roles measured from the final screens. */
+  --text-wordmark: 104.584px;
+  --text-wordmark--line-height: 22.617px;
+  --text-wordmark--font-weight: 700;
+
+  --text-tagline: 23.768px;
+  --text-tagline--line-height: 22.617px;
+  --text-tagline--font-weight: 700;
+
+  --text-cta: 23.768px;
+  --text-cta--line-height: 25.7px;
+  --text-cta--font-weight: 700;
+
+  --text-nav-label: 12.969px;
+  --text-nav-label--line-height: normal;
+  --text-nav-label--font-weight: 600;
+
+  --tracking-nav-label: 0.2358px;
+
   /* --------------------------------------------------------- border radius */
   --radius-*: initial;
 
@@ -104,18 +133,26 @@
   --radius-lg: 15px;
   --radius-full: 9999px;
 
+  /* The welcome sheet uses a radius far outside the Foundations scale. */
+  --radius-sheet: 44.444px;
+
   /* --------------------------------------------------------------- shadows */
   --shadow-*: initial;
 
   /* 0.1.4 Border & Shadow — "Y = 4, Blur = 4" */
   --shadow-card: 0 4px 4px rgb(0 0 0 / 0.25);
 
+  /* Upward shadow where the welcome sheet overlaps the artwork. */
+  --shadow-sheet: 0 -2.222px 2.222px rgb(0 0 0 / 0.25);
+
   /* ------------------------------------------------- spacing & layout size */
   /* Figma does not define a spacing scale, so Tailwind's 4px scale is kept.
      The named sizes below are measured off the final 440px frames. */
-  --spacing-gutter: 24px;
+  --spacing-gutter: 35.56px;
   --spacing-status-bar: 64px;
   --spacing-bottom-nav: 66px;
+  --spacing-cta: 76.057px;
+  --spacing-frame: 956px;
 
   --container-app: 440px;
 }

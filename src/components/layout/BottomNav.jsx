@@ -2,44 +2,52 @@ import { NavLink } from 'react-router-dom'
 import { cn } from '../../utils/cn'
 
 /**
- * Fixed bottom tab bar.
+ * Bottom tab bar. Positioning belongs to the caller, so the same bar works
+ * whether a screen pins it or lets it sit at the end of the shell column.
  *
- * `items` is a list of { to, label, icon } so the shell stays free of
- * product-specific navigation. `icon` receives the active state.
+ * `items` is a list of { label, icon, to }. Items without a `to` render as
+ * plain labels, which keeps the bar usable before every route exists.
  */
 export default function BottomNav({ items = [], className }) {
   if (items.length === 0) return null
 
   return (
-    <nav
-      className={cn(
-        'fixed bottom-0 left-1/2 z-10 w-full max-w-app -translate-x-1/2',
-        'h-bottom-nav border-t border-progress-track bg-surface',
-        className,
-      )}
-    >
-      <ul className="flex h-full items-center justify-around">
+    <nav className={cn('flex h-bottom-nav items-center', className)}>
+      <ul className="flex w-full items-start justify-between px-[42.443px]">
         {items.map((item) => (
-          <li key={item.to}>
-            <NavLink
-              to={item.to}
-              className={({ isActive }) =>
-                cn(
-                  'flex w-14 flex-col items-center gap-1',
-                  isActive ? 'text-primary-teal' : 'text-text-muted',
-                )
-              }
-            >
-              {({ isActive }) => (
-                <>
-                  {typeof item.icon === 'function' ? item.icon({ isActive }) : item.icon}
-                  <span className="text-label">{item.label}</span>
-                </>
-              )}
-            </NavLink>
+          <li key={item.label}>
+            <Tab {...item} />
           </li>
         ))}
       </ul>
     </nav>
+  )
+}
+
+function Tab({ label, icon, to }) {
+  const content = (
+    <>
+      {icon}
+      <span className="text-center text-nav-label tracking-nav-label whitespace-nowrap">
+        {label}
+      </span>
+    </>
+  )
+
+  const shape = 'flex h-[47.159px] w-[56.59px] flex-col items-center justify-between px-[15.327px]'
+
+  if (!to) {
+    return <div className={cn(shape, 'text-text-muted')}>{content}</div>
+  }
+
+  return (
+    <NavLink
+      to={to}
+      className={({ isActive }) =>
+        cn(shape, isActive ? 'text-primary-teal' : 'text-text-muted')
+      }
+    >
+      {content}
+    </NavLink>
   )
 }

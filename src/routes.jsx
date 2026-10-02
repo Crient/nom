@@ -1,5 +1,5 @@
 import RootLayout from './components/layout/RootLayout'
-import Home from './pages/Home'
+import Welcome from './pages/Welcome'
 
 /**
  * Central route table. Each Figma screen becomes one entry under the layout
@@ -8,6 +8,6 @@ import Home from './pages/Home'
 export const routes = [
   {
     element: <RootLayout />,
-    children: [{ index: true, element: <Home /> }],
+    children: [{ index: true, element: <Welcome /> }],
   },
 ]
