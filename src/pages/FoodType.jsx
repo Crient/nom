@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import StatusBar from '../components/layout/StatusBar'
@@ -6,13 +5,14 @@ import DiscoveryHeader from '../components/discovery/DiscoveryHeader'
 import OptionRow from '../components/discovery/OptionRow'
 import OptionCard from '../components/discovery/OptionCard'
 import Button from '../components/ui/Button'
+import { useDiscoverySession } from '../context/DiscoverySession'
 import { foodTypeRows } from '../data/foodTypes'
 
 import progressMarkers from '../assets/icons/discovery-progress-1.svg'
 
 export default function FoodType() {
   const navigate = useNavigate()
-  const [selected, setSelected] = useState('noodle')
+  const { foodType, setFoodType } = useDiscoverySession()
 
   return (
     <div className="relative h-frame w-full overflow-hidden bg-surface">
@@ -22,7 +22,7 @@ export default function FoodType() {
         step="1 of 4"
         markers={progressMarkers}
         markersAlt="Step 1 of 4"
-        onBack={() => navigate(-1)}
+        onBack={() => navigate('/home')}
       />
 
       <h1 className="absolute top-[169px] left-[28px] w-[308px] text-display text-strong-neutral">
@@ -43,8 +43,8 @@ export default function FoodType() {
             <OptionCard
               key={option.id}
               {...option}
-              selected={selected === option.id}
-              onSelect={() => setSelected(option.id)}
+              selected={foodType === option.id}
+              onSelect={() => setFoodType(option.id)}
             />
           ))}
         </OptionRow>
@@ -53,6 +53,7 @@ export default function FoodType() {
       <Button
         variant="soft"
         size="discovery"
+        disabled={!foodType}
         className="absolute top-[859px] left-[26px]"
       >
         Continue
