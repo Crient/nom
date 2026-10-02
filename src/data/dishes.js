@@ -12,14 +12,14 @@ import dishNumBanhChok from '../assets/food/dish-num-banh-chok.jpeg'
 /**
  * V1 dish catalog — the ten dishes painted in 04 / 02 Recommendations.
  *
- * familiarity is 1 (familiar), 2 (different), or 3 (adventurous).
+ * preferenceFlavors: discovery picker ids only
+ *   spicy | comforting | fresh | rich | crispy | tangy
+ * descriptors: display characteristics that do not score
+ *   savory | smoky | bold | light
+ * adventureLevel: 1 familiar, 2 different, 3 adventurous
+ *
  * surprise-me is a session behaviour, never a dish value.
- *
- * flavors may include descriptive ids that are not discovery picker options
- * (savory, smoky, bold, light). Matching against a session still uses exact
- * discovery-flavor ids only.
- *
- * There is no tags array. UI tags are projected later from these fields.
+ * There is no tags array. Cards project tags from these fields later.
  *
  * Long `description` exists in Figma only for Lort Cha (02.03). Other dishes
  * reuse their card shortDescription rather than inventing detail-page copy.
@@ -32,8 +32,9 @@ export const dishes = [
     flag: '🇰🇭',
     region: 'southeast-asia',
     foodType: 'noodle',
-    flavors: ['savory', 'comforting', 'smoky'],
-    familiarity: 3,
+    preferenceFlavors: ['comforting'],
+    descriptors: ['savory', 'smoky'],
+    adventureLevel: 3,
     image: dishLortCha,
     shortDescription: 'Cambodian stir-fried rice noodles with beef, egg, and chives.',
     description:
@@ -46,8 +47,9 @@ export const dishes = [
     flag: '🇮🇩',
     region: 'southeast-asia',
     foodType: 'noodle',
-    flavors: ['savory', 'bold'],
-    familiarity: 2,
+    preferenceFlavors: [],
+    descriptors: ['savory', 'bold'],
+    adventureLevel: 2,
     image: dishMieGoreng,
     shortDescription: 'Indonesian stir-fried noodles with a sweet-savory flavor.',
     description: 'Indonesian stir-fried noodles with a sweet-savory flavor.',
@@ -59,8 +61,9 @@ export const dishes = [
     flag: '🇵🇭',
     region: 'southeast-asia',
     foodType: 'noodle',
-    flavors: ['savory', 'bold'],
-    familiarity: 2,
+    preferenceFlavors: [],
+    descriptors: ['savory', 'bold'],
+    adventureLevel: 2,
     image: dishPancitCanton,
     shortDescription: 'Filipino stir-fried noodles with vegetables and meat/seafood.',
     description: 'Filipino stir-fried noodles with vegetables and meat/seafood.',
@@ -72,8 +75,9 @@ export const dishes = [
     flag: '🇲🇾',
     region: 'southeast-asia',
     foodType: 'noodle',
-    flavors: ['savory', 'smoky'],
-    familiarity: 2,
+    preferenceFlavors: [],
+    descriptors: ['savory', 'smoky'],
+    adventureLevel: 2,
     image: dishCharKwayTeow,
     shortDescription: 'Malaysian stir-fried flat rice noodles with a smoky, savory flavor.',
     description: 'Malaysian stir-fried flat rice noodles with a smoky, savory flavor.',
@@ -85,8 +89,9 @@ export const dishes = [
     flag: '🇻🇳',
     region: 'southeast-asia',
     foodType: 'noodle',
-    flavors: ['savory', 'fresh', 'rich'],
-    familiarity: 3,
+    preferenceFlavors: ['fresh', 'rich'],
+    descriptors: ['savory'],
+    adventureLevel: 3,
     image: dishMiQuang,
     shortDescription: 'Vietnamese turmeric noodles with herbs, peanuts, and a little rich broth.',
     description: 'Vietnamese turmeric noodles with herbs, peanuts, and a little rich broth.',
@@ -98,8 +103,9 @@ export const dishes = [
     flag: '🇸🇬',
     region: 'southeast-asia',
     foodType: 'noodle',
-    flavors: ['rich', 'savory'],
-    familiarity: 2,
+    preferenceFlavors: ['rich'],
+    descriptors: ['savory'],
+    adventureLevel: 2,
     image: dishHokkienMee,
     shortDescription: 'Singaporean noodles tossed in a rich, savory seafood sauce.',
     description: 'Singaporean noodles tossed in a rich, savory seafood sauce.',
@@ -111,8 +117,9 @@ export const dishes = [
     flag: '🇲🇾',
     region: 'southeast-asia',
     foodType: 'noodle',
-    flavors: ['savory', 'light'],
-    familiarity: 2,
+    preferenceFlavors: [],
+    descriptors: ['savory', 'light'],
+    adventureLevel: 2,
     image: dishKoloMee,
     shortDescription: 'Springy Malaysian dry noodles with savory sauce and flavorful toppings.',
     description: 'Springy Malaysian dry noodles with savory sauce and flavorful toppings.',
@@ -124,8 +131,9 @@ export const dishes = [
     flag: '🇵🇭',
     region: 'southeast-asia',
     foodType: 'noodle',
-    flavors: ['comforting', 'savory'],
-    familiarity: 2,
+    preferenceFlavors: ['comforting'],
+    descriptors: ['savory'],
+    adventureLevel: 2,
     image: dishPancitBihon,
     shortDescription: 'Filipino rice noodles stir-fried with vegetables and your choice of protein.',
     description: 'Filipino rice noodles stir-fried with vegetables and your choice of protein.',
@@ -137,8 +145,9 @@ export const dishes = [
     flag: '🇻🇳',
     region: 'southeast-asia',
     foodType: 'noodle',
-    flavors: ['crispy', 'fresh'],
-    familiarity: 3,
+    preferenceFlavors: ['crispy', 'fresh'],
+    descriptors: [],
+    adventureLevel: 3,
     image: dishCaoLau,
     shortDescription: 'Chewy Vietnamese noodles with pork, herbs, greens, and crispy toppings.',
     description: 'Chewy Vietnamese noodles with pork, herbs, greens, and crispy toppings.',
@@ -150,8 +159,9 @@ export const dishes = [
     flag: '🇰🇭',
     region: 'southeast-asia',
     foodType: 'noodle',
-    flavors: ['comforting', 'fresh'],
-    familiarity: 2,
+    preferenceFlavors: ['comforting', 'fresh'],
+    descriptors: [],
+    adventureLevel: 2,
     image: dishNumBanhChok,
     shortDescription: 'Cambodian rice noodles with fragrant curry gravy, herbs, and fresh vegetables.',
     description: 'Cambodian rice noodles with fragrant curry gravy, herbs, and fresh vegetables.',
