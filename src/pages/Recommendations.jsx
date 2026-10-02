@@ -1,4 +1,3 @@
-import { useMemo } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 
 import StatusBar from '../components/layout/StatusBar'
@@ -7,11 +6,8 @@ import RecommendationCard from '../components/recommendations/RecommendationCard
 import RecommendationHeader from '../components/recommendations/RecommendationHeader'
 import SessionChip from '../components/recommendations/SessionChip'
 import Button from '../components/ui/Button'
-import { useDiscoverySession } from '../context/DiscoverySession'
 import { useFavorites } from '../context/Favorites'
-import { dishes } from '../data/dishes'
-import { recommend } from '../utils/recommendationEngine'
-import { formatSessionChips } from '../utils/sessionChips'
+import { useRecommendations } from '../hooks/useRecommendations'
 
 import recMap from '../assets/icons/rec-map.png'
 import recWave from '../assets/icons/rec-wave.svg'
@@ -21,31 +17,16 @@ import recLocation from '../assets/icons/rec-location.svg'
 import recArrow from '../assets/icons/rec-arrow.svg'
 import recSync from '../assets/icons/rec-sync.svg'
 
-function hasRequiredDiscovery(session) {
-  return Boolean(
-    session.foodType &&
-      session.adventurousness &&
-      Array.isArray(session.flavors) &&
-      session.flavors.length > 0,
-  )
-}
-
 export default function Recommendations() {
   const navigate = useNavigate()
-  const session = useDiscoverySession()
   const { isFavorite, toggleFavorite } = useFavorites()
+  const { ready, results, chips } = useRecommendations()
 
-  const results = useMemo(
-    () => (hasRequiredDiscovery(session) ? recommend(session, dishes).slice(0, 3) : []),
-    [session],
-  )
-  const chips = useMemo(() => formatSessionChips(session), [session])
-
-  if (!hasRequiredDiscovery(session)) {
+  if (!ready) {
     return <Navigate to="/discover/food-type" replace />
   }
 
-  const [best, second, third] = results
+  const [best, second, third] = results.slice(0, 3)
 
   return (
     <div className="relative h-[1000px] w-full overflow-hidden bg-surface">
