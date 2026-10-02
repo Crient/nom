@@ -6,45 +6,57 @@ import OptionRow from '../components/discovery/OptionRow'
 import OptionCard from '../components/discovery/OptionCard'
 import Button from '../components/ui/Button'
 import { useDiscoverySession } from '../context/DiscoverySession'
-import { foodTypeRows } from '../data/foodTypes'
+import { flavorRows, MAX_FLAVORS } from '../data/flavors'
 
-import progressMarkers from '../assets/icons/discovery-progress-1.svg'
+import progressMarkers from '../assets/icons/discovery-progress-2.svg'
 
-export default function FoodType() {
+export default function Flavor() {
   const navigate = useNavigate()
-  const { foodType, setFoodType } = useDiscoverySession()
+  const { flavors, setFlavors } = useDiscoverySession()
+
+  /* Tapping a chosen flavour clears it; otherwise it is added until the cap
+     is reached, after which further taps do nothing. */
+  const toggleFlavor = (id) => {
+    setFlavors((current) => {
+      if (current.includes(id)) {
+        return current.filter((flavor) => flavor !== id)
+      }
+
+      return current.length < MAX_FLAVORS ? [...current, id] : current
+    })
+  }
 
   return (
     <div className="relative h-frame w-full overflow-hidden bg-surface">
       <StatusBar />
 
       <DiscoveryHeader
-        step="1 of 4"
+        step="2 of 4"
         markers={progressMarkers}
-        markersAlt="Step 1 of 4"
-        onBack={() => navigate('/home')}
+        markersAlt="Step 2 of 4"
+        onBack={() => navigate('/discover/food-type')}
       />
 
       <h1 className="absolute top-[169px] left-[28px] w-[308px] text-display text-strong-neutral">
         What{' '}
         <span className="text-alt-teal underline decoration-solid decoration-from-font [text-decoration-skip-ink:none] [text-underline-position:from-font]">
-          sounds
+          flavors
         </span>{' '}
-        good for you right now?
+        are you looking for?
       </h1>
 
       <p className="absolute top-[248px] left-[29px] w-[402.557px] text-body-tight text-text-primary">
-        Choose one kind you’d like to eat.
+        Choose up to two.
       </p>
 
-      {foodTypeRows.map((row) => (
+      {flavorRows.map((row) => (
         <OptionRow key={row.top} top={row.top} left={row.left}>
           {row.options.map((option) => (
             <OptionCard
               key={option.id}
               {...option}
-              selected={foodType === option.id}
-              onSelect={() => setFoodType(option.id)}
+              selected={flavors.includes(option.id)}
+              onSelect={() => toggleFlavor(option.id)}
             />
           ))}
         </OptionRow>
@@ -53,8 +65,7 @@ export default function FoodType() {
       <Button
         variant="soft"
         size="discovery"
-        disabled={!foodType}
-        onClick={() => navigate('/discover/flavor')}
+        disabled={flavors.length === 0}
         className="absolute top-[859px] left-[26px]"
       >
         Continue

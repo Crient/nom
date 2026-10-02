@@ -1,0 +1,9 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="375" height="32" viewBox="0 0 375 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Progress Markers">
+<rect width="375" height="32" fill="white"/>
+<path id="Vector 3" d="M16 16H92.75" stroke="#1C1B1F" stroke-width="6" stroke-linecap="round"/>
+<path id="Vector 4" d="M104.75 16H181.5" stroke="black" stroke-width="6" stroke-linecap="round"/>
+<path id="Vector 5" d="M193.5 16H270.25" stroke="#EFF1F5" stroke-width="6" stroke-linecap="round"/>
+<path id="Vector 6" opacity="0.6" d="M282.25 16H359" stroke="#EFF1F5" stroke-width="6" stroke-linecap="round"/>
+</g>
+</svg>
