@@ -62,6 +62,12 @@
   --color-secondary-fill: #e2fcfa;
   --color-on-primary: #eeeeee;
 
+  --color-field: #eff1f5;
+  --color-progress-base: #313131;
+  --color-tile-border: #14b9b3;
+  --color-tile-fill: #eefcfb;
+  --color-text-faint: #a7a9b2;
+
   /* ------------------------------------------------------------ typography */
   --font-*: initial;
 
@@ -122,7 +128,60 @@
   --text-nav-label--line-height: normal;
   --text-nav-label--font-weight: 600;
 
+  /* Home roles. The frame's sizes do not land on the Foundations scale, so
+     each recurring role is tokenized at its measured value. */
+  --text-greeting: 28.394px;
+  --text-greeting--line-height: 37.556px;
+  --text-greeting--font-weight: 600;
+
+  --text-greeting-sub: 18.778px;
+  --text-greeting-sub--line-height: 17.746px;
+  --text-greeting-sub--font-weight: 400;
+
+  --text-search: 18.78px;
+  --text-search--line-height: 23.473px;
+  --text-search--font-weight: 400;
+
+  --text-section-title: 19.521px;
+  --text-section-title--line-height: 37.556px;
+  --text-section-title--font-weight: 700;
+
+  --text-tile-label: 17.497px;
+  --text-tile-label--line-height: normal;
+  --text-tile-label--font-weight: 600;
+
+  --text-card-title: 15.972px;
+  --text-card-title--line-height: 22.645px;
+  --text-card-title--font-weight: 700;
+
+  --text-link: 13.31px;
+  --text-link--line-height: 13.31px;
+  --text-link--font-weight: 700;
+
+  --text-action-label: 11.535px;
+  --text-action-label--line-height: 13.31px;
+  --text-action-label--font-weight: 700;
+
+  --text-meta: 10.648px;
+  --text-meta--line-height: 13.31px;
+  --text-meta--font-weight: 400;
+
+  --text-meta-sm: 8.873px;
+  --text-meta-sm--line-height: 13.31px;
+  --text-meta-sm--font-weight: 400;
+
+  --text-recent-title: 10.352px;
+  --text-recent-title--line-height: 17.642px;
+  --text-recent-title--font-weight: 700;
+
+  --text-recent-sub: 7.246px;
+  --text-recent-sub--line-height: 10.369px;
+  --text-recent-sub--font-weight: 400;
+
   --tracking-nav-label: 0.2358px;
+  --tracking-meta: 0.2059px;
+  --tracking-tile: 0.2692px;
+  --tracking-recent: 0.1604px;
 
   /* --------------------------------------------------------- border radius */
   --radius-*: initial;
@@ -133,7 +192,8 @@
   --radius-lg: 15px;
   --radius-full: 9999px;
 
-  /* The welcome sheet uses a radius far outside the Foundations scale. */
+  /* Radii outside the Foundations scale. */
+  --radius-card: 8.873px;
   --radius-sheet: 44.444px;
 
   /* --------------------------------------------------------------- shadows */
@@ -145,11 +205,21 @@
   /* Upward shadow where the welcome sheet overlaps the artwork. */
   --shadow-sheet: 0 -2.222px 2.222px rgb(0 0 0 / 0.25);
 
+  /* Home cards and tiles. */
+  --shadow-raised: 0 3.549px 3.549px rgb(0 0 0 / 0.25);
+  --shadow-tile: 0 3.441px 1.721px rgb(0 0 0 / 0.25);
+  --shadow-box-ready: 0.885px 0.885px 3.541px #fec62c;
+
   /* ------------------------------------------------- spacing & layout size */
   /* Figma does not define a spacing scale, so Tailwind's 4px scale is kept.
-     The named sizes below are measured off the final 440px frames. */
-  --spacing-gutter: 35.56px;
-  --spacing-status-bar: 64px;
+     The named sizes below are measured off the final 440px frames.
+
+     The welcome sheet and the Home content use different insets, so the
+     gutter is split by context rather than averaged into one wrong value. */
+  --spacing-sheet-gutter: 35.56px;
+  --spacing-page-gutter: 23.07px;
+
+  --spacing-status-bar: 63.376px;
   --spacing-bottom-nav: 66px;
   --spacing-cta: 76.057px;
   --spacing-frame: 956px;

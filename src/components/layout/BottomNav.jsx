@@ -44,7 +44,7 @@ function Tab({ label, icon, to }) {
     <NavLink
       to={to}
       className={({ isActive }) =>
-        cn(shape, isActive ? 'text-primary-teal' : 'text-text-muted')
+        cn(shape, isActive ? 'text-text-primary' : 'text-text-muted')
       }
     >
       {content}
