@@ -17,8 +17,13 @@ const DiscoverySessionContext = createContext(null)
 export function DiscoverySessionProvider({ children }) {
   const [session, setSession] = useState(EMPTY_SESSION)
 
+  /* Accepts a value or an updater, like useState, so callers that derive the
+     next answer from the current one stay correct when React batches. */
   const setAnswer = useCallback((key, value) => {
-    setSession((current) => ({ ...current, [key]: value }))
+    setSession((current) => ({
+      ...current,
+      [key]: typeof value === 'function' ? value(current[key]) : value,
+    }))
   }, [])
 
   const value = useMemo(
