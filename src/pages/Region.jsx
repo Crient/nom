@@ -68,6 +68,7 @@ export default function Region() {
       <Button
         variant="soft"
         size="none"
+        onClick={() => navigate('/recommendations')}
         className="absolute top-[1063px] left-[27px] h-[63px] w-[386px] rounded-lg text-button tracking-meta"
       >
         Continue

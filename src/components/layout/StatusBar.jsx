@@ -1,3 +1,4 @@
+import { cn } from '../../utils/cn'
 import statusCellular from '../../assets/icons/status-cellular.svg'
 import statusWifi from '../../assets/icons/status-wifi.svg'
 import statusCap from '../../assets/icons/status-cap.svg'
@@ -10,9 +11,9 @@ import statusCap from '../../assets/icons/status-cap.svg'
  * Figma uses SF Pro for the clock; the system font stack is the closest the
  * browser can get.
  */
-export default function StatusBar() {
+export default function StatusBar({ className }) {
   return (
-    <div className="relative h-status-bar w-full bg-surface">
+    <div className={cn('relative h-status-bar w-full bg-surface', className)}>
       <p
         className="absolute top-[21.52px] left-[55.79px] w-[44.6px] text-center text-[19.95px] leading-[25.82px] font-bold text-text-primary"
         style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}
