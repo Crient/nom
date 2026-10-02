@@ -1,0 +1,11 @@
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+.vite
+
+# Environment — Supabase keys will live here
+.env
+.env.*
+!.env.example

@@ -1,0 +1,121 @@
+/*
+ * Nom design tokens — the single source of truth for the Figma design system.
+ * Source: Figma "03 — Design System" / 01 - Foundations.
+ *
+ * Every value below exists in Figma. Nothing here is invented, and no component
+ * should hardcode a colour, font size, radius or shadow that is not defined here.
+ *
+ * The `initial` resets remove Tailwind's stock palette, type scale, radii and
+ * font families, so only the Figma system is reachable from utility classes.
+ */
+
+@theme {
+  /* ---------------------------------------------------------------- colours */
+  --color-*: initial;
+
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  /* Teals */
+  --color-primary-teal: #14b9b5;
+  --color-alt-teal: #20c3be;
+  --color-teal-tint: #cdf4f2;
+  --color-teal-highlight: #71d7d4;
+  --color-soft-teal: #dafaf7;
+  --color-soft-teal-2: #e8f8fa;
+  --color-pale-teal: #f2fbfb;
+
+  /* Surfaces */
+  --color-background: #f7fefd;
+  --color-surface: #ffffff;
+  --color-warm-surface: #fff7eb;
+
+  /* Text and neutrals */
+  --color-text-primary: #1c1b1f;
+  --color-text-secondary: #525151;
+  --color-text-muted: #a09cab;
+  --color-muted-alt: #a9a9a9;
+  --color-strong-neutral: #000000;
+
+  /* Status */
+  --color-success: #009c5f;
+  --color-error: #9c1212;
+  --color-yellow-accent: #fec62c;
+
+  /* Components */
+  --color-progress-track: #d9d9d9;
+  --color-tag-teal: #cdf4f2;
+
+  /* Rarity */
+  --color-rarity-common: #008063;
+  --color-rarity-rare: #3461ab;
+  --color-rarity-epic: #686ec1;
+  --color-rarity-legendary: #b06d20;
+
+  /* ------------------------------------------------------------ typography */
+  --font-*: initial;
+
+  /* Inter is the main UI font. Nerko One and NTR are reserved for rewards:
+     collectible names and rarity tags respectively. */
+  --font-ui: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-collectible: 'Nerko One', var(--font-ui);
+  --font-rarity: 'NTR', var(--font-ui);
+
+  --text-*: initial;
+
+  --text-display: 30px;
+  --text-display--line-height: 35px;
+  --text-display--font-weight: 700;
+
+  --text-title-lg: 25px;
+  --text-title-lg--line-height: 27px;
+  --text-title-lg--font-weight: 700;
+
+  --text-title: 22px;
+  --text-title--line-height: 27px;
+  --text-title--font-weight: 700;
+
+  --text-heading: 18px;
+  --text-heading--line-height: 27px;
+  --text-heading--font-weight: 700;
+
+  --text-body-lg: 17px;
+  --text-body-lg--line-height: 27px;
+  --text-body-lg--font-weight: 400;
+
+  --text-body: 15px;
+  --text-body--line-height: 20px;
+  --text-body--font-weight: 400;
+
+  --text-body-sm: 13px;
+  --text-body-sm--line-height: 15px;
+  --text-body-sm--font-weight: 400;
+
+  --text-label: 11px;
+  --text-label--line-height: 15px;
+  --text-label--font-weight: 400;
+
+  /* --------------------------------------------------------- border radius */
+  --radius-*: initial;
+
+  --radius-none: 0px;
+  --radius-sm: 5px;
+  --radius-md: 10px;
+  --radius-lg: 15px;
+  --radius-full: 9999px;
+
+  /* --------------------------------------------------------------- shadows */
+  --shadow-*: initial;
+
+  /* 0.1.4 Border & Shadow — "Y = 4, Blur = 4" */
+  --shadow-card: 0 4px 4px rgb(0 0 0 / 0.25);
+
+  /* ------------------------------------------------- spacing & layout size */
+  /* Figma does not define a spacing scale, so Tailwind's 4px scale is kept.
+     The named sizes below are measured off the final 440px frames. */
+  --spacing-gutter: 24px;
+  --spacing-status-bar: 64px;
+  --spacing-bottom-nav: 66px;
+
+  --container-app: 440px;
+}

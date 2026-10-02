@@ -1,0 +1,23 @@
+@import 'tailwindcss';
+@import './tokens.css';
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background font-ui text-body text-text-primary;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* The designs are mobile-only, so block the horizontal scroll that would
+     otherwise appear when a page is wider than the 440px frame. */
+  body {
+    overflow-x: hidden;
+  }
+
+  button {
+    cursor: pointer;
+  }
+}
