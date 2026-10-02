@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import BottomNav from '../components/layout/BottomNav'
 import StatusBar from '../components/layout/StatusBar'
 import CollectionIcon from '../components/icons/CollectionIcon'
@@ -90,9 +91,9 @@ export default function Home() {
       </div>
 
       <div className="absolute top-[295.48px] left-[6.21px] flex h-[144.538px] w-[426.803px] flex-col items-center justify-center overflow-hidden bg-surface py-[22.111px]">
-        <div className="flex items-center justify-center gap-[30.27px] px-[21.535px] drop-shadow-[0_3.441px_1.721px_rgb(0_0_0/0.25)]">
-          <button
-            type="button"
+        <div className="flex items-center justify-center gap-[30.27px] px-[21.535px] drop-shadow-tile">
+          <Link
+            to="/discover/food-type"
             className="flex h-[116.239px] w-[177.465px] shrink-0 flex-col items-center justify-center gap-[8.075px] rounded-[10.324px] border-[0.86px] border-solid border-tile-border bg-tile-fill"
           >
             <span className="relative size-[55.062px] overflow-hidden">
@@ -105,11 +106,11 @@ export default function Home() {
             <span className="text-tile-label tracking-tile whitespace-nowrap text-text-primary">
               Let’s Eat
             </span>
-          </button>
+          </Link>
 
           <button
             type="button"
-            className="flex h-[116.239px] w-[177.465px] shrink-0 flex-col items-center justify-center gap-[8.075px] rounded-[10.324px] border-[0.86px] border-solid border-black/20"
+            className="flex h-[116.239px] w-[177.465px] shrink-0 flex-col items-center justify-center gap-[8.075px] rounded-[10.324px] border-[0.86px] border-solid border-strong-neutral/20"
           >
             <span className="relative size-[55.062px] overflow-hidden">
               <img
