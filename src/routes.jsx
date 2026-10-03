@@ -8,6 +8,7 @@ import Region from './pages/Region'
 import Recommendations from './pages/Recommendations'
 import MoreOptions from './pages/MoreOptions'
 import DishDetails from './pages/DishDetails'
+import { Navigate } from 'react-router-dom'
 
 /**
  * Central route table. Each Figma screen becomes one entry under the layout
@@ -26,6 +27,7 @@ export const routes = [
       { path: 'recommendations', element: <Recommendations /> },
       { path: 'recommendations/more', element: <MoreOptions /> },
       { path: 'recommendations/:dishId', element: <DishDetails /> },
+      { path: '*', element: <Navigate to="/home" replace /> },
     ],
   },
 ]

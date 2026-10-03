@@ -49,51 +49,50 @@ export default function DishDetails() {
             Where to try nearby
           </h2>
           {previews.length > 0 && <span className="ml-[8px] text-[10px] text-text-secondary">Preview</span>}
-          <button type="button" disabled title="Nearby search is not connected yet" className="relative top-[2px] ml-auto mr-[4px] flex items-center gap-[5px] text-[12px] font-bold text-primary-teal">
+          <button type="button" disabled title="Nearby search is not connected yet" className="relative top-[2px] ml-auto mr-[4px] flex items-center gap-[5px] text-[12px] font-bold text-accessible-teal">
             See all
             <img src={seeAllArrow} alt="" className="translate-y-[4px] max-w-none" />
           </button>
         </div>
-        <div className="mt-[1px] flex min-h-[95px] w-[395px] justify-between">
+        <div className="mt-[1px] grid min-h-[95px] grid-cols-3 gap-[16px]">
           {previews.length > 0 ? previews.map((restaurant) => (
             <RestaurantPreviewCard key={restaurant.id} restaurant={restaurant} />
           )) : (
-            <p className="self-center text-body-sm text-text-secondary">Nearby restaurant search is not available yet.</p>
+            <p className="col-span-3 self-center text-body-sm text-text-secondary">Nearby restaurant search is not available yet.</p>
           )}
         </div>
       </section>
 
       <div className="mx-[23px] mt-[18px] flex flex-col gap-[11px]">
         <Button
-          variant="primary" size="none" disabled
+          variant="nearby" size="none" disabled
           title="Nearby restaurant search is not connected yet"
-          style={{ opacity: 1, backgroundColor: 'var(--color-alt-teal)', color: 'var(--color-pale-teal)' }}
-          className="relative h-[63px] w-[394px] rounded-lg text-[19px] leading-[13.31px] font-bold tracking-meta shadow-card"
+          className="relative min-h-[63px] w-full rounded-lg px-[12px] text-[19px] leading-[23px] font-bold tracking-meta shadow-card"
         >
-          <img src={nearbyLocation} alt="" className="absolute top-[15px] left-[48.5px] max-w-none" />
-          <span className="absolute top-[26px] left-[84px]">Find nearby restaurants</span>
-          <img src={nearbyArrow} alt="" className="absolute top-[13px] left-[322.7px] max-w-none" />
+          <img src={nearbyLocation} alt="" className="shrink-0 max-w-none" />
+          <span>Find nearby restaurants</span>
+          <img src={nearbyArrow} alt="" className="shrink-0 max-w-none" />
         </Button>
-        <div className="flex gap-[10px]">
+        <div className="grid grid-cols-2 gap-[10px]">
           <Button
-            variant="secondary" size="none"
+            variant="artwork" size="none"
             aria-pressed={favorite}
-            aria-label={favorite ? 'Remove from favorites' : 'Save to favorites'}
+            aria-label={favorite ? `Remove ${dish.name} from favorites` : `Save ${dish.name} to favorites`}
             onClick={() => toggleFavorite(dish.id)}
-            className="relative h-[63px] w-[190px] rounded-[17px] bg-transparent text-[15px] leading-[13.31px] font-bold tracking-meta text-primary-teal shadow-card"
+            className="relative min-h-[63px] rounded-[17px] px-[10px] text-[15px] leading-[18px] font-bold tracking-meta shadow-card"
           >
-            <img src={saveBackground} alt="" className="absolute inset-0 max-w-none" />
-            <img src={saveStar} alt="" className="absolute top-[22px] left-[24.5px] max-w-none" />
-            <span className="absolute top-[25px] left-[47px]">{favorite ? 'Saved to favorites' : 'Save to favorites'}</span>
+            <img src={saveBackground} alt="" className="absolute inset-0 size-full" />
+            <img src={saveStar} alt="" className="relative shrink-0 max-w-none" />
+            <span className="relative">{favorite ? 'Saved to favorites' : 'Save to favorites'}</span>
           </Button>
           <Button
-            variant="secondary" size="none"
+            variant="artwork" size="none"
             onClick={() => navigate('/recommendations/more')}
-            className="relative h-[63px] w-[190px] rounded-[17px] bg-transparent text-[15px] leading-[13.31px] font-bold tracking-meta text-primary-teal shadow-card"
+            className="relative min-h-[63px] rounded-[17px] px-[10px] text-[15px] leading-[18px] font-bold tracking-meta shadow-card"
           >
-            <img src={moreBackground} alt="" className="absolute inset-0 max-w-none" />
-            <img src={moreSync} alt="" className="absolute top-[19px] left-[12px] size-[24.305px] max-w-none" />
-            <span className="absolute top-[25px] left-[45px]">See more options</span>
+            <img src={moreBackground} alt="" className="absolute inset-0 size-full" />
+            <img src={moreSync} alt="" width={25} height={25} className="relative size-[24.305px] shrink-0 max-w-none" />
+            <span className="relative">See more options</span>
           </Button>
         </div>
         <p id="restaurant-preview-note" className="text-[10px] leading-[14px] text-text-secondary">

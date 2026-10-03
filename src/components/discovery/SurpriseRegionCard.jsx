@@ -1,5 +1,6 @@
+import Image from '../ui/Image'
 import checkIcon from '../../assets/icons/check.svg'
-import surpriseImage from '../../assets/food/region-surprise.png'
+import surpriseImage from '../../assets/food/region-surprise.webp'
 
 /**
  * Full-width Surprise Me row unique to the Region frame. Yellow fill/border
@@ -8,16 +9,16 @@ import surpriseImage from '../../assets/food/region-surprise.png'
  */
 export default function SurpriseRegionCard({ selected = false, onSelect }) {
   return (
-    <div className="absolute top-[889px] left-[9px] flex h-[120px] w-[425px] flex-col items-center justify-center overflow-hidden bg-surface pb-[22.111px]">
-      <div className="flex h-[109px] w-[393px] items-center justify-center px-[21.535px] drop-shadow-tile">
+    <div className="absolute top-[889px] left-[9px] right-[6px] flex h-[120px] flex-col items-center justify-center bg-surface pb-[22.111px]">
+      <div className="flex h-[109px] w-[calc(100%-34px)] items-center justify-center drop-shadow-tile">
         <button
           type="button"
           aria-pressed={selected}
           onClick={onSelect}
-          className="relative flex h-[92px] w-[391px] shrink-0 items-center justify-center overflow-hidden rounded-md border-[0.86px] border-solid border-yellow-accent bg-surprise-fill"
+          className="relative flex h-[92px] w-full items-center justify-center overflow-hidden rounded-md border-[0.86px] border-solid border-yellow-accent bg-surprise-fill"
         >
-          <span className="relative h-[80px] w-[252px] shrink-0 overflow-hidden">
-            <img
+          <span className="relative h-[80px] min-w-0 flex-1 overflow-hidden">
+            <Image
               src={surpriseImage}
               alt=""
               className="absolute top-[-18.76%] left-[-2.91%] h-[128.18%] w-[106.39%] max-w-none"

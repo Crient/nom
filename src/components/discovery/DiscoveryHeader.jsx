@@ -15,23 +15,23 @@ export default function DiscoveryHeader({ step, markers, markersAlt = '', onBack
         type="button"
         onClick={onBack}
         aria-label="Go back"
-        className="absolute top-[75.07px] left-[30.01px] h-[22.92px] w-[9.988px] rotate-180"
+        className="absolute top-[64.5px] left-[13px] z-20 flex size-[44px] items-center justify-center"
       >
         <img
           src={chevronLeft}
           alt=""
-          className="absolute top-[-1.439px] left-[-1.658px] h-[25.798px] w-[14.558px] max-w-none"
+          className="h-[25.798px] w-[14.558px] max-w-none rotate-180"
         />
       </button>
 
-      <p className="absolute top-[82px] left-[365px] text-body-tight whitespace-nowrap text-text-primary">
+      <p className="absolute top-[82px] right-[33px] text-body-tight whitespace-nowrap text-text-primary">
         {step}
       </p>
 
       <img
         src={markers}
         alt={markersAlt}
-        className="absolute top-[124px] left-[32px] h-[32px] w-[375px] max-w-none"
+        className="absolute top-[124px] left-[32px] h-[32px] w-[calc(100%-65px)]"
       />
     </>
   )

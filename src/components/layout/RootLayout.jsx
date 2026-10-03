@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import AppShell from './AppShell'
+import RouteTransition from './RouteTransition'
 
 /**
  * Layout route. Screens render into the Outlet inside the mobile shell.
@@ -10,6 +11,7 @@ import AppShell from './AppShell'
 export default function RootLayout() {
   return (
     <AppShell>
+      <RouteTransition />
       <Outlet />
     </AppShell>
   )

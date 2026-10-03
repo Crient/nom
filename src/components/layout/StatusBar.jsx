@@ -11,9 +11,9 @@ import statusCap from '../../assets/icons/status-cap.svg'
  * Figma uses SF Pro for the clock; the system font stack is the closest the
  * browser can get.
  */
-export default function StatusBar({ className }) {
+export default function StatusBar({ className, overlay = false }) {
   return (
-    <div className={cn('relative h-status-bar w-full bg-surface', className)}>
+    <div aria-hidden="true" className={cn(overlay ? 'absolute inset-x-0 top-0 z-10' : 'relative', 'h-status-bar w-full', className)}>
       <p
         className="absolute top-[21.52px] left-[55.79px] w-[44.6px] text-center text-[19.95px] leading-[25.82px] font-bold text-text-primary"
         style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}
@@ -24,20 +24,20 @@ export default function StatusBar({ className }) {
       <img
         src={statusCellular}
         alt=""
-        className="absolute top-[27.62px] left-[314.45px] h-[14.349px] w-[22.534px] max-w-none"
+        className="absolute top-[27.62px] right-[103.016px] h-[14.349px] w-[22.534px] max-w-none"
       />
       <img
         src={statusWifi}
         alt=""
-        className="absolute top-[27.74px] left-[345.79px] h-[14.469px] w-[20.118px] max-w-none"
+        className="absolute top-[27.74px] right-[74.092px] h-[14.469px] w-[20.118px] max-w-none"
       />
 
-      <div className="absolute top-[26.99px] left-[379.52px] h-[15.26px] w-[29.341px] rounded-[4.3px] border-[1.174px] border-solid border-text-primary opacity-35" />
-      <div className="absolute top-[29.34px] left-[381.87px] h-[10.56px] w-[24.646px] rounded-[2.5px] bg-text-primary" />
+      <div className="absolute top-[26.99px] right-[31.139px] h-[15.26px] w-[29.341px] rounded-[4.3px] border-[1.174px] border-solid border-text-primary opacity-35" />
+      <div className="absolute top-[29.34px] right-[33.484px] h-[10.56px] w-[24.646px] rounded-[2.5px] bg-text-primary" />
       <img
         src={statusCap}
         alt=""
-        className="absolute top-[32.61px] left-[412.92px] h-[4.783px] w-[1.559px] max-w-none"
+        className="absolute top-[32.61px] right-[25.521px] h-[4.783px] w-[1.559px] max-w-none"
       />
     </div>
   )

@@ -1,13 +1,13 @@
-import dishLortCha from '../assets/food/dish-lort-cha.png'
-import dishMieGoreng from '../assets/food/dish-mie-goreng.png'
-import dishPancitCanton from '../assets/food/dish-pancit-canton.jpeg'
-import dishCharKwayTeow from '../assets/food/dish-char-kway-teow.jpeg'
-import dishMiQuang from '../assets/food/dish-mi-quang.png'
-import dishHokkienMee from '../assets/food/dish-hokkien-mee.jpeg'
-import dishKoloMee from '../assets/food/dish-kolo-mee.jpeg'
-import dishPancitBihon from '../assets/food/dish-pancit-bihon.jpeg'
-import dishCaoLau from '../assets/food/dish-cao-lau.jpeg'
-import dishNumBanhChok from '../assets/food/dish-num-banh-chok.jpeg'
+import dishLortCha from '../assets/food/dish-lort-cha.webp'
+import dishMieGoreng from '../assets/food/dish-mie-goreng.webp'
+import dishPancitCanton from '../assets/food/dish-pancit-canton.webp'
+import dishCharKwayTeow from '../assets/food/dish-char-kway-teow.webp'
+import dishMiQuang from '../assets/food/dish-mi-quang.webp'
+import dishHokkienMee from '../assets/food/dish-hokkien-mee.webp'
+import dishKoloMee from '../assets/food/dish-kolo-mee.webp'
+import dishPancitBihon from '../assets/food/dish-pancit-bihon.webp'
+import dishCaoLau from '../assets/food/dish-cao-lau.webp'
+import dishNumBanhChok from '../assets/food/dish-num-banh-chok.webp'
 
 /**
  * V1 dish catalog — the ten dishes painted in 04 / 02 Recommendations.

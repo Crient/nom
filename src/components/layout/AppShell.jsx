@@ -9,10 +9,10 @@ import { cn } from '../../utils/cn'
 export default function AppShell({ topBar, bottomNav, children, className }) {
   return (
     <div className="min-h-dvh bg-background">
-      <div className="mx-auto flex min-h-dvh w-full max-w-app flex-col bg-surface">
+      <div className="mx-auto flex min-h-dvh w-full max-w-app flex-col bg-surface [container-type:inline-size]">
         {topBar}
 
-        <main className={cn('flex-1', bottomNav && 'pb-bottom-nav', className)}>
+        <main id="main-content" tabIndex={-1} className={cn('min-w-0 flex-1', bottomNav && 'pb-bottom-nav', className)}>
           {children}
         </main>
 

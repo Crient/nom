@@ -1,3 +1,4 @@
+import Image from '../ui/Image'
 import { cn } from '../../utils/cn'
 import checkIcon from '../../assets/icons/check.svg'
 
@@ -29,9 +30,8 @@ export default function OptionCard({
       type="button"
       aria-pressed={selected}
       onClick={onSelect}
-      style={{ width }}
       className={cn(
-        'relative flex h-[125px] shrink-0 flex-col items-center justify-center gap-[8.075px] rounded-md',
+        'relative flex h-[125px] min-w-0 w-full flex-col items-center justify-center gap-[8.075px] rounded-md',
         selected && 'bg-soft-teal-2',
         raised && 'shadow-card',
       )}
@@ -48,7 +48,7 @@ export default function OptionCard({
           className="relative block overflow-hidden"
           style={{ width: imageBox.width, height: imageBox.height }}
         >
-          <img
+          <Image
             src={image}
             alt=""
             className="absolute w-full max-w-none"
@@ -57,14 +57,14 @@ export default function OptionCard({
         </span>
       </span>
 
-      <span className="text-tile-label tracking-tile whitespace-nowrap text-text-primary">
+      <span className="text-tile-label tracking-tile text-center text-text-primary">
         {label}
       </span>
 
       {selected && (
         <span
           className="absolute size-[23.077px] rounded-full bg-alt-teal"
-          style={{ left: checkbox.left, top: checkbox.top }}
+          style={{ right: width - checkbox.left - 23.077, top: checkbox.top }}
         >
           <img
             src={checkIcon}

@@ -2,10 +2,12 @@ import { cn } from '../../utils/cn'
 
 /** Variants mirror 02 - Controls: Primary, Secondary and Alt buttons. */
 const VARIANTS = {
-  primary: 'bg-primary-teal text-on-primary',
-  secondary: 'bg-secondary-fill text-brand-teal',
-  alt: 'bg-soft-teal-2 border border-teal-highlight text-brand-teal',
-  soft: 'bg-soft-teal-2 text-alt-teal',
+  primary: 'bg-accessible-teal text-surface',
+  secondary: 'bg-secondary-fill text-accessible-teal',
+  alt: 'bg-soft-teal-2 border border-teal-highlight text-accessible-teal',
+  soft: 'bg-soft-teal-2 text-accessible-teal',
+  nearby: 'bg-alt-teal text-pale-teal',
+  artwork: 'bg-transparent text-accessible-teal',
 }
 
 /**
@@ -15,7 +17,7 @@ const VARIANTS = {
 const SIZES = {
   md: 'rounded-md px-6 py-3 text-cta',
   cta: 'h-cta w-full rounded-md text-cta',
-  discovery: 'h-[80px] w-[386px] rounded-lg text-button tracking-meta',
+  discovery: 'h-[80px] w-[calc(100%-54px)] rounded-lg text-button tracking-meta',
   none: '',
 }
 
@@ -33,7 +35,10 @@ export default function Button({
       className={cn(
         'inline-flex items-center justify-center gap-[14.08px]',
         'transition-opacity active:opacity-80',
-        'disabled:cursor-not-allowed disabled:opacity-50 disabled:active:opacity-50',
+        'disabled:cursor-not-allowed',
+        variant === 'nearby'
+          ? 'disabled:opacity-100 disabled:active:opacity-100'
+          : 'disabled:opacity-50 disabled:active:opacity-50',
         VARIANTS[variant],
         SIZES[size],
         className,

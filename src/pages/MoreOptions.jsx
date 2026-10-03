@@ -34,7 +34,7 @@ export default function MoreOptions() {
           <br />
           You can save your favorites or refine your preferences.
         </p>
-        <div className="mt-[20px] ml-[16px] flex w-[310px] flex-wrap gap-x-[8px] gap-y-[10px] pb-[15px]">
+        <div className="mt-[20px] ml-[16px] mr-[16px] flex max-w-[310px] flex-wrap gap-x-[8px] gap-y-[10px] pb-[15px]">
           {chips.map((chip) => (
             <SessionChip
               key={chip.id}
@@ -47,7 +47,7 @@ export default function MoreOptions() {
         </div>
       </header>
 
-      <section aria-label="More dish matches" className="mx-[22px] mt-[17px] w-[394px]">
+      <section aria-label="More dish matches" className="mx-[22px] mt-[17px] w-[calc(100%-46px)]">
         {results.slice(3, 10).map((result, index) => (
           <div key={result.dish.id}>
             {index > 0 && (
@@ -55,7 +55,7 @@ export default function MoreOptions() {
                 <img
                   src={recDivider}
                   alt=""
-                  className="absolute -left-[7px] block max-w-none"
+                  className="absolute -left-[7px] block w-[calc(100%+14px)]"
                   style={{ top: index === 1 ? 1 : index === 4 ? 4 : 2 }}
                 />
               </div>
@@ -75,17 +75,19 @@ export default function MoreOptions() {
         type="button"
         onClick={() => navigate('/discover/food-type')}
         aria-label="Adjust preferences"
-        className="relative mx-[23px] mt-[20px] block h-[63px] w-[394px] rounded-lg text-left text-strong-neutral shadow-panel"
+        className="relative mx-[23px] mt-[20px] flex min-h-[63px] w-[calc(100%-46px)] items-center gap-[16px] px-[14px] rounded-lg text-left text-strong-neutral shadow-panel"
       >
-        <img src={refineBackground} alt="" className="absolute inset-0 max-w-none" />
-        <img src={refineSettings} alt="" className="absolute top-[10px] left-[14px] max-w-none" />
-        <span className="absolute top-[16px] left-[70px] text-heading leading-[13.31px] tracking-meta">
-          Not Quite Right?
+        <img src={refineBackground} alt="" className="absolute inset-0 size-full" />
+        <img src={refineSettings} alt="" className="relative shrink-0 max-w-none" />
+        <span className="relative min-w-0">
+          <span className="relative block text-heading leading-[20px] tracking-meta">
+            Not Quite Right?
+          </span>
+          <span className="relative block text-[10px] leading-[11.751px] font-light">
+            Adjust your preferences to get better recommendations.
+          </span>
         </span>
-        <span className="absolute top-[34px] left-[70px] text-[10px] leading-[11.751px] font-light">
-          Adjust your preferences to get better recommendations.
-        </span>
-        <img src={refineArrow} alt="" className="absolute top-[26.3px] left-[363.8px] max-w-none" />
+        <img src={refineArrow} alt="" className="relative ml-auto shrink-0 max-w-none" />
       </button>
     </div>
   )
