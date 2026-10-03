@@ -3,6 +3,7 @@ import DishTag from './DishTag'
 import HeartButton from './HeartButton'
 import MatchBadge from './MatchBadge'
 import RankLabel from './RankLabel'
+import DishDetailsLink from './DishDetailsLink'
 
 export default function BestMatchCard({ result, liked = false, onToggleLike }) {
   const { dish, score, matchedAttributes } = result
@@ -14,6 +15,7 @@ export default function BestMatchCard({ result, liked = false, onToggleLike }) {
 
   return (
     <article className="absolute top-[296px] left-[18px] h-[238.2px] w-[397px] rounded-[17.261px] bg-surface shadow-card">
+      <DishDetailsLink dish={dish} />
       <div className="absolute top-[8.06px] left-[9.21px] h-[169.157px] w-[378.588px] overflow-hidden rounded-t-[17.261px]">
         <img
           src={dish.image}
@@ -27,7 +29,7 @@ export default function BestMatchCard({ result, liked = false, onToggleLike }) {
       <HeartButton
         liked={liked}
         onToggle={onToggleLike}
-        className="top-[12.66px] left-[354.42px] z-10"
+        className="top-[12.66px] left-[354.42px] z-30"
       />
       <div className="absolute top-[73px] left-[304px] z-10">
         <MatchBadge percent={percent} variant="hero" />

@@ -4,6 +4,7 @@ import DishTag from './DishTag'
 import HeartButton from './HeartButton'
 import MatchBadge from './MatchBadge'
 import RankLabel from './RankLabel'
+import DishDetailsLink from './DishDetailsLink'
 
 export default function RecommendationCard({
   result, rank, liked = false, onToggleLike, className, variant = 'ranked',
@@ -24,6 +25,7 @@ export default function RecommendationCard({
         className,
       )}
     >
+      <DishDetailsLink dish={dish} />
       <div className={cn(
         'absolute left-0 overflow-hidden rounded-[17.358px]',
         list ? 'top-[3px] h-[94px] w-[120px]' : 'top-[2.55px] h-[119.136px] w-[139.559px]',
@@ -36,7 +38,7 @@ export default function RecommendationCard({
         liked={liked}
         onToggle={onToggleLike}
         size={23.502}
-        className={list ? 'top-0 right-0' : 'top-0 left-[370.17px]'}
+        className={list ? 'top-0 right-0 z-30' : 'top-0 left-[370.17px] z-30'}
       />
 
       <h2 className={cn(
