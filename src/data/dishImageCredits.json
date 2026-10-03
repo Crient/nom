@@ -6,7 +6,12 @@
     "creator": null,
     "license": null,
     "licenseUrl": null,
-    "changes": null
+    "changes": null,
+    "credit": null,
+    "attribution": null,
+    "attributionRequired": null,
+    "selectionMethod": null,
+    "needsVisualReview": null
   },
   {
     "dishId": "mie-goreng",
@@ -15,7 +20,12 @@
     "creator": null,
     "license": null,
     "licenseUrl": null,
-    "changes": null
+    "changes": null,
+    "credit": null,
+    "attribution": null,
+    "attributionRequired": null,
+    "selectionMethod": null,
+    "needsVisualReview": null
   },
   {
     "dishId": "pancit-canton",
@@ -24,7 +34,12 @@
     "creator": null,
     "license": null,
     "licenseUrl": null,
-    "changes": null
+    "changes": null,
+    "credit": null,
+    "attribution": null,
+    "attributionRequired": null,
+    "selectionMethod": null,
+    "needsVisualReview": null
   },
   {
     "dishId": "char-kway-teow",
@@ -33,7 +48,12 @@
     "creator": null,
     "license": null,
     "licenseUrl": null,
-    "changes": null
+    "changes": null,
+    "credit": null,
+    "attribution": null,
+    "attributionRequired": null,
+    "selectionMethod": null,
+    "needsVisualReview": null
   },
   {
     "dishId": "mi-quang",
@@ -42,7 +62,12 @@
     "creator": null,
     "license": null,
     "licenseUrl": null,
-    "changes": null
+    "changes": null,
+    "credit": null,
+    "attribution": null,
+    "attributionRequired": null,
+    "selectionMethod": null,
+    "needsVisualReview": null
   },
   {
     "dishId": "hokkien-mee",
@@ -51,7 +76,12 @@
     "creator": null,
     "license": null,
     "licenseUrl": null,
-    "changes": null
+    "changes": null,
+    "credit": null,
+    "attribution": null,
+    "attributionRequired": null,
+    "selectionMethod": null,
+    "needsVisualReview": null
   },
   {
     "dishId": "kolo-mee",
@@ -60,7 +90,12 @@
     "creator": null,
     "license": null,
     "licenseUrl": null,
-    "changes": null
+    "changes": null,
+    "credit": null,
+    "attribution": null,
+    "attributionRequired": null,
+    "selectionMethod": null,
+    "needsVisualReview": null
   },
   {
     "dishId": "pancit-bihon",
@@ -69,7 +104,12 @@
     "creator": null,
     "license": null,
     "licenseUrl": null,
-    "changes": null
+    "changes": null,
+    "credit": null,
+    "attribution": null,
+    "attributionRequired": null,
+    "selectionMethod": null,
+    "needsVisualReview": null
   },
   {
     "dishId": "cao-lau",
@@ -78,7 +118,12 @@
     "creator": null,
     "license": null,
     "licenseUrl": null,
-    "changes": null
+    "changes": null,
+    "credit": null,
+    "attribution": null,
+    "attributionRequired": null,
+    "selectionMethod": null,
+    "needsVisualReview": null
   },
   {
     "dishId": "num-banh-chok",
@@ -87,6 +132,67 @@
     "creator": null,
     "license": null,
     "licenseUrl": null,
-    "changes": null
+    "changes": null,
+    "credit": null,
+    "attribution": null,
+    "attributionRequired": null,
+    "selectionMethod": null,
+    "needsVisualReview": null
+  },
+  {
+    "dishId": "ramen",
+    "status": "licensed-local",
+    "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Soy_ramen.jpg",
+    "creator": "Lusheeta at Japanese Wikipedia",
+    "license": "CC-BY-SA-3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "changes": "Resized when needed and converted to WebP; presentation cropping varies by card.",
+    "credit": "Own work by the original uploader ( Original text: 投稿者による撮影 )",
+    "attribution": "",
+    "attributionRequired": "true",
+    "selectionMethod": "commons-exact-identity",
+    "needsVisualReview": true
+  },
+  {
+    "dishId": "bibimbap",
+    "status": "licensed-local",
+    "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Tofu_Bi_Bim_Bap_-_Korpan.jpg",
+    "creator": "Andy Li",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "changes": "Resized when needed and converted to WebP; presentation cropping varies by card.",
+    "credit": "Own work",
+    "attribution": "",
+    "attributionRequired": "false",
+    "selectionMethod": "commons-exact-identity",
+    "needsVisualReview": true
+  },
+  {
+    "dishId": "yakitori",
+    "status": "licensed-local",
+    "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Cooking_yakitori.jpg",
+    "creator": "竹麦魚(Searobin)",
+    "license": "CC-BY-SA-3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "changes": "Resized when needed and converted to WebP; presentation cropping varies by card.",
+    "credit": "Own work",
+    "attribution": "",
+    "attributionRequired": "true",
+    "selectionMethod": "commons-exact-identity",
+    "needsVisualReview": true
+  },
+  {
+    "dishId": "biryani",
+    "status": "licensed-local",
+    "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Dum_Biryani_Plate.jpg",
+    "creator": "Umesh Tongbra",
+    "license": "CC-BY-SA-3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "changes": "Resized when needed and converted to WebP; presentation cropping varies by card.",
+    "credit": "I created this work entirely by myself.",
+    "attribution": "​ wikipedia user Honeytgb",
+    "attributionRequired": "true",
+    "selectionMethod": "commons-exact-identity",
+    "needsVisualReview": true
   }
 ]

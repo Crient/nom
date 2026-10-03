@@ -1,29 +1,9 @@
 {
   "total": 201,
   "realBefore": 10,
-  "realAfter": 10,
-  "remainingPlaceholders": 191,
+  "realAfter": 14,
+  "remainingPlaceholders": 187,
   "missing": [
-    {
-      "dishId": "ramen",
-      "name": "Ramen",
-      "reason": "No verified local photo; source downloads blocked by sandbox network access."
-    },
-    {
-      "dishId": "bibimbap",
-      "name": "Bibimbap",
-      "reason": "No verified local photo; source downloads blocked by sandbox network access."
-    },
-    {
-      "dishId": "yakitori",
-      "name": "Yakitori",
-      "reason": "No verified local photo; source downloads blocked by sandbox network access."
-    },
-    {
-      "dishId": "biryani",
-      "name": "Biryani",
-      "reason": "No verified local photo; source downloads blocked by sandbox network access."
-    },
     {
       "dishId": "masala-dosa",
       "name": "Masala Dosa",

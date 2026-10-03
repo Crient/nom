@@ -31,6 +31,12 @@ async function choosePaintedSession() {
   await click('Feeling AdventurousTake me further outside my comfort zone'); await click('Continue')
   await click('Southeast AsiaVietnam • Cambodia • Philippines'); await click('Continue')
 }
+async function chooseLatinNoodleSession() {
+  await choosePaintedSession()
+  await click('Adjust preferences')
+  await click('Continue'); await click('Continue'); await click('Continue')
+  await click('Latin AmericanMexico • Colombia • Peru'); await click('Continue')
+}
 
 describe('Nom stabilization', () => {
   it('uses the engine’s region-priority ranking across Top Matches and More Options without changing scores', async () => {
@@ -41,19 +47,16 @@ describe('Nom stabilization', () => {
     expect([...document.querySelectorAll('article h2')].map(element => element.textContent.trim())).toEqual(['Ají de Gallina 🇵🇪', 'Ceviche 🇵🇪', 'Lomo Saltado 🇵🇪'])
     expect(document.querySelector('article:nth-of-type(2)').getAttribute('aria-label')).toBe('#2 Ceviche, 70% match')
     await click('See more options')
-    expect(document.querySelector('article').getAttribute('aria-label')).toBe('#4 Yakitori, 77% match')
+    expect(document.querySelector('article').getAttribute('aria-label')).toBe('#4 Jerk Chicken, 70% match')
     expect(document.querySelectorAll('article')).toHaveLength(7)
   })
 
   it('keeps Latin America noodle candidates ahead of global matches despite their lower scores', async () => {
-    await choosePaintedSession()
-    await click('Adjust preferences')
-    await click('Continue'); await click('Continue'); await click('Continue')
-    await click('Latin AmericanMexico • Colombia • Peru'); await click('Continue')
+    await chooseLatinNoodleSession()
     expect([...document.querySelectorAll('article h2')].map(element => element.textContent.trim())).toEqual(['Sopa de Fideo 🇲🇽', 'Tallarines Verdes 🇵🇪', 'Locro 🇦🇷'])
     expect(document.querySelector('article:nth-of-type(2)').getAttribute('aria-label')).toBe('#2 Tallarines Verdes, 62% match')
     await click('See more options')
-    expect(document.querySelector('article').getAttribute('aria-label')).toBe('#4 Lort Cha, 70% match')
+    expect(document.querySelector('article').getAttribute('aria-label')).toBe('#4 Feijoada, 42% match')
   })
 
   it('redirects unknown URLs to Home rather than an empty screen', async () => {
@@ -111,16 +114,16 @@ describe('Nom stabilization', () => {
   })
 
   it('opens and favorites a newly imported placeholder dish through More Options', async () => {
-    await choosePaintedSession()
+    await chooseLatinNoodleSession()
     await click('See more options')
-    await click('View Reshteh Polow details')
-    expect(window.location.pathname).toBe('/recommendations/reshteh-polow')
-    expect(document.querySelector('h1').textContent).toContain('Reshteh Polow')
-    expect(document.querySelector('img[alt="Reshteh Polow"]').getAttribute('src')).toBeTruthy()
-    await click('Save Reshteh Polow to favorites')
+    await click('View Feijoada details')
+    expect(window.location.pathname).toBe('/recommendations/feijoada')
+    expect(document.querySelector('h1').textContent).toContain('Feijoada')
+    expect(document.querySelector('img[alt="Feijoada"]').getAttribute('src')).toBeTruthy()
+    await click('Save Feijoada to favorites')
     await click('Go back to recommendations')
     expect(window.location.pathname).toBe('/recommendations/more')
-    expect(document.querySelector('button[aria-label="Remove Reshteh Polow from favorites"]').getAttribute('aria-pressed')).toBe('true')
-    expect(document.querySelector('article[aria-label="#9 Reshteh Polow, 70% match"]')).toBeTruthy()
+    expect(document.querySelector('button[aria-label="Remove Feijoada from favorites"]').getAttribute('aria-pressed')).toBe('true')
+    expect(document.querySelector('article[aria-label="#4 Feijoada, 42% match"]')).toBeTruthy()
   })
 })

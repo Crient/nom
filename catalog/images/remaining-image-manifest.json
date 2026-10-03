@@ -1,92 +1,9 @@
 {
   "version": 1,
   "totalDishes": 201,
-  "realImages": 10,
-  "remaining": 191,
+  "realImages": 14,
+  "remaining": 187,
   "dishes": [
-    {
-      "dishId": "ramen",
-      "dishName": "Ramen",
-      "country": "Japan",
-      "countryCode": "JP",
-      "expectedImageFilename": "ramen.webp",
-      "expectedRuntimePath": "src/assets/food/catalog/ramen.webp",
-      "searchQuery": "Ramen Japan food",
-      "alternateNames": [],
-      "recommendedSources": [
-        "Wikimedia Commons",
-        "Openverse"
-      ],
-      "sourceSearchUrls": {
-        "commons": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Ramen%20Japan%20food",
-        "openverse": "https://openverse.org/search/image?q=Ramen%20Japan%20food"
-      },
-      "reason": "No verified local photo; source downloads blocked by sandbox network access.",
-      "visualReviewNote": "Confirm exact dish identity, then record creator and reusable license before approval."
-    },
-    {
-      "dishId": "bibimbap",
-      "dishName": "Bibimbap",
-      "country": "South Korea",
-      "countryCode": "KR",
-      "expectedImageFilename": "bibimbap.webp",
-      "expectedRuntimePath": "src/assets/food/catalog/bibimbap.webp",
-      "searchQuery": "Bibimbap South Korea food",
-      "alternateNames": [
-        "Bi Bim Bap",
-        "Bi Bim Bop"
-      ],
-      "recommendedSources": [
-        "Wikimedia Commons",
-        "Openverse"
-      ],
-      "sourceSearchUrls": {
-        "commons": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Bibimbap%20South%20Korea%20food",
-        "openverse": "https://openverse.org/search/image?q=Bibimbap%20South%20Korea%20food"
-      },
-      "reason": "No verified local photo; source downloads blocked by sandbox network access.",
-      "visualReviewNote": "Confirm exact dish identity, then record creator and reusable license before approval."
-    },
-    {
-      "dishId": "yakitori",
-      "dishName": "Yakitori",
-      "country": "Japan",
-      "countryCode": "JP",
-      "expectedImageFilename": "yakitori.webp",
-      "expectedRuntimePath": "src/assets/food/catalog/yakitori.webp",
-      "searchQuery": "Yakitori Japan food",
-      "alternateNames": [],
-      "recommendedSources": [
-        "Wikimedia Commons",
-        "Openverse"
-      ],
-      "sourceSearchUrls": {
-        "commons": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Yakitori%20Japan%20food",
-        "openverse": "https://openverse.org/search/image?q=Yakitori%20Japan%20food"
-      },
-      "reason": "No verified local photo; source downloads blocked by sandbox network access.",
-      "visualReviewNote": "Confirm exact dish identity, then record creator and reusable license before approval."
-    },
-    {
-      "dishId": "biryani",
-      "dishName": "Biryani",
-      "country": "India",
-      "countryCode": "IN",
-      "expectedImageFilename": "biryani.webp",
-      "expectedRuntimePath": "src/assets/food/catalog/biryani.webp",
-      "searchQuery": "Biryani India food",
-      "alternateNames": [],
-      "recommendedSources": [
-        "Wikimedia Commons",
-        "Openverse"
-      ],
-      "sourceSearchUrls": {
-        "commons": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Biryani%20India%20food",
-        "openverse": "https://openverse.org/search/image?q=Biryani%20India%20food"
-      },
-      "reason": "No verified local photo; source downloads blocked by sandbox network access.",
-      "visualReviewNote": "Confirm exact dish identity, then record creator and reusable license before approval."
-    },
     {
       "dishId": "masala-dosa",
       "dishName": "Masala Dosa",

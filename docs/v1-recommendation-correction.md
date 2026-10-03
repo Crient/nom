@@ -1,5 +1,25 @@
 # Nom V1 targeted recommendation/card/image correction
 
+Subsequent More Options adjustment: Top Matches remains unchanged. Additional
+cards now use `selectMoreOptions`: remaining selected-region dishes scoring
+at least 40% first, then qualifying cross-region dishes, preserving score/tie
+order within each group. The seven-card limit remains. Skipped/Surprise Me
+region still uses the original global slice. The cross-region boundary is
+labeled “Similar dishes from other regions”.
+
+For the Latin America noodle example, More Options now shows Feijoada, Arroz
+Chaufa, Ají de Gallina, Jerk Chicken and Mofongo (42% each), then Lort Cha and
+Reshteh Polow (70% each). The lower cutoff intentionally admits partial
+flavor/adventure fits; with all dimensions active, region + half the selected
+flavors + a one-level adventure fit earns 42, while region + adventure alone
+earns at most 35. No scores or taxonomy values changed. The sections below
+record the preceding milestone.
+
+More Options verification: 74 focused recommendation/page/route checks passed,
+including all eight regions and the existing 2,160-session score/determinism
+matrix. The full suite was not run for this adjustment. One `npm run build`
+passed, including validation of all 201 catalog dishes.
+
 ## Candidate selection, not a threshold
 
 For an explicit real region and food type, Top Matches now consumes:
