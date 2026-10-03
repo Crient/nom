@@ -2,6 +2,7 @@ import { BrowserRouter, useRoutes } from 'react-router-dom'
 import { DiscoverySessionProvider } from './context/DiscoverySession'
 import { FavoritesProvider } from './context/Favorites'
 import { ExperienceProvider } from './context/Experience'
+import { ActivityProvider } from './context/Activity'
 import { routes } from './routes'
 
 function AppRoutes() {
@@ -13,7 +14,7 @@ export default function App() {
     <BrowserRouter>
       <DiscoverySessionProvider>
         <FavoritesProvider>
-          <ExperienceProvider><AppRoutes /></ExperienceProvider>
+          <ExperienceProvider><ActivityProvider><AppRoutes /></ActivityProvider></ExperienceProvider>
         </FavoritesProvider>
       </DiscoverySessionProvider>
     </BrowserRouter>

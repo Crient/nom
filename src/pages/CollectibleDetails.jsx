@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { recommendationReturnTo } from '../utils/navigation'
 import { useExperience } from '../context/Experience'
 import { collectionCountries, collectibleDefinitions, collectibleKey } from '../data/collectionDefinitions'
 import { FlowHeader, FlowState } from '../components/experience/FlowLayout'
@@ -13,6 +14,7 @@ import star from '../assets/experience/star.svg'
 
 export default function CollectibleDetails() {
   const { countryId, collectibleId } = useParams(), navigate = useNavigate()
+  const location = useLocation()
   const { state, toggleCollectibleFavorite } = useExperience(), [modal, setModal] = useState(null)
   const country = collectionCountries.find(item => item.id === countryId), collectible = collectibleDefinitions.find(item => item.id === collectibleId)
   const key = collectibleKey(countryId, collectibleId), unlock = state.unlocks[key]
@@ -22,7 +24,7 @@ export default function CollectibleDetails() {
   const inspiration = hasArtwork ? collectible.inspiration : null
   return <div className="flow-page collectible-details-page collection-background" style={{ '--collection-background': `url("${hasArtwork ? detailBackground : country.image}")` }}>
     {hasArtwork && <img className="collectible-detail-overlay" src={detailOverlay} alt="" />}
-    <FlowHeader onBack={() => navigate(`/collections/${country.id}`)} onInfo={() => setModal('progress')} />
+    <FlowHeader onBack={() => navigate(recommendationReturnTo(location.state?.returnTo, `/collections/${country.id}`), { state: { returnTo: recommendationReturnTo(location.state?.countryReturnTo, '/collections') } })} onInfo={() => setModal('progress')} />
     <div className="collectible-detail-hero"><CollectibleArtwork collectible={collectible} country={country} isUnlocked /><h1 style={{ color: collectible.detailColor ?? collectible.color }}>{collectible.name.toUpperCase()}</h1><RarityBadge rarity={collectible.rarity} /></div>
     <p className="collectible-description">{hasArtwork && collectible.description ? collectible.description : `${collectible.name} is part of your ${country.name} collection. Discover country collectibles by exploring dishes and opening your earned Mystery Boxes.`}</p>
     <dl className="collectible-discovery"><div><dt><img src={calendar} alt="" />Discovered On</dt><dd>{discovered}</dd></div><div><dt><img src={pin} alt="" />Location</dt><dd>{country.name}</dd></div></dl>

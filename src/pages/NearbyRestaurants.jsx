@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { dishes } from '../data/dishes'
 import { selectRestaurants } from '../data/restaurantProvider'
+import { recommendationReturnTo } from '../utils/navigation'
 import { useRecommendations } from '../hooks/useRecommendations'
 import { useRestaurants } from '../hooks/useRestaurants'
 import RecommendationHeader from '../components/recommendations/RecommendationHeader'
@@ -37,7 +38,7 @@ export default function NearbyRestaurants() {
   const restaurants = useMemo(() => selectRestaurants(data.restaurants, { sort, rating, price, openOnly }),
     [data.restaurants, sort, rating, price, openOnly])
   const selected = restaurants.find(restaurant => restaurant.id === selectedId) ?? restaurants[0]
-  const returnTo = location.state?.returnTo === '/recommendations/more' ? '/recommendations/more' : '/recommendations'
+  const returnTo = recommendationReturnTo(location.state?.returnTo)
   const back = () => navigate(dish ? `/recommendations/${dish.id}` : ready ? '/recommendations' : '/discover/food-type', { state: { returnTo } })
   const resetFilters = () => { setRating(0); setPrice(0); setOpenOnly(false) }
   const showRestaurant = id => navigate(`/recommendations/${dishId}/nearby/${id}`, { state: { returnTo, view, selectedRestaurantId: id } })
@@ -52,7 +53,7 @@ export default function NearbyRestaurants() {
       </div>
     </div>
   )
-  if (!ready) return <Navigate to="/discover/food-type" replace />
+  if (!ready) return <Navigate to="/discover/food-type" replace state={{ ...location.state, discoveryReturnTo: location.pathname }} />
   const result = results.find(item => item.dish.id === dish.id)
 
   return (

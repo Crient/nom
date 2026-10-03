@@ -1,5 +1,9 @@
 # Nom V1 consolidation
 
+This records the completed core milestone. The subsequent
+[content/navigation milestone](v1-content-navigation.md) adds functional Home
+actions, Progress, Profile, Favorites, History and the guarded dish-photo pipeline.
+
 ## Run locally
 
 From this repo, run `npm run dev` and open the localhost address Vite prints.
@@ -126,8 +130,10 @@ Chromium failed with macOS sandbox permission denial; no bypass was attempted.
 Restaurant menus/availability/location, maps, visit verification, and progress
 rewards remain explicit development mocks. Collection progress begins with
 Figma demo seeds. Non-Cambodian character variants use labeled silhouettes.
-Search, Scan, Trending, Favorites index, Surprise Me, and Profile remain visibly
-unavailable; consolidation does not invent their missing product flows.
+The subsequent content/navigation milestone implements Search, the Favorites
+index, Surprise Me, Profile and Progress. Scan supports manual dish-code entry;
+Trending uses actual local meal frequency. Camera scanning and live popularity
+providers remain unconnected.
 
 Before a public launch: finish browser/device verification; define live provider
 and authoritative identity/reward contracts; finish content review, restaurant

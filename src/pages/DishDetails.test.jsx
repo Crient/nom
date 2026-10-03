@@ -3,6 +3,7 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { useDiscoverySession } from '../context/DiscoverySession'
 import { FavoritesProvider } from '../context/Favorites'
+import { ActivityProvider } from '../context/Activity'
 import { dishes } from '../data/dishes'
 import { recommend } from '../utils/recommendationEngine'
 import DishDetails from './DishDetails'
@@ -23,11 +24,11 @@ const PAINTED_SESSION = {
 function renderScreen(id) {
   return renderToStaticMarkup(
     <MemoryRouter initialEntries={[`/recommendations/${id}`]}>
-      <FavoritesProvider>
+      <FavoritesProvider><ActivityProvider>
         <Routes>
           <Route path="/recommendations/:dishId" element={<DishDetails />} />
         </Routes>
-      </FavoritesProvider>
+      </ActivityProvider></FavoritesProvider>
     </MemoryRouter>,
   )
 }

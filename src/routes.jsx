@@ -1,3 +1,4 @@
+import { lazy } from 'react'
 import RootLayout from './components/layout/RootLayout'
 import Welcome from './pages/Welcome'
 import Home from './pages/Home'
@@ -21,6 +22,13 @@ const SurpriseBox = lazy(() => import('./pages/SurpriseBox'))
 const Collections = lazy(() => import('./pages/Collections'))
 const CountryCollection = lazy(() => import('./pages/CountryCollection'))
 const CollectibleDetails = lazy(() => import('./pages/CollectibleDetails'))
+const Progress = lazy(() => import('./pages/Progress'))
+const Profile = lazy(() => import('./pages/Profile'))
+const Favorites = lazy(() => import('./pages/Favorites'))
+const History = lazy(() => import('./pages/History'))
+const Explore = lazy(() => import('./pages/Explore'))
+const Scan = lazy(() => import('./pages/Scan'))
+const ImageCredits = lazy(() => import('./pages/ImageCredits'))
 
 /**
  * Central route table. Each Figma screen becomes one entry under the layout
@@ -32,6 +40,13 @@ export const routes = [
     children: [
       { index: true, element: <Welcome /> },
       { path: 'home', element: <Home /> },
+      { path: 'progress', element: <Progress /> },
+      { path: 'profile', element: <Profile /> },
+      { path: 'favorites', element: <Favorites /> },
+      { path: 'history', element: <History /> },
+      { path: 'explore', element: <Explore /> },
+      { path: 'scan', element: <Scan /> },
+      { path: 'image-credits', element: <ImageCredits /> },
       { path: 'discover/food-type', element: <FoodType /> },
       { path: 'discover/flavor', element: <Flavor /> },
       { path: 'discover/adventure', element: <Adventure /> },
@@ -55,4 +70,3 @@ export const routes = [
     ],
   },
 ]
-import { lazy } from 'react'

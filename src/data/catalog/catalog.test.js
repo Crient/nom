@@ -32,11 +32,11 @@ describe('full workbook catalog', () => {
     expect(dishes.find(dish => dish.id === 'lort-cha')).toMatchObject({ country: 'Cambodia', countryCode: 'KH', flag: '🇰🇭' })
   })
 
-  it('reuses ten real local images and one replaceable placeholder for the remaining 191', () => {
+  it('preserves the ten original photos and uses local imports or one replaceable placeholder', () => {
     expect(dishes.filter(dish => dish.imageStatus === 'existing-local')).toHaveLength(10)
     const placeholders = dishes.filter(dish => dish.imageStatus === 'placeholder')
-    expect(placeholders).toHaveLength(191)
-    expect(new Set(placeholders.map(dish => dish.image)).size).toBe(1)
+    expect(placeholders).toHaveLength(201 - Object.keys(dishImages).length)
+    expect(new Set(placeholders.map(dish => dish.image)).size).toBe(placeholders.length ? 1 : 0)
     expect(dishes.every(dish => dish.image && !dish.image.includes('wikimedia'))).toBe(true)
     expect(Object.keys(dishImages).every(id => records.some(dish => dish.id === id))).toBe(true)
     expect(report.directImageReferences).toBe(0)

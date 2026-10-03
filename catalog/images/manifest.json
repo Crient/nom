@@ -1,0 +1,2038 @@
+{
+  "version": 1,
+  "dishes": [
+    {
+      "dishId": "lort-cha",
+      "status": "existing-local",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "localPath": "src/assets/food/dish-lort-cha.webp",
+      "notes": "Supplied local Nom photo preserved without replacement; original provenance was not supplied."
+    },
+    {
+      "dishId": "mie-goreng",
+      "status": "existing-local",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "localPath": "src/assets/food/dish-mie-goreng.webp",
+      "notes": "Supplied local Nom photo preserved without replacement; original provenance was not supplied."
+    },
+    {
+      "dishId": "pancit-canton",
+      "status": "existing-local",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "localPath": "src/assets/food/dish-pancit-canton.webp",
+      "notes": "Supplied local Nom photo preserved without replacement; original provenance was not supplied."
+    },
+    {
+      "dishId": "char-kway-teow",
+      "status": "existing-local",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "localPath": "src/assets/food/dish-char-kway-teow.webp",
+      "notes": "Supplied local Nom photo preserved without replacement; original provenance was not supplied."
+    },
+    {
+      "dishId": "mi-quang",
+      "status": "existing-local",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "localPath": "src/assets/food/dish-mi-quang.webp",
+      "notes": "Supplied local Nom photo preserved without replacement; original provenance was not supplied."
+    },
+    {
+      "dishId": "hokkien-mee",
+      "status": "existing-local",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "localPath": "src/assets/food/dish-hokkien-mee.webp",
+      "notes": "Supplied local Nom photo preserved without replacement; original provenance was not supplied."
+    },
+    {
+      "dishId": "kolo-mee",
+      "status": "existing-local",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "localPath": "src/assets/food/dish-kolo-mee.webp",
+      "notes": "Supplied local Nom photo preserved without replacement; original provenance was not supplied."
+    },
+    {
+      "dishId": "pancit-bihon",
+      "status": "existing-local",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "localPath": "src/assets/food/dish-pancit-bihon.webp",
+      "notes": "Supplied local Nom photo preserved without replacement; original provenance was not supplied."
+    },
+    {
+      "dishId": "cao-lau",
+      "status": "existing-local",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "localPath": "src/assets/food/dish-cao-lau.webp",
+      "notes": "Supplied local Nom photo preserved without replacement; original provenance was not supplied."
+    },
+    {
+      "dishId": "num-banh-chok",
+      "status": "existing-local",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "localPath": "src/assets/food/dish-num-banh-chok.webp",
+      "notes": "Supplied local Nom photo preserved without replacement; original provenance was not supplied."
+    },
+    {
+      "dishId": "ramen",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Ramen",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "bibimbap",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Bibimbap",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "yakitori",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Yakitori",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "biryani",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Biryani",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "masala-dosa",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Masala%20Dosa",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "mansaf",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Mansaf",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "shish-taouk",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Shish%20Taouk",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "harira",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Harira",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "suya",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Suya",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "carbonara",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Spaghetti%20Carbonara",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "french-onion-soup",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=French%20Onion%20Soup",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "tacos-al-pastor",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Tacos%20al%20Pastor",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "sopa-de-lima",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Sopa%20de%20Lima",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "jambalaya",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Jambalaya",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "lobster-roll",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Lobster%20Roll",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "udon",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Udon",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "kimchi-jjigae",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Kimchi-jjigae",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "bulgogi",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Bulgogi",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "jianbing",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Jianbing",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "chole-bhature",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Chole%20Bhature",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "chicken-tikka",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Chicken%20Tikka",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "haleem",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Haleem",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "kabsa",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Kabsa",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "shawarma",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Shawarma",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "ash-reshteh",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Ash%20Reshteh",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "jollof-rice",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Jollof%20Rice",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "doro-wat",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Doro%20Wat",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "koshari",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Koshari",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "thieboudienne",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Thieboudienne",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "paella",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Paella",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "goulash",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Goulash",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "souvlaki",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Souvlaki",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "pierogi",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Pierogi",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "arepa",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Arepa",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access.",
+      "candidate": {
+        "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Arepa_Tradicional.jpg",
+        "creator": "Wilmeris Hernández",
+        "license": "CC-BY-SA-3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageDownloadUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Arepa_Tradicional.jpg",
+        "review": "Source description identifies arepas; photo bytes could not be downloaded or visually checked."
+      }
+    },
+    {
+      "dishId": "ceviche",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Ceviche",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "arroz-con-pollo",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Arroz%20con%20Pollo",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "sancocho",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Sancocho",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "gumbo",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Gumbo",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "smoked-brisket",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Smoked%20Brisket",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "poke-bowl",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Poke%20Bowl",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "nasi-goreng",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Nasi%20Goreng",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "chicken-adobo",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Chicken%20Adobo",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "satay",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Satay",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "laksa",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Laksa",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "banh-mi",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=B%C3%A1nh%20M%C3%AC",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "sinigang",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Sinigang",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "gyoza",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Gyoza",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "tonkatsu",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Tonkatsu",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "congee",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Congee",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "samosa",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Samosa",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "tandoori-chicken",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Tandoori%20Chicken",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "idiyappam",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Idiyappam",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "falafel",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Falafel",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "kabab-koobideh",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Kabab%20Koobideh",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "mujadara",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Mujadara",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "bunny-chow",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Bunny%20Chow",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "bobotie",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Bobotie",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "egusi-soup",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Egusi%20Soup",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "risotto",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Risotto",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "arancini",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Arancini",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "schnitzel",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Schnitzel",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "empanadas",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Empanadas",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "feijoada",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Feijoada",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "macaroni-and-cheese",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Macaroni%20and%20Cheese",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "pulled-pork-sandwich",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Pulled%20Pork%20Sandwich",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "dandan-noodles",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Dandan%20Noodles",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "hot-and-sour-soup",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Hot%20and%20Sour%20Soup",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "gimbap",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Gimbap",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "nasi-lemak",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Nasi%20Lemak",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "fried-lumpia",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Fried%20Lumpia",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "ayam-bakar",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Ayam%20Bakar",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "rendang",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Rendang",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "kottu-roti",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Kottu%20Roti",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "nihari",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Nihari",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "seekh-kebab",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Seekh%20Kebab",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "thukpa",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Thukpa",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "kibbeh",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Kibbeh",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "reshteh-polow",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Reshteh%20Polow",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access.",
+      "reviewNote": "Search results include ash reshteh soup and Reshteh bereshteh pastry; these must not be used for this rice dish."
+    },
+    {
+      "dishId": "fesenjan",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Fesenjan",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "akara",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Akara",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "waakye",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Waakye",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "maafe",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Maafe",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "cacio-e-pepe",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Cacio%20e%20Pepe",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "spaetzle",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Sp%C3%A4tzle",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "tortellini-in-brodo",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Tortellini%20in%20Brodo",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "tallarines-verdes",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Tallarines%20Verdes",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "patacones",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Patacones",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "lomo-saltado",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Lomo%20Saltado",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "new-england-clam-chowder",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=New%20England%20Clam%20Chowder",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "buffalo-wings",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Buffalo%20Wings",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "zhajiangmian",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Zhajiangmian",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "omurice",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Omurice",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "sukiyaki",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Sukiyaki",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "hainanese-chicken-rice",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Hainanese%20Chicken%20Rice",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "mohinga",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Mohinga",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "pulao",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Pulao",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "momo",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Momo",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "rasam",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Rasam",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "shorbat-adas",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Shorbat%20Adas",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "maqluba",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Maqluba",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "manakish",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Manakish",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "rechta",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Rechta",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "yassa",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Yassa",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "bissara",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Bissara",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "shisa-nyama",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Shisa%20Nyama",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "fideua",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Fideu%C3%A0",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "borscht",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Borscht",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "pirozhki",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Pirozhki",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "arroz-chaufa",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Arroz%20Chaufa",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "pupusa",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Pupusa",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "moqueca",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Moqueca",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "churrasco",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Churrasco",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "philly-cheesesteak",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Philly%20Cheesesteak",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "chili-con-carne",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Chili%20con%20Carne",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "baked-ziti",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Baked%20Ziti",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "mapo-tofu",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Mapo%20Tofu",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "japchae",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Japchae",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "onigiri",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Onigiri",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "goi-cuon",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=G%E1%BB%8Fi%20Cu%E1%BB%91n",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "banh-xeo",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=B%C3%A1nh%20X%C3%A8o",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "ikan-bakar",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Ikan%20Bakar",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "khichdi",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Khichdi",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "kathi-roll",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Kathi%20Roll",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "korma",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Korma",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "musakhan",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Musakhan",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "harees",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Harees",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "lahmacun",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Lahmacun",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "ful-medames",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Ful%20Medames",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "nyama-choma",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Nyama%20Choma",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "rolex",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Rolex",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "couscous",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Couscous",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "fish-and-chips",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Fish%20and%20Chips",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "moussaka",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Moussaka",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "croque-monsieur",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Croque%20Monsieur",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "aji-de-gallina",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Aj%C3%AD%20de%20Gallina",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "sopa-de-fideo",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Sopa%20de%20Fideo",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "coxinha",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Coxinha",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "nashville-hot-chicken",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Nashville%20Hot%20Chicken",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "reuben-sandwich",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Reuben%20Sandwich",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "loco-moco",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Loco%20Moco",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "oyakodon",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Oyakodon",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "doenjang-jjigae",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Doenjang-jjigae",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "zongzi",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Zongzi",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "bai-sach-chrouk",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Bai%20Sach%20Chrouk",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "kuy-teav",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Kuy%20Teav",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access.",
+      "candidate": {
+        "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Kuyteav.jpg",
+        "creator": "Goomba King (Trilinguist)",
+        "license": "CC-BY-SA-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "review": "Source describes Cambodian kuy teav. Visual review and direct-image resolution remain pending."
+      }
+    },
+    {
+      "dishId": "fish-amok",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Fish%20Amok",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access.",
+      "candidate": {
+        "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Fish_Amok_with_Rice.jpg",
+        "creator": "sharonang",
+        "license": "CC0-1.0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "review": "Source description identifies fish amok in Siem Reap. Local acquisition and visual review remain pending."
+      }
+    },
+    {
+      "dishId": "butter-chicken",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Butter%20Chicken",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "poha",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Poha",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "dal-dhokli",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Dal%20Dhokli",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "manti",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Manti",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "adana-kebab",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Adana%20Kebab",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "freekeh-pilaf",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Freekeh%20Pilaf",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "sfiha",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Sfiha",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "baasto-iyo-suugo",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Baasto%20iyo%20Suugo",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "pastilla",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Pastilla",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "moi-moi",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Moi%20Moi",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "attieke-fish",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Atti%C3%A9k%C3%A9%20with%20Grilled%20Fish",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "arroz-de-marisco",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Arroz%20de%20Marisco",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "arroz-negro",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Arroz%20Negro",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "cevapi",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=%C4%86evapi",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "arroz-con-gandules",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Arroz%20con%20Gandules",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "chivito",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Chivito",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "jerk-chicken",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Jerk%20Chicken",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "montreal-smoked-meat-sandwich",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Montreal%20Smoked%20Meat%20Sandwich",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "chicken-and-waffles",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Chicken%20and%20Waffles",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "katsudon",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Katsudon",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "jjajangmyeon",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Jjajangmyeon",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "wonton-soup",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Wonton%20Soup",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "lemon-rice",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Lemon%20Rice",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "paya",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Paya",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "chicken-chettinad",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Chicken%20Chettinad",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "mandi",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Mandi",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "shish-barak",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Shish%20Barak",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "maftoul",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Maftoul",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "sambousek",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Sambousek",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "pepper-soup",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Pepper%20Soup",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "kitfo",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Kitfo",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "tagliatelle-al-ragu",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Tagliatelle%20al%20Rag%C3%B9",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "minestrone",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Minestrone",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "shepherds-pie",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Shepherd%27s%20Pie",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "arroz-con-coco",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Arroz%20con%20Coco",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "pozole",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Pozole",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "locro",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Locro",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "mofongo",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Mofongo",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "red-beans-and-rice",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Red%20Beans%20and%20Rice",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "crawfish-etouffee",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Crawfish%20%C3%89touff%C3%A9e",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "saimin",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Saimin",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "cincinnati-chili",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Cincinnati%20Chili",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "canadian-split-pea-soup",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Canadian%20Split%20Pea%20Soup",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "matzo-ball-soup",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Matzo%20Ball%20Soup",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    },
+    {
+      "dishId": "fresh-lumpia",
+      "status": "needs-image",
+      "sourcePageUrl": null,
+      "creator": null,
+      "license": null,
+      "licenseUrl": null,
+      "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Fresh%20Lumpia",
+      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+    }
+  ]
+}

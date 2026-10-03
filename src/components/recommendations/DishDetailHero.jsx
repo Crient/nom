@@ -5,7 +5,7 @@ import backBackground from '../../assets/icons/detail-back-bg.svg'
 import backIcon from '../../assets/icons/detail-back.svg'
 import Image from '../ui/Image'
 
-export default function DishDetailHero({ result, chips, onBack }) {
+export default function DishDetailHero({ result, chips, onBack, backLabel = 'Go back to recommendations' }) {
   const { dish, score } = result
 
   return (
@@ -21,7 +21,7 @@ export default function DishDetailHero({ result, chips, onBack }) {
       <button
         type="button"
         onClick={onBack}
-        aria-label="Go back to recommendations"
+        aria-label={backLabel}
         className="absolute top-[63.5px] left-[12.5px] z-20 size-[44px]"
       >
         <img src={backBackground} alt="" className="absolute top-[4.5px] left-[4.5px] max-w-none" />

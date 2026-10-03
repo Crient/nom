@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
 import DishDetailHero from '../components/recommendations/DishDetailHero'
 import WhyMatchedCard from '../components/recommendations/WhyMatchedCard'
@@ -5,6 +6,8 @@ import RestaurantPreviewCard from '../components/recommendations/RestaurantPrevi
 import Button from '../components/ui/Button'
 import { useDiscoverySession } from '../context/DiscoverySession'
 import { useFavorites } from '../context/Favorites'
+import { useActivity } from '../context/Activity'
+import { recommendationReturnTo } from '../utils/navigation'
 import { dishDetailsRestaurantDesignPreview } from '../data/dishDetailsRestaurantDesignPreview'
 import { useRecommendations } from '../hooks/useRecommendations'
 import { whyMatched } from '../utils/whyMatched'
@@ -23,22 +26,23 @@ export default function DishDetails() {
   const session = useDiscoverySession()
   const { ready, results, chips } = useRecommendations()
   const { isFavorite, toggleFavorite } = useFavorites()
-
-  if (!ready) return <Navigate to="/discover/food-type" replace />
+  const { recordDishView } = useActivity()
   const result = results.find((item) => item.dish.id === dishId)
+  useEffect(() => { if (result) recordDishView(result.dish.id) }, [result?.dish.id, recordDishView])
+
+  if (!ready) return <Navigate to="/discover/food-type" replace state={{ ...location.state, discoveryReturnTo: location.pathname }} />
   if (!result) return <Navigate to="/recommendations" replace />
 
   const { dish } = result
   const favorite = isFavorite(dish.id)
-  const returnTo = location.state?.returnTo === '/recommendations/more'
-    ? '/recommendations/more' : '/recommendations'
+  const returnTo = recommendationReturnTo(location.state?.returnTo)
   const previews = dish.id === dishDetailsRestaurantDesignPreview.dishId
     ? dishDetailsRestaurantDesignPreview.restaurants : []
   const findNearby = () => navigate(`/recommendations/${dish.id}/nearby`, { state: { returnTo } })
 
   return (
     <div className="min-h-[960px] bg-surface pb-[18px]">
-      <DishDetailHero result={result} chips={chips} onBack={() => navigate(returnTo)} />
+      <DishDetailHero result={result} chips={chips} onBack={() => navigate(returnTo)} backLabel={returnTo.startsWith('/recommendations') ? 'Go back to recommendations' : 'Go back'} />
       <p className="mx-[25px] mt-[15px] min-h-[45px] text-body-sm text-strong-neutral">
         {dish.description}
       </p>

@@ -1,9 +1,10 @@
 import { Link, useLocation } from 'react-router-dom'
+import { recommendationReturnTo } from '../../utils/navigation'
 
 /** A keyboard-accessible card link, kept separate from the favorite button. */
 export default function DishDetailsLink({ dish }) {
-  const { pathname } = useLocation()
-  const returnTo = pathname === '/recommendations/more' ? pathname : '/recommendations'
+  const { pathname, search } = useLocation()
+  const returnTo = recommendationReturnTo(pathname + search)
 
   return (
     <Link
