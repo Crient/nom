@@ -6,6 +6,8 @@ import MatchBadge from './MatchBadge'
 import RankLabel from './RankLabel'
 import DishDetailsLink from './DishDetailsLink'
 import Image from '../ui/Image'
+import DishTitle from '../ui/DishTitle'
+import '../../styles/recommendations.css'
 
 export default function RecommendationCard({ result, rank, liked = false, onToggleLike, className, variant = 'ranked' }) {
   const list = variant === 'list'
@@ -15,22 +17,22 @@ export default function RecommendationCard({ result, rank, liked = false, onTogg
 
   return (
     <article aria-label={`${rank ? `#${rank} ` : ''}${dish.name}${percent === null ? '' : `, ${percent}% match`}`}
-      className={cn('relative grid w-full', list
-        ? 'min-h-[97px] grid-cols-[30.46%_minmax(0,1fr)] gap-x-[13px]'
-        : 'min-h-[121.7px] grid-cols-[35.42%_minmax(0,1fr)] gap-x-[18.72px]', className)}>
+      className={cn('recommendation-card relative grid w-full', list
+        ? 'grid-cols-[30.46%_minmax(0,1fr)] gap-x-[13px]'
+        : 'grid-cols-[35.42%_minmax(0,1fr)] gap-x-[18.72px]', className)}>
       <DishDetailsLink dish={dish} />
-      <div className={cn('relative overflow-hidden rounded-[17.358px]', list ? 'mt-[3px] min-h-[94px]' : 'mt-[2.55px] min-h-[119.136px]')}>
+      <div className={cn('relative overflow-hidden rounded-[17.358px]', list ? 'mt-[3px]' : 'mt-[2.55px]')}>
         <Image src={dish.image} alt="" loading="lazy" className="absolute inset-0 size-full object-cover" />
         {!list && rank && <RankLabel rank={rank} className="absolute top-[5.56px] left-[5.55px]" />}
       </div>
-      <div className={cn('min-w-0 pb-[8px]', list ? 'pt-[8px]' : 'pt-[23.83px]')}>
-        <h2 className={cn('mr-[52px] break-words font-bold text-strong-neutral', list ? 'text-title leading-[24px]' : 'text-[21px] leading-[21px]')}>
-          {dish.name} <span className="whitespace-nowrap">{dish.flag}</span>
+      <div className={cn('min-w-0 pb-[8px]', list ? 'pt-[8px]' : 'pt-[10px]')}>
+        <h2 className="recommendation-card-title mr-[52px] text-strong-neutral">
+          <DishTitle dish={dish} />
         </h2>
-        <p className={cn('mr-[52px] text-[9.792px] leading-[11.751px] font-light text-strong-neutral', list ? 'mt-[4px]' : 'mt-[6px]')}>
+        <p className={cn('recommendation-card-description mr-[52px] font-light text-strong-neutral', list ? 'mt-[4px]' : 'mt-[6px]')}>
           {dish.shortDescription}
         </p>
-        <div className={cn('flex flex-wrap items-center gap-x-[10px] gap-y-[4px]', list ? 'mt-[9px]' : 'mt-[10px]')}>
+        <div className={cn('recommendation-card-tags flex flex-wrap items-center', list ? 'mt-[6px]' : 'mt-[8px]')}>
           {tags.map(label => <DishTag key={label} label={label} size="compact" />)}
         </div>
       </div>

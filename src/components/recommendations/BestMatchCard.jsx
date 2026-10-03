@@ -5,6 +5,8 @@ import MatchBadge from './MatchBadge'
 import RankLabel from './RankLabel'
 import DishDetailsLink from './DishDetailsLink'
 import Image from '../ui/Image'
+import DishTitle from '../ui/DishTitle'
+import '../../styles/recommendations.css'
 
 export default function BestMatchCard({ result, liked = false, onToggleLike }) {
   const { dish, score, matchedAttributes } = result
@@ -37,10 +39,10 @@ export default function BestMatchCard({ result, liked = false, onToggleLike }) {
         <MatchBadge percent={percent} variant="hero" />
       </div>
 
-      <h2 className="relative pt-[138px] text-[28.768px] leading-[32px] font-bold text-strong-neutral">
-        {dish.name} {dish.flag}
+      <h2 className="best-match-title relative pt-[138px] leading-[32px] font-bold text-strong-neutral">
+        <DishTitle dish={dish} />
       </h2>
-      <p className="relative mt-[3px] max-w-[227.843px] text-[11.507px] leading-[13.809px] font-light text-strong-neutral">
+      <p className="best-match-description relative mt-[3px] max-w-[227.843px] text-[11.507px] leading-[13.809px] font-light text-strong-neutral">
         {dish.shortDescription}
       </p>
 

@@ -1,5 +1,9 @@
 # Nom V1 content and navigation completion
 
+The subsequent [recommendation-quality milestone](v1-recommendation-quality.md)
+documents explicit-region ranking and shared card/dialog polish added after this
+navigation milestone.
+
 ## Design references
 
 Authenticated Figma MCP inspection of file `xVMCeNJV8S3axojtIgtoCr`, final page

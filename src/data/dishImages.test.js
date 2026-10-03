@@ -3,6 +3,7 @@ import { existsSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import manifest from '../../catalog/images/manifest.json'
 import coverage from '../../catalog/images/coverage-report.json'
+import remaining from '../../catalog/images/remaining-image-manifest.json'
 import records from './catalog/records.json'
 import credits from './dishImageCredits.json'
 import { dishes } from './dishes'
@@ -18,6 +19,13 @@ describe('canonical dish photo mapping', () => {
     expect(coverage.realAfter).toBe(ready.length)
     expect(coverage.remainingPlaceholders).toBe(201 - ready.length)
     expect(coverage.missing.map(entry => entry.dishId)).toEqual(dishes.filter(dish => dish.imageStatus === 'placeholder').map(dish => dish.id))
+    expect(remaining.dishes.map(entry => entry.dishId)).toEqual(coverage.missing.map(entry => entry.dishId))
+    const names = new Intl.DisplayNames(['en'], { type: 'region' })
+    for (const entry of remaining.dishes) {
+      const dish = records.find(dish => dish.id === entry.dishId)
+      expect(entry).toMatchObject({ dishName: dish.name, country: names.of(dish.countryCode), expectedImageFilename: `${dish.id}.webp`, expectedRuntimePath: `src/assets/food/catalog/${dish.id}.webp` })
+      expect(entry.searchQuery).toContain(dish.name)
+    }
     expect(credits.map(entry => entry.dishId)).toEqual(ready.map(entry => entry.dishId))
     for (const [id, image] of Object.entries(existingDishImages)) expect(dishImages[id]).toBe(image)
     for (const image of Object.values(dishImages)) expect(imageDimensions[image]).toMatchObject({ width: expect.any(Number), height: expect.any(Number) })
