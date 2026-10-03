@@ -13,7 +13,7 @@ export function hasRequiredDiscovery(session) {
   )
 }
 
-/** Both recommendation screens consume the same full ranking and session chips. */
+/** All recommendation screens consume the same full ranking and session chips. */
 export function useRecommendations() {
   const session = useDiscoverySession()
   const ready = hasRequiredDiscovery(session)

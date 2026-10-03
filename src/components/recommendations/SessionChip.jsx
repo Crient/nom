@@ -65,18 +65,23 @@ const CHIP_ICONS = {
   },
 }
 
-export default function SessionChip({ chip, className }) {
+export default function SessionChip({ chip, className, variant = 'default' }) {
   const icon = CHIP_ICONS[chip.kind]?.[chip.value]
+  const detail = variant === 'detail'
 
   return (
     <span
       className={cn(
-        'inline-flex h-[26.469px] items-center gap-[4px] rounded-full bg-teal-tint px-[10px] shadow-card',
+        'inline-flex items-center justify-center gap-[4px] rounded-full bg-teal-tint px-[10px] shadow-card',
+        detail ? 'h-[28px]' : 'h-[26.469px]',
         className,
       )}
     >
-      {icon && <img src={icon} alt="" className="size-[16px] max-w-none object-contain" />}
-      <span className="text-[10.329px] leading-[9.762px] font-bold whitespace-nowrap text-primary-teal">
+      {icon && <img src={icon} alt="" className={cn('max-w-none object-contain', detail ? 'size-[18px]' : 'size-[16px]')} />}
+      <span className={cn(
+        'font-bold whitespace-nowrap text-primary-teal',
+        detail ? 'text-[11px] leading-[10px]' : 'text-[10.329px] leading-[9.762px]',
+      )}>
         {chip.label}
       </span>
     </span>
