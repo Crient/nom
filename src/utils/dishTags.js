@@ -1,11 +1,4 @@
-import { FOOD_TYPE_LABELS, FLAVOR_LABELS } from './sessionChips'
-
-function titleCase(value) {
-  return String(value)
-    .split('-')
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(' ')
-}
+import { FOOD_TYPE_LABELS, FLAVOR_LABELS, titleCase } from './sessionChips'
 
 function flavorLabel(id) {
   return FLAVOR_LABELS[id] ?? titleCase(id)

@@ -22,7 +22,7 @@ export default function Region() {
   }
 
   return (
-    <div className="relative h-[1150px] w-full overflow-hidden bg-surface">
+    <div className="relative h-[1150px] w-full bg-surface">
       <StatusBar />
 
       <DiscoveryHeader
@@ -32,16 +32,16 @@ export default function Region() {
         onBack={() => navigate('/discover/adventure')}
       />
 
-      <h1 className="absolute top-[169px] left-[28px] w-[308px] text-display text-strong-neutral">
+      <h1 className="absolute top-[169px] left-[28px] w-[min(308px,calc(100%-56px))] text-display text-strong-neutral">
         Pick a{' '}
-        <span className="text-alt-teal underline decoration-solid decoration-from-font [text-decoration-skip-ink:none] [text-underline-position:from-font]">
+        <span className="text-accessible-teal underline decoration-solid decoration-from-font [text-decoration-skip-ink:none] [text-underline-position:from-font]">
           cuisine
         </span>
         <br />
         region
       </h1>
 
-      <p className="absolute top-[248px] left-[29px] w-[402.557px] text-body-tight text-text-primary">
+      <p className="absolute top-[248px] left-[29px] w-[calc(100%-58px)] text-body-tight text-text-primary">
         <span className="font-bold text-error">optional</span>
         {' - '}
         choose one region to narrow down the recommendation
@@ -69,7 +69,7 @@ export default function Region() {
         variant="soft"
         size="none"
         onClick={() => navigate('/recommendations')}
-        className="absolute top-[1063px] left-[27px] h-[63px] w-[386px] rounded-lg text-button tracking-meta"
+        className="absolute top-[1063px] left-[27px] h-[63px] w-[calc(100%-54px)] rounded-lg text-button tracking-meta"
       >
         Continue
       </Button>

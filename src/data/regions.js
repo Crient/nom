@@ -1,11 +1,11 @@
-import regionEastAsia from '../assets/food/region-east-asia.png'
-import regionSoutheastAsia from '../assets/food/region-southeast-asia.png'
-import regionSouthAsia from '../assets/food/region-south-asia.png'
-import regionMiddleEast from '../assets/food/region-middle-east.png'
-import regionAfrica from '../assets/food/region-africa.png'
-import regionEurope from '../assets/food/region-europe.png'
-import regionLatinAmerica from '../assets/food/region-latin-america.png'
-import regionNorthAmerica from '../assets/food/region-north-america.png'
+import regionEastAsia from '../assets/food/region-east-asia.webp'
+import regionSoutheastAsia from '../assets/food/region-southeast-asia.webp'
+import regionSouthAsia from '../assets/food/region-south-asia.webp'
+import regionMiddleEast from '../assets/food/region-middle-east.webp'
+import regionAfrica from '../assets/food/region-africa.webp'
+import regionEurope from '../assets/food/region-europe.webp'
+import regionLatinAmerica from '../assets/food/region-latin-america.webp'
+import regionNorthAmerica from '../assets/food/region-north-america.webp'
 
 export const regionRows = [
   {

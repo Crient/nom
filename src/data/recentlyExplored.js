@@ -1,6 +1,6 @@
-import recentFood from '../assets/food/recent-food.png'
-import recentElPenol from '../assets/food/recent-el-penol.png'
-import recentThmorDa from '../assets/food/recent-thmor-da.png'
+import recentFood from '../assets/food/recent-food.webp'
+import recentElPenol from '../assets/food/recent-el-penol.webp'
+import recentThmorDa from '../assets/food/recent-thmor-da.webp'
 
 /**
  * Temporary local data for the Home "Recently Explored" row.

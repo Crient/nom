@@ -5,67 +5,37 @@ import HeartButton from './HeartButton'
 import MatchBadge from './MatchBadge'
 import RankLabel from './RankLabel'
 import DishDetailsLink from './DishDetailsLink'
+import Image from '../ui/Image'
 
-export default function RecommendationCard({
-  result, rank, liked = false, onToggleLike, className, variant = 'ranked',
-}) {
+export default function RecommendationCard({ result, rank, liked = false, onToggleLike, className, variant = 'ranked' }) {
   const list = variant === 'list'
   const { dish, score, matchedAttributes } = result
-  const tags = projectDishTags(dish, {
-    matchedPreferenceFlavors: matchedAttributes.preferenceFlavors,
-    limit: 3,
-  })
+  const tags = projectDishTags(dish, { matchedPreferenceFlavors: matchedAttributes.preferenceFlavors, limit: 3 })
   const percent = Math.round(score)
 
   return (
-    <article
-      aria-label={list ? `#${rank} ${dish.name}, ${percent}% match` : undefined}
-      className={cn(
-        list ? 'relative h-[97px] w-full' : 'absolute left-[18px] h-[121.7px] w-[394px]',
-        className,
-      )}
-    >
+    <article aria-label={`#${rank} ${dish.name}, ${percent}% match`}
+      className={cn('relative grid w-full', list
+        ? 'min-h-[97px] grid-cols-[30.46%_minmax(0,1fr)] gap-x-[13px]'
+        : 'min-h-[121.7px] grid-cols-[35.42%_minmax(0,1fr)] gap-x-[18.72px]', className)}>
       <DishDetailsLink dish={dish} />
-      <div className={cn(
-        'absolute left-0 overflow-hidden rounded-[17.358px]',
-        list ? 'top-[3px] h-[94px] w-[120px]' : 'top-[2.55px] h-[119.136px] w-[139.559px]',
-      )}>
-        <img src={dish.image} alt="" className="absolute inset-0 size-full max-w-none object-cover" />
+      <div className={cn('relative overflow-hidden rounded-[17.358px]', list ? 'mt-[3px] min-h-[94px]' : 'mt-[2.55px] min-h-[119.136px]')}>
+        <Image src={dish.image} alt="" loading="lazy" className="absolute inset-0 size-full object-cover" />
         {!list && <RankLabel rank={rank} className="absolute top-[5.56px] left-[5.55px]" />}
       </div>
-
-      <HeartButton
-        liked={liked}
-        onToggle={onToggleLike}
-        size={23.502}
-        className={list ? 'top-0 right-0 z-30' : 'top-0 left-[370.17px] z-30'}
-      />
-
-      <h2 className={cn(
-        'absolute font-bold text-strong-neutral',
-        list
-          ? 'top-[8px] left-[133px] right-[29px] text-title leading-[24px]'
-          : 'top-[23.83px] left-[158.28px] w-[180px] text-[21px] leading-[17.378px]',
-      )}>
-        {dish.name} {dish.flag}
-      </h2>
-      <p className={cn(
-        'absolute text-[9.792px] leading-[11.751px] font-light text-strong-neutral',
-        list ? 'top-[36px] left-[133px] right-[67px]' : 'top-[51.06px] left-[158.28px] w-[185px]',
-      )}>
-        {dish.shortDescription}
-      </p>
-
-      <div className={cn(
-        'absolute flex items-center gap-[10px]',
-        list ? 'top-[69px] left-[130px]' : 'top-[84.25px] left-[158.28px]',
-      )}>
-        {tags.map((label) => (
-          <DishTag key={label} label={label} size="compact" />
-        ))}
+      <div className={cn('min-w-0 pb-[8px]', list ? 'pt-[8px]' : 'pt-[23.83px]')}>
+        <h2 className={cn('mr-[52px] font-bold text-strong-neutral', list ? 'text-title leading-[24px]' : 'text-[21px] leading-[21px]')}>
+          {dish.name} <span className="whitespace-nowrap">{dish.flag}</span>
+        </h2>
+        <p className={cn('mr-[52px] text-[9.792px] leading-[11.751px] font-light text-strong-neutral', list ? 'mt-[4px]' : 'mt-[6px]')}>
+          {dish.shortDescription}
+        </p>
+        <div className={cn('flex flex-wrap items-center gap-x-[10px] gap-y-[4px]', list ? 'mt-[9px]' : 'mt-[10px]')}>
+          {tags.map(label => <DishTag key={label} label={label} size="compact" />)}
+        </div>
       </div>
-
-      <div className={cn('absolute top-[30.63px]', list ? 'right-0' : 'left-[346.75px]')}>
+      <HeartButton dishName={dish.name} liked={liked} onToggle={onToggleLike} size={23.502} className="top-0 right-0 z-30" />
+      <div className="pointer-events-none absolute top-[30.63px] right-0">
         <MatchBadge percent={percent} variant="compact" />
       </div>
     </article>

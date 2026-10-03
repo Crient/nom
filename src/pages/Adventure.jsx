@@ -14,7 +14,7 @@ export default function Adventure() {
   const { adventurousness, setAdventurousness } = useDiscoverySession()
 
   return (
-    <div className="relative h-frame w-full overflow-hidden bg-surface">
+    <div className="relative h-frame w-full bg-surface">
       <StatusBar />
 
       <DiscoveryHeader
@@ -24,15 +24,15 @@ export default function Adventure() {
         onBack={() => navigate('/discover/flavor')}
       />
 
-      <h1 className="absolute top-[169px] left-[28px] w-[308px] text-display text-strong-neutral">
+      <h1 className="absolute top-[169px] left-[28px] w-[min(308px,calc(100%-56px))] text-display text-strong-neutral">
         How{' '}
-        <span className="text-alt-teal underline decoration-solid decoration-from-font [text-decoration-skip-ink:none] [text-underline-position:from-font]">
+        <span className="text-accessible-teal underline decoration-solid decoration-from-font [text-decoration-skip-ink:none] [text-underline-position:from-font]">
           adventurous
         </span>{' '}
         are you feeling?
       </h1>
 
-      <p className="absolute top-[248px] left-[29px] w-[402.557px] text-body-tight text-text-primary">
+      <p className="absolute top-[248px] left-[29px] w-[calc(100%-58px)] text-body-tight text-text-primary">
         Choose your comfort level.
       </p>
 

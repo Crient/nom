@@ -18,6 +18,9 @@
 
   /* Teals */
   --color-primary-teal: #14b9b5;
+  /* Teal foreground/action role with AA contrast on the light Nom surfaces. */
+  --color-accessible-teal: #006f6b;
+  --color-favorite: #b84357;
   --color-alt-teal: #20c3be;
   --color-teal-tint: #cdf4f2;
   --color-teal-highlight: #71d7d4;

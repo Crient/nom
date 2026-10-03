@@ -13,7 +13,7 @@ export default function BottomNav({ items = [], className }) {
 
   return (
     <nav className={cn('flex h-bottom-nav items-center', className)}>
-      <ul className="flex w-full items-start justify-between px-[42.443px]">
+      <ul className="flex w-full items-start justify-between px-[min(42.443px,7%)]">
         {items.map((item) => (
           <li key={item.label}>
             <Tab {...item} />
@@ -37,14 +37,14 @@ function Tab({ label, icon, to }) {
   const shape = 'flex h-[47.159px] w-[56.59px] flex-col items-center justify-between px-[15.327px]'
 
   if (!to) {
-    return <div className={cn(shape, 'text-text-muted')}>{content}</div>
+    return <div aria-disabled="true" title={`${label} is not available yet`} className={cn(shape, 'text-text-muted')}>{content}</div>
   }
 
   return (
     <NavLink
       to={to}
       className={({ isActive }) =>
-        cn(shape, isActive ? 'text-text-primary' : 'text-text-muted')
+        cn(shape, isActive ? 'text-text-primary' : 'text-text-secondary')
       }
     >
       {content}

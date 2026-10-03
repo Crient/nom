@@ -6,7 +6,7 @@ import { cn } from '../../utils/cn'
  */
 export default function TopBar({ leading, title, subtitle, trailing, className }) {
   return (
-    <header className={cn('flex items-start gap-2 px-gutter pt-4 pb-2', className)}>
+    <header className={cn('flex items-start gap-2 px-page-gutter pt-4 pb-2', className)}>
       <div className="flex min-h-6 w-6 shrink-0 items-center">{leading}</div>
 
       <div className="min-w-0 flex-1 text-center">

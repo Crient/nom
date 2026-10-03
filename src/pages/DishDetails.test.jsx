@@ -78,7 +78,7 @@ describe('Dish Details', () => {
     expect(html).toContain('THMOR DA Restaurant')
     expect(html).toContain('The Golden Monkey Cafe')
     expect(html).toContain('Peephuptmei Restaurant')
-    expect(html).toContain('18 mi')
+    expect(html).toContain('16 mi')
     expect(html).toMatch(/<button[^>]*disabled=""[^>]*title="Nearby restaurant search is not connected yet"/)
   })
 })

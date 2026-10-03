@@ -9,14 +9,14 @@ export default function RecommendationHeader({ onBack, onAdjust, title }) {
         type="button"
         onClick={onBack}
         aria-label="Go back"
-        className="absolute top-[75.07px] left-[30.01px] z-10 h-[22.92px] w-[9.988px] rotate-180"
+        className="absolute top-[64.5px] left-[13px] z-30 flex size-[44px] items-center justify-center"
       >
         <img
           src={title ? moreBackIcon : chevronLeft}
           alt=""
           className={title
-            ? 'absolute top-[-1.439px] left-[-1.658px] max-w-none'
-            : 'absolute top-[-1.439px] left-[-1.658px] h-[25.798px] w-[14.558px] max-w-none'}
+            ? 'max-w-none rotate-180'
+            : 'h-[25.798px] w-[14.558px] max-w-none rotate-180'}
         />
       </button>
 
@@ -30,11 +30,11 @@ export default function RecommendationHeader({ onBack, onAdjust, title }) {
         <button
           type="button"
           onClick={onAdjust}
-          className="absolute top-[76px] left-[372px] z-10 flex w-[32px] flex-col items-center"
+          className="absolute top-[76px] right-[30px] z-30 flex min-h-[44px] w-[44px] flex-col items-center"
           aria-label="Adjust preferences"
         >
           <img src={settingsIcon} alt="" className="size-[32px] max-w-none" />
-          <span className="mt-[0px] text-[10px] leading-[17.746px] text-alt-teal">Adjust</span>
+          <span className="mt-[0px] text-[10px] leading-[17.746px] text-accessible-teal">Adjust</span>
         </button>
       )}
     </>

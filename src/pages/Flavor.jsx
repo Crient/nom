@@ -27,7 +27,7 @@ export default function Flavor() {
   }
 
   return (
-    <div className="relative h-frame w-full overflow-hidden bg-surface">
+    <div className="relative h-frame w-full bg-surface">
       <StatusBar />
 
       <DiscoveryHeader
@@ -37,15 +37,15 @@ export default function Flavor() {
         onBack={() => navigate('/discover/food-type')}
       />
 
-      <h1 className="absolute top-[169px] left-[28px] w-[308px] text-display text-strong-neutral">
+      <h1 className="absolute top-[169px] left-[28px] w-[min(308px,calc(100%-56px))] text-display text-strong-neutral">
         What{' '}
-        <span className="text-alt-teal underline decoration-solid decoration-from-font [text-decoration-skip-ink:none] [text-underline-position:from-font]">
+        <span className="text-accessible-teal underline decoration-solid decoration-from-font [text-decoration-skip-ink:none] [text-underline-position:from-font]">
           flavors
         </span>{' '}
         are you looking for?
       </h1>
 
-      <p className="absolute top-[248px] left-[29px] w-[402.557px] text-body-tight text-text-primary">
+      <p className="absolute top-[248px] left-[29px] w-[calc(100%-58px)] text-body-tight text-text-primary">
         Choose up to two.
       </p>
 

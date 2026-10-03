@@ -13,7 +13,7 @@ export default function SearchField({ placeholder, className, ...props }) {
         <input
           type="search"
           placeholder={placeholder}
-          className="min-w-0 flex-1 bg-transparent text-center text-search text-text-primary outline-none placeholder:text-text-muted"
+          className="min-w-0 flex-1 bg-transparent text-center text-search text-text-primary placeholder:text-text-muted"
           {...props}
         />
       </div>

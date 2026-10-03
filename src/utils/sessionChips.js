@@ -37,7 +37,7 @@ export const REGION_CHIP_LABELS = {
   [SURPRISE_ME]: 'Surprise Me',
 }
 
-function titleCase(value) {
+export function titleCase(value) {
   return String(value)
     .split('-')
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))

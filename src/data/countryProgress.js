@@ -1,5 +1,5 @@
-import boxLocked from '../assets/collectibles/mystery-box-locked.png'
-import boxReady from '../assets/collectibles/mystery-box-ready.png'
+import boxLocked from '../assets/collectibles/mystery-box-locked.webp'
+import boxReady from '../assets/collectibles/mystery-box-ready.webp'
 import dotReached from '../assets/icons/progress-dot-reached.svg'
 import dotNext from '../assets/icons/progress-dot-next.svg'
 import track96 from '../assets/icons/progress-track-96.svg'

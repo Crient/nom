@@ -1,3 +1,4 @@
+import Image from '../ui/Image'
 import { cn } from '../../utils/cn'
 
 /**
@@ -19,15 +20,15 @@ export default function ListOption({
   return (
     <div
       style={{ top }}
-      className="absolute left-[6px] flex h-[115px] w-[427px] flex-col items-center justify-center overflow-hidden bg-surface py-[22.111px]"
+      className="absolute left-[6px] right-[7px] flex h-[115px] flex-col items-center justify-center bg-surface"
     >
-      <div className="flex h-[103px] w-[405px] items-center justify-center px-[21.535px] drop-shadow-tile">
+      <div className="flex h-[103px] w-[calc(100%-46px)] items-center justify-center drop-shadow-tile">
         <button
           type="button"
           aria-pressed={selected}
           onClick={onSelect}
           className={cn(
-            'relative h-[100px] w-[381px] shrink-0 overflow-hidden rounded-md shadow-card',
+            'relative h-[100px] w-full overflow-hidden rounded-md shadow-card',
             selected ? 'bg-soft-teal-2' : 'bg-surface',
           )}
         >
@@ -38,17 +39,17 @@ export default function ListOption({
             )}
           />
 
-          <img
+          <Image
             src={icon}
             alt=""
-            className="absolute top-[-0.5px] left-[26px] size-[101px] max-w-none object-cover"
+            className="absolute top-[-0.5px] left-[6.8%] size-[101px] max-w-none object-cover"
           />
 
-          <div className="absolute top-0 right-0 bottom-0 left-[127px] flex flex-col justify-center gap-[2.795px] py-[11.179px] pr-[11.179px] text-text-primary">
+          <div className="absolute top-0 right-0 bottom-0 left-[calc(101px+6.8%)] flex flex-col justify-center gap-[2.795px] py-[11.179px] pr-[11.179px] text-text-primary">
             <p className="text-[16.903px] leading-[22.357px] font-semibold [text-shadow:0_2.113px_2.113px_rgb(0_0_0/0.25)]">
               {title}
             </p>
-            <p className="text-[11.179px] leading-[10.565px]" style={subtitleWidth ? { width: subtitleWidth } : undefined}>
+            <p className="text-[11.179px] leading-[12px]" style={subtitleWidth ? { maxWidth: subtitleWidth } : undefined}>
               {subtitle}
             </p>
           </div>

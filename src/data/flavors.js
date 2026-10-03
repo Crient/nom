@@ -1,11 +1,11 @@
 import { buildOptionRows } from './discoverySlots'
 
-import flavorSpicy from '../assets/food/flavor-spicy.png'
-import flavorComforting from '../assets/food/flavor-comforting.png'
-import flavorFresh from '../assets/food/flavor-fresh.png'
-import flavorRich from '../assets/food/flavor-rich.png'
-import flavorCrispy from '../assets/food/flavor-crispy.png'
-import flavorTangy from '../assets/food/flavor-tangy.png'
+import flavorSpicy from '../assets/food/flavor-spicy.webp'
+import flavorComforting from '../assets/food/flavor-comforting.webp'
+import flavorFresh from '../assets/food/flavor-fresh.webp'
+import flavorRich from '../assets/food/flavor-rich.webp'
+import flavorCrispy from '../assets/food/flavor-crispy.webp'
+import flavorTangy from '../assets/food/flavor-tangy.webp'
 
 export const MAX_FLAVORS = 2
 

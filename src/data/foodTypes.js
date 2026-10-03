@@ -1,11 +1,11 @@
 import { buildOptionRows } from './discoverySlots'
 
-import typeNoodle from '../assets/food/type-noodle.png'
-import typeRice from '../assets/food/type-rice.png'
-import typeSoupBroth from '../assets/food/type-soup-broth.png'
-import typeGrilledProtein from '../assets/food/type-grilled-protein.png'
-import typeHandheld from '../assets/food/type-handheld.png'
-import typeAnything from '../assets/food/type-anything.png'
+import typeNoodle from '../assets/food/type-noodle.webp'
+import typeRice from '../assets/food/type-rice.webp'
+import typeSoupBroth from '../assets/food/type-soup-broth.webp'
+import typeGrilledProtein from '../assets/food/type-grilled-protein.webp'
+import typeHandheld from '../assets/food/type-handheld.webp'
+import typeAnything from '../assets/food/type-anything.webp'
 
 export const foodTypeRows = buildOptionRows([
   { id: 'noodle', label: 'Noodle', image: typeNoodle },

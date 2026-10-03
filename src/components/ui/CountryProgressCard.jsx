@@ -1,4 +1,5 @@
 import { cn } from '../../utils/cn'
+import Image from './Image'
 
 const TONES = {
   base: 'bg-progress-base',
@@ -32,7 +33,7 @@ export default function CountryProgressCard({
   return (
     <div
       className={cn(
-        'h-[128.662px] w-[390.423px] rounded-card bg-field/20 shadow-raised',
+        'h-[128.662px] w-full rounded-card bg-field/20 shadow-raised',
         className,
       )}
       style={style}
@@ -45,21 +46,21 @@ export default function CountryProgressCard({
           {name}
         </p>
         <p
-          className="absolute text-meta tracking-meta whitespace-nowrap text-muted-alt"
+          className="absolute text-meta tracking-meta whitespace-nowrap text-text-secondary"
           style={{ left: ROW.left, top: ROW.note }}
         >
           {note}
         </p>
 
         <div
-          className="absolute w-[365.577px]"
+          className="absolute w-[calc(100%-24.846px)]"
           style={{ left: ROW.left, top: ROW.bar, height: bar.height }}
         >
           {bar.segments.map((segment, index) => (
             <div
               key={index}
               className={cn('absolute h-[3.549px] rounded-full', TONES[segment.tone])}
-              style={{ left: segment.left, top: segment.top, width: segment.width }}
+              style={{ left: `${segment.left / 365.577 * 100}%`, top: segment.top, width: `${segment.width / 365.577 * 100}%` }}
             />
           ))}
 
@@ -70,9 +71,9 @@ export default function CountryProgressCard({
               alt=""
               className="absolute max-w-none"
               style={{
-                left: marker.left,
+                left: `${marker.left / 365.577 * 100}%`,
                 top: marker.top,
-                width: marker.width,
+                width: marker.width > 30 ? `${marker.width / 365.577 * 100}%` : marker.width,
                 height: marker.height,
               }}
             />
@@ -80,9 +81,9 @@ export default function CountryProgressCard({
 
           <div
             className={cn('absolute top-0 overflow-hidden', bar.box.glow && 'shadow-box-ready')}
-            style={{ left: bar.box.left, width: bar.box.width, height: bar.box.height }}
+            style={{ right: 0, width: bar.box.width, height: bar.box.height }}
           >
-            <img
+            <Image loading="lazy"
               src={bar.box.src}
               alt=""
               className={cn(
@@ -103,27 +104,27 @@ export default function CountryProgressCard({
         </p>
 
         <div
-          className="absolute h-[14px] w-[364.68px]"
+          className="absolute h-[14px] w-[calc(100%-25.733px)]"
           style={{ left: ROW.left, top: ROW.lifetimeBar }}
         >
           <div
             className="absolute h-[8.873px] rounded-full bg-progress-track"
-            style={{ left: lifetime.track.left, top: lifetime.track.top, width: lifetime.track.width }}
+            style={{ left: `${lifetime.track.left / 364.68 * 100}%`, top: lifetime.track.top, width: `${lifetime.track.width / 364.68 * 100}%` }}
           />
           <div
             className="absolute h-[8.873px] rounded-full bg-yellow-accent"
-            style={{ left: lifetime.fill.left, top: lifetime.fill.top, width: lifetime.fill.width }}
+            style={{ left: `${lifetime.fill.left / 364.68 * 100}%`, top: lifetime.fill.top, width: `${lifetime.fill.width / 364.68 * 100}%` }}
           />
           <p
             className="absolute top-0 text-meta font-bold tracking-meta whitespace-nowrap text-text-secondary"
-            style={{ left: lifetime.rankLeft }}
+            style={{ right: 0 }}
           >
             {rank}
           </p>
         </div>
 
         <div
-          className="absolute flex h-[14px] w-[363.803px] justify-between pr-[24.703px] text-meta-sm tracking-meta text-muted-alt"
+          className="absolute flex h-[14px] w-[calc(100%-24.846px)] justify-between gap-[4px] text-meta-sm tracking-meta text-text-secondary"
           style={{ left: ROW.left, top: ROW.total }}
         >
           <span>{lifetimeTotal}</span>

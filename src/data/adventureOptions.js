@@ -1,7 +1,7 @@
-import adventureFamiliar from '../assets/food/adventure-familiar.png'
-import adventureDifferent from '../assets/food/adventure-different.png'
-import adventureAdventurous from '../assets/food/adventure-adventurous.png'
-import adventureSurprise from '../assets/food/adventure-surprise.png'
+import adventureFamiliar from '../assets/food/adventure-familiar.webp'
+import adventureDifferent from '../assets/food/adventure-different.webp'
+import adventureAdventurous from '../assets/food/adventure-adventurous.webp'
+import adventureSurprise from '../assets/food/adventure-surprise.webp'
 
 /**
  * Adventurousness choices from 0.1.04 Adventure Scale.
