@@ -8,12 +8,25 @@ import { REPAIRED_STATE } from './localPersistence'
 import { feedbackObservations, feedbackReactions } from './mealFeedback'
 
 export const EMPTY_DISCOVERY = { foodType: null, flavors: [], adventurousness: null, region: null }
+export const EMPTY_ACTIVITY = { displayName: 'Leng', recentDishes: [] }
 const object = value => value !== null && typeof value === 'object' && !Array.isArray(value)
 const uniqueKnown = (value, allowed) => Array.isArray(value) ? [...new Set(value.filter(item => typeof item === 'string' && allowed.includes(item)))] : []
 const validDate = value => typeof value === 'string' && Number.isFinite(Date.parse(value))
 const validDay = value => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value) && validDate(`${value}T00:00:00Z`) && new Date(`${value}T00:00:00Z`).toISOString().slice(0, 10) === value
 const validId = value => typeof value === 'string' && /^[a-zA-Z0-9-]{1,100}$/.test(value)
 const markRepaired = result => { Object.defineProperty(result, REPAIRED_STATE, { value: true }); return result }
+
+export function normalizeActivity(value) {
+  if (!object(value)) throw new Error('Invalid activity data')
+  const known = new Set(records.map(dish => dish.id)), seen = new Set()
+  const recentDishes = Array.isArray(value.recentDishes) ? value.recentDishes.filter(item => {
+    if (!object(item) || !known.has(item.dishId) || !validDate(item.viewedAt) || !/^\d{4}-\d{2}-\d{2}T/.test(item.viewedAt) || seen.has(item.dishId)) return false
+    seen.add(item.dishId); return true
+  }).map(({ dishId, viewedAt }) => ({ dishId, viewedAt })).slice(0, records.length) : []
+  const displayName = typeof value.displayName === 'string' ? value.displayName.replace(/[\u0000-\u001f\u007f]/g, '').trim().slice(0, 40) || 'Leng' : 'Leng'
+  const result = { displayName, recentDishes }
+  return JSON.stringify(result) === JSON.stringify(value) ? result : markRepaired(result)
+}
 
 export function normalizeDiscovery(value) {
   if (!object(value)) throw new Error('Invalid discovery data')

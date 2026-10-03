@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useDiscoveryNavigation } from '../hooks/useDiscoveryNavigation'
 
 import StatusBar from '../components/layout/StatusBar'
 import DiscoveryHeader from '../components/discovery/DiscoveryHeader'
@@ -10,7 +10,7 @@ import { adventureOptions } from '../data/adventureOptions'
 import progressMarkers from '../assets/icons/discovery-progress-3.svg'
 
 export default function Adventure() {
-  const navigate = useNavigate()
+  const { go: navigate } = useDiscoveryNavigation()
   const { adventurousness, setAdventurousness } = useDiscoverySession()
 
   return (

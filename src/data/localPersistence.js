@@ -1,6 +1,6 @@
 /** Versioned, local-only development persistence. No credentials or navigation state. */
 export const STORAGE_KEYS = {
-  discovery: 'nom.v1.discovery', favorites: 'nom.v1.favorites', experience: 'nom.v1.experience',
+  discovery: 'nom.v1.discovery', favorites: 'nom.v1.favorites', experience: 'nom.v1.experience', activity: 'nom.v1.activity',
 }
 const VERSION = 1
 const blockedWrites = new Set()

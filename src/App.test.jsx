@@ -78,9 +78,10 @@ describe('Nom stabilization', () => {
     expect(document.querySelector('button[aria-label="Save Mì Quảng to favorites"]').getAttribute('aria-pressed')).toBe('false')
   })
 
-  it('marks unfinished actions unavailable and connects Discover to its existing screen', async () => {
+  it('connects Home actions and Discover to their destinations', async () => {
     await mount('/home')
-    expect(document.querySelector('button[title="Scan is not available yet"]').disabled).toBe(true)
+    expect(document.querySelector('a[href="/scan"]').textContent).toBe('Scan')
+    expect(document.querySelector('a[href="/profile"]').textContent).toBe('Profile')
     expect([...document.querySelectorAll('a')].find(link => link.textContent.trim().startsWith('Explore Now')).getAttribute('href')).toBe('/collections/cambodia')
     await click('Discover')
     expect(window.location.pathname).toBe('/discover/food-type')

@@ -1,7 +1,7 @@
 // @vitest-environment happy-dom
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { readLocalState, writeLocalState, STORAGE_KEYS } from './localPersistence'
-import { normalizeDiscovery, normalizeExperience, normalizeFavorites, serializeExperience, EMPTY_DISCOVERY } from './persistedState'
+import { normalizeActivity, normalizeDiscovery, normalizeExperience, normalizeFavorites, serializeExperience, EMPTY_DISCOVERY } from './persistedState'
 import { createExperienceState, experienceReducer } from './experienceState'
 
 afterEach(() => { vi.restoreAllMocks(); vi.unstubAllGlobals() })
@@ -14,6 +14,17 @@ const log = (state, id = 'visit-1', verified = true) => {
 }
 
 describe('Local V1 persistence and safe recovery', () => {
+  it('recovers canonical dish views and a bounded display name without touching meals or preferences', () => {
+    const key = STORAGE_KEYS.activity
+    const validView = { dishId: 'arepa', viewedAt: '2026-10-03T12:00:00.000Z' }
+    const source = JSON.stringify({ version: 1, data: { displayName: '  Leng\u0000  ', recentDishes: [validView, validView, { ...validView, dishId: 'unknown' }, { dishId: 'lort-cha', viewedAt: '1' }] } })
+    localStorage.setItem(key, source)
+    localStorage.setItem(STORAGE_KEYS.experience, 'untouched')
+    expect(readLocalState(key, normalizeActivity, () => ({}))).toEqual({ displayName: 'Leng', recentDishes: [validView] })
+    expect(Object.keys(localStorage).some(item => item.startsWith(`${key}.recovery.`) && localStorage.getItem(item) === source)).toBe(true)
+    expect(localStorage.getItem(STORAGE_KEYS.experience)).toBe('untouched')
+    expect(normalizeActivity({ displayName: 'x'.repeat(100), recentDishes: [] }).displayName).toHaveLength(40)
+  })
   it('restores completed logs, daily credit, pending boxes, unlock dates, and collectible favorites without duplicate rewards', () => {
     let state = log(createExperienceState())
     state = experienceReducer(state, { type: 'begin-box', id: 'box-visit-1' })

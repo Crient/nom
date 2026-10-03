@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useDiscoveryNavigation } from '../hooks/useDiscoveryNavigation'
 
 import StatusBar from '../components/layout/StatusBar'
 import DiscoveryHeader from '../components/discovery/DiscoveryHeader'
@@ -11,7 +11,7 @@ import { flavorRows, MAX_FLAVORS } from '../data/flavors'
 import progressMarkers from '../assets/icons/discovery-progress-2.svg'
 
 export default function Flavor() {
-  const navigate = useNavigate()
+  const { go: navigate } = useDiscoveryNavigation()
   const { flavors, setFlavors } = useDiscoverySession()
 
   /* Tapping a chosen flavour clears it; otherwise it is added until the cap

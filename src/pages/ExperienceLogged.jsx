@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Navigate, useNavigate, useParams } from 'react-router-dom'
+import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useVisit } from '../hooks/useVisit'
 import { useExperience } from '../context/Experience'
 import { collectionCountries } from '../data/collectionDefinitions'
@@ -10,9 +10,10 @@ import EdgeStateModal from '../components/experience/EdgeStateModal'
 import background from '../assets/experience/logged-background.webp'
 import illustration from '../assets/experience/logged-illustration.webp'
 import unlocked from '../assets/experience/box-unlocked.webp'
+import { recommendationReturnTo } from '../utils/navigation'
 
 export default function ExperienceLogged() {
-  const { visitId } = useParams(), navigate = useNavigate()
+  const { visitId } = useParams(), navigate = useNavigate(), location = useLocation()
   const { visit, log, dish, restaurant, status } = useVisit(visitId)
   const { state } = useExperience()
   const [modal, setModal] = useState(null)
@@ -22,7 +23,7 @@ export default function ExperienceLogged() {
   return <div className="flow-page logged-page">
     <div className="logged-background"><img src={background} alt="" /></div>
     <div className="logged-illustration"><img src={illustration} alt="" /></div>
-    <FlowHeader onBack={() => navigate('/home')} onInfo={() => setModal('progress')} />
+    <FlowHeader onBack={() => navigate(recommendationReturnTo(location.state?.returnTo, '/home'))} onInfo={() => setModal('progress')} />
     <div className="logged-copy"><h1>Experience Logged!</h1><p>You enjoyed {dish.name} at<br />{restaurant?.name ?? (status === 'loading' ? 'your restaurant' : 'the selected restaurant')}.</p></div>
     {country && <div className="logged-progress"><CountryProgressCard {...countryProgressPresentation(state, country)} /></div>}
     {log.boxId ? <button type="button" className="logged-unlocked" onClick={() => navigate(`/boxes/${log.boxId}`)}><img src={unlocked} alt="" /><span><strong>You have unlocked your Mystery Box!</strong><small>Tap to discover your reward.</small></span></button>

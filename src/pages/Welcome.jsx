@@ -49,7 +49,7 @@ export default function Welcome() {
           <img src={arrowRight} alt="" className="size-[30.634px]" />
         </Button>
 
-        <Button size="cta" variant="secondary" disabled title="Profile is not available yet">
+        <Button size="cta" variant="secondary" onClick={() => navigate('/profile')}>
           Profile
           <img src={profileIcon} alt="" className="size-[25.352px]" />
         </Button>

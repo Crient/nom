@@ -22,8 +22,8 @@ export function FavoritesProvider({ children }) {
     )
   }, [])
 
-  const value = useMemo(() => ({ isFavorite, toggleFavorite, isRestaurantFavorite, toggleRestaurantFavorite }),
-    [isFavorite, toggleFavorite, isRestaurantFavorite, toggleRestaurantFavorite])
+  const value = useMemo(() => ({ favoriteIds, restaurantIds, isFavorite, toggleFavorite, isRestaurantFavorite, toggleRestaurantFavorite }),
+    [favoriteIds, restaurantIds, isFavorite, toggleFavorite, isRestaurantFavorite, toggleRestaurantFavorite])
 
   return <FavoritesContext.Provider value={value}>{children}</FavoritesContext.Provider>
 }

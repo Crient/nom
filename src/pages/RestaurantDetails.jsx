@@ -35,7 +35,7 @@ export default function RestaurantDetails() {
   const returnState = { returnTo: location.state?.returnTo, view: location.state?.view ?? 'list', selectedRestaurantId: restaurantId }
   const back = () => navigate(dish ? nearby : '/home', { state: returnState })
   if (!dish) return <FlowState title="Dish not found" onBack={() => navigate('/home')}>Choose a dish before opening a restaurant.</FlowState>
-  if (!ready) return <Navigate to="/discover/food-type" replace />
+  if (!ready) return <Navigate to="/discover/food-type" replace state={{ ...location.state, discoveryReturnTo: location.pathname }} />
   if (data.status === 'loading') return <FlowState title="Loading restaurant…" backLabel="Back to nearby restaurants" onBack={back}>Getting the restaurant preview.</FlowState>
   if (data.status === 'error') return <FlowState title="Restaurant unavailable" onBack={back} onRetry={data.retry}>Please try again.</FlowState>
   if (!data.restaurant) return <FlowState title="Restaurant not found" backLabel="Back to nearby restaurants" onBack={back}>This restaurant is not available for {dish.name}.</FlowState>

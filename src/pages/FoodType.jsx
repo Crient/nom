@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useDiscoveryNavigation } from '../hooks/useDiscoveryNavigation'
 
 import StatusBar from '../components/layout/StatusBar'
 import DiscoveryHeader from '../components/discovery/DiscoveryHeader'
@@ -11,7 +11,7 @@ import { foodTypeRows } from '../data/foodTypes'
 import progressMarkers from '../assets/icons/discovery-progress-1.svg'
 
 export default function FoodType() {
-  const navigate = useNavigate()
+  const { go: navigate } = useDiscoveryNavigation()
   const { foodType, setFoodType } = useDiscoverySession()
 
   return (

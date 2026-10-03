@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useDiscoveryNavigation } from '../hooks/useDiscoveryNavigation'
 
 import StatusBar from '../components/layout/StatusBar'
 import DiscoveryHeader from '../components/discovery/DiscoveryHeader'
@@ -12,7 +12,7 @@ import { regionRows, SURPRISE_REGION_ID } from '../data/regions'
 import progressMarkers from '../assets/icons/discovery-progress-4.svg'
 
 export default function Region() {
-  const navigate = useNavigate()
+  const { go: navigate, finish } = useDiscoveryNavigation()
   const { region, setRegion } = useDiscoverySession()
 
   /* Optional single-select: tapping a chosen region clears it so Continue
@@ -68,7 +68,7 @@ export default function Region() {
       <Button
         variant="soft"
         size="none"
-        onClick={() => navigate('/recommendations')}
+        onClick={finish}
         className="absolute top-[1063px] left-[27px] h-[63px] w-[calc(100%-54px)] rounded-lg text-button tracking-meta"
       >
         Continue
