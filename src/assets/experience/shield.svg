@@ -1,0 +1,13 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Shield" clip-path="url(#clip0_0_121)">
+<g id="Rectangle 96">
+</g>
+<path id="Vector 42" d="M31.6667 9.16665C30.423 7.71361 23.3866 6.66665 20.0001 6.66665C16.6136 6.66665 9.57705 7.71361 8.3334 9.16665V23.3333C8.3334 30 20.0001 35 20.0001 35C20.0001 35 31.6667 30 31.6667 23.3333V9.16665Z" stroke="#14B9B5" stroke-width="3" stroke-linecap="square" stroke-linejoin="round"/>
+<path id="Vector" d="M18.3333 23.3334L17.1333 24.2334L18.4054 25.9295L19.5814 24.1655L18.3333 23.3334ZM18.3333 23.3334L19.5333 22.4334L16.2 17.989L15 18.889L13.8 19.789L17.1333 24.2334L18.3333 23.3334ZM25 13.3334L23.7519 12.5013L17.0853 22.5013L18.3333 23.3334L19.5814 24.1655L26.2481 14.1654L25 13.3334Z" fill="#14B9B5"/>
+</g>
+<defs>
+<clipPath id="clip0_0_121">
+<rect width="40" height="40" fill="white"/>
+</clipPath>
+</defs>
+</svg>

@@ -51,11 +51,11 @@ describe('whyMatched', () => {
   })
 
   it('does not present a partial adventure fit as an exact match', () => {
-    const session = { ...PAINTED_SESSION, foodType: 'rice', flavors: ['spicy'], region: 'east-asia' }
+    const session = { ...PAINTED_SESSION, foodType: 'rice', flavors: ['tangy'], region: 'east-asia' }
     const explanation = explain(session, dishes.find((dish) => dish.id === 'mie-goreng'))
     expect(explanation).toContain('Mie Goreng')
     expect(explanation).toContain('partial fit')
-    expect(explanation).not.toMatch(/spicy|rice|Asian|matches your/i)
+    expect(explanation).not.toMatch(/tangy|rice|Asian|matches your/i)
   })
 
   it('does not claim anything as a food-type match', () => {

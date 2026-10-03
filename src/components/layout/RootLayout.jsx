@@ -5,14 +5,17 @@ import RouteTransition from './RouteTransition'
 /**
  * Layout route. Screens render into the Outlet inside the mobile shell.
  *
- * TopBar and BottomNav are intentionally not mounted yet — pass them to
- * AppShell once the screens that need them exist.
+ * Screens own their Figma headers and navigation; the shell supplies route
+ * focus, scroll reset, and one accessible fallback while a screen loads.
  */
 export default function RootLayout() {
   return (
     <AppShell>
       <RouteTransition />
-      <Outlet />
+      <Suspense fallback={<div role="status" className="px-page-gutter py-12 text-center">Loading Nom…</div>}>
+        <Outlet />
+      </Suspense>
     </AppShell>
   )
 }
+import { Suspense } from 'react'

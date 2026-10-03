@@ -18,9 +18,17 @@ export default function RouteTransition() {
     if (document.readyState !== 'complete') {
       window.addEventListener('load', introduceScreen, { once: true })
     }
-    document.title = `${main?.querySelector('h1')?.textContent ?? 'Welcome'} · Nom`
+    const updateTitle = () => {
+      const title = main?.querySelector('h1')?.textContent
+      document.title = `${title ?? 'Nom'}${title ? ' · Nom' : ''}`
+    }
+    updateTitle()
+    // Async provider/route content can replace a loading heading after navigation.
+    const titles = new MutationObserver(updateTitle)
+    if (main) titles.observe(main, { childList: true, subtree: true, characterData: true })
     return () => {
       window.removeEventListener('load', introduceScreen)
+      titles.disconnect()
       window.history.scrollRestoration = previous
     }
   }, [pathname])

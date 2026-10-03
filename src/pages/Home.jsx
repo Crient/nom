@@ -4,7 +4,10 @@ import StatusBar from '../components/layout/StatusBar'
 import CountryProgressCard from '../components/ui/CountryProgressCard'
 import SearchField from '../components/ui/SearchField'
 import Image from '../components/ui/Image'
-import { countryProgress } from '../data/countryProgress'
+import { useExperience } from '../context/Experience'
+import { collectionCountries, BOX_TARGET } from '../data/collectionDefinitions'
+import { countryProgressPresentation, pendingBox } from '../utils/experienceProgress'
+import { dishes } from '../data/dishes'
 import { recentlyExplored } from '../data/recentlyExplored'
 import quickTrending from '../assets/icons/quick-trending.svg'
 import quickScan from '../assets/icons/quick-scan.svg'
@@ -21,11 +24,15 @@ import chevronSm from '../assets/icons/chevron-right-sm.svg'
 
 const QUICK_ACTIONS = [
   { label: 'Trending', icon: quickTrending }, { label: 'Scan', icon: quickScan },
-  { label: 'Log Meal', icon: quickLogMeal }, { label: 'Favorites', icon: quickFavorites },
-  { label: 'Progress', icon: quickProgress },
+  { label: 'Log Meal', icon: quickLogMeal, to: '/discover/food-type' }, { label: 'Favorites', icon: quickFavorites },
+  { label: 'Progress', icon: quickProgress, to: '/collections' },
 ]
 
 export default function Home() {
+  const { state } = useExperience()
+  const cambodia = collectionCountries[0]
+  const box = pendingBox(state, cambodia.id)
+  const remaining = BOX_TARGET - state.progress.cambodia.count
   return (
     <div className="min-h-[1260px] w-full bg-surface pb-[90px]">
       <header className="relative h-[295.48px]">
@@ -33,12 +40,13 @@ export default function Home() {
         <SearchField disabled aria-label="Search for food (unavailable)" placeholder="Search for food..." title="Food search is not available yet" className="absolute top-[55.01px] left-0 w-full" />
         <div className="absolute top-[126.89px] left-[18.63px] right-[23.94px] bg-surface py-[16.017px]">
           <div className="grid grid-cols-5 gap-[6px] px-[16.017px]">
-            {QUICK_ACTIONS.map(({ label, icon }) => (
-              <button key={label} type="button" disabled title={`${label} is not available yet`} className="flex min-w-0 flex-col items-center gap-[6.007px] text-text-secondary">
+            {QUICK_ACTIONS.map(({ label, icon, to }) => {
+              const Control = to ? Link : 'button'
+              return <Control key={label} {...(to ? { to } : { type: 'button', disabled: true, title: `${label} is not available yet` })} className="flex min-h-[44px] min-w-0 flex-col items-center gap-[6.007px] text-text-secondary">
                 <img src={icon} alt="" className="size-[24.026px] shrink-0" />
                 <span className="text-[clamp(11px,3cqw,12.969px)] leading-normal font-semibold tracking-meta whitespace-nowrap">{label}</span>
-              </button>
-            ))}
+              </Control>
+            })}
           </div>
         </div>
         <img src={greetingDivider} alt="" className="absolute top-[196.1px] left-[9.28%] h-[14.197px] w-[75.62%]" />
@@ -70,20 +78,20 @@ export default function Home() {
         <img src={mysteryBannerBg} alt="" className="pointer-events-none absolute inset-0 size-full" />
         <Image loading="lazy" src={mysteryBoxPromo} alt="" className="relative size-[62.113px] object-cover" />
         <div className="relative min-w-0">
-          <p className="text-card-title tracking-meta text-strong-neutral">🇰🇭 One Meal Away!</p>
-          <p className="mt-[11px] text-meta-sm font-bold tracking-meta text-text-secondary">Try another Cambodian dish to unlock your Mystery Box.</p>
+          <p className="text-card-title tracking-meta text-strong-neutral">🇰🇭 {box ? 'Mystery Box Ready!' : `${remaining === 1 ? 'One Meal' : `${remaining} Meals`} Away!`}</p>
+          <p className="mt-[11px] text-meta-sm font-bold tracking-meta text-text-secondary">{box ? 'Open your box to discover your collectible.' : 'Try another Cambodian dish to unlock your Mystery Box.'}</p>
         </div>
-        <button type="button" disabled title="Mystery boxes are not available yet" className="relative flex min-h-[38.155px] items-center justify-center gap-[5px] rounded-card bg-primary-teal px-[4px] text-action-label tracking-meta text-strong-neutral">
-          Explore Now <img src={chevronSm} alt="" className="h-[10.665px] w-[6.301px] shrink-0" />
-        </button>
+        <Link to={box ? `/boxes/${box.id}` : '/collections/cambodia'} className="relative flex min-h-[44px] items-center justify-center gap-[5px] rounded-card bg-primary-teal px-[4px] text-action-label tracking-meta text-strong-neutral">
+          {box ? 'Open Box' : 'Explore Now'} <img src={chevronSm} alt="" className="h-[10.665px] w-[6.301px] shrink-0" />
+        </Link>
       </section>
 
       <div className="mt-[11.53px] flex items-center justify-between pl-[17.75px] pr-[24px]">
         <h2 className="text-section-title text-text-primary">Your Progress</h2>
-        <span aria-disabled="true" className="text-link tracking-meta text-accessible-teal">View All Progress <img src={chevronSm} alt="" className="inline h-[10.665px] w-[6.301px]" /></span>
+        <Link to="/collections" className="flex min-h-[44px] items-center text-link tracking-meta text-accessible-teal">View All Progress <img src={chevronSm} alt="" className="inline h-[10.665px] w-[6.301px]" /></Link>
       </div>
       <div className="mx-[23.96px] mt-[5.03px] flex flex-col gap-[8.88px]">
-        {countryProgress.map(({ id, top, left, ...card }) => <CountryProgressCard key={id} {...card} />)}
+        {collectionCountries.slice(0, 3).map(country => <Link key={country.id} to={`/collections/${country.id}`} aria-label={`View ${country.name} progress`}><CountryProgressCard {...countryProgressPresentation(state, country)} /></Link>)}
       </div>
 
       <div className="mt-[15.1px] flex items-center justify-between px-[23.07px]">
@@ -91,6 +99,7 @@ export default function Home() {
         <span aria-disabled="true" className="text-link tracking-meta text-accessible-teal">See all <img src={chevronSm} alt="" className="inline h-[10.665px] w-[6.301px]" /></span>
       </div>
       <section aria-label="Recently explored previews" tabIndex={0} className="flex gap-[9.316px] overflow-x-auto px-[9.76px] pb-[6px]">
+        {state.logs.slice(-3).reverse().map(log => <Link key={log.id} to={`/visits/${log.id}/logged`} className="flex h-[80.746px] w-[165.634px] shrink-0 flex-col justify-center rounded-sm bg-field/20 px-3 shadow-raised"><strong className="text-body-sm">{dishes.find(dish => dish.id === log.dishId)?.name ?? 'Logged meal'}</strong><span className="text-meta text-text-secondary">Experience logged • {log.verification.verified ? 'Demo verified' : 'Unverified'}</span></Link>)}
         {recentlyExplored.map(entry => <RecentCard key={entry.id} {...entry} />)}
       </section>
       <NomNavigation className="fixed bottom-0 left-1/2 w-full max-w-app -translate-x-1/2 items-start bg-surface py-[9.389px]" />

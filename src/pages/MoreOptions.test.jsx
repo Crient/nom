@@ -40,17 +40,20 @@ describe('More Options', () => {
   it('renders only ranks 4–10 in deterministic engine order with actual scores', () => {
     const html = renderScreen()
     expect(renderedMatches(html)).toEqual([
-      '#4 Mì Quảng, 70% match',
-      '#5 Cao Lầu, 70% match',
-      '#6 Mie Goreng, 62% match',
-      '#7 Pancit Canton, 62% match',
-      '#8 Char Kway Teow, 62% match',
-      '#9 Hokkien Mee, 62% match',
-      '#10 Kolo Mee, 62% match',
+      '#4 Kolo Mee, 77% match',
+      '#5 Pancit Bihon, 77% match',
+      '#6 Num Banh Chok, 77% match',
+      '#7 Mì Quảng, 70% match',
+      '#8 Cao Lầu, 70% match',
+      '#9 Reshteh Polow, 70% match',
+      '#10 Rechta, 70% match',
     ])
     expect(html).not.toContain('Lort Cha')
-    expect(html).not.toContain('Pancit Bihon')
-    expect(html).not.toContain('Num Banh Chok')
+    expect(html).not.toContain('Mie Goreng')
+    expect(html).not.toContain('Pancit Canton')
+    expect(renderedMatches(html)).toEqual(recommend(PAINTED_SESSION, dishes).slice(3, 10).map(
+      (result, index) => `#${index + 4} ${result.dish.name}, ${Math.round(result.score)}% match`,
+    ))
   })
 
   it('derives both matches and chips from changed discovery answers', () => {

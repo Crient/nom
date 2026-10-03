@@ -2,10 +2,10 @@ import starIcon from '../../assets/icons/restaurant-preview-star.svg'
 import locationIcon from '../../assets/icons/restaurant-preview-location.svg'
 import Image from '../ui/Image'
 
-/** A non-interactive restaurant design fixture, never a live nearby result. */
-export default function RestaurantPreviewCard({ restaurant }) {
+/** A development restaurant preview backed by the same adapter as Nearby. */
+export default function RestaurantPreviewCard({ restaurant, onSelect }) {
   return (
-    <article className="relative min-h-[95px] min-w-0 rounded-sm bg-surface shadow-card">
+    <button type="button" onClick={onSelect} aria-label={`View ${restaurant.name} details`} className="relative min-h-[95px] min-w-0 rounded-sm bg-surface text-left shadow-card">
       <Image loading="lazy"
         src={restaurant.image}
         alt={restaurant.name}
@@ -23,6 +23,6 @@ export default function RestaurantPreviewCard({ restaurant }) {
           <span className="font-bold">{restaurant.distance}</span>
         </div>
       </div>
-    </article>
+    </button>
   )
 }

@@ -32,7 +32,7 @@ export default function DishDetailHero({ result, chips, onBack }) {
         <div className="absolute top-[12px] right-[12px]" aria-label={`${Math.round(score)}% match`}>
           <MatchBadge percent={Math.round(score)} variant="detail" />
         </div>
-        <h1 className="pr-[78px] text-[35px] leading-[35px] font-bold text-strong-neutral">
+        <h1 className="break-words pr-[78px] text-[35px] leading-[35px] font-bold text-strong-neutral">
           {dish.name} <span className="whitespace-nowrap">{dish.flag}</span>
         </h1>
         <p className="mt-[13px] max-w-[265px] text-[16.5px] leading-[16px] font-light text-strong-neutral">

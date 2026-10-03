@@ -32,17 +32,20 @@ function renderScreen(id) {
   )
 }
 
+const escapeHtml = text => text.replace(/[&<>"']/g, char => ({
+  '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#x27;',
+})[char])
+
 beforeEach(() => useDiscoverySession.mockReturnValue(PAINTED_SESSION))
 
 describe('Dish Details', () => {
   it.each(dishes)('resolves $id to its own catalog image, description, and live score', (dish) => {
     const result = recommend(PAINTED_SESSION, dishes).find((item) => item.dish.id === dish.id)
     const html = renderScreen(dish.id)
-    expect(html).toContain(`alt="${dish.name}"`)
+    expect(html).toContain(`alt="${escapeHtml(dish.name)}"`)
     expect(html).toContain(`src="${dish.image}"`)
     expect(html).toContain(`${Math.round(result.score)}% match`)
-    // React escapes apostrophes in text content.
-    expect(html).toContain(dish.description.replaceAll("'", '&#x27;'))
+    expect(html).toContain(escapeHtml(dish.description))
     if (dish.id !== 'lort-cha') {
       expect(html).not.toContain('THMOR DA Restaurant')
       expect(html).not.toContain('Lort Cha')
@@ -72,13 +75,14 @@ describe('Dish Details', () => {
     expect(html).not.toContain('data-redirect')
   })
 
-  it('labels the Lort Cha restaurant fixtures and keeps search disabled', () => {
+  it('labels the Lort Cha restaurant fixtures and enables nearby navigation', () => {
     const html = renderScreen('lort-cha')
     expect(html).toContain('Design preview only. Ratings and distances are examples.')
     expect(html).toContain('THMOR DA Restaurant')
     expect(html).toContain('The Golden Monkey Cafe')
     expect(html).toContain('Peephuptmei Restaurant')
     expect(html).toContain('16 mi')
-    expect(html).toMatch(/<button[^>]*disabled=""[^>]*title="Nearby restaurant search is not connected yet"/)
+    expect(html).toContain('Find nearby restaurants')
+    expect(html).not.toContain('disabled=""')
   })
 })

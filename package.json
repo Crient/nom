@@ -5,9 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run catalog:validate && vite build",
     "preview": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "catalog:import": "python3 scripts/import-catalog.py",
+    "catalog:check": "python3 scripts/import-catalog.py --check",
+    "catalog:validate": "node scripts/validate-catalog.mjs"
   },
   "dependencies": {
     "react": "^19.3.0",
