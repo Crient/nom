@@ -1,0 +1,61 @@
+.nearby-page { position: relative; min-height: 100dvh; padding-top: 112px; padding-bottom: 32px; background: var(--color-background); color: var(--color-text-primary); }
+.nearby-dish { position: relative; display: flex; gap: 7px; margin: 0 25px; min-height: 110px; }
+.nearby-dish-photo { width: 110px; height: 110px; flex-shrink: 0; border-radius: 6px; object-fit: cover; object-position: 75% center; }
+.nearby-dish-copy { flex: 1; min-width: 0; }
+.nearby-dish h1 { font-size: 30px; font-weight: 700; line-height: 30px; overflow-wrap: anywhere; }
+.nearby-flag { font-size: 20px; }
+.nearby-dish p { max-width: 195px; font-size: 12px; line-height: 14px; margin-top: 3px; }
+.nearby-match { float: right; margin-top: -6px; margin-left: 8px; margin-bottom: 5px; }
+.nearby-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; clear: both; }
+.nearby-heading { margin: 15px 25px 0; }
+.nearby-heading h2 { font-size: 20px; line-height: 35px; font-weight: 700; }
+.nearby-heading p { display: flex; align-items: center; gap: 3px; font-size: 10px; line-height: 14px; }
+.nearby-view { display: flex; border: 1px solid var(--color-progress-track); border-radius: var(--radius-md); margin: 12px 40px 0; background: var(--color-surface); }
+.nearby-view button { flex: 1; display: flex; align-items: center; justify-content: center; gap: 25px; min-height: 44px; border-radius: var(--radius-md); font-weight: 700; font-size: 16px; color: var(--color-text-secondary); }
+.nearby-view button[aria-pressed=true] { background: var(--color-accessible-teal); color: var(--color-surface); }
+.nearby-view-icon { display: inline-block; width: 24px; height: 24px; flex-shrink: 0; background: currentColor; mask-repeat: no-repeat; mask-position: center; mask-size: contain; }
+.nearby-filters { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 7px; margin: 0 40px; }
+.nearby-filters label { display: flex; align-items: center; min-width: 0; }
+.nearby-filters select, .nearby-filters button { width: 100%; min-height: 44px; border: 0; border-radius: var(--radius-full); font-size: 11px; font-weight: 700; color: var(--color-text-secondary); background: linear-gradient(transparent 10px,var(--color-teal-tint) 10px,var(--color-teal-tint) 34px,transparent 34px); cursor: pointer; }
+.nearby-filters select { padding-left: 7px; }
+.nearby-filters button[aria-pressed=true] { color: var(--color-accessible-teal); text-decoration: underline; }
+.nearby-results { margin: 4px 17px 0; display: flex; flex-direction: column; gap: 14px; }
+.restaurant-card { position: relative; background: var(--color-surface); border: 1px solid var(--color-progress-track); border-radius: var(--radius-md); box-shadow: var(--shadow-panel); padding: 8px 6px; min-height: 111px; min-width: 0; }
+.restaurant-card-selected { border-color: var(--color-primary-teal); background: var(--color-secondary-fill); }
+.restaurant-select { display: flex; width: 100%; gap: 10px; text-align: left; border-radius: var(--radius-md); }
+.restaurant-photo { width: clamp(90px,27.3cqw,120px); height: 94px; object-fit: cover; border-radius: var(--radius-md); flex-shrink: 0; }
+.restaurant-copy { display: flex; flex-direction: column; min-width: 0; flex: 1; gap: 5px; }
+.restaurant-name { padding-right: 48px; font-size: clamp(15px,4.1cqw,18px); line-height: 18px; font-weight: 700; overflow-wrap: anywhere; }
+.restaurant-meta, .restaurant-excerpt { font-size: 10px; line-height: 12px; overflow-wrap: anywhere; }
+.restaurant-rating { display: flex; align-items: center; flex-wrap: wrap; gap: 3px; }
+.restaurant-excerpt { padding-right: 3px; }
+.restaurant-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.restaurant-tags > span { height: auto; min-height: 18px; padding: 3px 8px; overflow-wrap: anywhere; }
+.nearby-map-results { margin-top: 4px; }
+.restaurant-map { position: relative; height: 490px; margin: 0 24px; border-radius: 20px; overflow: hidden; border: 1px solid var(--color-progress-track); box-shadow: var(--shadow-card); }
+.nearby-map-results > .restaurant-card { margin: -30px 17px 0; z-index: 1; }
+.map-preview-label { position: absolute; right: 10px; bottom: 34px; border-radius: var(--radius-full); padding: 6px 9px; background: var(--color-surface); color: var(--color-text-secondary); font-size: 10px; }
+.map-locate { position: absolute; top: 4px; right: 4px; width: 55px; height: 55px; border-radius: var(--radius-full); }
+.restaurant-pin { position: absolute; transform: translate(-50%,-50%); width: 44px; height: 44px; display: grid; place-items: center; }
+.restaurant-pin span { display: grid; place-items: center; background: var(--color-accessible-teal); color: var(--color-surface); width: 24px; height: 24px; border-radius: var(--radius-full); border: 2px solid var(--color-surface); box-shadow: var(--shadow-panel); font-size: 11px; font-weight: 700; }
+.restaurant-pin-selected { z-index: 1; }
+.restaurant-pin-selected span { width: 30px; height: 30px; background: var(--color-favorite); }
+.nearby-promo { display: flex; align-items: center; gap: 3px; background: var(--color-soft-teal); border-radius: var(--radius-md); box-shadow: var(--shadow-panel); min-height: 61px; margin: 14px 17px 0; padding-right: 12px; }
+.nearby-promo > img { width: 80px; height: 59px; object-fit: contain; flex-shrink: 0; }
+.nearby-promo > div { min-width: 0; flex: 1; }
+.nearby-promo h3 { font-size: 15px; line-height: 18px; font-weight: 700; }
+.nearby-promo p { font-size: 8px; line-height: 12px; }
+.nearby-promo button { flex-shrink: 0; min-height: 44px; padding: 0 10px; gap: 5px; border-radius: var(--radius-md); font-size: 10px; }
+.nearby-promo button .nearby-view-icon { width: 18px; }
+.nearby-notice { margin: 14px 25px 0; font-size: 10px; line-height: 14px; color: var(--color-text-secondary); }
+.nearby-state { margin: 20px 25px; padding: 24px 12px; text-align: center; display: flex; align-items: center; flex-direction: column; gap: 16px; }
+@container (max-width: 390px) {
+  .nearby-dish { margin-inline: 20px; }
+  .nearby-dish-photo { width: 90px; height: 110px; }
+  .nearby-dish h1 { font-size: 25px; line-height: 28px; }
+  .nearby-view, .nearby-filters { margin-inline: 25px; }
+  .nearby-view button { gap: 16px; }
+  .nearby-promo > img { width: 65px; }
+  .nearby-promo h3 { font-size: 13px; }
+  .nearby-promo button { padding-inline: 7px; }
+}

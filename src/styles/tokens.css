@@ -9,7 +9,9 @@
  * font families, so only the Figma system is reachable from utility classes.
  */
 
-@theme {
+/* These variables also serve ordinary CSS in lazy-loaded screen styles. Keep
+   them available even when no Tailwind utility references a particular role. */
+@theme static {
   /* ---------------------------------------------------------------- colours */
   --color-*: initial;
 

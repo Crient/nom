@@ -1,10 +1,19 @@
-import { createContext, useCallback, useContext, useMemo, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { readLocalState, writeLocalState, STORAGE_KEYS } from '../data/localPersistence'
+import { normalizeFavorites } from '../data/persistedState'
 
 const FavoritesContext = createContext(null)
 
-/** Favorite dish IDs shared across screens for the current in-memory session. */
+/** Dish and restaurant IDs stay separate, shared, and locally persistent. */
 export function FavoritesProvider({ children }) {
-  const [favoriteIds, setFavoriteIds] = useState([])
+  const [saved] = useState(() => readLocalState(STORAGE_KEYS.favorites, normalizeFavorites, () => ({ dishIds: [], restaurantIds: [] })))
+  const [favoriteIds, setFavoriteIds] = useState(saved.dishIds)
+  const [restaurantIds, setRestaurantIds] = useState(saved.restaurantIds)
+  useEffect(() => { writeLocalState(STORAGE_KEYS.favorites, { dishIds: favoriteIds, restaurantIds }) }, [favoriteIds, restaurantIds])
+  const isRestaurantFavorite = useCallback(id => restaurantIds.includes(id), [restaurantIds])
+  const toggleRestaurantFavorite = useCallback(id => {
+    setRestaurantIds(current => current.includes(id) ? current.filter(value => value !== id) : [...current, id])
+  }, [])
 
   const isFavorite = useCallback((id) => favoriteIds.includes(id), [favoriteIds])
   const toggleFavorite = useCallback((id) => {
@@ -13,7 +22,8 @@ export function FavoritesProvider({ children }) {
     )
   }, [])
 
-  const value = useMemo(() => ({ isFavorite, toggleFavorite }), [isFavorite, toggleFavorite])
+  const value = useMemo(() => ({ isFavorite, toggleFavorite, isRestaurantFavorite, toggleRestaurantFavorite }),
+    [isFavorite, toggleFavorite, isRestaurantFavorite, toggleRestaurantFavorite])
 
   return <FavoritesContext.Provider value={value}>{children}</FavoritesContext.Provider>
 }

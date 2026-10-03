@@ -108,7 +108,8 @@ export default function Recommendations() {
         type="button"
         variant="nearby"
         size="none"
-        disabled title="Nearby restaurant search is not connected yet"
+        disabled={!best}
+        onClick={() => best && navigate(`/recommendations/${best.dish.id}/nearby`, { state: { returnTo: '/recommendations' } })}
         className="relative mx-[21px] mt-[20px] h-[63px] w-[calc(100%-46px)] rounded-lg text-[19px] leading-[23px] tracking-meta"
       >
         <img src={recLocation} alt="" className="h-[35px] w-[34.648px] max-w-none" />

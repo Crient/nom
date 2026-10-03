@@ -24,7 +24,7 @@ export default function RecommendationCard({ result, rank, liked = false, onTogg
         {!list && <RankLabel rank={rank} className="absolute top-[5.56px] left-[5.55px]" />}
       </div>
       <div className={cn('min-w-0 pb-[8px]', list ? 'pt-[8px]' : 'pt-[23.83px]')}>
-        <h2 className={cn('mr-[52px] font-bold text-strong-neutral', list ? 'text-title leading-[24px]' : 'text-[21px] leading-[21px]')}>
+        <h2 className={cn('mr-[52px] break-words font-bold text-strong-neutral', list ? 'text-title leading-[24px]' : 'text-[21px] leading-[21px]')}>
           {dish.name} <span className="whitespace-nowrap">{dish.flag}</span>
         </h2>
         <p className={cn('mr-[52px] text-[9.792px] leading-[11.751px] font-light text-strong-neutral', list ? 'mt-[4px]' : 'mt-[6px]')}>

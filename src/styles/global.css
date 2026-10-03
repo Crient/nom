@@ -1,6 +1,12 @@
 @import 'tailwindcss';
 @import './tokens.css';
 
+.nom-filter-chip { min-height: 44px; }
+.nom-filter-chip > span { display: block; padding: 3px 8px; border-radius: var(--radius-full); background: var(--color-surface); border: 1px solid var(--color-progress-track); box-shadow: var(--shadow-panel); font-weight: 600; }
+.nom-filter-chip[aria-pressed='true'] > span { background: var(--color-secondary-fill); border-color: var(--color-primary-teal); color: var(--color-accessible-teal); }
+.nom-filter-chip-solid > span { background: var(--color-secondary-fill); border-color: var(--color-teal-highlight); }
+.nom-filter-chip-solid[aria-pressed='true'] > span { background: var(--color-primary-teal); color: var(--color-text-primary); }
+
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
@@ -17,7 +23,7 @@
 
   button:disabled { cursor: not-allowed; }
 
-  :where(a, button, input, [tabindex]):focus-visible {
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
     outline: 3px solid var(--color-accessible-teal);
     outline-offset: 3px;
   }

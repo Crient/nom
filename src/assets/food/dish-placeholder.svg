@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+  <rect width="600" height="600" fill="#e9f4f1"/>
+  <circle cx="300" cy="280" r="125" fill="#d3e8e3"/>
+  <circle cx="300" cy="280" r="88" fill="#f7faf6" stroke="#006f6b" stroke-width="8"/>
+  <circle cx="300" cy="280" r="62" fill="none" stroke="#bad6cf" stroke-width="5"/>
+  <path d="M135 202v66m-16-66v40q0 26 16 26t16-26v-40m-16 66v88m330-154v154m0-154q-34 40-19 79h19" fill="none" stroke="#006f6b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="300" y="459" text-anchor="middle" fill="#006f6b" font-family="sans-serif" font-size="25">Dish photo coming soon</text>
+</svg>

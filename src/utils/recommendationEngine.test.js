@@ -281,21 +281,21 @@ describe('score bounds and ranking', () => {
   })
 })
 
-describe('painted Figma session against the V1 catalog', () => {
-  it('ranks all 10 dishes and reports honest scores', () => {
+describe('painted session against the full spreadsheet catalog', () => {
+  it('ranks all 201 dishes with source flavor tags and honest scores', () => {
     const results = recommend(PAINTED_SESSION, dishes)
-    expect(results).toHaveLength(10)
-    expect(results.map((result) => result.dish.id)).toEqual([
+    expect(results).toHaveLength(201)
+    expect(results.slice(0, 10).map((result) => result.dish.id)).toEqual([
       'lort-cha',
+      'mie-goreng',
+      'pancit-canton',
+      'kolo-mee',
       'pancit-bihon',
       'num-banh-chok',
       'mi-quang',
       'cao-lau',
-      'mie-goreng',
-      'pancit-canton',
-      'char-kway-teow',
-      'hokkien-mee',
-      'kolo-mee',
+      'reshteh-polow',
+      'rechta',
     ])
 
     const scores = Object.fromEntries(results.map((result) => [result.dish.id, result.score]))
@@ -304,8 +304,8 @@ describe('painted Figma session against the V1 catalog', () => {
     expect(scores['num-banh-chok']).toBe(77)
     expect(scores['mi-quang']).toBe(70)
     expect(scores['cao-lau']).toBe(70)
-    expect(scores['mie-goreng']).toBe(62)
-    expect(scores['pancit-canton']).toBe(62)
+    expect(scores['mie-goreng']).toBe(77)
+    expect(scores['pancit-canton']).toBe(77)
 
     const lortCha = byId(results, 'lort-cha')
     expect(lortCha.breakdown.foodType.earned).toBe(35)

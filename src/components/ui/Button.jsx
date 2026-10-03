@@ -6,7 +6,7 @@ const VARIANTS = {
   secondary: 'bg-secondary-fill text-accessible-teal',
   alt: 'bg-soft-teal-2 border border-teal-highlight text-accessible-teal',
   soft: 'bg-soft-teal-2 text-accessible-teal',
-  nearby: 'bg-alt-teal text-pale-teal',
+  nearby: 'bg-accessible-teal text-pale-teal',
   artwork: 'bg-transparent text-accessible-teal',
 }
 

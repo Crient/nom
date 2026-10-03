@@ -1,21 +1,19 @@
-import { createContext, useCallback, useContext, useMemo, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { readLocalState, writeLocalState, STORAGE_KEYS } from '../data/localPersistence'
+import { EMPTY_DISCOVERY, normalizeDiscovery } from '../data/persistedState'
 
 /**
  * The four answers collected by the 01 - Discovery question screens. They are
- * held in memory for the length of a session so the recommendation screens can
- * read them once those exist. Nothing is persisted between page loads.
+ * shared across the discovery and recommendation flow, with local persistence
+ * so a dish/restaurant URL remains usable after refresh.
  */
-const EMPTY_SESSION = {
-  foodType: null,
-  flavors: [],
-  adventurousness: null,
-  region: null,
-}
+const EMPTY_SESSION = EMPTY_DISCOVERY
 
 const DiscoverySessionContext = createContext(null)
 
 export function DiscoverySessionProvider({ children }) {
-  const [session, setSession] = useState(EMPTY_SESSION)
+  const [session, setSession] = useState(() => readLocalState(STORAGE_KEYS.discovery, normalizeDiscovery, () => EMPTY_SESSION))
+  useEffect(() => { writeLocalState(STORAGE_KEYS.discovery, session) }, [session])
 
   /* Accepts a value or an updater, like useState, so callers that derive the
      next answer from the current one stay correct when React batches. */

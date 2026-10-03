@@ -1,0 +1,29 @@
+{
+  "sourceFile": "Nom_Dish_Catalog_Master_V1_Pilot25_SourcesVerified.xlsx",
+  "sourceSha256": "fe384b429082419b38eb5f2e682c081b10dd83d4bcf912f049d5916dd08c0750",
+  "sheet": "Dishes",
+  "recordCount": 201,
+  "reviewStatuses": {
+    "needs-review": 201
+  },
+  "regions": {
+    "southeast-asia": 29,
+    "east-asia": 25,
+    "south-asia": 24,
+    "middle-east": 25,
+    "africa": 26,
+    "europe": 24,
+    "latin-america": 25,
+    "north-america": 23
+  },
+  "foodTypes": {
+    "noodle": 34,
+    "rice": 41,
+    "grilled-protein": 43,
+    "handheld": 44,
+    "soup-broth": 39
+  },
+  "withApprovedFactualSource": 25,
+  "directImageReferences": 0,
+  "descriptorPreferenceOverlap": []
+}

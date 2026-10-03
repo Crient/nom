@@ -1,5 +1,5 @@
 // @vitest-environment happy-dom
-import { act } from 'react'
+import { actAndLoadRoutes as act } from './test/routeAct'
 import { createRoot } from 'react-dom/client'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from './App'
@@ -80,9 +80,23 @@ describe('Nom stabilization', () => {
 
   it('marks unfinished actions unavailable and connects Discover to its existing screen', async () => {
     await mount('/home')
-    expect([...document.querySelectorAll('button')].every(button => button.disabled)).toBe(true)
-    expect(document.querySelector('button[title="Mystery boxes are not available yet"]').textContent).toContain('Explore Now')
+    expect(document.querySelector('button[title="Scan is not available yet"]').disabled).toBe(true)
+    expect([...document.querySelectorAll('a')].find(link => link.textContent.trim().startsWith('Explore Now')).getAttribute('href')).toBe('/collections/cambodia')
     await click('Discover')
     expect(window.location.pathname).toBe('/discover/food-type')
+  })
+
+  it('opens and favorites a newly imported placeholder dish through More Options', async () => {
+    await choosePaintedSession()
+    await click('See more options')
+    await click('View Reshteh Polow details')
+    expect(window.location.pathname).toBe('/recommendations/reshteh-polow')
+    expect(document.querySelector('h1').textContent).toContain('Reshteh Polow')
+    expect(document.querySelector('img[alt="Reshteh Polow"]').getAttribute('src')).toBeTruthy()
+    await click('Save Reshteh Polow to favorites')
+    await click('Go back to recommendations')
+    expect(window.location.pathname).toBe('/recommendations/more')
+    expect(document.querySelector('button[aria-label="Remove Reshteh Polow from favorites"]').getAttribute('aria-pressed')).toBe('true')
+    expect(document.querySelector('article[aria-label="#9 Reshteh Polow, 70% match"]')).toBeTruthy()
   })
 })

@@ -34,6 +34,7 @@ export default function DishDetails() {
     ? '/recommendations/more' : '/recommendations'
   const previews = dish.id === dishDetailsRestaurantDesignPreview.dishId
     ? dishDetailsRestaurantDesignPreview.restaurants : []
+  const findNearby = () => navigate(`/recommendations/${dish.id}/nearby`, { state: { returnTo } })
 
   return (
     <div className="min-h-[960px] bg-surface pb-[18px]">
@@ -49,24 +50,23 @@ export default function DishDetails() {
             Where to try nearby
           </h2>
           {previews.length > 0 && <span className="ml-[8px] text-[10px] text-text-secondary">Preview</span>}
-          <button type="button" disabled title="Nearby search is not connected yet" className="relative top-[2px] ml-auto mr-[4px] flex items-center gap-[5px] text-[12px] font-bold text-accessible-teal">
+          <button type="button" onClick={findNearby} className="relative top-[2px] ml-auto mr-[4px] flex min-h-[44px] items-center gap-[5px] text-[12px] font-bold text-accessible-teal">
             See all
             <img src={seeAllArrow} alt="" className="translate-y-[4px] max-w-none" />
           </button>
         </div>
         <div className="mt-[1px] grid min-h-[95px] grid-cols-3 gap-[16px]">
           {previews.length > 0 ? previews.map((restaurant) => (
-            <RestaurantPreviewCard key={restaurant.id} restaurant={restaurant} />
+            <RestaurantPreviewCard key={restaurant.id} restaurant={restaurant} onSelect={() => navigate(`/recommendations/${dish.id}/nearby/${restaurant.id}`, { state: { returnTo, view: 'list' } })} />
           )) : (
-            <p className="col-span-3 self-center text-body-sm text-text-secondary">Nearby restaurant search is not available yet.</p>
+            <p className="col-span-3 self-center text-body-sm text-text-secondary">Find places serving {dish.name} nearby.</p>
           )}
         </div>
       </section>
 
       <div className="mx-[23px] mt-[18px] flex flex-col gap-[11px]">
         <Button
-          variant="nearby" size="none" disabled
-          title="Nearby restaurant search is not connected yet"
+          variant="nearby" size="none" onClick={findNearby}
           className="relative min-h-[63px] w-full rounded-lg px-[12px] text-[19px] leading-[23px] font-bold tracking-meta shadow-card"
         >
           <img src={nearbyLocation} alt="" className="shrink-0 max-w-none" />
@@ -98,7 +98,7 @@ export default function DishDetails() {
         <p id="restaurant-preview-note" className="text-[10px] leading-[14px] text-text-secondary">
           {previews.length > 0
             ? 'Design preview only. Ratings and distances are examples.'
-            : 'Nearby search is not connected yet.'}
+            : 'Nearby results currently use development examples.'}
         </p>
       </div>
     </div>

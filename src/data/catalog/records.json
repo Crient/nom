@@ -1,0 +1,5055 @@
+[
+  {
+    "id": "lort-cha",
+    "name": "Lort Cha",
+    "countryCode": "KH",
+    "region": "southeast-asia",
+    "foodType": "noodle",
+    "adventureLevel": 3,
+    "shortDescription": "Cambodian stir-fried short rice noodles with bean sprouts, savory sauce, and a fried egg.",
+    "description": "Lort cha is a Cambodian street-food dish of short rice noodles stir-fried over high heat with bean sprouts and other vegetables in a savory-sweet sauce, commonly finished with a fried egg. Meat such as beef or pork may be added depending on the vendor.",
+    "reviewStatus": "needs-review",
+    "notes": "Existing Nom dish. Keep as needs-review until factual source and exact licensed primary image are approved. Verified source check: completed for pilot.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "smoky"
+    ],
+    "sourceRow": 5
+  },
+  {
+    "id": "mie-goreng",
+    "name": "Mie Goreng",
+    "countryCode": "ID",
+    "region": "southeast-asia",
+    "foodType": "noodle",
+    "adventureLevel": 2,
+    "shortDescription": "Indonesian stir-fried noodles with a sweet-savory flavor.",
+    "description": "Mie goreng is an Indonesian stir-fried noodle dish commonly prepared with yellow noodles, aromatics, vegetables, egg, and meat or seafood, often seasoned with sweet soy sauce and sambal.",
+    "reviewStatus": "needs-review",
+    "notes": "Existing Nom dish. Preference flavor is a catalog heuristic and should be reviewed before production.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Mi Goreng",
+      "Bakmi Goreng"
+    ],
+    "preferenceFlavors": [
+      "spicy"
+    ],
+    "descriptors": [
+      "savory",
+      "bold"
+    ],
+    "sourceRow": 6
+  },
+  {
+    "id": "pancit-canton",
+    "name": "Pancit Canton",
+    "countryCode": "PH",
+    "region": "southeast-asia",
+    "foodType": "noodle",
+    "adventureLevel": 2,
+    "shortDescription": "Filipino stir-fried noodles with vegetables and meat or seafood.",
+    "description": "Pancit canton is a Filipino stir-fried noodle dish using wheat-and-egg noodles with vegetables and varied meat or seafood additions. It is part of the broader pancit family of Filipino noodle dishes.",
+    "reviewStatus": "needs-review",
+    "notes": "Existing Nom dish. Uses the general Pancit source because Canton is covered as a named pancit variant.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Pansit Canton"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "bold"
+    ],
+    "sourceRow": 7
+  },
+  {
+    "id": "char-kway-teow",
+    "name": "Char Kway Teow",
+    "countryCode": "MY",
+    "region": "southeast-asia",
+    "foodType": "noodle",
+    "adventureLevel": 2,
+    "shortDescription": "Malaysian stir-fried flat rice noodles with a smoky, savory flavor.",
+    "description": "Char kway teow is a Southeast Asian stir-fried flat rice noodle dish strongly associated with Malaysia and Singapore, commonly cooked over high heat with soy sauces, aromatics, seafood, sprouts, and chives.",
+    "reviewStatus": "needs-review",
+    "notes": "Existing Nom dish. Country code uses Malaysia for catalog grouping; the dish is also strongly associated with Singapore.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Char Kuey Teow"
+    ],
+    "preferenceFlavors": [
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "smoky",
+      "charred"
+    ],
+    "sourceRow": 8
+  },
+  {
+    "id": "mi-quang",
+    "name": "Mì Quảng",
+    "countryCode": "VN",
+    "region": "southeast-asia",
+    "foodType": "noodle",
+    "adventureLevel": 3,
+    "shortDescription": "Vietnamese turmeric noodles with herbs, peanuts, and a little rich broth.",
+    "description": "Mì Quảng is a central Vietnamese noodle dish from Quảng Nam, built around rice noodles, herbs, meat or seafood, and a small amount of seasoned broth, often with turmeric, peanuts, and rice crackers.",
+    "reviewStatus": "needs-review",
+    "notes": "Existing Nom dish. Adventure level remains a Nom heuristic rather than a cultural judgment.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Mỳ Quảng"
+    ],
+    "preferenceFlavors": [
+      "fresh"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic"
+    ],
+    "sourceRow": 9
+  },
+  {
+    "id": "hokkien-mee",
+    "name": "Hokkien Mee",
+    "countryCode": "SG",
+    "region": "southeast-asia",
+    "foodType": "noodle",
+    "adventureLevel": 2,
+    "shortDescription": "Singaporean noodles tossed in a rich, savory seafood sauce.",
+    "description": "Singapore Hokkien mee combines egg and rice noodles with prawns, squid, egg, and an aromatic seafood-and-pork broth that is absorbed during stir-frying, typically served with sambal and lime.",
+    "reviewStatus": "needs-review",
+    "notes": "Existing Nom dish. Hokkien mee names multiple regional dishes; this row represents the Singapore fried-noodle version.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "umami"
+    ],
+    "sourceRow": 10
+  },
+  {
+    "id": "kolo-mee",
+    "name": "Kolo Mee",
+    "countryCode": "MY",
+    "region": "southeast-asia",
+    "foodType": "noodle",
+    "adventureLevel": 2,
+    "shortDescription": "Springy Malaysian dry noodles with savory sauce and flavorful toppings.",
+    "description": "Kolo mee is a Sarawakian dry noodle dish made with springy egg noodles tossed in a light savory mixture, commonly topped with char siu or other meats, fried shallots, and spring onions.",
+    "reviewStatus": "needs-review",
+    "notes": "Existing Nom dish. Associated with Sarawak and Brunei; country code uses Malaysia for catalog grouping.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Mee Kolo",
+      "Mi Kolok"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "light"
+    ],
+    "sourceRow": 11
+  },
+  {
+    "id": "pancit-bihon",
+    "name": "Pancit Bihon",
+    "countryCode": "PH",
+    "region": "southeast-asia",
+    "foodType": "noodle",
+    "adventureLevel": 2,
+    "shortDescription": "Filipino rice noodles stir-fried with vegetables and your choice of protein.",
+    "description": "Pancit bihon is a Filipino stir-fried rice vermicelli dish commonly seasoned with soy sauce and citrus and mixed with vegetables and varied meat or seafood, with recipes differing by household and region.",
+    "reviewStatus": "needs-review",
+    "notes": "Existing Nom dish. Uses the general Pancit source because bihon is covered there as a named variation.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Pansit Bihon",
+      "Bihon Guisado"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "light"
+    ],
+    "sourceRow": 12
+  },
+  {
+    "id": "cao-lau",
+    "name": "Cao Lầu",
+    "countryCode": "VN",
+    "region": "southeast-asia",
+    "foodType": "noodle",
+    "adventureLevel": 3,
+    "shortDescription": "Chewy Vietnamese noodles with pork, herbs, greens, and crispy toppings.",
+    "description": "Cao lầu is a Hội An noodle dish combining chewy rice noodles with pork, fresh greens, bean sprouts, herbs, and crisp rice pieces, served with only a small amount of concentrated broth or sauce.",
+    "reviewStatus": "needs-review",
+    "notes": "Existing Nom dish. Closely associated with Hội An in central Vietnam.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Cao Lau"
+    ],
+    "preferenceFlavors": [
+      "fresh",
+      "crispy"
+    ],
+    "descriptors": [
+      "savory",
+      "chewy"
+    ],
+    "sourceRow": 13
+  },
+  {
+    "id": "num-banh-chok",
+    "name": "Num Banh Chok",
+    "countryCode": "KH",
+    "region": "southeast-asia",
+    "foodType": "noodle",
+    "adventureLevel": 2,
+    "shortDescription": "Cambodian rice noodles with fragrant curry gravy, herbs, and fresh vegetables.",
+    "description": "Num banh chok is a Cambodian rice-noodle dish commonly eaten for breakfast or lunch, pairing lightly fermented rice noodles with savory gravy or curry-style sauces, herbs, and fresh vegetables.",
+    "reviewStatus": "needs-review",
+    "notes": "Existing Nom dish. Multiple regional preparations exist across Cambodia.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Num Banhchok",
+      "Num Banh Chok"
+    ],
+    "preferenceFlavors": [
+      "fresh",
+      "comforting"
+    ],
+    "descriptors": [
+      "aromatic",
+      "herbal"
+    ],
+    "sourceRow": 14
+  },
+  {
+    "id": "ramen",
+    "name": "Ramen",
+    "countryCode": "JP",
+    "region": "east-asia",
+    "foodType": "noodle",
+    "adventureLevel": 1,
+    "shortDescription": "Japanese wheat noodles served in a savory broth with varied regional toppings.",
+    "description": "Ramen is a Japanese noodle dish built around Chinese-style alkaline wheat noodles in a hot broth. Common styles use soy, miso, salt, or pork-based broths with toppings such as pork, nori, bamboo shoots, and scallions.",
+    "reviewStatus": "needs-review",
+    "notes": "New batch candidate. Familiarity/adventure level is a Nom heuristic for the target audience.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "umami"
+    ],
+    "sourceRow": 15
+  },
+  {
+    "id": "bibimbap",
+    "name": "Bibimbap",
+    "countryCode": "KR",
+    "region": "east-asia",
+    "foodType": "rice",
+    "adventureLevel": 1,
+    "shortDescription": "Korean rice topped with seasoned vegetables, gochujang, and often egg or beef.",
+    "description": "Bibimbap is a Korean rice dish topped with seasoned vegetables and gochujang, often with egg and sliced meat. The ingredients are mixed together before eating, with regional versions found across Korea.",
+    "reviewStatus": "needs-review",
+    "notes": "New batch candidate. Spicy preference reflects common gochujang use but should be reviewed because heat varies by preparation.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Bi Bim Bap",
+      "Bi Bim Bop"
+    ],
+    "preferenceFlavors": [
+      "fresh",
+      "spicy"
+    ],
+    "descriptors": [
+      "savory",
+      "umami"
+    ],
+    "sourceRow": 16
+  },
+  {
+    "id": "yakitori",
+    "name": "Yakitori",
+    "countryCode": "JP",
+    "region": "east-asia",
+    "foodType": "grilled-protein",
+    "adventureLevel": 1,
+    "shortDescription": "Japanese skewered chicken grilled over charcoal and seasoned with salt or tare.",
+    "description": "Yakitori is Japanese skewered chicken grilled over charcoal, with cuts ranging from thigh and breast to other parts. It is typically seasoned with salt or tare, a sweet-savory soy-based glaze.",
+    "reviewStatus": "needs-review",
+    "notes": "New batch candidate. Review preference-flavor assignment before production.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "smoky",
+      "charred"
+    ],
+    "sourceRow": 17
+  },
+  {
+    "id": "biryani",
+    "name": "Biryani",
+    "countryCode": "IN",
+    "region": "south-asia",
+    "foodType": "rice",
+    "adventureLevel": 1,
+    "shortDescription": "Layered South Asian rice with spices, aromatics, and meat or vegetables.",
+    "description": "Biryani is a South Asian rice dish made with fragrant rice, spices, and combinations of meat, seafood, eggs, or vegetables. Numerous regional styles exist across the Indian subcontinent.",
+    "reviewStatus": "needs-review",
+    "notes": "Regional dish with many national traditions; country code uses India for catalog grouping and should not imply exclusive origin. Verified source check: completed for pilot.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "rich"
+    ],
+    "descriptors": [
+      "aromatic",
+      "savory"
+    ],
+    "sourceRow": 18
+  },
+  {
+    "id": "masala-dosa",
+    "name": "Masala Dosa",
+    "countryCode": "IN",
+    "region": "south-asia",
+    "foodType": "handheld",
+    "adventureLevel": 2,
+    "shortDescription": "Crisp South Indian dosa filled with spiced potato and served with chutney and sambar.",
+    "description": "Masala dosa is a South Indian dish of a thin fermented rice-and-legume crepe wrapped around spiced potato curry. It is commonly served hot with chutneys and sambar.",
+    "reviewStatus": "needs-review",
+    "notes": "Classified as handheld for Nom because the filled crepe functions as the primary portable format; review category if needed.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Masala Dosai"
+    ],
+    "preferenceFlavors": [
+      "crispy",
+      "tangy"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic"
+    ],
+    "sourceRow": 19
+  },
+  {
+    "id": "mansaf",
+    "name": "Mansaf",
+    "countryCode": "JO",
+    "region": "middle-east",
+    "foodType": "rice",
+    "adventureLevel": 3,
+    "shortDescription": "Jordanian lamb with jameed yogurt sauce, rice or bulgur, and flatbread.",
+    "description": "Mansaf is a traditional Jordanian dish of lamb cooked with jameed, a fermented dried yogurt, and served with rice or bulgur over flatbread. It is strongly associated with Jordanian food culture.",
+    "reviewStatus": "needs-review",
+    "notes": "New batch candidate. Tangy preference reflects jameed's fermented yogurt character and should be human-reviewed.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "rich",
+      "tangy"
+    ],
+    "descriptors": [
+      "savory",
+      "creamy",
+      "aromatic"
+    ],
+    "sourceRow": 20
+  },
+  {
+    "id": "shish-taouk",
+    "name": "Shish Taouk",
+    "countryCode": "LB",
+    "region": "middle-east",
+    "foodType": "grilled-protein",
+    "adventureLevel": 1,
+    "shortDescription": "Marinated chicken skewers grilled until charred, common across Middle Eastern cuisines.",
+    "description": "Shish taouk is marinated chicken cooked on skewers and grilled, widely eaten across the Middle East and linked to Ottoman culinary traditions. Marinades commonly include garlic, citrus, yogurt, or spices.",
+    "reviewStatus": "needs-review",
+    "notes": "Regional dish rather than exclusively Lebanese; country code uses Lebanon for catalog grouping and requires review.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Shish Tawook",
+      "Tavuk Şiş"
+    ],
+    "preferenceFlavors": [
+      "tangy"
+    ],
+    "descriptors": [
+      "savory",
+      "charred",
+      "garlicky"
+    ],
+    "sourceRow": 21
+  },
+  {
+    "id": "harira",
+    "name": "Harira",
+    "countryCode": "MA",
+    "region": "africa",
+    "foodType": "soup-broth",
+    "adventureLevel": 2,
+    "shortDescription": "Moroccan tomato, lentil, and chickpea soup often enriched with meat and vermicelli.",
+    "description": "Harira is a North African soup especially associated with Morocco and Algeria, combining tomatoes, lentils, chickpeas, aromatics, and often meat, rice, or vermicelli. It is widely served during Ramadan.",
+    "reviewStatus": "needs-review",
+    "notes": "Country code uses Morocco for catalog grouping while acknowledging the dish is also traditional in Algeria.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "earthy"
+    ],
+    "sourceRow": 22
+  },
+  {
+    "id": "suya",
+    "name": "Suya",
+    "countryCode": "NG",
+    "region": "africa",
+    "foodType": "grilled-protein",
+    "adventureLevel": 2,
+    "shortDescription": "Nigerian grilled meat skewers coated in a spicy, nutty yaji seasoning.",
+    "description": "Suya is a Hausa-style Nigerian street food of thinly sliced meat coated with yaji, a spicy seasoning that commonly includes ground peanut cake, chili, ginger, and other spices, then grilled on skewers.",
+    "reviewStatus": "needs-review",
+    "notes": "New batch candidate. Peanut/nut descriptor reflects common yaji formulations.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Tsire"
+    ],
+    "preferenceFlavors": [
+      "spicy"
+    ],
+    "descriptors": [
+      "smoky",
+      "nutty",
+      "charred"
+    ],
+    "sourceRow": 23
+  },
+  {
+    "id": "carbonara",
+    "name": "Spaghetti Carbonara",
+    "countryCode": "IT",
+    "region": "europe",
+    "foodType": "noodle",
+    "adventureLevel": 1,
+    "shortDescription": "Roman pasta with egg, cured pork, hard cheese, and black pepper.",
+    "description": "Carbonara is a pasta dish associated with Lazio and Rome, typically made with pasta, cured pork such as guanciale, eggs, hard cheese, salt, and black pepper, creating a rich sauce without cream.",
+    "reviewStatus": "needs-review",
+    "notes": "New batch candidate. 'Creamy' is a texture descriptor; traditional carbonara does not require added cream.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Carbonara",
+      "Pasta alla Carbonara"
+    ],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "creamy",
+      "savory"
+    ],
+    "sourceRow": 24
+  },
+  {
+    "id": "french-onion-soup",
+    "name": "French Onion Soup",
+    "countryCode": "FR",
+    "region": "europe",
+    "foodType": "soup-broth",
+    "adventureLevel": 1,
+    "shortDescription": "French onion soup with deeply cooked onions, broth, bread, and melted cheese.",
+    "description": "French onion soup is made from slowly cooked onions and broth, commonly finished with bread or croutons and grated cheese that is browned on top. The modern version is strongly associated with France.",
+    "reviewStatus": "needs-review",
+    "notes": "New batch candidate. Familiarity/adventure level is a Nom heuristic.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Soupe à l'oignon"
+    ],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "buttery"
+    ],
+    "sourceRow": 25
+  },
+  {
+    "id": "tacos-al-pastor",
+    "name": "Tacos al Pastor",
+    "countryCode": "MX",
+    "region": "latin-america",
+    "foodType": "handheld",
+    "adventureLevel": 2,
+    "shortDescription": "Mexican tacos with spit-grilled marinated pork, onion, cilantro, and pineapple.",
+    "description": "Tacos al pastor use thin slices of marinated pork cooked on a vertical spit, a method influenced by Lebanese shawarma traditions in Mexico. They are commonly served in tortillas with onion, cilantro, and pineapple.",
+    "reviewStatus": "needs-review",
+    "notes": "New batch candidate. Pineapple is common but not universal; review flavor assignments before production. Verified source check: completed for pilot.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Al Pastor",
+      "Tacos de Trompo"
+    ],
+    "preferenceFlavors": [
+      "fresh"
+    ],
+    "descriptors": [
+      "savory",
+      "smoky",
+      "sweet"
+    ],
+    "sourceRow": 26
+  },
+  {
+    "id": "sopa-de-lima",
+    "name": "Sopa de Lima",
+    "countryCode": "MX",
+    "region": "latin-america",
+    "foodType": "soup-broth",
+    "adventureLevel": 2,
+    "shortDescription": "Yucatecan chicken soup brightened with lime and topped with crisp tortilla strips.",
+    "description": "Sopa de lima is a traditional Yucatán soup made with chicken or other meat, aromatic broth, lime, and fried tortilla strips. Its defining character is a light, citrus-forward broth associated with Yucatecan cuisine.",
+    "reviewStatus": "needs-review",
+    "notes": "New batch candidate. Keep image licensing review separate from factual approval.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Lime Soup"
+    ],
+    "preferenceFlavors": [
+      "fresh",
+      "tangy",
+      "crispy"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic"
+    ],
+    "sourceRow": 27
+  },
+  {
+    "id": "jambalaya",
+    "name": "Jambalaya",
+    "countryCode": "US",
+    "region": "north-america",
+    "foodType": "rice",
+    "adventureLevel": 1,
+    "shortDescription": "Louisiana rice cooked with meat or seafood, vegetables, stock, and spices.",
+    "description": "Jambalaya is a Louisiana rice dish combining rice with meat or seafood, vegetables, stock, and seasonings. It developed through African, Spanish, and French culinary influences in the region.",
+    "reviewStatus": "needs-review",
+    "notes": "New batch candidate. Variants differ widely between Creole and Cajun traditions. Retag resolution applied: preference flavor set to 'comforting'.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "smoky",
+      "aromatic"
+    ],
+    "sourceRow": 28
+  },
+  {
+    "id": "lobster-roll",
+    "name": "Lobster Roll",
+    "countryCode": "US",
+    "region": "north-america",
+    "foodType": "handheld",
+    "adventureLevel": 1,
+    "shortDescription": "New England lobster served in a grilled split-top roll with butter or mayonnaise.",
+    "description": "A lobster roll is a New England sandwich of lobster meat served in a grilled hot-dog-style roll. Regional versions may use warm drawn butter or chilled lobster mixed or dressed with mayonnaise.",
+    "reviewStatus": "needs-review",
+    "notes": "New batch candidate. Regional styles differ between Maine and Connecticut preparations.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "buttery",
+      "tender"
+    ],
+    "sourceRow": 29
+  },
+  {
+    "id": "udon",
+    "name": "Udon",
+    "countryCode": "JP",
+    "region": "east-asia",
+    "foodType": "noodle",
+    "adventureLevel": 1,
+    "shortDescription": "Thick Japanese wheat noodles served hot in broth or chilled with dipping sauce.",
+    "description": "Udon is a Japanese noodle dish made with thick wheat noodles. It may be served in a hot savory broth, chilled with dipping sauce, or topped with ingredients such as scallions, tempura, or tofu.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 2 candidate. Familiarity and flavor assignments are Nom heuristics.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "chewy",
+      "light"
+    ],
+    "sourceRow": 30
+  },
+  {
+    "id": "kimchi-jjigae",
+    "name": "Kimchi-jjigae",
+    "countryCode": "KR",
+    "region": "east-asia",
+    "foodType": "soup-broth",
+    "adventureLevel": 2,
+    "shortDescription": "Korean kimchi stew simmered with tofu, pork, scallions, and a deeply savory broth.",
+    "description": "Kimchi-jjigae is a Korean stew centered on aged kimchi, often simmered with pork, tofu, scallions, onions, and stock. The fermented kimchi gives the dish a spicy, sour, deeply savory character.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 2 candidate. Richness varies by protein and preparation.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Kimchi Stew"
+    ],
+    "preferenceFlavors": [
+      "spicy"
+    ],
+    "descriptors": [
+      "savory",
+      "fermented",
+      "umami"
+    ],
+    "sourceRow": 31
+  },
+  {
+    "id": "bulgogi",
+    "name": "Bulgogi",
+    "countryCode": "KR",
+    "region": "east-asia",
+    "foodType": "grilled-protein",
+    "adventureLevel": 1,
+    "shortDescription": "Korean marinated beef grilled or pan-cooked with a sweet-savory soy-based seasoning.",
+    "description": "Bulgogi is a Korean dish of thinly sliced meat, commonly beef, marinated with soy sauce, sugar, aromatics, and sesame before grilling or pan-cooking. The result is tender, savory, and lightly sweet.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 2 candidate. Preference flavors reflect the common beef preparation.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "comforting",
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "sweet",
+      "tender"
+    ],
+    "sourceRow": 32
+  },
+  {
+    "id": "jianbing",
+    "name": "Jianbing",
+    "countryCode": "CN",
+    "region": "east-asia",
+    "foodType": "handheld",
+    "adventureLevel": 2,
+    "shortDescription": "Chinese breakfast crepe layered with egg, sauces, herbs, and a crisp cracker.",
+    "description": "Jianbing is a Chinese street-food crepe cooked on a griddle, spread with egg and sauces, and folded around herbs and a crisp fried cracker or dough component. It combines soft, chewy, and crunchy textures.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 2 candidate. Classified as handheld for Nom; regional versions vary.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Chinese Crepe"
+    ],
+    "preferenceFlavors": [
+      "crispy"
+    ],
+    "descriptors": [
+      "savory",
+      "chewy"
+    ],
+    "sourceRow": 33
+  },
+  {
+    "id": "chole-bhature",
+    "name": "Chole Bhature",
+    "countryCode": "IN",
+    "region": "south-asia",
+    "foodType": "handheld",
+    "adventureLevel": 2,
+    "shortDescription": "North Indian chickpea curry served with a large puffed, deep-fried bhatura bread.",
+    "description": "Chole bhature pairs a spiced chickpea curry with bhatura, a fermented refined-flour bread fried until puffed and golden. It is strongly associated with North Indian and Punjabi street-food traditions.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 2 candidate. Handheld classification reflects the fried bread and curry pairing, though the dish is plated.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Channa Bhatura"
+    ],
+    "preferenceFlavors": [
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic"
+    ],
+    "sourceRow": 34
+  },
+  {
+    "id": "chicken-tikka",
+    "name": "Chicken Tikka",
+    "countryCode": "IN",
+    "region": "south-asia",
+    "foodType": "grilled-protein",
+    "adventureLevel": 1,
+    "shortDescription": "Yogurt-and-spice marinated chicken pieces cooked over high heat, often in a tandoor.",
+    "description": "Chicken tikka consists of boneless chicken pieces marinated with yogurt, spices, ginger, garlic, and citrus, then cooked at high heat, traditionally in a tandoor. It is tender, aromatic, and lightly charred.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 2 candidate. The dish spans Indian, Pakistani, and Bangladeshi traditions; country code uses India for catalog grouping. Retag resolution applied: preference flavor set to 'tangy'.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "tangy"
+    ],
+    "descriptors": [
+      "savory",
+      "smoky",
+      "charred"
+    ],
+    "sourceRow": 35
+  },
+  {
+    "id": "haleem",
+    "name": "Haleem",
+    "countryCode": "PK",
+    "region": "south-asia",
+    "foodType": "soup-broth",
+    "adventureLevel": 2,
+    "shortDescription": "Slow-cooked South Asian stew of meat, grains, lentils, and warming spices.",
+    "description": "Haleem is a thick, slow-cooked stew made from meat, wheat or other grains, lentils, and spices. Long cooking breaks the ingredients down into a rich, cohesive texture often finished with herbs, fried onions, and citrus.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 2 candidate. Widely eaten across South Asia and beyond; country code uses Pakistan for catalog grouping.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Halim"
+    ],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "creamy",
+      "aromatic"
+    ],
+    "sourceRow": 36
+  },
+  {
+    "id": "kabsa",
+    "name": "Kabsa",
+    "countryCode": "SA",
+    "region": "middle-east",
+    "foodType": "rice",
+    "adventureLevel": 2,
+    "shortDescription": "Arabian spiced rice cooked with meat, tomatoes, and fragrant whole spices.",
+    "description": "Kabsa is a rice-and-meat dish associated with the Arabian Peninsula, especially Saudi Arabia. Long-grain rice is cooked with meat, tomatoes, and aromatic spices, creating a deeply seasoned one-pot meal.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 2 candidate. Closely related regional rice dishes use names such as machboos.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Machboos",
+      "Makbūs"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic"
+    ],
+    "sourceRow": 37
+  },
+  {
+    "id": "shawarma",
+    "name": "Shawarma",
+    "countryCode": "LB",
+    "region": "middle-east",
+    "foodType": "handheld",
+    "adventureLevel": 1,
+    "shortDescription": "Thin slices of seasoned meat roasted on a vertical spit and wrapped with sauces and vegetables.",
+    "description": "Shawarma is made from stacked, seasoned meat slowly roasted on a vertical spit and shaved into thin slices. It is commonly served in flatbread with vegetables, pickles, tahini, or garlic sauce.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 2 candidate. Regional dish across the Middle East; country code uses Lebanon for catalog grouping.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "garlicky",
+      "smoky"
+    ],
+    "sourceRow": 38
+  },
+  {
+    "id": "ash-reshteh",
+    "name": "Ash Reshteh",
+    "countryCode": "IR",
+    "region": "middle-east",
+    "foodType": "soup-broth",
+    "adventureLevel": 3,
+    "shortDescription": "Iranian thick herb-and-legume soup with noodles, beans, lentils, and tangy kashk.",
+    "description": "Ash reshteh is an Iranian thick soup made with noodles, legumes, and abundant herbs, commonly finished with kashk, fried onions, garlic, or mint. It is hearty, herbal, and creamy-tangy when served with kashk.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 2 candidate. Adventure level is a Nom heuristic; kashk is not universal in every serving.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Aush Reshteh",
+      "Ash-e-Reshteh"
+    ],
+    "preferenceFlavors": [
+      "comforting",
+      "rich"
+    ],
+    "descriptors": [
+      "herbal",
+      "creamy",
+      "savory"
+    ],
+    "sourceRow": 39
+  },
+  {
+    "id": "jollof-rice",
+    "name": "Jollof Rice",
+    "countryCode": "SN",
+    "region": "africa",
+    "foodType": "rice",
+    "adventureLevel": 2,
+    "shortDescription": "West African tomato-and-pepper rice cooked with aromatics, spices, and optional meat or vegetables.",
+    "description": "Jollof rice is a West African one-pot rice dish built around tomatoes, onions, peppers, spices, and oil, with many regional variations using vegetables, meat, or seafood. Senegal is one of the dish's historic centers.",
+    "reviewStatus": "needs-review",
+    "notes": "Verified source check: academic source describes jollof as a West African culinary icon with debated origins and strong Wolof/Senegambian links. Senegal remains a Nom catalog grouping, not an exclusive-origin claim.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "smoky",
+      "aromatic"
+    ],
+    "sourceRow": 40
+  },
+  {
+    "id": "doro-wat",
+    "name": "Doro Wat",
+    "countryCode": "ET",
+    "region": "africa",
+    "foodType": "grilled-protein",
+    "adventureLevel": 3,
+    "shortDescription": "Ethiopian chicken stew simmered with berbere spices, onions, and often hard-boiled eggs.",
+    "description": "Doro wat is an Ethiopian chicken stew cooked with onions, clarified butter, and berbere spice, commonly served with injera and hard-boiled eggs. It is intensely aromatic, rich, and often quite spicy.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 2 candidate. Grilled/Protein is Nom's broad protein category; the dish itself is stewed, not grilled. Verified source check: completed for pilot.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Doro Wot"
+    ],
+    "preferenceFlavors": [
+      "spicy",
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "earthy"
+    ],
+    "sourceRow": 41
+  },
+  {
+    "id": "koshari",
+    "name": "Koshari",
+    "countryCode": "EG",
+    "region": "africa",
+    "foodType": "rice",
+    "adventureLevel": 2,
+    "shortDescription": "Egyptian rice, lentils, pasta, chickpeas, tomato sauce, and crisp fried onions.",
+    "description": "Koshari is an Egyptian dish combining rice, lentils, pasta, and chickpeas with tomato sauce, vinegar-garlic seasoning, and fried onions. Its mix of starches, legumes, tangy sauce, and crunch makes it especially filling.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 2 candidate. Food type uses rice because rice is a core base even though pasta and lentils are also central.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Koshary",
+      "Kushari"
+    ],
+    "preferenceFlavors": [
+      "comforting",
+      "tangy",
+      "crispy"
+    ],
+    "descriptors": [
+      "savory",
+      "earthy"
+    ],
+    "sourceRow": 42
+  },
+  {
+    "id": "thieboudienne",
+    "name": "Thieboudienne",
+    "countryCode": "SN",
+    "region": "africa",
+    "foodType": "rice",
+    "adventureLevel": 3,
+    "shortDescription": "Senegalese fish and rice cooked with tomato, vegetables, herbs, and peppers in one pot.",
+    "description": "Thieboudienne, also called ceebu jën, is a Senegalese one-pot dish of fish, broken rice, tomato sauce, and vegetables. Garlic, herbs, peppers, and seasonal vegetables give it a layered, aromatic character.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 2 candidate. Senegalese national dish with regional variations across West Africa. Retag resolution applied: preference flavor set to 'comforting'.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Ceebu Jën",
+      "Tiep"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic"
+    ],
+    "sourceRow": 43
+  },
+  {
+    "id": "paella",
+    "name": "Paella",
+    "countryCode": "ES",
+    "region": "europe",
+    "foodType": "rice",
+    "adventureLevel": 1,
+    "shortDescription": "Spanish rice cooked in a wide pan with saffron, vegetables, and seafood or meat.",
+    "description": "Paella is a Valencian rice dish cooked in a broad shallow pan, traditionally seasoned with ingredients such as saffron and local aromatics. Major variations feature seafood, meats, vegetables, or combinations.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 2 candidate. Country code uses Spain; origins are specifically Valencian. Retag resolution applied: preference flavor set to 'comforting'.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic"
+    ],
+    "sourceRow": 44
+  },
+  {
+    "id": "goulash",
+    "name": "Goulash",
+    "countryCode": "HU",
+    "region": "europe",
+    "foodType": "soup-broth",
+    "adventureLevel": 1,
+    "shortDescription": "Hungarian paprika-seasoned beef and vegetable soup or stew with a deep savory broth.",
+    "description": "Goulash is a Hungarian soup or stew traditionally made with meat, onions, vegetables, and paprika. Depending on preparation it may be brothy or thick, but its defining profile is savory, warming, and paprika-forward.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 2 candidate. Soup/Broth reflects traditional gulyás; international versions may be thicker.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Gulyás"
+    ],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "smoky",
+      "earthy"
+    ],
+    "sourceRow": 45
+  },
+  {
+    "id": "souvlaki",
+    "name": "Souvlaki",
+    "countryCode": "GR",
+    "region": "europe",
+    "foodType": "grilled-protein",
+    "adventureLevel": 1,
+    "shortDescription": "Greek skewered meat grilled over high heat and served with lemon, pita, or fresh sides.",
+    "description": "Souvlaki is a Greek dish of small pieces of meat grilled on skewers, commonly served with pita, lemon, vegetables, or sauces. High-heat grilling creates a lightly charred exterior while keeping the meat juicy.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 2 candidate. Flavor assignments reflect common lemon-and-herb service rather than every regional version.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "fresh"
+    ],
+    "descriptors": [
+      "savory",
+      "charred",
+      "herbal"
+    ],
+    "sourceRow": 46
+  },
+  {
+    "id": "pierogi",
+    "name": "Pierogi",
+    "countryCode": "PL",
+    "region": "europe",
+    "foodType": "handheld",
+    "adventureLevel": 1,
+    "shortDescription": "Polish filled dumplings boiled or pan-fried with savory or sweet fillings.",
+    "description": "Pierogi are filled dumplings strongly associated with Polish cuisine, made from unleavened dough wrapped around fillings such as potato and cheese, meat, sauerkraut, mushrooms, or fruit. They are typically boiled and may be pan-fried before serving.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 2 candidate. Handheld is Nom's closest available category even though pierogi are normally plated.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Pierogy",
+      "Pierogies"
+    ],
+    "preferenceFlavors": [
+      "comforting",
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "buttery",
+      "tender"
+    ],
+    "sourceRow": 47
+  },
+  {
+    "id": "arepa",
+    "name": "Arepa",
+    "countryCode": "VE",
+    "region": "latin-america",
+    "foodType": "handheld",
+    "adventureLevel": 1,
+    "shortDescription": "Cornmeal cake split and filled with cheese, meats, beans, or other savory fillings.",
+    "description": "Arepas are round cornmeal cakes widely associated with Venezuela and Colombia. They may be grilled, baked, or fried, then split and filled with ingredients such as cheese, shredded meat, beans, or avocado.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 2 candidate. Shared Colombian/Venezuelan tradition; country code uses Venezuela for catalog grouping.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "tender"
+    ],
+    "sourceRow": 48
+  },
+  {
+    "id": "ceviche",
+    "name": "Ceviche",
+    "countryCode": "PE",
+    "region": "latin-america",
+    "foodType": "grilled-protein",
+    "adventureLevel": 2,
+    "shortDescription": "Peruvian raw fish cured in citrus with onion, chile, and fresh herbs.",
+    "description": "Ceviche is a Peruvian dish of raw fish or seafood marinated in citrus juice, commonly combined with onion, chile, salt, and herbs. The acid firms the seafood while producing a bright, fresh, tangy profile.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 2 candidate. Grilled/Protein is Nom's broad protein category; the dish is cured, not grilled.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Cebiche",
+      "Sebiche"
+    ],
+    "preferenceFlavors": [
+      "fresh",
+      "tangy"
+    ],
+    "descriptors": [
+      "savory",
+      "light",
+      "herbal"
+    ],
+    "sourceRow": 49
+  },
+  {
+    "id": "arroz-con-pollo",
+    "name": "Arroz con Pollo",
+    "countryCode": "CO",
+    "region": "latin-america",
+    "foodType": "rice",
+    "adventureLevel": 1,
+    "shortDescription": "Latin American chicken and rice cooked together with vegetables, seasonings, and broth.",
+    "description": "Arroz con pollo is a chicken-and-rice dish found across Latin America and Spain, with versions that vary by country. Chicken, rice, vegetables, broth, and regional seasonings are cooked together into a savory one-pot meal.",
+    "reviewStatus": "needs-review",
+    "notes": "Verified source check: Colombian preparation confirmed; the dish also exists in multiple regional traditions. Country code remains Colombia for Nom catalog grouping only.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic"
+    ],
+    "sourceRow": 50
+  },
+  {
+    "id": "sancocho",
+    "name": "Sancocho",
+    "countryCode": "CO",
+    "region": "latin-america",
+    "foodType": "soup-broth",
+    "adventureLevel": 1,
+    "shortDescription": "Hearty Latin American stew with meat, root vegetables, plantain, corn, and broth.",
+    "description": "Sancocho is a family of hearty soups and stews found across Latin America and the Caribbean. Colombian versions often combine meat with plantain, yuca, potato, corn, herbs, and a deeply savory broth.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 2 candidate. Broad regional dish; country code uses Colombia for catalog grouping.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "earthy",
+      "aromatic"
+    ],
+    "sourceRow": 51
+  },
+  {
+    "id": "gumbo",
+    "name": "Gumbo",
+    "countryCode": "US",
+    "region": "north-america",
+    "foodType": "soup-broth",
+    "adventureLevel": 2,
+    "shortDescription": "Louisiana stew thickened with roux, okra, or filé and filled with meat or seafood.",
+    "description": "Gumbo is a Louisiana stew built from strongly flavored stock, meat or seafood, vegetables, and a thickener such as roux, okra, or filé powder. Creole and Cajun versions differ, but both are deeply savory and aromatic.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 2 candidate. Spiciness varies by recipe; preference assignment should be reviewed. Verified source check: completed for pilot.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "smoky",
+      "earthy"
+    ],
+    "sourceRow": 52
+  },
+  {
+    "id": "smoked-brisket",
+    "name": "Smoked Brisket",
+    "countryCode": "US",
+    "region": "north-america",
+    "foodType": "grilled-protein",
+    "adventureLevel": 1,
+    "shortDescription": "Slow-smoked beef brisket with a dark bark, tender interior, and deep wood-smoke flavor.",
+    "description": "Smoked brisket is a barbecue preparation in which beef brisket is seasoned and cooked slowly with wood smoke until tender. Texas barbecue is especially associated with simply seasoned brisket and a pronounced smoke bark.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 2 candidate. Initial source is the broader brisket reference; add a stronger Texas barbecue source before approval.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Texas Brisket",
+      "Barbecue Brisket"
+    ],
+    "preferenceFlavors": [
+      "rich"
+    ],
+    "descriptors": [
+      "smoky",
+      "charred",
+      "tender"
+    ],
+    "sourceRow": 53
+  },
+  {
+    "id": "poke-bowl",
+    "name": "Poke Bowl",
+    "countryCode": "US",
+    "region": "north-america",
+    "foodType": "rice",
+    "adventureLevel": 2,
+    "shortDescription": "Hawaiian-style rice bowl topped with seasoned raw fish, vegetables, and fresh garnishes.",
+    "description": "Poke is a Hawaiian dish of seasoned raw fish, traditionally served as a simple seafood preparation. Modern poke bowls commonly pair poke with rice, vegetables, seaweed, and sauces for a fresh, savory meal.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 2 candidate. The rice-bowl format is a modern serving style; distinguish traditional poke from contemporary poke bowls during final review.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Poke"
+    ],
+    "preferenceFlavors": [
+      "fresh"
+    ],
+    "descriptors": [
+      "savory",
+      "light",
+      "umami"
+    ],
+    "sourceRow": 54
+  },
+  {
+    "id": "nasi-goreng",
+    "name": "Nasi Goreng",
+    "countryCode": "ID",
+    "region": "southeast-asia",
+    "foodType": "rice",
+    "adventureLevel": 1,
+    "shortDescription": "Indonesian fried rice seasoned with sweet soy, aromatics, and savory toppings.",
+    "description": "Nasi goreng is an Indonesian fried-rice dish commonly seasoned with sweet soy sauce, garlic, shallots, chile, and savory accompaniments. Versions vary widely, with egg, chicken, seafood, and crisp garnishes all common.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 3 candidate. Flavor and adventure assignments are Nom product heuristics.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "comforting",
+      "spicy"
+    ],
+    "descriptors": [
+      "savory",
+      "smoky",
+      "aromatic"
+    ],
+    "sourceRow": 55
+  },
+  {
+    "id": "chicken-adobo",
+    "name": "Chicken Adobo",
+    "countryCode": "PH",
+    "region": "southeast-asia",
+    "foodType": "grilled-protein",
+    "adventureLevel": 1,
+    "shortDescription": "Filipino chicken braised with vinegar, soy sauce, garlic, peppercorns, and bay leaves.",
+    "description": "Chicken adobo is a Filipino braised dish in which chicken is cooked with vinegar, soy sauce or salt, garlic, peppercorns, and bay leaves. The sauce is savory and tangy, while slow cooking keeps the chicken tender.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 3 candidate. Grilled/Protein is Nom's broad protein category; adobo itself is braised.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Philippine Adobo"
+    ],
+    "preferenceFlavors": [
+      "comforting",
+      "tangy"
+    ],
+    "descriptors": [
+      "savory",
+      "garlicky",
+      "tender"
+    ],
+    "sourceRow": 56
+  },
+  {
+    "id": "satay",
+    "name": "Satay",
+    "countryCode": "ID",
+    "region": "southeast-asia",
+    "foodType": "grilled-protein",
+    "adventureLevel": 2,
+    "shortDescription": "Southeast Asian skewered meat grilled over high heat and often served with peanut sauce.",
+    "description": "Satay consists of seasoned pieces of meat threaded onto skewers and grilled, producing a smoky, charred exterior. Indonesian and neighboring regional versions are commonly served with sauces such as peanut sauce or sweet soy.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 3 candidate. Regional dish across Southeast Asia; country code uses Indonesia for catalog grouping.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Sate"
+    ],
+    "preferenceFlavors": [
+      "rich"
+    ],
+    "descriptors": [
+      "smoky",
+      "nutty",
+      "charred"
+    ],
+    "sourceRow": 57
+  },
+  {
+    "id": "laksa",
+    "name": "Laksa",
+    "countryCode": "MY",
+    "region": "southeast-asia",
+    "foodType": "soup-broth",
+    "adventureLevel": 2,
+    "shortDescription": "Southeast Asian noodle soup with a spicy, aromatic broth and varied regional toppings.",
+    "description": "Laksa is a family of Southeast Asian noodle soups associated especially with Malaysia and Singapore. Depending on the style, the broth may be coconut-rich or sour and fish-based, with noodles, herbs, seafood, or other toppings.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 3 candidate. Soup/Broth is used because the broth defines the experience even though noodles are central.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "spicy"
+    ],
+    "descriptors": [
+      "savory",
+      "creamy",
+      "aromatic"
+    ],
+    "sourceRow": 58
+  },
+  {
+    "id": "banh-mi",
+    "name": "Bánh Mì",
+    "countryCode": "VN",
+    "region": "southeast-asia",
+    "foodType": "handheld",
+    "adventureLevel": 1,
+    "shortDescription": "Vietnamese baguette sandwich layered with savory fillings, pickles, herbs, and chile.",
+    "description": "Bánh mì is a Vietnamese baguette sandwich combining a crisp, airy loaf with savory fillings and fresh accompaniments such as pickled vegetables, cucumber, cilantro, and chile. Fillings vary from pork and pâté to chicken or tofu.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 3 candidate. Preference flavors reflect the common pickle-and-herb sandwich profile.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Banh Mi"
+    ],
+    "preferenceFlavors": [
+      "fresh",
+      "crispy",
+      "tangy"
+    ],
+    "descriptors": [
+      "savory",
+      "herbal"
+    ],
+    "sourceRow": 59
+  },
+  {
+    "id": "sinigang",
+    "name": "Sinigang",
+    "countryCode": "PH",
+    "region": "southeast-asia",
+    "foodType": "soup-broth",
+    "adventureLevel": 2,
+    "shortDescription": "Filipino sour soup with meat or seafood, vegetables, and a bright savory-acidic broth.",
+    "description": "Sinigang is a Filipino soup known for its sour broth, made with meat, fish, or seafood plus vegetables. Tamarind is a common souring agent, but regional versions also use ingredients such as kamias, guava, green mango, tomatoes, calamansi, or other sour fruits.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 3 candidate. Sourness varies by region and souring ingredient. Verified source check: completed for pilot.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "tangy",
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic"
+    ],
+    "sourceRow": 60
+  },
+  {
+    "id": "gyoza",
+    "name": "Gyoza",
+    "countryCode": "JP",
+    "region": "east-asia",
+    "foodType": "handheld",
+    "adventureLevel": 1,
+    "shortDescription": "Japanese dumplings filled with meat and vegetables, often pan-fried for a crisp base.",
+    "description": "Gyoza are Japanese dumplings derived from Chinese jiaozi, usually filled with ground meat and vegetables. A common preparation pan-fries the dumplings before steaming, creating a crisp bottom and tender wrapper.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 3 candidate. Source covers jiaozi broadly; add a Japan-specific culinary source before approval.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Japanese Gyoza",
+      "Jiaozi"
+    ],
+    "preferenceFlavors": [
+      "crispy"
+    ],
+    "descriptors": [
+      "savory",
+      "juicy",
+      "chewy"
+    ],
+    "sourceRow": 61
+  },
+  {
+    "id": "tonkatsu",
+    "name": "Tonkatsu",
+    "countryCode": "JP",
+    "region": "east-asia",
+    "foodType": "grilled-protein",
+    "adventureLevel": 1,
+    "shortDescription": "Japanese breaded pork cutlet fried until crisp and served with shredded cabbage and sauce.",
+    "description": "Tonkatsu is a Japanese pork cutlet coated in panko breadcrumbs and deep-fried until crisp. It is commonly sliced and served with shredded cabbage, rice, and a thick savory-sweet tonkatsu sauce.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 3 candidate. Grilled/Protein is Nom's broad protein category; tonkatsu is fried rather than grilled.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "crispy",
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "tender"
+    ],
+    "sourceRow": 62
+  },
+  {
+    "id": "congee",
+    "name": "Congee",
+    "countryCode": "CN",
+    "region": "east-asia",
+    "foodType": "rice",
+    "adventureLevel": 1,
+    "shortDescription": "Soft rice porridge served plain or topped with savory meats, eggs, herbs, and condiments.",
+    "description": "Congee is a rice porridge eaten across many Asian cuisines. Rice is cooked with abundant water until soft and creamy, then served plain or with savory toppings such as meat, preserved egg, scallions, herbs, or fried dough.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 3 candidate. Country code uses China for catalog grouping while acknowledging broad regional traditions.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Rice Porridge",
+      "Jook"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "light",
+      "creamy"
+    ],
+    "sourceRow": 63
+  },
+  {
+    "id": "samosa",
+    "name": "Samosa",
+    "countryCode": "IN",
+    "region": "south-asia",
+    "foodType": "handheld",
+    "adventureLevel": 1,
+    "shortDescription": "Crisp South Asian pastry filled with spiced potato, peas, meat, or other savory fillings.",
+    "description": "A samosa is a filled pastry popular across South Asia and neighboring regions. The crisp shell is commonly stuffed with seasoned potatoes and peas or with meat, then fried or baked and served with chutneys.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 3 candidate. India is used for catalog grouping; the food has a wider regional history.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "crispy"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic"
+    ],
+    "sourceRow": 64
+  },
+  {
+    "id": "tandoori-chicken",
+    "name": "Tandoori Chicken",
+    "countryCode": "IN",
+    "region": "south-asia",
+    "foodType": "grilled-protein",
+    "adventureLevel": 1,
+    "shortDescription": "Yogurt-and-spice marinated chicken roasted at high heat in a tandoor.",
+    "description": "Tandoori chicken is marinated in yogurt, citrus, and spices before being roasted at high heat in a cylindrical clay tandoor. The intense heat creates a charred exterior while the marinade keeps the meat flavorful and tender.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 3 candidate. Spiciness varies by marinade and serving style. Retag resolution applied: preference flavor set to 'tangy'. Verified source check: completed for pilot.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "tangy"
+    ],
+    "descriptors": [
+      "smoky",
+      "charred",
+      "aromatic"
+    ],
+    "sourceRow": 65
+  },
+  {
+    "id": "idiyappam",
+    "name": "Idiyappam",
+    "countryCode": "LK",
+    "region": "south-asia",
+    "foodType": "noodle",
+    "adventureLevel": 2,
+    "shortDescription": "Steamed rice-flour noodle nests served with curries, coconut milk, or savory accompaniments.",
+    "description": "Idiyappam, also called string hoppers, is made by pressing rice-flour dough into fine noodle strands and steaming them into small nests. It is eaten in Sri Lanka and South India with curries, coconut milk, or other accompaniments.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 3 candidate. Country code uses Sri Lanka for catalog grouping; South Indian traditions are also important.",
+    "validationStatus": "OK",
+    "aliases": [
+      "String Hoppers",
+      "Nool Puttu"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "light",
+      "chewy"
+    ],
+    "sourceRow": 66
+  },
+  {
+    "id": "falafel",
+    "name": "Falafel",
+    "countryCode": "LB",
+    "region": "middle-east",
+    "foodType": "handheld",
+    "adventureLevel": 1,
+    "shortDescription": "Fried chickpea or fava-bean patties served in flatbread with vegetables, herbs, and sauces.",
+    "description": "Falafel is made from ground chickpeas, fava beans, or a combination seasoned with herbs and spices, shaped, and fried until crisp. It is commonly served in flatbread with vegetables, pickles, tahini, or other sauces.",
+    "reviewStatus": "needs-review",
+    "notes": "Verified source check: falafel is a wider Middle Eastern dish with debated/ancient origins; Lebanon remains a Nom catalog grouping. Lebanese, Syrian, and Jordanian forms commonly use chickpeas and/or fava beans.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "crispy",
+      "fresh"
+    ],
+    "descriptors": [
+      "savory",
+      "herbal",
+      "earthy"
+    ],
+    "sourceRow": 67
+  },
+  {
+    "id": "kabab-koobideh",
+    "name": "Kabab Koobideh",
+    "countryCode": "IR",
+    "region": "middle-east",
+    "foodType": "grilled-protein",
+    "adventureLevel": 2,
+    "shortDescription": "Iranian ground-meat kebab seasoned with onion and grilled on wide skewers.",
+    "description": "Kabab koobideh is an Iranian kebab made from seasoned ground meat mixed with onion, shaped onto broad skewers, and grilled over high heat. It is often served with rice, grilled tomato, herbs, and sumac.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 3 candidate. Adventure level is a Nom heuristic.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Koobideh Kebab",
+      "Kabab Kubideh"
+    ],
+    "preferenceFlavors": [
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "charred",
+      "juicy"
+    ],
+    "sourceRow": 68
+  },
+  {
+    "id": "mujadara",
+    "name": "Mujadara",
+    "countryCode": "LB",
+    "region": "middle-east",
+    "foodType": "rice",
+    "adventureLevel": 2,
+    "shortDescription": "Levantine lentils and rice topped with deeply browned onions.",
+    "description": "Mujadara is a Levantine dish combining lentils with rice or another grain and generous browned onions. The ingredients are simple, but slow-cooked onions and earthy lentils create a deeply savory, comforting meal.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 3 candidate. Regional dish across the Levant; Lebanon is used for catalog grouping.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Mujaddara",
+      "Mjadra"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "earthy",
+      "aromatic"
+    ],
+    "sourceRow": 69
+  },
+  {
+    "id": "bunny-chow",
+    "name": "Bunny Chow",
+    "countryCode": "ZA",
+    "region": "africa",
+    "foodType": "handheld",
+    "adventureLevel": 3,
+    "shortDescription": "South African hollowed bread loaf filled with a rich, spiced curry.",
+    "description": "Bunny chow is a South African dish associated with Durban, consisting of a hollowed loaf or portion of bread filled with curry. The curry may contain meat, beans, or vegetables and is eaten with the bread that surrounds it.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 3 candidate. Handheld category reflects the bread vessel, though servings can be substantial and plated.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "tender"
+    ],
+    "sourceRow": 70
+  },
+  {
+    "id": "bobotie",
+    "name": "Bobotie",
+    "countryCode": "ZA",
+    "region": "africa",
+    "foodType": "grilled-protein",
+    "adventureLevel": 3,
+    "shortDescription": "South African spiced minced-meat bake topped with a savory egg custard.",
+    "description": "Bobotie is a South African baked dish of seasoned minced meat, often balanced with fruit or sweet spices and topped with an egg-and-milk mixture that sets into a custard-like layer. It is commonly served with rice and condiments.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 3 candidate. Grilled/Protein is Nom's broad protein category; bobotie is baked.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "sweet",
+      "aromatic"
+    ],
+    "sourceRow": 71
+  },
+  {
+    "id": "egusi-soup",
+    "name": "Egusi Soup",
+    "countryCode": "NG",
+    "region": "africa",
+    "foodType": "soup-broth",
+    "adventureLevel": 3,
+    "shortDescription": "West African soup thickened with ground melon seeds and cooked with greens, meat, or fish.",
+    "description": "Egusi soup is a West African dish thickened with ground melon seeds, which give the soup a rich, nutty body. Nigerian versions commonly include leafy greens, chile, palm oil, and meat or fish and are often served with a starch such as pounded yam.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 3 candidate. Nigerian grouping is used while acknowledging wider West African preparations.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "rich",
+      "spicy"
+    ],
+    "descriptors": [
+      "savory",
+      "nutty",
+      "earthy"
+    ],
+    "sourceRow": 72
+  },
+  {
+    "id": "risotto",
+    "name": "Risotto",
+    "countryCode": "IT",
+    "region": "europe",
+    "foodType": "rice",
+    "adventureLevel": 1,
+    "shortDescription": "Italian short-grain rice cooked gradually with stock until creamy while the grains stay firm.",
+    "description": "Risotto is an Italian rice dish made by gradually adding stock to starchy short-grain rice while stirring, creating a creamy texture without requiring cream. Butter, cheese, vegetables, seafood, or meats may be added depending on the style.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 3 candidate. Preference flavors reflect common savory risotto preparations.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "creamy",
+      "savory",
+      "buttery"
+    ],
+    "sourceRow": 73
+  },
+  {
+    "id": "arancini",
+    "name": "Arancini",
+    "countryCode": "IT",
+    "region": "europe",
+    "foodType": "handheld",
+    "adventureLevel": 1,
+    "shortDescription": "Sicilian stuffed rice balls breaded and fried until crisp.",
+    "description": "Arancini are Sicilian rice balls formed around fillings such as ragù, cheese, or vegetables, then breaded and fried. The crisp shell surrounds soft, seasoned rice and a rich filling, making them a common snack or street food.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 3 candidate. Regional naming and shapes vary within Sicily.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Arancine"
+    ],
+    "preferenceFlavors": [
+      "crispy",
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "creamy"
+    ],
+    "sourceRow": 74
+  },
+  {
+    "id": "schnitzel",
+    "name": "Schnitzel",
+    "countryCode": "AT",
+    "region": "europe",
+    "foodType": "grilled-protein",
+    "adventureLevel": 1,
+    "shortDescription": "Thin breaded cutlet fried until golden and crisp, strongly associated with Austrian cuisine.",
+    "description": "Schnitzel is a thin meat cutlet that is breaded and fried until crisp. Wiener schnitzel, the Austrian form traditionally made with veal, is commonly served with lemon and simple sides such as potatoes or salad.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 3 candidate. Grilled/Protein is Nom's broad protein category; schnitzel is fried.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Wiener Schnitzel"
+    ],
+    "preferenceFlavors": [
+      "crispy",
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "tender"
+    ],
+    "sourceRow": 75
+  },
+  {
+    "id": "empanadas",
+    "name": "Empanadas",
+    "countryCode": "AR",
+    "region": "latin-america",
+    "foodType": "handheld",
+    "adventureLevel": 1,
+    "shortDescription": "Filled pastries baked or fried with meat, cheese, vegetables, or other regional fillings.",
+    "description": "Empanadas are filled pastries found across Latin America and Spain. Argentine versions commonly use a wheat-flour dough folded around savory fillings such as seasoned beef, chicken, cheese, or vegetables before baking or frying.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 3 candidate. Broad regional dish; Argentina is used for catalog grouping. Retag resolution applied: preference flavor set to 'comforting'.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Empanada"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "juicy"
+    ],
+    "sourceRow": 76
+  },
+  {
+    "id": "feijoada",
+    "name": "Feijoada",
+    "countryCode": "BR",
+    "region": "latin-america",
+    "foodType": "soup-broth",
+    "adventureLevel": 2,
+    "shortDescription": "Brazilian black-bean and meat stew served with rice and traditional accompaniments.",
+    "description": "Brazilian feijoada is a hearty stew built around black beans and assorted pork or beef, slowly cooked until deeply savory. It is commonly served with rice and accompaniments such as collard greens, farofa, and orange.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 3 candidate. Soup/Broth is Nom's closest category for this thick stew.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "smoky",
+      "earthy"
+    ],
+    "sourceRow": 77
+  },
+  {
+    "id": "macaroni-and-cheese",
+    "name": "Macaroni and Cheese",
+    "countryCode": "US",
+    "region": "north-america",
+    "foodType": "noodle",
+    "adventureLevel": 1,
+    "shortDescription": "Macaroni pasta coated in a rich cheese sauce and baked or served stovetop.",
+    "description": "Macaroni and cheese combines cooked macaroni with a cheese-based sauce and may be served creamy from the stovetop or baked until browned. The dish is strongly associated with North American comfort-food traditions.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 3 candidate. North American grouping reflects the modern product experience, though the dish has older European precedents. Verified source check: completed for pilot.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Mac and Cheese"
+    ],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "creamy",
+      "buttery",
+      "savory"
+    ],
+    "sourceRow": 78
+  },
+  {
+    "id": "pulled-pork-sandwich",
+    "name": "Pulled Pork Sandwich",
+    "countryCode": "US",
+    "region": "north-america",
+    "foodType": "handheld",
+    "adventureLevel": 1,
+    "shortDescription": "Slow-cooked shredded pork piled into a bun with barbecue sauce and optional slaw.",
+    "description": "Pulled pork is made by cooking pork slowly until tender enough to shred, often using smoke in American barbecue traditions. Served in a sandwich, the meat is commonly paired with barbecue sauce, pickles, or coleslaw.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 3 candidate. Initial source covers pulled pork broadly; add a stronger regional barbecue source before approval.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Pulled Pork"
+    ],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "smoky",
+      "tender",
+      "savory"
+    ],
+    "sourceRow": 79
+  },
+  {
+    "id": "dandan-noodles",
+    "name": "Dandan Noodles",
+    "countryCode": "CN",
+    "region": "east-asia",
+    "foodType": "noodle",
+    "adventureLevel": 2,
+    "shortDescription": "Sichuan wheat noodles coated in a spicy chile-and-pepper sauce with savory toppings.",
+    "description": "Dandan noodles are a Sichuan noodle dish of wheat noodles tossed with chile oil, Sichuan pepper, preserved vegetables, scallions, and often minced pork. Traditional Chengdu versions are usually served dry rather than as a soup.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 4 candidate. Richness depends on sauce style; flavor assignment reflects common spicy, savory preparations.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Dan Dan Mian",
+      "Dandanmian"
+    ],
+    "preferenceFlavors": [
+      "spicy",
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "nutty",
+      "aromatic"
+    ],
+    "sourceRow": 80
+  },
+  {
+    "id": "hot-and-sour-soup",
+    "name": "Hot and Sour Soup",
+    "countryCode": "CN",
+    "region": "east-asia",
+    "foodType": "soup-broth",
+    "adventureLevel": 2,
+    "shortDescription": "Chinese soup balancing vinegar sourness, white-pepper heat, tofu, mushrooms, and bamboo shoots.",
+    "description": "Hot and sour soup is a Chinese soup known for balancing sourness from vinegar with peppery heat. Common versions include tofu, mushrooms, bamboo shoots, egg, and pork or another protein in a savory broth.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 4 candidate. Regional preparation varies substantially inside and outside China.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "spicy",
+      "tangy"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic"
+    ],
+    "sourceRow": 81
+  },
+  {
+    "id": "gimbap",
+    "name": "Gimbap",
+    "countryCode": "KR",
+    "region": "east-asia",
+    "foodType": "handheld",
+    "adventureLevel": 1,
+    "shortDescription": "Korean seaweed rice rolls filled with vegetables, egg, and savory proteins.",
+    "description": "Gimbap is a Korean dish of seasoned rice and assorted fillings rolled in dried seaweed and sliced into bite-size pieces. Fillings often include vegetables, egg, pickles, and cooked proteins, creating a portable and balanced meal.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 4 candidate. Handheld reflects portable roll format; fillings vary widely.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Kimbap"
+    ],
+    "preferenceFlavors": [
+      "fresh"
+    ],
+    "descriptors": [
+      "savory",
+      "light"
+    ],
+    "sourceRow": 82
+  },
+  {
+    "id": "nasi-lemak",
+    "name": "Nasi Lemak",
+    "countryCode": "MY",
+    "region": "southeast-asia",
+    "foodType": "rice",
+    "adventureLevel": 1,
+    "shortDescription": "Malay coconut rice served with sambal, anchovies, peanuts, egg, cucumber, and varied sides.",
+    "description": "Nasi lemak is a Malay dish of rice cooked with coconut milk and pandan, commonly served with sambal, anchovies, peanuts, cucumber, and egg. Additional proteins and side dishes vary across Malaysia and neighboring cuisines.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 4 candidate. Adventure level is a Nom heuristic; side dishes vary by region.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "rich",
+      "spicy"
+    ],
+    "descriptors": [
+      "aromatic",
+      "savory",
+      "creamy"
+    ],
+    "sourceRow": 83
+  },
+  {
+    "id": "fried-lumpia",
+    "name": "Fried Lumpia",
+    "countryCode": "PH",
+    "region": "southeast-asia",
+    "foodType": "handheld",
+    "adventureLevel": 1,
+    "shortDescription": "Filipino fried spring rolls with thin wrappers and savory vegetable or meat fillings.",
+    "description": "Fried lumpia are Filipino spring rolls made with thin wrappers and savory fillings such as vegetables or seasoned meat, then fried until crisp. This entry was split from the original mixed Lumpia row so Nom can recommend the fried style specifically for a crispy preference.",
+    "reviewStatus": "needs-review",
+    "notes": "Split from the original mixed Lumpia entry. This row represents fried lumpia only; source and image remain candidates pending verification.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Lumpia",
+      "Lumpiang Shanghai"
+    ],
+    "preferenceFlavors": [
+      "crispy"
+    ],
+    "descriptors": [
+      "savory",
+      "light"
+    ],
+    "sourceRow": 84
+  },
+  {
+    "id": "ayam-bakar",
+    "name": "Ayam Bakar",
+    "countryCode": "ID",
+    "region": "southeast-asia",
+    "foodType": "grilled-protein",
+    "adventureLevel": 2,
+    "shortDescription": "Indonesian charcoal-grilled chicken marinated with spices, aromatics, and often sweet soy.",
+    "description": "Ayam bakar is Indonesian and Malay-style grilled chicken seasoned with a regional spice paste and cooked over charcoal. Javanese versions often use sweet soy, while other regional versions lean hotter and more chile-forward.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 4 candidate. Flavor profile varies by region; Indonesia used for catalog grouping.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "spicy",
+      "rich"
+    ],
+    "descriptors": [
+      "smoky",
+      "charred",
+      "aromatic"
+    ],
+    "sourceRow": 85
+  },
+  {
+    "id": "rendang",
+    "name": "Rendang",
+    "countryCode": "ID",
+    "region": "southeast-asia",
+    "foodType": "grilled-protein",
+    "adventureLevel": 3,
+    "shortDescription": "Slow-cooked spiced meat reduced in coconut milk until deeply rich and concentrated.",
+    "description": "Rendang is a Southeast Asian meat dish slowly cooked with coconut milk, chile, turmeric, and aromatics until the sauce reduces and coats the meat in a concentrated glaze. It is strongly associated with Minangkabau and Malay culinary traditions.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 4 candidate. Grilled/Protein is Nom's broad protein category; rendang is slow-cooked, not grilled.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "rich",
+      "spicy"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "tender"
+    ],
+    "sourceRow": 86
+  },
+  {
+    "id": "kottu-roti",
+    "name": "Kottu Roti",
+    "countryCode": "LK",
+    "region": "south-asia",
+    "foodType": "handheld",
+    "adventureLevel": 3,
+    "shortDescription": "Sri Lankan chopped roti stir-fried on a griddle with vegetables, egg, curry, and optional meat.",
+    "description": "Kottu roti is a Sri Lankan street-food dish made by chopping roti into strips and stir-frying it on a hot griddle with vegetables, egg, curry, and optional meat or seafood. Its distinctive preparation creates a mix of chewy and crisp textures.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 4 candidate. Handheld is Nom's closest available category even though kottu is usually eaten from a plate.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Kothu Roti",
+      "Kottu"
+    ],
+    "preferenceFlavors": [
+      "crispy"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "chewy"
+    ],
+    "sourceRow": 87
+  },
+  {
+    "id": "nihari",
+    "name": "Nihari",
+    "countryCode": "PK",
+    "region": "south-asia",
+    "foodType": "soup-broth",
+    "adventureLevel": 3,
+    "shortDescription": "Slow-cooked South Asian meat stew with warming spices, marrow, and a deeply savory broth.",
+    "description": "Nihari is a slow-cooked meat stew from the Indian subcontinent, commonly made with beef, lamb, or mutton shank and warming spices. Long cooking develops a rich broth and tender meat, often served with naan, roti, or rice.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 4 candidate. Pakistan used for catalog grouping while acknowledging roots across the Indian subcontinent.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "tender"
+    ],
+    "sourceRow": 88
+  },
+  {
+    "id": "seekh-kebab",
+    "name": "Seekh Kebab",
+    "countryCode": "PK",
+    "region": "south-asia",
+    "foodType": "grilled-protein",
+    "adventureLevel": 2,
+    "shortDescription": "Spiced minced meat shaped around skewers and grilled over intense heat.",
+    "description": "Seekh kebab is made by seasoning minced or ground meat, shaping it around skewers, and grilling it over charcoal or in a tandoor. Ginger, garlic, chile, herbs, and warm spices give the kebab a savory, smoky profile.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 4 candidate. Pakistan used for catalog grouping; the dish is eaten across the Indian subcontinent.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "spicy"
+    ],
+    "descriptors": [
+      "savory",
+      "smoky",
+      "charred"
+    ],
+    "sourceRow": 89
+  },
+  {
+    "id": "thukpa",
+    "name": "Thukpa",
+    "countryCode": "NP",
+    "region": "south-asia",
+    "foodType": "noodle",
+    "adventureLevel": 2,
+    "shortDescription": "Tibetan and Nepalese noodle soup with vegetables, herbs, and optional meat or egg.",
+    "description": "Thukpa is a Tibetan and Nepalese noodle soup with several regional forms. Noodles are served in a warming broth with vegetables and, depending on the version, chicken, egg, beans, herbs, or other garnishes.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 4 candidate. Nepal used for Nom grouping; the dish has Tibetan origins and wider Himalayan traditions.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "comforting",
+      "fresh"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "light"
+    ],
+    "sourceRow": 90
+  },
+  {
+    "id": "kibbeh",
+    "name": "Kibbeh",
+    "countryCode": "LB",
+    "region": "middle-east",
+    "foodType": "handheld",
+    "adventureLevel": 2,
+    "shortDescription": "Levantine bulgur-and-meat croquettes seasoned with spices and often fried until crisp.",
+    "description": "Kibbeh is a Levantine and Arab dish built from finely ground meat, bulgur, and spices. Common fried versions form the mixture into shells around a seasoned meat filling, though baked, grilled, and raw preparations also exist.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 4 candidate. Lebanon used for catalog grouping; kibbeh has broad Levantine and Arab traditions.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Kubba",
+      "Kibbe"
+    ],
+    "preferenceFlavors": [
+      "crispy",
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "tender"
+    ],
+    "sourceRow": 91
+  },
+  {
+    "id": "reshteh-polow",
+    "name": "Reshteh Polow",
+    "countryCode": "IR",
+    "region": "middle-east",
+    "foodType": "noodle",
+    "adventureLevel": 3,
+    "shortDescription": "Iranian rice-and-noodle pilaf combining browned reshteh noodles with fragrant rice.",
+    "description": "Reshteh polow is an Iranian pilaf combining rice with broken reshteh noodles that are browned before cooking. The dish is associated with special occasions and Nowruz symbolism, with the noodles representing threads or reins of life.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 4 candidate. Source is the broader Reshteh article; add a dedicated culinary source before approval.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Reshteh Polo",
+      "Reshteh Pilaf"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "chewy"
+    ],
+    "sourceRow": 92
+  },
+  {
+    "id": "fesenjan",
+    "name": "Fesenjan",
+    "countryCode": "IR",
+    "region": "middle-east",
+    "foodType": "grilled-protein",
+    "adventureLevel": 3,
+    "shortDescription": "Iranian walnut-and-pomegranate stew with poultry or meat and a rich sweet-tart sauce.",
+    "description": "Fesenjan is an Iranian stew built from ground walnuts and pomegranate, commonly cooked with chicken, duck, meatballs, or other meats. The sauce is deeply nutty and rich, balancing sweet and tart pomegranate flavors.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 4 candidate. Grilled/Protein is Nom's broad protein category; fesenjan itself is stewed.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Fesenjān",
+      "Fesenjoon"
+    ],
+    "preferenceFlavors": [
+      "rich",
+      "tangy"
+    ],
+    "descriptors": [
+      "nutty",
+      "savory",
+      "sweet"
+    ],
+    "sourceRow": 93
+  },
+  {
+    "id": "akara",
+    "name": "Akara",
+    "countryCode": "NG",
+    "region": "africa",
+    "foodType": "handheld",
+    "adventureLevel": 2,
+    "shortDescription": "West African black-eyed-pea fritters seasoned with onion and chile, then fried until crisp.",
+    "description": "Akara are fritters made from peeled black-eyed peas or similar beans ground with onion, pepper, and seasonings, then deep-fried. They are associated with Yoruba traditions in Nigeria, Benin, and Togo and also appear in related Atlantic cuisines.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 4 candidate. Nigeria used for catalog grouping while acknowledging broader Yoruba and diaspora traditions.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Acarajé",
+      "Bean Cake"
+    ],
+    "preferenceFlavors": [
+      "crispy",
+      "spicy"
+    ],
+    "descriptors": [
+      "savory",
+      "earthy"
+    ],
+    "sourceRow": 94
+  },
+  {
+    "id": "waakye",
+    "name": "Waakye",
+    "countryCode": "GH",
+    "region": "africa",
+    "foodType": "rice",
+    "adventureLevel": 2,
+    "shortDescription": "Ghanaian rice and beans served with spicy sauces, vegetables, egg, meat, or plantain.",
+    "description": "Waakye is a Ghanaian dish of rice and beans cooked together, traditionally with sorghum leaves or stalks that influence color and flavor. It is often served with shito, egg, vegetables, meat, plantain, or other accompaniments.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 4 candidate. Fresh preference reflects common vegetable accompaniments rather than the rice-and-bean base alone.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Wakey"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "earthy",
+      "aromatic"
+    ],
+    "sourceRow": 95
+  },
+  {
+    "id": "maafe",
+    "name": "Maafe",
+    "countryCode": "SN",
+    "region": "africa",
+    "foodType": "soup-broth",
+    "adventureLevel": 2,
+    "shortDescription": "West African peanut stew with meat or vegetables simmered in a rich tomato-groundnut sauce.",
+    "description": "Maafe is a West African peanut stew associated with Senegal and neighboring cuisines. Meat or vegetables are simmered with peanuts or peanut paste, tomatoes, onions, garlic, and vegetables to create a rich, nutty sauce or stew.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 4 candidate. Senegal used for catalog grouping; related peanut stews span West Africa.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Mafé",
+      "Groundnut Stew",
+      "Peanut Stew"
+    ],
+    "preferenceFlavors": [
+      "rich"
+    ],
+    "descriptors": [
+      "nutty",
+      "savory",
+      "creamy"
+    ],
+    "sourceRow": 96
+  },
+  {
+    "id": "cacio-e-pepe",
+    "name": "Cacio e Pepe",
+    "countryCode": "IT",
+    "region": "europe",
+    "foodType": "noodle",
+    "adventureLevel": 1,
+    "shortDescription": "Roman pasta coated with Pecorino Romano, black pepper, and starchy pasta water.",
+    "description": "Cacio e pepe is a pasta dish from Lazio centered on pasta, Pecorino Romano, black pepper, and starchy cooking water. Careful mixing emulsifies the cheese and water into a smooth, peppery sauce without cream.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 4 candidate. Familiarity level is a Nom product heuristic.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "creamy"
+    ],
+    "sourceRow": 97
+  },
+  {
+    "id": "spaetzle",
+    "name": "Spätzle",
+    "countryCode": "DE",
+    "region": "europe",
+    "foodType": "noodle",
+    "adventureLevel": 2,
+    "shortDescription": "Central European egg noodles with an irregular shape and tender, chewy texture.",
+    "description": "Spätzle are Central European egg noodles associated especially with Swabia and Alsace. A soft dough of flour, eggs, and water is pressed or scraped directly into hot water, producing irregular noodles often served with meat, sauce, cheese, or onions.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 4 candidate. Germany used for catalog grouping while acknowledging wider Central European traditions.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Spaetzle",
+      "Spatzle"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "chewy",
+      "buttery"
+    ],
+    "sourceRow": 98
+  },
+  {
+    "id": "tortellini-in-brodo",
+    "name": "Tortellini in Brodo",
+    "countryCode": "IT",
+    "region": "europe",
+    "foodType": "soup-broth",
+    "adventureLevel": 1,
+    "shortDescription": "Emilia-Romagna stuffed tortellini served in a clear, deeply savory broth.",
+    "description": "Tortellini in brodo is a traditional Emilia-Romagna preparation in which small stuffed tortellini are cooked and served in broth, often capon or meat broth. The pasta is typically filled with seasoned meats, cheese, egg, and nutmeg.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 4 candidate. Source is the broader Tortellini article, which documents traditional broth service.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Tortellini in Broth"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "tender"
+    ],
+    "sourceRow": 99
+  },
+  {
+    "id": "tallarines-verdes",
+    "name": "Tallarines Verdes",
+    "countryCode": "PE",
+    "region": "latin-america",
+    "foodType": "noodle",
+    "adventureLevel": 2,
+    "shortDescription": "Peruvian pasta in a creamy green basil-and-spinach sauce influenced by Italian pesto.",
+    "description": "Tallarines verdes are a Peruvian adaptation of pesto-style pasta shaped by Italian migration to Peru. Common versions blend basil and spinach with fresh cheese, milk, garlic, and nuts, then coat spaghetti or similar noodles in the green sauce.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 4 candidate. Source is TVPerú and supports the Peruvian adaptation, basil-spinach sauce, cheese, milk, nuts, and pasta format.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Peruvian Green Noodles"
+    ],
+    "preferenceFlavors": [
+      "fresh",
+      "rich"
+    ],
+    "descriptors": [
+      "herbal",
+      "creamy",
+      "savory"
+    ],
+    "sourceRow": 100
+  },
+  {
+    "id": "patacones",
+    "name": "Patacones",
+    "countryCode": "CO",
+    "region": "latin-america",
+    "foodType": "handheld",
+    "adventureLevel": 1,
+    "shortDescription": "Twice-fried green plantain slices served crisp and salty across Latin America and the Caribbean.",
+    "description": "Patacones, also called tostones in many regions, are made by frying green plantain slices, flattening them, and frying them again until crisp. They are widely eaten across Latin America and the Caribbean as a side, snack, or base for toppings.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 4 candidate. Colombia used for catalog grouping; the dish has many regional names and traditions.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Tostones"
+    ],
+    "preferenceFlavors": [
+      "crispy"
+    ],
+    "descriptors": [
+      "savory",
+      "earthy"
+    ],
+    "sourceRow": 101
+  },
+  {
+    "id": "lomo-saltado",
+    "name": "Lomo Saltado",
+    "countryCode": "PE",
+    "region": "latin-america",
+    "foodType": "grilled-protein",
+    "adventureLevel": 2,
+    "shortDescription": "Peruvian stir-fried beef with onions and tomatoes, typically served with fries and rice.",
+    "description": "Lomo saltado is a Peruvian stir-fry combining strips of beef with onion, tomato, soy sauce, and other seasonings, reflecting Chinese-Peruvian chifa influence. It is commonly served with both French fries and rice.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 4 candidate. Grilled/Protein is Nom's broad protein category; the beef is stir-fried.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "smoky",
+      "tender"
+    ],
+    "sourceRow": 102
+  },
+  {
+    "id": "new-england-clam-chowder",
+    "name": "New England Clam Chowder",
+    "countryCode": "US",
+    "region": "north-america",
+    "foodType": "soup-broth",
+    "adventureLevel": 1,
+    "shortDescription": "Creamy New England chowder with clams, potatoes, onions, and often salt pork or bacon.",
+    "description": "New England clam chowder is a milk- or cream-based American chowder made with clams, potatoes, onions, and often salt pork. It is thicker and creamier than the clear or tomato-based clam chowders found in other regions.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 4 candidate. Familiarity level is a Nom product heuristic.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Boston Clam Chowder"
+    ],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "creamy",
+      "savory",
+      "buttery"
+    ],
+    "sourceRow": 103
+  },
+  {
+    "id": "buffalo-wings",
+    "name": "Buffalo Wings",
+    "countryCode": "US",
+    "region": "north-america",
+    "foodType": "grilled-protein",
+    "adventureLevel": 1,
+    "shortDescription": "Chicken wings fried until crisp and coated in a buttery, vinegar-based cayenne hot sauce.",
+    "description": "Buffalo wings are an American dish from Buffalo, New York. Chicken wing sections are generally fried and coated in a sauce of vinegar-based cayenne hot sauce and melted butter, then served with celery and a cooling dip.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 4 candidate. Grilled/Protein is Nom's broad protein category; traditional Buffalo wings are fried.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Buffalo Chicken Wings",
+      "Hot Wings"
+    ],
+    "preferenceFlavors": [
+      "spicy",
+      "tangy",
+      "crispy"
+    ],
+    "descriptors": [
+      "savory",
+      "buttery",
+      "juicy"
+    ],
+    "sourceRow": 104
+  },
+  {
+    "id": "zhajiangmian",
+    "name": "Zhajiangmian",
+    "countryCode": "CN",
+    "region": "east-asia",
+    "foodType": "noodle",
+    "adventureLevel": 2,
+    "shortDescription": "Northern Chinese wheat noodles topped with a deeply savory fermented-bean meat sauce.",
+    "description": "Zhajiangmian is a northern Chinese noodle dish of thick wheat noodles topped with a sauce made from fermented soybean or wheat pastes, often cooked with minced pork and served with fresh vegetable garnishes.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 5 candidate. Sauce recipes vary across northern Chinese regional styles.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Zha Jiang Mian",
+      "Fried Sauce Noodles"
+    ],
+    "preferenceFlavors": [
+      "comforting",
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "umami",
+      "chewy"
+    ],
+    "sourceRow": 105
+  },
+  {
+    "id": "omurice",
+    "name": "Omurice",
+    "countryCode": "JP",
+    "region": "east-asia",
+    "foodType": "rice",
+    "adventureLevel": 1,
+    "shortDescription": "Japanese fried rice wrapped in a soft omelette and commonly finished with ketchup.",
+    "description": "Omurice is a Japanese yoshoku dish consisting of seasoned fried rice enclosed in or topped with a soft omelette. The rice commonly includes chicken and ketchup, and the finished dish is often served with ketchup or a savory sauce.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 5 candidate. Sweet descriptor reflects common ketchup-based versions.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Omu Rice",
+      "Omuraisu"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "tender",
+      "sweet"
+    ],
+    "sourceRow": 106
+  },
+  {
+    "id": "sukiyaki",
+    "name": "Sukiyaki",
+    "countryCode": "JP",
+    "region": "east-asia",
+    "foodType": "soup-broth",
+    "adventureLevel": 2,
+    "shortDescription": "Japanese hot pot of thin-sliced beef, tofu, vegetables, and noodles simmered in a sweet-savory sauce.",
+    "description": "Sukiyaki is a Japanese nabemono dish in which thin slices of beef, tofu, mushrooms, vegetables, and noodles are cooked together in a shallow pot with a sweet-savory soy-based seasoning.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 5 candidate. Soup/Broth is Nom's closest category for this hot-pot style dish.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "sweet",
+      "umami"
+    ],
+    "sourceRow": 107
+  },
+  {
+    "id": "hainanese-chicken-rice",
+    "name": "Hainanese Chicken Rice",
+    "countryCode": "SG",
+    "region": "southeast-asia",
+    "foodType": "rice",
+    "adventureLevel": 1,
+    "shortDescription": "Poached chicken with fragrant seasoned rice, cucumber, and bright chile-ginger sauces.",
+    "description": "Hainanese chicken rice is a Southeast Asian dish of poached chicken served with rice cooked in seasoned chicken stock and fat. It is commonly accompanied by cucumber, chile sauce, ginger, and other fresh garnishes.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 5 candidate. Singapore used for catalog grouping while acknowledging wider Southeast Asian traditions.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Chicken Rice",
+      "Hainan Chicken Rice"
+    ],
+    "preferenceFlavors": [
+      "comforting",
+      "fresh"
+    ],
+    "descriptors": [
+      "savory",
+      "tender",
+      "light"
+    ],
+    "sourceRow": 108
+  },
+  {
+    "id": "mohinga",
+    "name": "Mohinga",
+    "countryCode": "MM",
+    "region": "southeast-asia",
+    "foodType": "soup-broth",
+    "adventureLevel": 3,
+    "shortDescription": "Myanmar rice-noodle fish soup scented with lemongrass, aromatics, and a savory broth.",
+    "description": "Mohinga is a Myanmar noodle soup built around rice noodles and a fish-based broth flavored with lemongrass, onions, garlic, ginger, and other aromatics. It is commonly eaten for breakfast and finished with varied garnishes.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 5 candidate. Soup/Broth chosen because the fish broth defines the dish even though rice noodles are central.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "fresh"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "herbal"
+    ],
+    "sourceRow": 109
+  },
+  {
+    "id": "pulao",
+    "name": "Pulao",
+    "countryCode": "IN",
+    "region": "south-asia",
+    "foodType": "rice",
+    "adventureLevel": 1,
+    "shortDescription": "Fragrant South Asian rice cooked in seasoned broth with vegetables, meat, or dried fruit.",
+    "description": "Pulao is a South Asian form of pilaf in which rice is cooked in seasoned stock or broth with spices and ingredients such as vegetables, meat, nuts, or dried fruit. Recipes vary widely across the subcontinent.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 5 candidate. Source is the broader pilaf reference; add a stronger South Asia-specific source before approval.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Pilau",
+      "Pulav",
+      "Pulaav"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "aromatic",
+      "savory",
+      "light"
+    ],
+    "sourceRow": 110
+  },
+  {
+    "id": "momo",
+    "name": "Momo",
+    "countryCode": "NP",
+    "region": "south-asia",
+    "foodType": "handheld",
+    "adventureLevel": 2,
+    "shortDescription": "Tibetan and Nepali filled dumplings steamed, pan-fried, or served in spicy sauces.",
+    "description": "Momos are filled dumplings central to Tibetan and Nepali food traditions and widely eaten across the Himalayan region. Meat or vegetable fillings are wrapped in wheat dough and commonly steamed, though fried and soup versions also exist.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 5 candidate. Nepal used for catalog grouping while acknowledging Tibetan and wider Himalayan traditions. Retag resolution applied: preference flavor set to 'comforting'.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Momos"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "juicy",
+      "tender"
+    ],
+    "sourceRow": 111
+  },
+  {
+    "id": "rasam",
+    "name": "Rasam",
+    "countryCode": "IN",
+    "region": "south-asia",
+    "foodType": "soup-broth",
+    "adventureLevel": 2,
+    "shortDescription": "Thin South Indian soup-like broth brightened with tamarind, tomato, pepper, spices, and herbs.",
+    "description": "Rasam is a traditional South Indian soup-like dish with a thin, intensely seasoned broth. Tamarind, tomato, black pepper, chile, cumin, curry leaves, mustard, coriander, and other spices create a tangy, warming profile that is commonly served with rice.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 5 candidate. Ingredient combinations vary by South Indian region and household. Verified source check: completed for pilot.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Saaru",
+      "Chaaru"
+    ],
+    "preferenceFlavors": [
+      "tangy",
+      "spicy",
+      "fresh"
+    ],
+    "descriptors": [
+      "aromatic",
+      "herbal",
+      "savory"
+    ],
+    "sourceRow": 112
+  },
+  {
+    "id": "shorbat-adas",
+    "name": "Shorbat Adas",
+    "countryCode": "LB",
+    "region": "middle-east",
+    "foodType": "soup-broth",
+    "adventureLevel": 1,
+    "shortDescription": "Middle Eastern lentil soup simmered until soft and finished with warm spices and lemon.",
+    "description": "Shorbat adas is a Middle Eastern lentil soup commonly made with red or yellow lentils, onions, aromatics, and warm spices. The lentils soften into a thick, comforting broth that is often finished with lemon.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 5 candidate. Source is the broad Lentil Soup article; add a Levant-specific culinary source before approval.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Shorbat al-Adas",
+      "Lentil Soup"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "earthy",
+      "aromatic",
+      "creamy"
+    ],
+    "sourceRow": 113
+  },
+  {
+    "id": "maqluba",
+    "name": "Maqluba",
+    "countryCode": "JO",
+    "region": "middle-east",
+    "foodType": "rice",
+    "adventureLevel": 2,
+    "shortDescription": "Levantine upside-down rice layered with vegetables and meat, then flipped to serve.",
+    "description": "Maqluba is a Levantine rice dish layered in a pot with fried or roasted vegetables and meat, then inverted onto a platter for serving. Eggplant, cauliflower, potato, chicken, or lamb are common components.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 5 candidate. Jordan used for catalog grouping; the dish is shared across the Levant and Iraq.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Maqlouba",
+      "Maklouba"
+    ],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "tender"
+    ],
+    "sourceRow": 114
+  },
+  {
+    "id": "manakish",
+    "name": "Manakish",
+    "countryCode": "LB",
+    "region": "middle-east",
+    "foodType": "handheld",
+    "adventureLevel": 1,
+    "shortDescription": "Levantine flatbread baked with za'atar, cheese, or seasoned meat toppings.",
+    "description": "Manakish are Levantine flatbreads topped before baking with ingredients such as za'atar, cheese, or seasoned ground meat. They are commonly eaten for breakfast or lunch and may be sliced or folded for eating.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 5 candidate. Lebanon used for catalog grouping while acknowledging wider Levantine traditions. Retag resolution applied: preference flavor set to 'comforting'.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Manaqish",
+      "Manakeesh",
+      "Man'ousheh"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "herbal",
+      "aromatic"
+    ],
+    "sourceRow": 115
+  },
+  {
+    "id": "rechta",
+    "name": "Rechta",
+    "countryCode": "DZ",
+    "region": "africa",
+    "foodType": "noodle",
+    "adventureLevel": 3,
+    "shortDescription": "Algerian handmade pasta ribbons served with chicken, chickpeas, vegetables, and spiced sauce.",
+    "description": "Rechta is an Algerian pasta dish made from thin fresh strips of semolina-based dough. Algiers-style preparations commonly pair the noodles with chicken, chickpeas, turnips, and a lightly spiced sauce.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 5 candidate. Adventure level is a Nom heuristic; regional Algerian versions differ.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Tarechta"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "chewy"
+    ],
+    "sourceRow": 116
+  },
+  {
+    "id": "yassa",
+    "name": "Yassa",
+    "countryCode": "SN",
+    "region": "africa",
+    "foodType": "grilled-protein",
+    "adventureLevel": 2,
+    "shortDescription": "Senegalese marinated chicken or fish cooked with onions, citrus, mustard, and chile.",
+    "description": "Yassa is a Senegalese dish in which chicken, fish, or another protein is marinated with lemon or lime, mustard, garlic, chile, and abundant onions. The protein is browned and then simmered with the onion-rich marinade.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 5 candidate. Grilled/Protein is Nom's broad protein category; the dish combines browning and stewing.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Chicken Yassa",
+      "Yassa Poulet"
+    ],
+    "preferenceFlavors": [
+      "tangy",
+      "spicy"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "tender"
+    ],
+    "sourceRow": 117
+  },
+  {
+    "id": "bissara",
+    "name": "Bissara",
+    "countryCode": "MA",
+    "region": "africa",
+    "foodType": "soup-broth",
+    "adventureLevel": 2,
+    "shortDescription": "North African fava-bean soup or purée finished with olive oil, cumin, and paprika.",
+    "description": "Bissara is a North African dish made from slowly cooked split fava beans blended with onions, garlic, herbs, and spices until creamy. Moroccan versions are commonly served warm with olive oil, cumin, paprika, and bread.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 5 candidate. Morocco used for catalog grouping while acknowledging Egyptian and broader North African traditions.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Bessara",
+      "Besara"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "earthy",
+      "creamy",
+      "aromatic"
+    ],
+    "sourceRow": 118
+  },
+  {
+    "id": "shisa-nyama",
+    "name": "Shisa Nyama",
+    "countryCode": "ZA",
+    "region": "africa",
+    "foodType": "grilled-protein",
+    "adventureLevel": 2,
+    "shortDescription": "South African township barbecue centered on meats grilled over hot coals and shared socially.",
+    "description": "Shisa nyama is a South African social barbecue tradition built around meat grilled over hot coals, often at butchery-and-braai venues. Beef, sausage, chicken, and other meats may be served with maize meal and sides.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 5 candidate. This represents a social barbecue tradition rather than one standardized recipe.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Chisa Nyama",
+      "Shisanyama"
+    ],
+    "preferenceFlavors": [
+      "rich"
+    ],
+    "descriptors": [
+      "smoky",
+      "charred",
+      "juicy"
+    ],
+    "sourceRow": 119
+  },
+  {
+    "id": "fideua",
+    "name": "Fideuà",
+    "countryCode": "ES",
+    "region": "europe",
+    "foodType": "noodle",
+    "adventureLevel": 2,
+    "shortDescription": "Valencian toasted noodle dish cooked paella-style with seafood and savory stock.",
+    "description": "Fideuà is a Valencian dish related to paella but made with short noodles instead of rice. The noodles are cooked in a wide pan with stock and commonly seafood, fish, garlic, tomato, and other coastal Mediterranean ingredients.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 5 candidate. Fresh preference reflects seafood-forward preparations. Retag resolution applied: preference flavor set to 'rich'.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Fideua"
+    ],
+    "preferenceFlavors": [
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "umami"
+    ],
+    "sourceRow": 120
+  },
+  {
+    "id": "borscht",
+    "name": "Borscht",
+    "countryCode": "UA",
+    "region": "europe",
+    "foodType": "soup-broth",
+    "adventureLevel": 2,
+    "shortDescription": "Ukrainian beet soup with vegetables, sour notes, and optional meat or sour cream.",
+    "description": "Borscht is an Eastern European sour soup strongly associated with Ukrainian culinary tradition. Red-beet versions commonly combine beetroot with stock, cabbage, potatoes, carrots, onions, tomatoes, and optional meat, then finish with sour cream or herbs.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 5 candidate. Ukrainian grouping reflects the best-known red borscht tradition while acknowledging wider regional forms.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Borsch",
+      "Borshch"
+    ],
+    "preferenceFlavors": [
+      "tangy",
+      "comforting"
+    ],
+    "descriptors": [
+      "earthy",
+      "savory",
+      "aromatic"
+    ],
+    "sourceRow": 121
+  },
+  {
+    "id": "pirozhki",
+    "name": "Pirozhki",
+    "countryCode": "UA",
+    "region": "europe",
+    "foodType": "handheld",
+    "adventureLevel": 1,
+    "shortDescription": "Eastern European small filled buns baked or fried with savory or sweet fillings.",
+    "description": "Pirozhki are small filled buns common across Eastern European cuisines. Yeasted dough is wrapped around fillings such as meat, potato, cabbage, mushrooms, cheese, or fruit, then baked or fried.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 5 candidate. Ukraine used for Nom grouping while acknowledging wider Eastern European and Russian traditions.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Piroshki"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "buttery",
+      "tender"
+    ],
+    "sourceRow": 122
+  },
+  {
+    "id": "arroz-chaufa",
+    "name": "Arroz Chaufa",
+    "countryCode": "PE",
+    "region": "latin-america",
+    "foodType": "rice",
+    "adventureLevel": 2,
+    "shortDescription": "Peruvian-Chinese fried rice tossed with egg, scallions, soy sauce, vegetables, and protein.",
+    "description": "Arroz chaufa is a Peruvian fried-rice dish from chifa, the Chinese-Peruvian culinary tradition. Rice is stir-fried at high heat with egg, scallions, soy sauce, vegetables, and proteins such as chicken, beef, pork, or shrimp.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 5 candidate. Smoky descriptor reflects high-heat wok cooking rather than every preparation.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Chaufa"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "umami",
+      "smoky"
+    ],
+    "sourceRow": 123
+  },
+  {
+    "id": "pupusa",
+    "name": "Pupusa",
+    "countryCode": "SV",
+    "region": "latin-america",
+    "foodType": "handheld",
+    "adventureLevel": 1,
+    "shortDescription": "Salvadoran stuffed corn or rice flatbread filled with cheese, beans, pork, or vegetables.",
+    "description": "Pupusas are thick Central American griddle cakes associated especially with El Salvador and Honduras. Corn or rice dough is stuffed with fillings such as cheese, beans, chicharrón, or squash and served with curtido and tomato sauce.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 5 candidate. El Salvador used for catalog grouping while acknowledging Honduran tradition and shared regional history.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Pupusas"
+    ],
+    "preferenceFlavors": [
+      "comforting",
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "chewy",
+      "tender"
+    ],
+    "sourceRow": 124
+  },
+  {
+    "id": "moqueca",
+    "name": "Moqueca",
+    "countryCode": "BR",
+    "region": "latin-america",
+    "foodType": "soup-broth",
+    "adventureLevel": 2,
+    "shortDescription": "Brazilian seafood stew with tomatoes, onions, lime, herbs, and regional coconut or palm-oil variations.",
+    "description": "Moqueca is a Brazilian seafood stew made with fish or shrimp, tomatoes, onions, garlic, lime, and coriander. Regional versions may add coconut milk, palm oil, or annatto and are commonly cooked in a clay pot.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 5 candidate. Richness varies between Capixaba and Baiana styles.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "fresh"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "creamy"
+    ],
+    "sourceRow": 125
+  },
+  {
+    "id": "churrasco",
+    "name": "Churrasco",
+    "countryCode": "BR",
+    "region": "latin-america",
+    "foodType": "grilled-protein",
+    "adventureLevel": 1,
+    "shortDescription": "Brazilian-style barbecue featuring meats grilled over open fire or hot coals.",
+    "description": "Churrasco is a South American barbecue tradition especially associated with Brazil, where beef, sausage, chicken, pork, or other meats are grilled over charcoal or wood, often on skewers and served in generous portions.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 5 candidate. Brazil used for grouping while acknowledging broader South American use of the term.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "rich"
+    ],
+    "descriptors": [
+      "smoky",
+      "charred",
+      "juicy"
+    ],
+    "sourceRow": 126
+  },
+  {
+    "id": "philly-cheesesteak",
+    "name": "Philly Cheesesteak",
+    "countryCode": "US",
+    "region": "north-america",
+    "foodType": "handheld",
+    "adventureLevel": 1,
+    "shortDescription": "Philadelphia sandwich of thin-sliced beef and melted cheese in a long roll.",
+    "description": "A Philadelphia cheesesteak is a hot sandwich of thinly sliced beefsteak and melted cheese served in a long hoagie-style roll. Variations may include fried onions, peppers, mushrooms, or different cheeses.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 5 candidate. Familiarity level is a Nom product heuristic.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Cheesesteak",
+      "Philadelphia Cheesesteak"
+    ],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "juicy",
+      "tender"
+    ],
+    "sourceRow": 127
+  },
+  {
+    "id": "chili-con-carne",
+    "name": "Chili con Carne",
+    "countryCode": "US",
+    "region": "north-america",
+    "foodType": "soup-broth",
+    "adventureLevel": 1,
+    "shortDescription": "American chile-and-meat stew with tomatoes, spices, and optional beans.",
+    "description": "Chili con carne is a spicy stew associated with the American Southwest and Texas, built around meat and chile peppers with regional variations that may include tomatoes, beans, onions, garlic, and other seasonings.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 5 candidate. Soup/Broth is Nom's closest category for this thick stew.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Chili",
+      "Chilli con Carne"
+    ],
+    "preferenceFlavors": [
+      "spicy",
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "smoky",
+      "earthy"
+    ],
+    "sourceRow": 128
+  },
+  {
+    "id": "baked-ziti",
+    "name": "Baked Ziti",
+    "countryCode": "US",
+    "region": "north-america",
+    "foodType": "noodle",
+    "adventureLevel": 1,
+    "shortDescription": "Italian-American baked pasta layered with tomato sauce, cheese, and optional meat.",
+    "description": "Baked ziti is an Italian-American casserole of tube-shaped ziti pasta combined with tomato sauce and cheeses such as ricotta and mozzarella, then baked until hot and browned. Meat may be added in many versions.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 5 candidate. Familiarity level is a Nom product heuristic.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "creamy",
+      "savory",
+      "tender"
+    ],
+    "sourceRow": 129
+  },
+  {
+    "id": "mapo-tofu",
+    "name": "Mapo Tofu",
+    "countryCode": "CN",
+    "region": "east-asia",
+    "foodType": "grilled-protein",
+    "adventureLevel": 2,
+    "shortDescription": "Sichuan tofu in a spicy chile-and-bean sauce with minced meat and numbing peppercorn.",
+    "description": "Mapo tofu is a Sichuan dish of soft tofu and minced meat in a chile- and fermented-bean-based sauce, usually seasoned with Sichuan pepper. The result is savory, spicy, aromatic, and characteristically numbing.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 6 candidate. Grilled/Protein is Nom's broad protein category; the tofu is simmered rather than grilled.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Mapo Doufu"
+    ],
+    "preferenceFlavors": [
+      "spicy",
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "umami",
+      "tender"
+    ],
+    "sourceRow": 130
+  },
+  {
+    "id": "japchae",
+    "name": "Japchae",
+    "countryCode": "KR",
+    "region": "east-asia",
+    "foodType": "noodle",
+    "adventureLevel": 1,
+    "shortDescription": "Korean sweet-potato glass noodles stir-fried with vegetables, sesame, and savory seasoning.",
+    "description": "Japchae is a Korean dish of translucent sweet-potato-starch noodles mixed with vegetables and a soy-sesame seasoning. Meat or mushrooms may be added, while the noodles remain springy and the vegetables provide fresh texture.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 6 candidate. Fresh preference reflects the vegetable-forward composition rather than every preparation.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "fresh"
+    ],
+    "descriptors": [
+      "savory",
+      "chewy",
+      "light"
+    ],
+    "sourceRow": 131
+  },
+  {
+    "id": "onigiri",
+    "name": "Onigiri",
+    "countryCode": "JP",
+    "region": "east-asia",
+    "foodType": "handheld",
+    "adventureLevel": 1,
+    "shortDescription": "Japanese rice balls shaped by hand and filled or seasoned with savory ingredients.",
+    "description": "Onigiri are Japanese rice balls formed into triangular or round shapes, often wrapped partly in nori and filled with ingredients such as salmon, umeboshi, tuna, or kombu. They are portable, simple, and widely eaten as a snack or light meal.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 6 candidate. Flavor assignments vary by filling; this row represents the common savory format. Retag resolution applied: preference flavor set to 'comforting'.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Omusubi",
+      "Rice Ball"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "light",
+      "tender"
+    ],
+    "sourceRow": 132
+  },
+  {
+    "id": "goi-cuon",
+    "name": "Gỏi Cuốn",
+    "countryCode": "VN",
+    "region": "southeast-asia",
+    "foodType": "handheld",
+    "adventureLevel": 1,
+    "shortDescription": "Vietnamese fresh rice-paper rolls packed with herbs, noodles, vegetables, and shrimp or pork.",
+    "description": "Gỏi cuốn are Vietnamese fresh rolls made with softened rice paper wrapped around rice vermicelli, herbs, vegetables, and commonly shrimp or pork. They are served cold with a dipping sauce and have a light, fresh profile.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 6 candidate. Tangy preference reflects common dipping sauces and fresh herb accompaniments.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Vietnamese Spring Rolls",
+      "Summer Rolls"
+    ],
+    "preferenceFlavors": [
+      "fresh"
+    ],
+    "descriptors": [
+      "herbal",
+      "light",
+      "savory"
+    ],
+    "sourceRow": 133
+  },
+  {
+    "id": "banh-xeo",
+    "name": "Bánh Xèo",
+    "countryCode": "VN",
+    "region": "southeast-asia",
+    "foodType": "handheld",
+    "adventureLevel": 2,
+    "shortDescription": "Crisp Vietnamese turmeric crepe filled with pork, shrimp, bean sprouts, and fresh herbs.",
+    "description": "Bánh xèo is a Vietnamese savory crepe made from rice flour, turmeric, and liquid such as water or coconut milk, cooked until crisp and filled with ingredients such as pork, shrimp, and bean sprouts. It is commonly eaten with herbs and dipping sauce.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 6 candidate. Handheld reflects the common lettuce-and-herb wrapping style, though the crepe is usually plated first.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Banh Xeo",
+      "Vietnamese Sizzling Crepe"
+    ],
+    "preferenceFlavors": [
+      "crispy",
+      "fresh"
+    ],
+    "descriptors": [
+      "savory",
+      "herbal",
+      "charred"
+    ],
+    "sourceRow": 134
+  },
+  {
+    "id": "ikan-bakar",
+    "name": "Ikan Bakar",
+    "countryCode": "ID",
+    "region": "southeast-asia",
+    "foodType": "grilled-protein",
+    "adventureLevel": 2,
+    "shortDescription": "Indonesian or Malay grilled fish coated with aromatic spices, chile, and regional sauces.",
+    "description": "Ikan bakar is an Indonesian and Malay grilled-fish preparation in which fish or seafood is seasoned with spice pastes, chile, aromatics, and regional sauces before cooking over charcoal or another high-heat fire.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 6 candidate. Indonesia used for catalog grouping while acknowledging Malay regional traditions.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "spicy",
+      "fresh"
+    ],
+    "descriptors": [
+      "smoky",
+      "charred",
+      "savory"
+    ],
+    "sourceRow": 135
+  },
+  {
+    "id": "khichdi",
+    "name": "Khichdi",
+    "countryCode": "IN",
+    "region": "south-asia",
+    "foodType": "rice",
+    "adventureLevel": 2,
+    "shortDescription": "South Asian rice-and-lentil comfort dish cooked soft with spices and optional vegetables.",
+    "description": "Khichdi is a South Asian dish of rice and lentils cooked together until soft, with versions ranging from lightly seasoned comfort food to richer preparations with vegetables, ghee, and spices. It is eaten across India and neighboring countries.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 6 candidate. India used for catalog grouping while acknowledging broad South Asian traditions.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Khichuri",
+      "Khichari"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "creamy",
+      "light"
+    ],
+    "sourceRow": 136
+  },
+  {
+    "id": "kathi-roll",
+    "name": "Kathi Roll",
+    "countryCode": "IN",
+    "region": "south-asia",
+    "foodType": "handheld",
+    "adventureLevel": 2,
+    "shortDescription": "Kolkata-style flatbread roll wrapped around grilled fillings, onions, sauces, and spices.",
+    "description": "A kathi roll is an Indian street-food wrap associated with Kolkata, built from a paratha or other flatbread wrapped around kebab-style meat, egg, paneer, onions, sauces, and spices. The bread may be griddled until lightly crisp.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 6 candidate. Fillings vary widely; flavors represent common savory-spicy street-food versions. Retag resolution applied: preference flavor set to 'comforting'.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Kati Roll"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "charred",
+      "tender"
+    ],
+    "sourceRow": 137
+  },
+  {
+    "id": "korma",
+    "name": "Korma",
+    "countryCode": "IN",
+    "region": "south-asia",
+    "foodType": "grilled-protein",
+    "adventureLevel": 1,
+    "shortDescription": "South Asian meat or vegetables braised in a fragrant sauce enriched with yogurt, cream, or nuts.",
+    "description": "Korma is a South Asian braised dish in which meat or vegetables cook gently with aromatics, spices, and an enriched sauce that may include yogurt, cream, nuts, or seeds. Styles range from mild and creamy to deeply spiced.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 6 candidate. Grilled/Protein is Nom's broad protein category; korma is braised.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Qorma"
+    ],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "creamy",
+      "aromatic",
+      "savory"
+    ],
+    "sourceRow": 138
+  },
+  {
+    "id": "musakhan",
+    "name": "Musakhan",
+    "countryCode": "PS",
+    "region": "middle-east",
+    "foodType": "grilled-protein",
+    "adventureLevel": 3,
+    "shortDescription": "Palestinian sumac-roasted chicken served over onion-soaked taboon bread with olive oil.",
+    "description": "Musakhan is a Palestinian dish of roasted chicken seasoned with sumac and served over taboon bread layered with onions, olive oil, and spices. The bread absorbs the chicken and onion juices, creating a rich, tangy, savory meal.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 6 candidate. Adventure level is a Nom heuristic; this dish has strong Palestinian cultural identity.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Mussakhan"
+    ],
+    "preferenceFlavors": [
+      "tangy",
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "tender"
+    ],
+    "sourceRow": 139
+  },
+  {
+    "id": "harees",
+    "name": "Harees",
+    "countryCode": "AE",
+    "region": "middle-east",
+    "foodType": "soup-broth",
+    "adventureLevel": 3,
+    "shortDescription": "Gulf wheat-and-meat porridge slow-cooked until creamy, cohesive, and deeply comforting.",
+    "description": "Harees is a traditional Arab dish made by slow-cooking wheat with meat until the grains and protein break down into a thick, porridge-like texture. It is especially associated with Gulf cuisines and is commonly eaten during Ramadan and celebrations.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 6 candidate. UAE used for catalog grouping while acknowledging wider Gulf and Arab traditions.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Hareesa",
+      "Jareesh-style Wheat Porridge"
+    ],
+    "preferenceFlavors": [
+      "comforting",
+      "rich"
+    ],
+    "descriptors": [
+      "creamy",
+      "savory",
+      "tender"
+    ],
+    "sourceRow": 140
+  },
+  {
+    "id": "lahmacun",
+    "name": "Lahmacun",
+    "countryCode": "TR",
+    "region": "middle-east",
+    "foodType": "handheld",
+    "adventureLevel": 2,
+    "shortDescription": "Thin flatbread baked with seasoned minced meat, herbs, tomato, and pepper.",
+    "description": "Lahmacun is a thin round flatbread topped with a seasoned mixture of minced meat, vegetables, herbs, tomato, and peppers before baking. It is commonly served with fresh greens, lemon, and herbs and rolled or folded for eating.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 6 candidate. Turkey is grouped under Nom's Middle East region; regional identity spans Anatolia and neighboring cuisines.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Lahmajun"
+    ],
+    "preferenceFlavors": [
+      "fresh"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "light"
+    ],
+    "sourceRow": 141
+  },
+  {
+    "id": "ful-medames",
+    "name": "Ful Medames",
+    "countryCode": "EG",
+    "region": "africa",
+    "foodType": "soup-broth",
+    "adventureLevel": 2,
+    "shortDescription": "Egyptian slow-cooked fava beans dressed with olive oil, lemon, cumin, and fresh toppings.",
+    "description": "Ful medames is an Egyptian dish of cooked fava beans seasoned with olive oil, lemon, cumin, and other accompaniments. It may be served chunky or mashed and is commonly eaten with bread, vegetables, eggs, or herbs.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 6 candidate. Soup/Broth is Nom's closest category for this spoonable bean dish.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Ful",
+      "Foul Medames"
+    ],
+    "preferenceFlavors": [
+      "comforting",
+      "fresh",
+      "tangy"
+    ],
+    "descriptors": [
+      "earthy",
+      "creamy",
+      "savory"
+    ],
+    "sourceRow": 142
+  },
+  {
+    "id": "nyama-choma",
+    "name": "Nyama Choma",
+    "countryCode": "KE",
+    "region": "africa",
+    "foodType": "grilled-protein",
+    "adventureLevel": 2,
+    "shortDescription": "East African meat roasted or grilled over open heat and served with fresh sides.",
+    "description": "Nyama choma is an East African roasted or grilled meat tradition especially associated with Kenya and Tanzania. Goat and beef are common, and the meat is often served simply with fresh tomato-onion salad, greens, or maize-based sides.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 6 candidate. Kenya used for catalog grouping while acknowledging wider East African traditions.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "fresh",
+      "rich"
+    ],
+    "descriptors": [
+      "smoky",
+      "charred",
+      "juicy"
+    ],
+    "sourceRow": 143
+  },
+  {
+    "id": "rolex",
+    "name": "Rolex",
+    "countryCode": "UG",
+    "region": "africa",
+    "foodType": "handheld",
+    "adventureLevel": 3,
+    "shortDescription": "Ugandan street-food wrap of chapati rolled around eggs, vegetables, and optional fillings.",
+    "description": "A rolex is a Ugandan street-food wrap made by rolling a chapati around a cooked egg mixture, commonly with tomato, onion, cabbage, or other vegetables. The name comes from the phrase 'rolled eggs.'",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 6 candidate. Adventure level is a Nom heuristic, not a judgment about the cuisine. Retag resolution applied: preference flavor set to 'comforting'.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Rolled Eggs"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "tender",
+      "light"
+    ],
+    "sourceRow": 144
+  },
+  {
+    "id": "couscous",
+    "name": "Couscous",
+    "countryCode": "MA",
+    "region": "africa",
+    "foodType": "rice",
+    "adventureLevel": 1,
+    "shortDescription": "North African steamed semolina granules served with vegetables, broth, meat, or chickpeas.",
+    "description": "Couscous is a North African staple made from tiny steamed granules of durum wheat semolina, traditionally served with stewed vegetables, chickpeas, meat, and broth. Morocco is one of several countries with major couscous traditions.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 6 candidate. Nom classifies couscous under rice as the closest starch-base category, though couscous is made from semolina rather than rice.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "light"
+    ],
+    "sourceRow": 145
+  },
+  {
+    "id": "fish-and-chips",
+    "name": "Fish and Chips",
+    "countryCode": "GB",
+    "region": "europe",
+    "foodType": "grilled-protein",
+    "adventureLevel": 1,
+    "shortDescription": "British battered fish fried crisp and served with thick-cut chips.",
+    "description": "Fish and chips is a British dish of battered fish deep-fried until crisp and served with hot chips. Common accompaniments include malt vinegar, salt, tartar sauce, mushy peas, or other regional sides.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 6 candidate. Grilled/Protein is Nom's broad protein category; the fish is fried.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "crispy",
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "tender"
+    ],
+    "sourceRow": 146
+  },
+  {
+    "id": "moussaka",
+    "name": "Moussaka",
+    "countryCode": "GR",
+    "region": "europe",
+    "foodType": "grilled-protein",
+    "adventureLevel": 1,
+    "shortDescription": "Greek layered eggplant and meat casserole topped with a creamy baked sauce.",
+    "description": "Greek moussaka commonly layers eggplant with a seasoned meat sauce and a creamy béchamel-style topping before baking. Regional versions vary, but the Greek casserole form is especially well known.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 6 candidate. Grilled/Protein is Nom's broad protein category; the dish is baked.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "creamy",
+      "savory",
+      "tender"
+    ],
+    "sourceRow": 147
+  },
+  {
+    "id": "croque-monsieur",
+    "name": "Croque Monsieur",
+    "countryCode": "FR",
+    "region": "europe",
+    "foodType": "handheld",
+    "adventureLevel": 1,
+    "shortDescription": "French grilled ham-and-cheese sandwich with a crisp exterior and melted cheese.",
+    "description": "A croque monsieur is a French hot sandwich made with bread, ham, and cheese, then grilled or baked until crisp and melted. Some versions include béchamel sauce for additional richness.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 6 candidate. Familiarity level is a Nom product heuristic.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "crispy",
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "buttery",
+      "creamy"
+    ],
+    "sourceRow": 148
+  },
+  {
+    "id": "aji-de-gallina",
+    "name": "Ají de Gallina",
+    "countryCode": "PE",
+    "region": "latin-america",
+    "foodType": "grilled-protein",
+    "adventureLevel": 2,
+    "shortDescription": "Peruvian shredded chicken in a creamy yellow-chile sauce with nuts, bread, and cheese.",
+    "description": "Ají de gallina is a Peruvian dish of shredded chicken in a creamy sauce flavored with ají amarillo and commonly enriched with bread, milk, cheese, and nuts. It is usually served with rice, potatoes, olives, and egg.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 6 candidate. Grilled/Protein is Nom's broad protein category; the chicken is poached or cooked before saucing.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Aji de Gallina"
+    ],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "creamy",
+      "savory",
+      "aromatic"
+    ],
+    "sourceRow": 149
+  },
+  {
+    "id": "sopa-de-fideo",
+    "name": "Sopa de Fideo",
+    "countryCode": "MX",
+    "region": "latin-america",
+    "foodType": "noodle",
+    "adventureLevel": 1,
+    "shortDescription": "Mexican noodle soup with toasted short pasta simmered in a tomato-based broth.",
+    "description": "Sopa de fideo is a Mexican comfort soup made by lightly toasting short noodles before simmering them in a tomato-based broth with onion, garlic, and seasonings. It may be served simply or with fresh garnishes.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 6 candidate. Source should be strengthened with a dedicated Mexican culinary reference before production approval.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Fideo Soup"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "light",
+      "aromatic"
+    ],
+    "sourceRow": 150
+  },
+  {
+    "id": "coxinha",
+    "name": "Coxinha",
+    "countryCode": "BR",
+    "region": "latin-america",
+    "foodType": "handheld",
+    "adventureLevel": 2,
+    "shortDescription": "Brazilian teardrop-shaped fried snack filled with seasoned shredded chicken.",
+    "description": "Coxinha is a Brazilian snack made by wrapping seasoned shredded chicken, often with creamy cheese, in a soft dough shaped like a small chicken thigh. It is breaded and deep-fried until crisp.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 6 candidate. Rich preference reflects common creamy chicken fillings.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "crispy",
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "creamy",
+      "tender"
+    ],
+    "sourceRow": 151
+  },
+  {
+    "id": "nashville-hot-chicken",
+    "name": "Nashville Hot Chicken",
+    "countryCode": "US",
+    "region": "north-america",
+    "foodType": "grilled-protein",
+    "adventureLevel": 1,
+    "shortDescription": "Nashville fried chicken coated in a fiery cayenne-rich spice paste.",
+    "description": "Nashville hot chicken is a Tennessee specialty of fried chicken coated or brushed with a cayenne-heavy spicy paste or oil. It is commonly served on white bread with pickle chips to balance the heat.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 6 candidate. Grilled/Protein is Nom's broad protein category; the chicken is fried.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Hot Chicken"
+    ],
+    "preferenceFlavors": [
+      "spicy",
+      "crispy"
+    ],
+    "descriptors": [
+      "savory",
+      "juicy",
+      "charred"
+    ],
+    "sourceRow": 152
+  },
+  {
+    "id": "reuben-sandwich",
+    "name": "Reuben Sandwich",
+    "countryCode": "US",
+    "region": "north-america",
+    "foodType": "handheld",
+    "adventureLevel": 1,
+    "shortDescription": "Griddled American sandwich with corned beef, Swiss cheese, sauerkraut, and dressing.",
+    "description": "The Reuben is an American grilled sandwich built from corned beef, Swiss cheese, sauerkraut, and Russian or Thousand Island-style dressing on rye bread. Griddling melts the cheese and crisps the bread.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 6 candidate. Origin stories vary; this row focuses on the standardized sandwich composition.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Reuben"
+    ],
+    "preferenceFlavors": [
+      "rich",
+      "tangy",
+      "crispy"
+    ],
+    "descriptors": [
+      "savory",
+      "tender"
+    ],
+    "sourceRow": 153
+  },
+  {
+    "id": "loco-moco",
+    "name": "Loco Moco",
+    "countryCode": "US",
+    "region": "north-america",
+    "foodType": "rice",
+    "adventureLevel": 1,
+    "shortDescription": "Hawaiian rice topped with a hamburger patty, fried egg, and brown gravy.",
+    "description": "Loco moco is a Hawaii dish built from white rice topped with a hamburger patty, fried egg, and brown gravy. Variations may add different proteins or accompaniments, but the rice-patty-egg-gravy combination defines the classic form.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 6 candidate. North America region follows Nom's current geography; Hawaii's distinct local food culture should remain explicit in descriptions.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Loco Moco Bowl"
+    ],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "juicy",
+      "creamy"
+    ],
+    "sourceRow": 154
+  },
+  {
+    "id": "oyakodon",
+    "name": "Oyakodon",
+    "countryCode": "JP",
+    "region": "east-asia",
+    "foodType": "rice",
+    "adventureLevel": 1,
+    "shortDescription": "Japanese rice bowl topped with chicken and softly set egg simmered in a sweet-savory sauce.",
+    "description": "Oyakodon is a Japanese donburi dish of chicken and egg simmered together with onion in a soy-based sweet-savory broth, then served over steamed rice. The egg is usually left soft and tender.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 7 candidate. Familiarity and flavor assignments are Nom product heuristics.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Oyako Donburi"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "tender",
+      "umami"
+    ],
+    "sourceRow": 155
+  },
+  {
+    "id": "doenjang-jjigae",
+    "name": "Doenjang-jjigae",
+    "countryCode": "KR",
+    "region": "east-asia",
+    "foodType": "soup-broth",
+    "adventureLevel": 2,
+    "shortDescription": "Korean soybean-paste stew with tofu, vegetables, and a deep fermented savory flavor.",
+    "description": "Doenjang-jjigae is a Korean stew made with fermented soybean paste, broth, tofu, and vegetables such as zucchini, potato, onion, and mushrooms. Meat or seafood may also be added depending on the household or restaurant.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 7 candidate. Richness varies by broth and add-ins.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Soybean Paste Stew"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "fermented",
+      "umami"
+    ],
+    "sourceRow": 156
+  },
+  {
+    "id": "zongzi",
+    "name": "Zongzi",
+    "countryCode": "CN",
+    "region": "east-asia",
+    "foodType": "handheld",
+    "adventureLevel": 2,
+    "shortDescription": "Chinese sticky rice parcels wrapped in bamboo or reed leaves with savory or sweet fillings.",
+    "description": "Zongzi are Chinese glutinous-rice parcels wrapped in bamboo, reed, or other leaves and steamed or boiled. Savory versions may include pork, mushrooms, salted egg, or beans, while sweet styles use ingredients such as dates or bean paste.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 7 candidate. This row represents savory zongzi for Nom's recommendation profile.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Sticky Rice Dumpling",
+      "Rice Dumpling"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "chewy",
+      "aromatic"
+    ],
+    "sourceRow": 157
+  },
+  {
+    "id": "bai-sach-chrouk",
+    "name": "Bai Sach Chrouk",
+    "countryCode": "KH",
+    "region": "southeast-asia",
+    "foodType": "rice",
+    "adventureLevel": 2,
+    "shortDescription": "Cambodian grilled pork served over rice with pickled vegetables and light broth.",
+    "description": "Bai sach chrouk is a Cambodian breakfast dish of thinly sliced pork grilled or charred and served over rice. It is commonly accompanied by pickled vegetables, cucumber, and a small bowl of light broth.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 7 candidate. Cambodian breakfast dish; image and source details still require production review.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Bai Sach Chrouk",
+      "Cambodian Pork and Rice"
+    ],
+    "preferenceFlavors": [
+      "comforting",
+      "fresh"
+    ],
+    "descriptors": [
+      "savory",
+      "smoky",
+      "tender"
+    ],
+    "sourceRow": 158
+  },
+  {
+    "id": "kuy-teav",
+    "name": "Kuy Teav",
+    "countryCode": "KH",
+    "region": "southeast-asia",
+    "foodType": "soup-broth",
+    "adventureLevel": 2,
+    "shortDescription": "Cambodian rice-noodle soup with clear savory broth, herbs, vegetables, and varied proteins.",
+    "description": "Kuy teav is a Cambodian rice-noodle soup commonly served with a clear pork or beef broth, herbs, bean sprouts, scallions, and proteins such as pork, beef, or seafood. Phnom Penh-style versions may include several meats and garnishes.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 7 candidate. Soup/Broth chosen because the broth is central even though rice noodles are a major component.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Kuy Teav Phnom Penh",
+      "Khmer Noodle Soup"
+    ],
+    "preferenceFlavors": [
+      "fresh",
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "light"
+    ],
+    "sourceRow": 159
+  },
+  {
+    "id": "fish-amok",
+    "name": "Fish Amok",
+    "countryCode": "KH",
+    "region": "southeast-asia",
+    "foodType": "grilled-protein",
+    "adventureLevel": 3,
+    "shortDescription": "Cambodian fish curry steamed with coconut, kroeung aromatics, and herbs until softly set.",
+    "description": "Fish amok is a Cambodian dish of fish cooked with coconut milk and kroeung, an aromatic spice-and-herb paste, often steamed in a banana-leaf container until the sauce becomes custard-like and the fish stays tender.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 7 candidate. Grilled/Protein is Nom's broad protein category; fish amok is steamed.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Amok Trey",
+      "Amok Trei"
+    ],
+    "preferenceFlavors": [
+      "rich"
+    ],
+    "descriptors": [
+      "creamy",
+      "aromatic",
+      "tender"
+    ],
+    "sourceRow": 160
+  },
+  {
+    "id": "butter-chicken",
+    "name": "Butter Chicken",
+    "countryCode": "IN",
+    "region": "south-asia",
+    "foodType": "grilled-protein",
+    "adventureLevel": 1,
+    "shortDescription": "North Indian chicken in a buttery tomato sauce enriched with cream and warm spices.",
+    "description": "Butter chicken, also called murgh makhani, is a North Indian dish of chicken served in a smooth tomato-based sauce enriched with butter, cream, and aromatic spices. The chicken is often cooked separately before being finished in the sauce.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 7 candidate. Familiarity level is a Nom product heuristic.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Murgh Makhani"
+    ],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "creamy",
+      "savory",
+      "aromatic"
+    ],
+    "sourceRow": 161
+  },
+  {
+    "id": "poha",
+    "name": "Poha",
+    "countryCode": "IN",
+    "region": "south-asia",
+    "foodType": "rice",
+    "adventureLevel": 1,
+    "shortDescription": "Indian flattened rice cooked with onions, spices, herbs, and fresh garnishes.",
+    "description": "Poha is a South Asian dish made from flattened rice flakes that are rinsed and cooked with ingredients such as onion, mustard seed, turmeric, chile, peanuts, herbs, and lemon. Regional breakfast versions vary across India.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 7 candidate. Source covers flattened rice broadly; add a stronger dish-specific culinary source before approval.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Pohe",
+      "Flattened Rice"
+    ],
+    "preferenceFlavors": [
+      "fresh",
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "light",
+      "aromatic"
+    ],
+    "sourceRow": 162
+  },
+  {
+    "id": "dal-dhokli",
+    "name": "Dal Dhokli",
+    "countryCode": "IN",
+    "region": "south-asia",
+    "foodType": "noodle",
+    "adventureLevel": 3,
+    "shortDescription": "Gujarati wheat-dough pieces simmered in spiced lentil dal until tender and comforting.",
+    "description": "Dal dhokli is a western Indian dish in which thin pieces of seasoned wheat dough are simmered directly in a lentil-based dal. Gujarati versions often balance savory spices with tangy or lightly sweet notes.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 7 candidate. Noodle is Nom's closest category for the cooked wheat-dough pieces.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Daal Dhokli"
+    ],
+    "preferenceFlavors": [
+      "comforting",
+      "tangy"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "chewy"
+    ],
+    "sourceRow": 163
+  },
+  {
+    "id": "manti",
+    "name": "Manti",
+    "countryCode": "TR",
+    "region": "middle-east",
+    "foodType": "noodle",
+    "adventureLevel": 2,
+    "shortDescription": "Turkish filled dumplings served with garlicky yogurt and spiced butter or sauce.",
+    "description": "Manti are small filled dumplings found across Turkic and Central Asian cuisines. Turkish mantı are commonly filled with seasoned meat and served with garlic yogurt plus butter or oil flavored with red pepper and herbs.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 7 candidate. Turkey is grouped under Nom's Middle East region; regional dumpling forms vary widely. Verified source check: completed for pilot.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Mantı",
+      "Mantu"
+    ],
+    "preferenceFlavors": [
+      "rich",
+      "tangy"
+    ],
+    "descriptors": [
+      "savory",
+      "creamy",
+      "garlicky"
+    ],
+    "sourceRow": 164
+  },
+  {
+    "id": "adana-kebab",
+    "name": "Adana Kebab",
+    "countryCode": "TR",
+    "region": "middle-east",
+    "foodType": "grilled-protein",
+    "adventureLevel": 2,
+    "shortDescription": "Turkish minced-meat kebab seasoned with chile and grilled on wide metal skewers.",
+    "description": "Adana kebab is a Turkish kebab associated with Adana, made from hand-minced lamb or mutton seasoned with salt and red pepper, shaped onto wide skewers, and grilled over charcoal.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 7 candidate. Turkey follows Nom's current Middle East grouping.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Adana Kebap",
+      "Kıyma Kebabı"
+    ],
+    "preferenceFlavors": [
+      "spicy",
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "smoky",
+      "charred"
+    ],
+    "sourceRow": 165
+  },
+  {
+    "id": "freekeh-pilaf",
+    "name": "Freekeh Pilaf",
+    "countryCode": "JO",
+    "region": "middle-east",
+    "foodType": "rice",
+    "adventureLevel": 2,
+    "shortDescription": "Levantine roasted green-wheat pilaf with a nutty, smoky character and savory toppings.",
+    "description": "Freekeh is young green wheat that is roasted and rubbed, giving it a distinctive smoky flavor. Pilaf-style preparations across the Levant cook it with stock, aromatics, herbs, vegetables, or meat.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 7 candidate. Rice is Nom's closest grain-base category; freekeh is wheat, not rice.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Freekeh",
+      "Farik"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "smoky",
+      "savory",
+      "earthy"
+    ],
+    "sourceRow": 166
+  },
+  {
+    "id": "sfiha",
+    "name": "Sfiha",
+    "countryCode": "LB",
+    "region": "middle-east",
+    "foodType": "handheld",
+    "adventureLevel": 2,
+    "shortDescription": "Levantine open-faced meat flatbread baked with tomato, onion, herbs, and spices.",
+    "description": "Sfiha is a Levantine baked flatbread topped with seasoned minced meat, commonly mixed with tomato, onion, herbs, spices, and sometimes pomegranate or other tangy ingredients. Shapes and toppings vary by region.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 7 candidate. Lebanon used for catalog grouping while acknowledging wider Levantine traditions. Retag resolution applied: preference flavor set to 'comforting'.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Sfeeha",
+      "Lahm bi Ajin"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "tender"
+    ],
+    "sourceRow": 167
+  },
+  {
+    "id": "baasto-iyo-suugo",
+    "name": "Baasto iyo Suugo",
+    "countryCode": "SO",
+    "region": "africa",
+    "foodType": "noodle",
+    "adventureLevel": 3,
+    "shortDescription": "Somali pasta served with a spiced tomato meat sauce and often banana on the side.",
+    "description": "Baasto iyo suugo is a Somali pasta-and-sauce meal shaped by Italian influence in Somalia. Pasta is served with a spiced tomato-based meat sauce, and many Somali diners pair the dish with banana as a customary accompaniment.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 7 candidate. Source is Somali cuisine overview; add a dedicated dish source before production approval. Retag resolution applied: preference flavor set to 'comforting'.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Somali Pasta",
+      "Baasto"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "tender"
+    ],
+    "sourceRow": 168
+  },
+  {
+    "id": "pastilla",
+    "name": "Pastilla",
+    "countryCode": "MA",
+    "region": "africa",
+    "foodType": "handheld",
+    "adventureLevel": 3,
+    "shortDescription": "Moroccan layered pastry filled with spiced poultry or seafood, almonds, and delicate crisp pastry.",
+    "description": "Pastilla is a Moroccan savory pastry made with very thin pastry sheets layered around seasoned poultry, seafood, or other fillings. Classic preparations may balance savory spices with almonds, cinnamon, or a light sweetness.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 7 candidate. Handheld is Nom's closest category even though pastilla is often served as a sliced pie.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Bastilla",
+      "B'stilla"
+    ],
+    "preferenceFlavors": [
+      "crispy",
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "sweet",
+      "aromatic"
+    ],
+    "sourceRow": 169
+  },
+  {
+    "id": "moi-moi",
+    "name": "Moi Moi",
+    "countryCode": "NG",
+    "region": "africa",
+    "foodType": "handheld",
+    "adventureLevel": 3,
+    "shortDescription": "Nigerian steamed bean pudding seasoned with peppers, onions, and savory aromatics.",
+    "description": "Moi moi is a Nigerian steamed pudding made from blended peeled beans, commonly black-eyed peas, mixed with peppers, onions, oil, and seasonings. Eggs, fish, or other fillings may be added before steaming.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 7 candidate. Handheld is Nom's closest portable-food category; moi moi is often served from a mold or leaf. Retag resolution applied: preference flavor set to 'comforting'.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Moin Moin",
+      "Moyi Moyi"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "earthy",
+      "tender"
+    ],
+    "sourceRow": 170
+  },
+  {
+    "id": "attieke-fish",
+    "name": "Attiéké with Grilled Fish",
+    "countryCode": "CI",
+    "region": "africa",
+    "foodType": "rice",
+    "adventureLevel": 3,
+    "shortDescription": "Ivorian fermented cassava couscous served with grilled fish, onions, tomato, and fresh chile.",
+    "description": "Attiéké is an Ivorian staple made from fermented grated cassava processed into couscous-like granules. A common meal pairs it with grilled fish, onion, tomato, chile, and fresh acidic garnishes.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 7 candidate. Rice is Nom's closest starch-base category; attiéké is fermented cassava, not rice.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Attiéké Poisson",
+      "Attieke"
+    ],
+    "preferenceFlavors": [
+      "fresh",
+      "tangy"
+    ],
+    "descriptors": [
+      "savory",
+      "smoky",
+      "light"
+    ],
+    "sourceRow": 171
+  },
+  {
+    "id": "arroz-de-marisco",
+    "name": "Arroz de Marisco",
+    "countryCode": "PT",
+    "region": "europe",
+    "foodType": "rice",
+    "adventureLevel": 2,
+    "shortDescription": "Portuguese seafood rice cooked in a tomato-rich broth with shellfish, fish, and herbs.",
+    "description": "Arroz de marisco is a Portuguese seafood-rice dish cooked until loose and saucy rather than dry. Rice simmers with a flavorful seafood broth, tomato, aromatics, herbs, and combinations of shrimp, clams, crab, or other seafood.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 7 candidate. Source should be strengthened with a dedicated Portuguese culinary reference before approval. Retag resolution applied: preference flavor set to 'rich'.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Portuguese Seafood Rice"
+    ],
+    "preferenceFlavors": [
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "umami"
+    ],
+    "sourceRow": 172
+  },
+  {
+    "id": "arroz-negro",
+    "name": "Arroz Negro",
+    "countryCode": "ES",
+    "region": "europe",
+    "foodType": "rice",
+    "adventureLevel": 2,
+    "shortDescription": "Spanish black rice colored with squid ink and cooked with seafood in a wide pan.",
+    "description": "Arroz negro, or arròs negre, is a Spanish Mediterranean rice dish colored and flavored with squid or cuttlefish ink. It commonly includes seafood, stock, tomato, garlic, and other aromatics cooked in a paella-style pan.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 7 candidate. Spain used for catalog grouping; Valencian and Catalan traditions are especially relevant. Retag resolution applied: preference flavor set to 'rich'.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Arròs Negre",
+      "Black Rice"
+    ],
+    "preferenceFlavors": [
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "umami",
+      "aromatic"
+    ],
+    "sourceRow": 173
+  },
+  {
+    "id": "cevapi",
+    "name": "Ćevapi",
+    "countryCode": "BA",
+    "region": "europe",
+    "foodType": "grilled-protein",
+    "adventureLevel": 2,
+    "shortDescription": "Balkan grilled minced-meat sausages served with flatbread, onions, and fresh accompaniments.",
+    "description": "Ćevapi are small skinless minced-meat sausages associated with the Balkans, especially Bosnia and Herzegovina. They are grilled and commonly served in flatbread with chopped onion and regional condiments.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 7 candidate. Bosnia and Herzegovina used for catalog grouping while acknowledging wider Balkan traditions.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Cevapi",
+      "Ćevapčići"
+    ],
+    "preferenceFlavors": [
+      "rich",
+      "fresh"
+    ],
+    "descriptors": [
+      "savory",
+      "smoky",
+      "juicy"
+    ],
+    "sourceRow": 174
+  },
+  {
+    "id": "arroz-con-gandules",
+    "name": "Arroz con Gandules",
+    "countryCode": "PR",
+    "region": "latin-america",
+    "foodType": "rice",
+    "adventureLevel": 1,
+    "shortDescription": "Puerto Rican rice with pigeon peas, sofrito, seasonings, and savory additions.",
+    "description": "Arroz con gandules is a Puerto Rican rice dish combining rice with pigeon peas, sofrito, seasonings, and often pork or other savory additions. It is widely associated with celebrations and holiday meals.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 7 candidate. Puerto Rico is grouped under Nom's Latin America & Caribbean region.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Puerto Rican Rice with Pigeon Peas"
+    ],
+    "preferenceFlavors": [
+      "comforting",
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "tender"
+    ],
+    "sourceRow": 175
+  },
+  {
+    "id": "chivito",
+    "name": "Chivito",
+    "countryCode": "UY",
+    "region": "latin-america",
+    "foodType": "handheld",
+    "adventureLevel": 2,
+    "shortDescription": "Uruguayan steak sandwich stacked with ham, cheese, vegetables, egg, and sauces.",
+    "description": "The chivito is an Uruguayan sandwich built around a thin slice of beef steak, commonly layered with ham, cheese, lettuce, tomato, mayonnaise, and sometimes egg, bacon, olives, or other toppings.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 7 candidate. Toppings vary substantially by restaurant and region.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Chivito Uruguayo"
+    ],
+    "preferenceFlavors": [
+      "rich",
+      "fresh"
+    ],
+    "descriptors": [
+      "savory",
+      "juicy",
+      "tender"
+    ],
+    "sourceRow": 176
+  },
+  {
+    "id": "jerk-chicken",
+    "name": "Jerk Chicken",
+    "countryCode": "JM",
+    "region": "latin-america",
+    "foodType": "grilled-protein",
+    "adventureLevel": 2,
+    "shortDescription": "Jamaican chicken marinated with allspice, chile, herbs, and aromatics, then grilled or smoked.",
+    "description": "Jerk chicken is a Jamaican preparation in which chicken is seasoned with a highly aromatic jerk marinade or dry rub built around allspice, Scotch bonnet chile, herbs, and spices, then grilled or smoked.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 7 candidate. Jamaica is grouped under Nom's Latin America & Caribbean region.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Jamaican Jerk Chicken"
+    ],
+    "preferenceFlavors": [
+      "spicy"
+    ],
+    "descriptors": [
+      "smoky",
+      "charred",
+      "aromatic"
+    ],
+    "sourceRow": 177
+  },
+  {
+    "id": "montreal-smoked-meat-sandwich",
+    "name": "Montreal Smoked Meat Sandwich",
+    "countryCode": "CA",
+    "region": "north-america",
+    "foodType": "handheld",
+    "adventureLevel": 1,
+    "shortDescription": "Montreal deli sandwich piled with cured smoked beef, mustard, and rye bread.",
+    "description": "A Montreal smoked meat sandwich features hand-sliced cured and smoked beef brisket piled onto rye bread, usually with yellow mustard. The meat is seasoned, smoked, steamed, and sliced across the grain.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 7 candidate. Source is the broader Montreal-style smoked meat reference.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Smoked Meat Sandwich"
+    ],
+    "preferenceFlavors": [
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "smoky",
+      "tender"
+    ],
+    "sourceRow": 178
+  },
+  {
+    "id": "chicken-and-waffles",
+    "name": "Chicken and Waffles",
+    "countryCode": "US",
+    "region": "north-america",
+    "foodType": "grilled-protein",
+    "adventureLevel": 1,
+    "shortDescription": "American fried chicken paired with waffles for a crisp, savory, lightly sweet meal.",
+    "description": "Chicken and waffles is an American dish pairing fried chicken with waffles. Modern versions often combine crisp seasoned chicken with buttery waffles and toppings such as syrup, hot sauce, honey, or flavored butter.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 7 candidate. Grilled/Protein is Nom's broad protein category; the chicken is usually fried.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Fried Chicken and Waffles"
+    ],
+    "preferenceFlavors": [
+      "crispy",
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "buttery",
+      "juicy"
+    ],
+    "sourceRow": 179
+  },
+  {
+    "id": "katsudon",
+    "name": "Katsudon",
+    "countryCode": "JP",
+    "region": "east-asia",
+    "foodType": "rice",
+    "adventureLevel": 1,
+    "shortDescription": "Japanese rice bowl topped with a crisp pork cutlet, egg, onion, and sweet-savory sauce.",
+    "description": "Katsudon is a Japanese donburi dish made by simmering a breaded pork cutlet with onion and egg in a sweet-savory soy-based sauce, then serving the mixture over steamed rice. The cutlet keeps some crisp texture while absorbing the sauce.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 8 candidate. Familiarity and flavor assignments are Nom product heuristics.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Pork Cutlet Rice Bowl"
+    ],
+    "preferenceFlavors": [
+      "comforting",
+      "crispy"
+    ],
+    "descriptors": [
+      "savory",
+      "tender",
+      "umami"
+    ],
+    "sourceRow": 180
+  },
+  {
+    "id": "jjajangmyeon",
+    "name": "Jjajangmyeon",
+    "countryCode": "KR",
+    "region": "east-asia",
+    "foodType": "noodle",
+    "adventureLevel": 2,
+    "shortDescription": "Korean wheat noodles coated in a thick black-bean sauce with pork and vegetables.",
+    "description": "Jjajangmyeon is a Korean noodle dish made with thick wheat noodles and a dark sauce based on chunjang, a fermented black-bean paste. Pork, onion, zucchini, cabbage, or other vegetables are commonly cooked into the sauce.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 8 candidate. Richness depends on sauce preparation and toppings.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Jajangmyeon",
+      "Korean Black Bean Noodles"
+    ],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "umami",
+      "chewy"
+    ],
+    "sourceRow": 181
+  },
+  {
+    "id": "wonton-soup",
+    "name": "Wonton Soup",
+    "countryCode": "CN",
+    "region": "east-asia",
+    "foodType": "soup-broth",
+    "adventureLevel": 1,
+    "shortDescription": "Chinese broth with delicate filled wontons, greens, scallions, and optional noodles.",
+    "description": "Wonton soup centers on small filled dumplings served in a clear savory broth. Pork, shrimp, or mixed fillings are common, with greens, scallions, and noodles added in many regional Chinese and Cantonese-style versions.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 8 candidate. Source is the broader wonton reference; soup style varies by region.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Wonton Noodle Soup"
+    ],
+    "preferenceFlavors": [
+      "comforting",
+      "fresh"
+    ],
+    "descriptors": [
+      "savory",
+      "light",
+      "tender"
+    ],
+    "sourceRow": 182
+  },
+  {
+    "id": "lemon-rice",
+    "name": "Lemon Rice",
+    "countryCode": "IN",
+    "region": "south-asia",
+    "foodType": "rice",
+    "adventureLevel": 1,
+    "shortDescription": "South Indian rice brightened with lemon, tempered spices, curry leaves, and crunchy garnishes.",
+    "description": "Lemon rice is a South Indian seasoned-rice dish in which cooked rice is tossed with lemon juice and a tempering of mustard seed, curry leaves, chile, and other spices. Peanuts or cashews are common additions for texture.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 8 candidate. Regional names and recipes vary; chitranna is one related South Indian form.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Chitranna",
+      "Nimmakaya Pulihora"
+    ],
+    "preferenceFlavors": [
+      "fresh",
+      "tangy"
+    ],
+    "descriptors": [
+      "aromatic",
+      "savory",
+      "light"
+    ],
+    "sourceRow": 183
+  },
+  {
+    "id": "paya",
+    "name": "Paya",
+    "countryCode": "PK",
+    "region": "south-asia",
+    "foodType": "soup-broth",
+    "adventureLevel": 3,
+    "shortDescription": "South Asian slow-cooked trotter stew with warming spices and a deeply gelatinous broth.",
+    "description": "Paya is a South Asian stew made by slowly simmering goat, lamb, or beef trotters with aromatics and spices until the broth becomes rich and gelatinous. It is commonly served with naan or other breads.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 8 candidate. Pakistan used for catalog grouping while acknowledging wider South Asian traditions.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Paaya",
+      "Trotter Curry"
+    ],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "tender"
+    ],
+    "sourceRow": 184
+  },
+  {
+    "id": "chicken-chettinad",
+    "name": "Chicken Chettinad",
+    "countryCode": "IN",
+    "region": "south-asia",
+    "foodType": "grilled-protein",
+    "adventureLevel": 2,
+    "shortDescription": "Tamil chicken cooked with a bold Chettinad spice blend, aromatics, and roasted seasonings.",
+    "description": "Chicken Chettinad is associated with the Chettinad region of Tamil Nadu and uses an intensely aromatic mixture of spices, chiles, curry leaves, and other seasonings. The chicken cooks in the masala until deeply flavored and tender.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 8 candidate. Grilled/Protein is Nom's broad protein category; the chicken is typically cooked in a masala rather than grilled.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Chettinad Chicken"
+    ],
+    "preferenceFlavors": [
+      "spicy"
+    ],
+    "descriptors": [
+      "aromatic",
+      "savory",
+      "smoky"
+    ],
+    "sourceRow": 185
+  },
+  {
+    "id": "mandi",
+    "name": "Mandi",
+    "countryCode": "YE",
+    "region": "middle-east",
+    "foodType": "rice",
+    "adventureLevel": 2,
+    "shortDescription": "Yemeni spiced rice topped with slow-cooked meat and a distinctive smoky aroma.",
+    "description": "Mandi is a Yemeni rice-and-meat dish in which fragrant rice is served with chicken, lamb, or another meat cooked until tender. Traditional preparations develop a smoky character from cooking methods associated with an underground or enclosed oven.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 8 candidate. Adventure level is a Nom product heuristic.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Yemeni Mandi"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "aromatic",
+      "smoky",
+      "tender"
+    ],
+    "sourceRow": 186
+  },
+  {
+    "id": "shish-barak",
+    "name": "Shish Barak",
+    "countryCode": "LB",
+    "region": "middle-east",
+    "foodType": "soup-broth",
+    "adventureLevel": 3,
+    "shortDescription": "Levantine meat dumplings simmered in a tangy yogurt sauce with garlic and herbs.",
+    "description": "Shish barak is a Levantine dumpling dish made from small meat-filled dough parcels cooked in a warm yogurt-based sauce. Garlic, herbs, and sometimes rice accompany the dumplings, producing a creamy, tangy, savory meal.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 8 candidate. Lebanon used for catalog grouping while acknowledging wider Levantine traditions.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Shishbarak",
+      "Shushbarak"
+    ],
+    "preferenceFlavors": [
+      "rich",
+      "tangy"
+    ],
+    "descriptors": [
+      "creamy",
+      "savory",
+      "garlicky"
+    ],
+    "sourceRow": 187
+  },
+  {
+    "id": "maftoul",
+    "name": "Maftoul",
+    "countryCode": "PS",
+    "region": "middle-east",
+    "foodType": "rice",
+    "adventureLevel": 3,
+    "shortDescription": "Palestinian hand-rolled wheat grains steamed and served with chickpeas, vegetables, and broth.",
+    "description": "Maftoul is a Palestinian hand-rolled wheat product similar in appearance to large couscous. It is traditionally steamed and served with chickpeas, onions, vegetables, chicken, or a spiced broth.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 8 candidate. Rice is Nom's closest grain-base category; maftoul is wheat, not rice.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Palestinian Couscous"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "earthy",
+      "aromatic"
+    ],
+    "sourceRow": 188
+  },
+  {
+    "id": "sambousek",
+    "name": "Sambousek",
+    "countryCode": "LB",
+    "region": "middle-east",
+    "foodType": "handheld",
+    "adventureLevel": 2,
+    "shortDescription": "Levantine savory pastry filled with meat, cheese, or vegetables and baked or fried.",
+    "description": "Sambousek are small filled pastries found across the Levant and Middle East. Thin dough is folded around fillings such as seasoned meat, cheese, spinach, or other vegetables, then baked or fried until golden.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 8 candidate. Lebanon used for catalog grouping; naming and fillings vary across the region.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Sambusak",
+      "Sambouseh"
+    ],
+    "preferenceFlavors": [
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "tender"
+    ],
+    "sourceRow": 189
+  },
+  {
+    "id": "pepper-soup",
+    "name": "Pepper Soup",
+    "countryCode": "NG",
+    "region": "africa",
+    "foodType": "soup-broth",
+    "adventureLevel": 3,
+    "shortDescription": "West African spicy broth with meat or fish and a fragrant blend of local spices.",
+    "description": "Pepper soup is a West African soup especially popular in Nigeria and neighboring countries. Goat, beef, chicken, fish, or offal may be simmered in a thin, intensely aromatic broth seasoned with chile and regional spice blends.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 8 candidate. Nigeria used for catalog grouping while acknowledging wider West African traditions.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Nigerian Pepper Soup"
+    ],
+    "preferenceFlavors": [
+      "spicy"
+    ],
+    "descriptors": [
+      "aromatic",
+      "savory",
+      "light"
+    ],
+    "sourceRow": 190
+  },
+  {
+    "id": "kitfo",
+    "name": "Kitfo",
+    "countryCode": "ET",
+    "region": "africa",
+    "foodType": "grilled-protein",
+    "adventureLevel": 3,
+    "shortDescription": "Ethiopian finely minced beef seasoned with spiced clarified butter and mitmita.",
+    "description": "Kitfo is an Ethiopian dish of finely minced beef mixed with niter kibbeh, a spiced clarified butter, and mitmita or other seasonings. It may be served raw, lightly warmed, or fully cooked with injera and fresh cheese or greens.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 8 candidate. Grilled/Protein is Nom's broad protein category; traditional kitfo is not grilled.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "rich",
+      "spicy"
+    ],
+    "descriptors": [
+      "savory",
+      "buttery",
+      "tender"
+    ],
+    "sourceRow": 191
+  },
+  {
+    "id": "tagliatelle-al-ragu",
+    "name": "Tagliatelle al Ragù",
+    "countryCode": "IT",
+    "region": "europe",
+    "foodType": "noodle",
+    "adventureLevel": 1,
+    "shortDescription": "Emilian ribbon pasta coated in a slow-cooked meat-and-tomato ragù.",
+    "description": "Tagliatelle al ragù is an Emilia-Romagna pasta preparation pairing broad egg noodles with a slowly cooked meat sauce. Bolognese-style ragù commonly includes minced meat, aromatic vegetables, wine, and a modest amount of tomato.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 8 candidate. This row distinguishes the pasta dish from generic international 'spaghetti bolognese.'",
+    "validationStatus": "OK",
+    "aliases": [
+      "Tagliatelle al Ragù Bolognese"
+    ],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "tender",
+      "aromatic"
+    ],
+    "sourceRow": 192
+  },
+  {
+    "id": "minestrone",
+    "name": "Minestrone",
+    "countryCode": "IT",
+    "region": "europe",
+    "foodType": "soup-broth",
+    "adventureLevel": 1,
+    "shortDescription": "Italian vegetable soup with beans, seasonal produce, and optional pasta or rice.",
+    "description": "Minestrone is an Italian vegetable soup without one fixed recipe. Common versions combine beans, onions, celery, carrots, tomatoes, leafy greens, and seasonal vegetables, sometimes with pasta or rice for extra body.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 8 candidate. Fresh and comforting preferences reflect vegetable-forward common versions.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "fresh",
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "herbal",
+      "light"
+    ],
+    "sourceRow": 193
+  },
+  {
+    "id": "shepherds-pie",
+    "name": "Shepherd's Pie",
+    "countryCode": "GB",
+    "region": "europe",
+    "foodType": "grilled-protein",
+    "adventureLevel": 1,
+    "shortDescription": "British baked meat-and-vegetable filling topped with a browned layer of mashed potato.",
+    "description": "Shepherd's pie is a British and Irish-style baked dish made from minced lamb and vegetables covered with mashed potato and browned in the oven. The closely related cottage pie traditionally uses beef.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 8 candidate. Grilled/Protein is Nom's broad protein category; the dish is baked.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Cottage Pie"
+    ],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "creamy",
+      "tender"
+    ],
+    "sourceRow": 194
+  },
+  {
+    "id": "arroz-con-coco",
+    "name": "Arroz con Coco",
+    "countryCode": "CO",
+    "region": "latin-america",
+    "foodType": "rice",
+    "adventureLevel": 2,
+    "shortDescription": "Colombian Caribbean coconut rice with a fragrant, lightly sweet-savory profile.",
+    "description": "Arroz con coco is a coconut-rice preparation associated with Colombia's Caribbean coast and other parts of Latin America and the Caribbean. Rice is cooked with coconut milk or reduced coconut, producing a fragrant, rich flavor that may lean lightly sweet.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 8 candidate. Colombia used for catalog grouping; coconut-rice traditions span the Caribbean.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Coconut Rice"
+    ],
+    "preferenceFlavors": [
+      "rich"
+    ],
+    "descriptors": [
+      "creamy",
+      "aromatic",
+      "sweet"
+    ],
+    "sourceRow": 195
+  },
+  {
+    "id": "pozole",
+    "name": "Pozole",
+    "countryCode": "MX",
+    "region": "latin-america",
+    "foodType": "soup-broth",
+    "adventureLevel": 2,
+    "shortDescription": "Mexican hominy stew with pork or chicken and a tableful of crisp, fresh garnishes.",
+    "description": "Pozole is a Mexican soup or stew built around nixtamalized hominy and commonly pork or chicken. Red, green, and white regional styles are served with fresh garnishes such as lettuce, radish, onion, lime, and chile.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 8 candidate. Spiciness depends on regional style and garnishes.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Posole"
+    ],
+    "preferenceFlavors": [
+      "fresh"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "tender"
+    ],
+    "sourceRow": 196
+  },
+  {
+    "id": "locro",
+    "name": "Locro",
+    "countryCode": "AR",
+    "region": "latin-america",
+    "foodType": "soup-broth",
+    "adventureLevel": 3,
+    "shortDescription": "Andean thick stew of corn, beans, squash, potatoes, and regional meats or cheese.",
+    "description": "Locro is a thick Andean stew with many regional forms. Argentine preparations often combine corn, beans, squash, potato, and meat, while other Andean versions use different vegetables, cheese, or seasonings.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 8 candidate. Argentina used for catalog grouping while acknowledging broader Andean traditions.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Locro de Papa",
+      "Andean Locro"
+    ],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "earthy",
+      "creamy"
+    ],
+    "sourceRow": 197
+  },
+  {
+    "id": "mofongo",
+    "name": "Mofongo",
+    "countryCode": "PR",
+    "region": "latin-america",
+    "foodType": "rice",
+    "adventureLevel": 2,
+    "shortDescription": "Puerto Rican mashed fried plantain seasoned with garlic and filled or topped with savory proteins.",
+    "description": "Mofongo is a Puerto Rican dish made by frying green plantains and mashing them with garlic, fat, and crisp pork or other seasonings. It may be shaped into a mound and served with broth, seafood, chicken, pork, or other toppings.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 8 candidate. Rice is Nom's closest starch-base category; mofongo is plantain-based, not rice.",
+    "validationStatus": "OK",
+    "aliases": [],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "garlicky",
+      "earthy"
+    ],
+    "sourceRow": 198
+  },
+  {
+    "id": "red-beans-and-rice",
+    "name": "Red Beans and Rice",
+    "countryCode": "US",
+    "region": "north-america",
+    "foodType": "rice",
+    "adventureLevel": 1,
+    "shortDescription": "Louisiana red beans slow-cooked with aromatics and sausage, served over rice.",
+    "description": "Red beans and rice is a Louisiana Creole dish in which red beans are slow-cooked with onion, celery, bell pepper, seasonings, and often sausage or other pork, then spooned over white rice.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 8 candidate. Familiarity level is a Nom product heuristic.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Louisiana Red Beans and Rice"
+    ],
+    "preferenceFlavors": [
+      "comforting",
+      "rich"
+    ],
+    "descriptors": [
+      "savory",
+      "smoky",
+      "earthy"
+    ],
+    "sourceRow": 199
+  },
+  {
+    "id": "crawfish-etouffee",
+    "name": "Crawfish Étouffée",
+    "countryCode": "US",
+    "region": "north-america",
+    "foodType": "rice",
+    "adventureLevel": 2,
+    "shortDescription": "Louisiana crawfish in a thick, seasoned sauce served generously over rice.",
+    "description": "Crawfish étouffée is a Louisiana dish in which crawfish are smothered in a thick, seasoned sauce based on butter or roux with onion, celery, bell pepper, and spices. It is traditionally served over rice.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 8 candidate. Louisiana Creole and Cajun versions differ in technique and ingredients.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Crawfish Etouffee",
+      "Étouffée"
+    ],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "creamy",
+      "aromatic"
+    ],
+    "sourceRow": 200
+  },
+  {
+    "id": "saimin",
+    "name": "Saimin",
+    "countryCode": "US",
+    "region": "north-america",
+    "foodType": "noodle",
+    "adventureLevel": 2,
+    "shortDescription": "Hawaii noodle soup with wheat-and-egg noodles, clear broth, and local toppings.",
+    "description": "Saimin is a noodle soup developed in Hawaii, combining soft wheat-and-egg noodles with a light dashi-like broth and toppings such as scallions, fish cake, char siu, egg, or Spam depending on the version.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 8 candidate. Hawaii's distinct local food culture should remain explicit despite Nom's North America grouping.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Hawaiian Saimin"
+    ],
+    "preferenceFlavors": [
+      "comforting",
+      "fresh"
+    ],
+    "descriptors": [
+      "savory",
+      "light",
+      "umami"
+    ],
+    "sourceRow": 201
+  },
+  {
+    "id": "cincinnati-chili",
+    "name": "Cincinnati Chili",
+    "countryCode": "US",
+    "region": "north-america",
+    "foodType": "noodle",
+    "adventureLevel": 1,
+    "shortDescription": "Cincinnati spiced meat sauce served over spaghetti with cheese and optional beans or onions.",
+    "description": "Cincinnati chili is an American regional meat sauce served over spaghetti and ordered in layered 'ways' with toppings such as shredded cheese, onions, and beans. Its seasoning profile differs from Texas-style chili.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 8 candidate. Noodle category reflects the classic spaghetti service.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Cincinnati-style Chili"
+    ],
+    "preferenceFlavors": [
+      "rich",
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "aromatic",
+      "tender"
+    ],
+    "sourceRow": 202
+  },
+  {
+    "id": "canadian-split-pea-soup",
+    "name": "Canadian Split Pea Soup",
+    "countryCode": "CA",
+    "region": "north-america",
+    "foodType": "soup-broth",
+    "adventureLevel": 2,
+    "shortDescription": "Québécois split-pea soup slow-cooked with vegetables, herbs, and often salted pork or ham.",
+    "description": "Canadian split pea soup, especially the Québécois soupe aux pois tradition, combines dried peas with onion, herbs, and often salted pork or ham. Long simmering creates a thick, earthy, comforting soup.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 8 candidate. Source is the broad pea-soup reference; add a Quebec-specific culinary source before approval.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Québécois Pea Soup",
+      "Soupe aux Pois"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "earthy",
+      "savory",
+      "creamy"
+    ],
+    "sourceRow": 203
+  },
+  {
+    "id": "matzo-ball-soup",
+    "name": "Matzo Ball Soup",
+    "countryCode": "US",
+    "region": "north-america",
+    "foodType": "soup-broth",
+    "adventureLevel": 1,
+    "shortDescription": "Jewish-American chicken soup served with tender dumplings made from matzo meal.",
+    "description": "Matzo ball soup pairs a clear chicken broth with dumplings made from matzo meal, egg, and fat. It is closely associated with Ashkenazi Jewish cuisine and is especially prominent in Jewish-American home cooking and delicatessen culture.",
+    "reviewStatus": "needs-review",
+    "notes": "Batch 8 candidate. North America grouping reflects Jewish-American product context while acknowledging Ashkenazi origins.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Matzah Ball Soup"
+    ],
+    "preferenceFlavors": [
+      "comforting"
+    ],
+    "descriptors": [
+      "savory",
+      "light",
+      "tender"
+    ],
+    "sourceRow": 204
+  },
+  {
+    "id": "fresh-lumpia",
+    "name": "Fresh Lumpia",
+    "countryCode": "PH",
+    "region": "southeast-asia",
+    "foodType": "handheld",
+    "adventureLevel": 1,
+    "shortDescription": "Filipino fresh spring rolls with soft wrappers and vegetable-forward savory fillings.",
+    "description": "Fresh lumpia are Filipino spring rolls served without frying, using softer wrappers and vegetable-forward fillings. This entry was split from the original mixed Lumpia row so Nom can distinguish the fresh style from crisp fried versions.",
+    "reviewStatus": "needs-review",
+    "notes": "Split from the original mixed Lumpia entry. This row represents fresh lumpia only; source and image remain candidates pending verification.",
+    "validationStatus": "OK",
+    "aliases": [
+      "Fresh Lumpia",
+      "Lumpia Sariwa"
+    ],
+    "preferenceFlavors": [
+      "fresh"
+    ],
+    "descriptors": [
+      "savory",
+      "light"
+    ],
+    "sourceRow": 205
+  }
+]
