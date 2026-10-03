@@ -103,43 +103,643 @@
     },
     {
       "dishId": "ramen",
-      "status": "needs-image",
-      "sourcePageUrl": null,
-      "creator": null,
-      "license": null,
-      "licenseUrl": null,
+      "status": "licensed-local",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Soy_ramen.jpg",
+      "creator": "Lusheeta at Japanese Wikipedia",
+      "license": "CC-BY-SA-3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Ramen",
-      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+      "imageDownloadUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Soy_ramen.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "credit": "Own work by the original uploader ( Original text: 投稿者による撮影 )",
+      "attribution": "",
+      "attributionRequired": "true",
+      "licenseOriginal": "CC BY-SA 3.0",
+      "selectionEvidence": {
+        "matchedName": "Ramen",
+        "matchedCountry": "Japan",
+        "title": "File:Soy ramen.jpg",
+        "description": "\"Tokyo Ramen\". Japanese traditional ramen, seen in a ramen-noodles store in Japan. Soup is a soy sauce taste."
+      },
+      "selectionScore": 100,
+      "automaticSelection": {
+        "provider": "wikimedia-commons",
+        "query": "\"Ramen\" \"Japan\"",
+        "target": {
+          "dishId": "ramen",
+          "dishName": "Ramen",
+          "country": "Japan",
+          "countryCode": "JP",
+          "expectedImageFilename": "ramen.webp",
+          "expectedRuntimePath": "src/assets/food/catalog/ramen.webp",
+          "searchQuery": "Ramen Japan food",
+          "alternateNames": [],
+          "recommendedSources": [
+            "Wikimedia Commons",
+            "Openverse"
+          ],
+          "sourceSearchUrls": {
+            "commons": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Ramen%20Japan%20food",
+            "openverse": "https://openverse.org/search/image?q=Ramen%20Japan%20food"
+          },
+          "reason": "No verified local photo; source downloads blocked by sandbox network access.",
+          "visualReviewNote": "Confirm exact dish identity, then record creator and reusable license before approval."
+        },
+        "page": {
+          "pageid": 117173190,
+          "ns": 6,
+          "title": "File:Soy ramen.jpg",
+          "index": 2,
+          "imagerepository": "local",
+          "imageinfo": [
+            {
+              "size": 95317,
+              "width": 800,
+              "height": 600,
+              "thumburl": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Soy_ramen.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+              "thumbwidth": 1200,
+              "thumbheight": 900,
+              "thumbattribs": {
+                "src": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Soy_ramen.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+                "decoding": "async",
+                "loading": "lazy",
+                "width": 1200,
+                "height": 900
+              },
+              "url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Soy_ramen.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+              "descriptionurl": "https://commons.wikimedia.org/wiki/File:Soy_ramen.jpg",
+              "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=117173190",
+              "extmetadata": {
+                "ObjectName": {
+                  "value": "Soy ramen",
+                  "source": "mediawiki-metadata"
+                },
+                "ImageDescription": {
+                  "value": "\"Tokyo Ramen\". Japanese traditional ramen, seen in a ramen-noodles store in Japan. Soup is a soy sauce taste.",
+                  "source": "commons-desc-page"
+                },
+                "Credit": {
+                  "value": "<span class=\"int-own-work\" lang=\"\">Own work by the original uploader</span> (<span lang=\"en\" dir=\"ltr\">Original text: <i><bdi lang=\"\">投稿者による撮影</bdi></i></span>)<br>",
+                  "source": "commons-desc-page"
+                },
+                "Artist": {
+                  "value": "<a href=\"https://en.wikipedia.org/wiki/ja:User:Lusheeta\" class=\"extiw\" title=\"w:ja:User:Lusheeta\">Lusheeta</a> at <a href=\"https://en.wikipedia.org/wiki/ja:\" class=\"extiw\" title=\"w:ja:\">Japanese Wikipedia</a>",
+                  "source": "commons-desc-page"
+                },
+                "LicenseShortName": {
+                  "value": "CC BY-SA 3.0",
+                  "source": "commons-desc-page",
+                  "hidden": ""
+                },
+                "AttributionRequired": {
+                  "value": "true",
+                  "source": "commons-desc-page",
+                  "hidden": ""
+                },
+                "LicenseUrl": {
+                  "value": "http://creativecommons.org/licenses/by-sa/3.0/",
+                  "source": "commons-desc-page"
+                },
+                "Restrictions": {
+                  "value": "",
+                  "source": "commons-desc-page",
+                  "hidden": ""
+                }
+              },
+              "mime": "image/jpeg",
+              "mediatype": "BITMAP"
+            }
+          ],
+          "categories": [
+            {
+              "ns": 14,
+              "title": "Category:CC-BY-SA-3.0-migrated-with-disclaimers"
+            },
+            {
+              "ns": 14,
+              "title": "Category:Creative Commons Attribution-Share Alike 3.0 with different SDC copyright license"
+            },
+            {
+              "ns": 14,
+              "title": "Category:Files moved to Commons from ja.wikipedia"
+            },
+            {
+              "ns": 14,
+              "title": "Category:GFDL-ja"
+            },
+            {
+              "ns": 14,
+              "title": "Category:License migration completed"
+            },
+            {
+              "ns": 14,
+              "title": "Category:Raimon (pattern)"
+            },
+            {
+              "ns": 14,
+              "title": "Category:Tokyo ramen"
+            }
+          ]
+        }
+      },
+      "inputPath": "src/assets/food/incoming/ramen.jpg",
+      "visuallyReviewed": false,
+      "needsVisualReview": true,
+      "selectionMethod": "commons-exact-identity",
+      "sourceSha256": "e7901372c1755e64ba42c5d896efb81dc75d4739fa2da0760461fe18605ec9bd",
+      "localPath": "src/assets/food/catalog/ramen.webp",
+      "width": 800,
+      "height": 600,
+      "sha256": "e2cf0597c73fed5a6bf7e3eecb8d51a896dcb14142fe4cf28ac04d773a0a305d",
+      "changes": "Resized when needed and converted to WebP; presentation cropping varies by card."
     },
     {
       "dishId": "bibimbap",
-      "status": "needs-image",
-      "sourcePageUrl": null,
-      "creator": null,
-      "license": null,
-      "licenseUrl": null,
+      "status": "licensed-local",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Tofu_Bi_Bim_Bap_-_Korpan.jpg",
+      "creator": "Andy Li",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
       "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Bibimbap",
-      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+      "imageDownloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Tofu_Bi_Bim_Bap_-_Korpan.jpg/1280px-Tofu_Bi_Bim_Bap_-_Korpan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "credit": "Own work",
+      "attribution": "",
+      "attributionRequired": "false",
+      "licenseOriginal": "CC0",
+      "selectionEvidence": {
+        "matchedName": "Bi Bim Bap",
+        "matchedCountry": "Korean",
+        "title": "File:Tofu Bi Bim Bap - Korpan.jpg",
+        "description": "Tofu Bi Bim Bap by Korpan"
+      },
+      "selectionScore": 80,
+      "automaticSelection": {
+        "provider": "wikimedia-commons",
+        "query": "\"Bibimbap\"",
+        "target": {
+          "dishId": "bibimbap",
+          "dishName": "Bibimbap",
+          "country": "South Korea",
+          "countryCode": "KR",
+          "expectedImageFilename": "bibimbap.webp",
+          "expectedRuntimePath": "src/assets/food/catalog/bibimbap.webp",
+          "searchQuery": "Bibimbap South Korea food",
+          "alternateNames": [
+            "Bi Bim Bap",
+            "Bi Bim Bop"
+          ],
+          "recommendedSources": [
+            "Wikimedia Commons",
+            "Openverse"
+          ],
+          "sourceSearchUrls": {
+            "commons": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Bibimbap%20South%20Korea%20food",
+            "openverse": "https://openverse.org/search/image?q=Bibimbap%20South%20Korea%20food"
+          },
+          "reason": "No verified local photo; source downloads blocked by sandbox network access.",
+          "visualReviewNote": "Confirm exact dish identity, then record creator and reusable license before approval."
+        },
+        "page": {
+          "pageid": 126626976,
+          "ns": 6,
+          "title": "File:Tofu Bi Bim Bap - Korpan.jpg",
+          "index": 8,
+          "imagerepository": "local",
+          "imageinfo": [
+            {
+              "size": 3532844,
+              "width": 3024,
+              "height": 4032,
+              "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Tofu_Bi_Bim_Bap_-_Korpan.jpg/1280px-Tofu_Bi_Bim_Bap_-_Korpan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+              "thumbwidth": 1200,
+              "thumbheight": 1600,
+              "responsiveUrls": {
+                "2": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Tofu_Bi_Bim_Bap_-_Korpan.jpg/1920px-Tofu_Bi_Bim_Bap_-_Korpan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+              },
+              "thumbattribs": {
+                "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Tofu_Bi_Bim_Bap_-_Korpan.jpg/1280px-Tofu_Bi_Bim_Bap_-_Korpan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+                "decoding": "async",
+                "loading": "lazy",
+                "width": 1200,
+                "height": 1600,
+                "srcset": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Tofu_Bi_Bim_Bap_-_Korpan.jpg/1920px-Tofu_Bi_Bim_Bap_-_Korpan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail 2x"
+              },
+              "url": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Tofu_Bi_Bim_Bap_-_Korpan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+              "descriptionurl": "https://commons.wikimedia.org/wiki/File:Tofu_Bi_Bim_Bap_-_Korpan.jpg",
+              "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=126626976",
+              "extmetadata": {
+                "ObjectName": {
+                  "value": "Tofu Bi Bim Bap - Korpan",
+                  "source": "mediawiki-metadata"
+                },
+                "ImageDescription": {
+                  "value": "Tofu Bi Bim Bap by Korpan",
+                  "source": "commons-desc-page"
+                },
+                "Credit": {
+                  "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+                  "source": "commons-desc-page"
+                },
+                "Artist": {
+                  "value": "<a href=\"//commons.wikimedia.org/wiki/User:Onthewings\" title=\"User:Onthewings\">Andy Li</a>",
+                  "source": "commons-desc-page"
+                },
+                "LicenseShortName": {
+                  "value": "CC0",
+                  "source": "commons-desc-page",
+                  "hidden": ""
+                },
+                "AttributionRequired": {
+                  "value": "false",
+                  "source": "commons-desc-page",
+                  "hidden": ""
+                },
+                "LicenseUrl": {
+                  "value": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+                  "source": "commons-desc-page"
+                },
+                "Restrictions": {
+                  "value": "",
+                  "source": "commons-desc-page",
+                  "hidden": ""
+                }
+              },
+              "mime": "image/jpeg",
+              "mediatype": "BITMAP"
+            }
+          ],
+          "categories": [
+            {
+              "ns": 14,
+              "title": "Category:Bibimbap"
+            },
+            {
+              "ns": 14,
+              "title": "Category:Bibimbap in the United Kingdom"
+            },
+            {
+              "ns": 14,
+              "title": "Category:CC-Zero"
+            },
+            {
+              "ns": 14,
+              "title": "Category:Files with coordinates missing SDC location of creation (50° N, 1° W)"
+            },
+            {
+              "ns": 14,
+              "title": "Category:Korpan Korean Japanese Deli"
+            },
+            {
+              "ns": 14,
+              "title": "Category:Self-published work"
+            }
+          ]
+        }
+      },
+      "inputPath": "src/assets/food/incoming/bibimbap.jpg",
+      "visuallyReviewed": false,
+      "needsVisualReview": true,
+      "selectionMethod": "commons-exact-identity",
+      "sourceSha256": "77f76a635d48d6ed34b167c8dd8e4049c8679d00f5ce1d2a5dde92f966a40ba9",
+      "localPath": "src/assets/food/catalog/bibimbap.webp",
+      "width": 900,
+      "height": 1200,
+      "sha256": "cb125d3a4b64b35ba0c6ddc682106a0e3a96fada6de7a2fb1725e0a2d4987971",
+      "changes": "Resized when needed and converted to WebP; presentation cropping varies by card."
     },
     {
       "dishId": "yakitori",
-      "status": "needs-image",
-      "sourcePageUrl": null,
-      "creator": null,
-      "license": null,
-      "licenseUrl": null,
+      "status": "licensed-local",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Cooking_yakitori.jpg",
+      "creator": "竹麦魚(Searobin)",
+      "license": "CC-BY-SA-3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Yakitori",
-      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+      "imageDownloadUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Cooking_yakitori.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "credit": "Own work",
+      "attribution": "",
+      "attributionRequired": "true",
+      "licenseOriginal": "CC BY-SA 3.0",
+      "selectionEvidence": {
+        "matchedName": "Yakitori",
+        "matchedCountry": "Japan",
+        "title": "File:Cooking yakitori.jpg",
+        "description": "Yakitori being grilled."
+      },
+      "selectionScore": 100,
+      "automaticSelection": {
+        "provider": "wikimedia-commons",
+        "query": "\"Yakitori\" \"Japan\"",
+        "target": {
+          "dishId": "yakitori",
+          "dishName": "Yakitori",
+          "country": "Japan",
+          "countryCode": "JP",
+          "expectedImageFilename": "yakitori.webp",
+          "expectedRuntimePath": "src/assets/food/catalog/yakitori.webp",
+          "searchQuery": "Yakitori Japan food",
+          "alternateNames": [],
+          "recommendedSources": [
+            "Wikimedia Commons",
+            "Openverse"
+          ],
+          "sourceSearchUrls": {
+            "commons": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Yakitori%20Japan%20food",
+            "openverse": "https://openverse.org/search/image?q=Yakitori%20Japan%20food"
+          },
+          "reason": "No verified local photo; source downloads blocked by sandbox network access.",
+          "visualReviewNote": "Confirm exact dish identity, then record creator and reusable license before approval."
+        },
+        "page": {
+          "pageid": 118321,
+          "ns": 6,
+          "title": "File:Cooking yakitori.jpg",
+          "index": 1,
+          "imagerepository": "local",
+          "imageinfo": [
+            {
+              "size": 1257560,
+              "width": 1112,
+              "height": 1590,
+              "thumburl": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Cooking_yakitori.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+              "thumbwidth": 1200,
+              "thumbheight": 1716,
+              "thumbattribs": {
+                "src": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Cooking_yakitori.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+                "decoding": "async",
+                "loading": "lazy",
+                "width": 1200,
+                "height": 1716
+              },
+              "url": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Cooking_yakitori.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+              "descriptionurl": "https://commons.wikimedia.org/wiki/File:Cooking_yakitori.jpg",
+              "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=118321",
+              "extmetadata": {
+                "ObjectName": {
+                  "value": "Cooking yakitori",
+                  "source": "mediawiki-metadata"
+                },
+                "ImageDescription": {
+                  "value": "<a href=\"https://en.wikipedia.org/wiki/Yakitori\" class=\"extiw\" title=\"en:Yakitori\">Yakitori</a> being grilled.",
+                  "source": "commons-desc-page"
+                },
+                "Credit": {
+                  "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+                  "source": "commons-desc-page"
+                },
+                "Artist": {
+                  "value": "<a href=\"//commons.wikimedia.org/wiki/User:%E7%AB%B9%E9%BA%A6%E9%AD%9A(Searobin)\" title=\"User:竹麦魚(Searobin)\">竹麦魚(Searobin)</a>",
+                  "source": "commons-desc-page"
+                },
+                "LicenseShortName": {
+                  "value": "CC BY-SA 3.0",
+                  "source": "commons-desc-page",
+                  "hidden": ""
+                },
+                "AttributionRequired": {
+                  "value": "true",
+                  "source": "commons-desc-page",
+                  "hidden": ""
+                },
+                "LicenseUrl": {
+                  "value": "http://creativecommons.org/licenses/by-sa/3.0/",
+                  "source": "commons-desc-page"
+                },
+                "Restrictions": {
+                  "value": "",
+                  "source": "commons-desc-page",
+                  "hidden": ""
+                }
+              },
+              "mime": "image/jpeg",
+              "mediatype": "BITMAP"
+            }
+          ],
+          "categories": [
+            {
+              "ns": 14,
+              "title": "Category:CC-BY-SA-2.1-JP"
+            },
+            {
+              "ns": 14,
+              "title": "Category:CC-BY-SA-3.0-migrated"
+            },
+            {
+              "ns": 14,
+              "title": "Category:Dirty gloves"
+            },
+            {
+              "ns": 14,
+              "title": "Category:Fingers pinching"
+            },
+            {
+              "ns": 14,
+              "title": "Category:GFDL"
+            },
+            {
+              "ns": 14,
+              "title": "Category:Heat protection"
+            },
+            {
+              "ns": 14,
+              "title": "Category:License migration completed"
+            },
+            {
+              "ns": 14,
+              "title": "Category:People cooking in Japan"
+            },
+            {
+              "ns": 14,
+              "title": "Category:People with gunte in Japan"
+            },
+            {
+              "ns": 14,
+              "title": "Category:Self-published work"
+            },
+            {
+              "ns": 14,
+              "title": "Category:Yakitori"
+            }
+          ]
+        }
+      },
+      "inputPath": "src/assets/food/incoming/yakitori.jpg",
+      "visuallyReviewed": false,
+      "needsVisualReview": true,
+      "selectionMethod": "commons-exact-identity",
+      "sourceSha256": "01dd623bf6c816e94093c0173ac1fbe532580f9c5333b139a1af85ac0844369d",
+      "localPath": "src/assets/food/catalog/yakitori.webp",
+      "width": 840,
+      "height": 1200,
+      "sha256": "9b08c3c2d42d015d8a17dab62258e60d9eb1f411a13d4c2eb47f4e5547d8b35c",
+      "changes": "Resized when needed and converted to WebP; presentation cropping varies by card."
     },
     {
       "dishId": "biryani",
-      "status": "needs-image",
-      "sourcePageUrl": null,
-      "creator": null,
-      "license": null,
-      "licenseUrl": null,
+      "status": "licensed-local",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Dum_Biryani_Plate.jpg",
+      "creator": "Umesh Tongbra",
+      "license": "CC-BY-SA-3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "searchReference": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Biryani",
-      "reason": "No verified local photo; source downloads blocked by sandbox network access."
+      "imageDownloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/38/Dum_Biryani_Plate.jpg/1280px-Dum_Biryani_Plate.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "credit": "I created this work entirely by myself.",
+      "attribution": "​ wikipedia user Honeytgb",
+      "attributionRequired": "true",
+      "licenseOriginal": "CC BY-SA 3.0",
+      "selectionEvidence": {
+        "matchedName": "Biryani",
+        "matchedCountry": "India",
+        "title": "File:Dum Biryani Plate.jpg",
+        "description": "Kachhi Murgh Dum Biryani (plated)"
+      },
+      "selectionScore": 100,
+      "automaticSelection": {
+        "provider": "wikimedia-commons",
+        "query": "\"Biryani\" \"India\"",
+        "target": {
+          "dishId": "biryani",
+          "dishName": "Biryani",
+          "country": "India",
+          "countryCode": "IN",
+          "expectedImageFilename": "biryani.webp",
+          "expectedRuntimePath": "src/assets/food/catalog/biryani.webp",
+          "searchQuery": "Biryani India food",
+          "alternateNames": [],
+          "recommendedSources": [
+            "Wikimedia Commons",
+            "Openverse"
+          ],
+          "sourceSearchUrls": {
+            "commons": "https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=Biryani%20India%20food",
+            "openverse": "https://openverse.org/search/image?q=Biryani%20India%20food"
+          },
+          "reason": "No verified local photo; source downloads blocked by sandbox network access.",
+          "visualReviewNote": "Confirm exact dish identity, then record creator and reusable license before approval."
+        },
+        "page": {
+          "pageid": 10799461,
+          "ns": 6,
+          "title": "File:Dum Biryani Plate.jpg",
+          "index": 1,
+          "imagerepository": "local",
+          "imageinfo": [
+            {
+              "size": 246928,
+              "width": 1600,
+              "height": 1200,
+              "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/38/Dum_Biryani_Plate.jpg/1280px-Dum_Biryani_Plate.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+              "thumbwidth": 1200,
+              "thumbheight": 900,
+              "responsiveUrls": {
+                "2": "https://upload.wikimedia.org/wikipedia/commons/3/38/Dum_Biryani_Plate.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+              },
+              "thumbattribs": {
+                "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/38/Dum_Biryani_Plate.jpg/1280px-Dum_Biryani_Plate.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+                "decoding": "async",
+                "loading": "lazy",
+                "width": 1200,
+                "height": 900,
+                "srcset": "https://upload.wikimedia.org/wikipedia/commons/3/38/Dum_Biryani_Plate.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled 2x"
+              },
+              "url": "https://upload.wikimedia.org/wikipedia/commons/3/38/Dum_Biryani_Plate.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+              "descriptionurl": "https://commons.wikimedia.org/wiki/File:Dum_Biryani_Plate.jpg",
+              "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=10799461",
+              "extmetadata": {
+                "ObjectName": {
+                  "value": "Dum Biryani Plate",
+                  "source": "mediawiki-metadata"
+                },
+                "ImageDescription": {
+                  "value": "Kachhi Murgh Dum Biryani (plated)",
+                  "source": "commons-desc-page"
+                },
+                "Credit": {
+                  "value": "I created this work entirely by myself.",
+                  "source": "commons-desc-page"
+                },
+                "Artist": {
+                  "value": "Umesh Tongbra",
+                  "source": "commons-desc-page"
+                },
+                "LicenseShortName": {
+                  "value": "CC BY-SA 3.0",
+                  "source": "commons-desc-page",
+                  "hidden": ""
+                },
+                "AttributionRequired": {
+                  "value": "true",
+                  "source": "commons-desc-page",
+                  "hidden": ""
+                },
+                "Attribution": {
+                  "value": "​<a href=\"https://en.wikipedia.org/wiki/Main_Page\" class=\"extiw\" title=\"en:Main Page\">wikipedia</a> user <a href=\"https://en.wikipedia.org/wiki/User:Honeytgb\" class=\"extiw\" title=\"en:User:Honeytgb\">Honeytgb</a>",
+                  "source": "commons-desc-page",
+                  "hidden": ""
+                },
+                "LicenseUrl": {
+                  "value": "http://creativecommons.org/licenses/by-sa/3.0/",
+                  "source": "commons-desc-page"
+                },
+                "Restrictions": {
+                  "value": "",
+                  "source": "commons-desc-page",
+                  "hidden": ""
+                }
+              },
+              "mime": "image/jpeg",
+              "mediatype": "BITMAP"
+            }
+          ],
+          "categories": [
+            {
+              "ns": 14,
+              "title": "Category:CC-BY-SA-3.0-migrated"
+            },
+            {
+              "ns": 14,
+              "title": "Category:Chicken biryani"
+            },
+            {
+              "ns": 14,
+              "title": "Category:Dum biryani"
+            },
+            {
+              "ns": 14,
+              "title": "Category:GFDL"
+            },
+            {
+              "ns": 14,
+              "title": "Category:Kutchi cuisine"
+            },
+            {
+              "ns": 14,
+              "title": "Category:License migration completed"
+            },
+            {
+              "ns": 14,
+              "title": "Category:Rice dishes of Hyderabad, India"
+            },
+            {
+              "ns": 14,
+              "title": "Category:Self-published work"
+            },
+            {
+              "ns": 14,
+              "title": "Category:Taken with Canon PowerShot S2 IS"
+            }
+          ]
+        }
+      },
+      "inputPath": "src/assets/food/incoming/biryani.jpg",
+      "visuallyReviewed": false,
+      "needsVisualReview": true,
+      "selectionMethod": "commons-exact-identity",
+      "sourceSha256": "8b928ab71dd464dd7955f8a03ab08ae8d5e91aa1b984e149b6b8b0af92965963",
+      "localPath": "src/assets/food/catalog/biryani.webp",
+      "width": 1200,
+      "height": 900,
+      "sha256": "e51b507a7fff65135480d730a4fb820310472a2db0a250bae518e903891a1a96",
+      "changes": "Resized when needed and converted to WebP; presentation cropping varies by card."
     },
     {
       "dishId": "masala-dosa",

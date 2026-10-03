@@ -14,10 +14,10 @@ import refineArrow from '../assets/icons/rec-refine-arrow.svg'
 // Gaps between the seven row slots measured from the final frame.
 const ROW_GAPS = [13, 16, 16, 15, 16, 16]
 
-/** 02.02 More options — Figma 263:4258, using ranks 4–10 of the current session. */
+/** 02.02 More options — seven additional matches with explicit-region priority. */
 export default function MoreOptions() {
   const navigate = useNavigate()
-  const { ready, results, chips } = useRecommendations()
+  const { ready, moreOptions, crossRegionStart, chips } = useRecommendations()
   const { isFavorite, toggleFavorite } = useFavorites()
 
   if (!ready) {
@@ -48,9 +48,13 @@ export default function MoreOptions() {
       </header>
 
       <section aria-label="More dish matches" className="mx-[22px] mt-[17px] w-[calc(100%-46px)]">
-        {results.slice(3, 10).map((result, index) => (
+        {moreOptions.map((result, index) => (
           <div key={result.dish.id}>
-            {index > 0 && (
+            {index === crossRegionStart ? (
+              <h2 className={`mb-[12px] text-[16px] leading-[20px] font-semibold text-accessible-teal ${index > 0 ? 'mt-[20px]' : ''}`}>
+                Similar dishes from other regions
+              </h2>
+            ) : index > 0 && (
               <div className="relative" style={{ height: ROW_GAPS[index - 1] }}>
                 <img
                   src={recDivider}

@@ -4,10 +4,6 @@ Generated from the canonical image manifest. A search link is never a runtime ph
 
 | Dish ID | Dish | Reason |
 | --- | --- | --- |
-| ramen | Ramen | No verified local photo; source downloads blocked by sandbox network access. |
-| bibimbap | Bibimbap | No verified local photo; source downloads blocked by sandbox network access. |
-| yakitori | Yakitori | No verified local photo; source downloads blocked by sandbox network access. |
-| biryani | Biryani | No verified local photo; source downloads blocked by sandbox network access. |
 | masala-dosa | Masala Dosa | No verified local photo; source downloads blocked by sandbox network access. |
 | mansaf | Mansaf | No verified local photo; source downloads blocked by sandbox network access. |
 | shish-taouk | Shish Taouk | No verified local photo; source downloads blocked by sandbox network access. |

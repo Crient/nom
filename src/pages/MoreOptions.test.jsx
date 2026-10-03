@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom'
 import { useDiscoverySession } from '../context/DiscoverySession'
 import { FavoritesProvider } from '../context/Favorites'
 import { dishes } from '../data/dishes'
-import { recommend } from '../utils/recommendationEngine'
+import { recommend, selectMoreOptions } from '../utils/recommendationEngine'
 import MoreOptions from './MoreOptions'
 
 vi.mock('../context/DiscoverySession', () => ({ useDiscoverySession: vi.fn() }))
@@ -37,7 +37,7 @@ function renderedMatches(html) {
 beforeEach(() => useDiscoverySession.mockReturnValue(PAINTED_SESSION))
 
 describe('More Options', () => {
-  it('renders only ranks 4–10 in deterministic engine order with actual scores', () => {
+  it('renders seven additional regional matches in deterministic order with actual scores', () => {
     const html = renderScreen()
     expect(renderedMatches(html)).toEqual([
       '#4 Kolo Mee, 77% match',
@@ -45,13 +45,14 @@ describe('More Options', () => {
       '#6 Num Banh Chok, 77% match',
       '#7 Mì Quảng, 70% match',
       '#8 Cao Lầu, 70% match',
-      '#9 Reshteh Polow, 70% match',
-      '#10 Rechta, 70% match',
+      '#9 Char Kway Teow, 62% match',
+      '#10 Hokkien Mee, 62% match',
     ])
     expect(html).not.toContain('Lort Cha')
     expect(html).not.toContain('Mie Goreng')
     expect(html).not.toContain('Pancit Canton')
-    expect(renderedMatches(html)).toEqual(recommend(PAINTED_SESSION, dishes).slice(3, 10).map(
+    expect(html).not.toContain('Similar dishes from other regions')
+    expect(renderedMatches(html)).toEqual(selectMoreOptions(PAINTED_SESSION, recommend(PAINTED_SESSION, dishes)).map(
       (result, index) => `#${index + 4} ${result.dish.name}, ${Math.round(result.score)}% match`,
     ))
   })
@@ -60,19 +61,38 @@ describe('More Options', () => {
     const session = { ...PAINTED_SESSION, flavors: ['rich'], adventurousness: 'familiar', region: 'east-asia' }
     useDiscoverySession.mockReturnValue(session)
     const html = renderScreen()
+    expect(renderedMatches(html)).toEqual(selectMoreOptions(session, recommend(session, dishes)).map(
+      (result, index) => `#${index + 4} ${result.dish.name}, ${Math.round(result.score)}% match`,
+    ))
+    const header = html.match(/<header\b[\s\S]*?<\/header>/)[0]
+    expect(header).toContain('Familiar')
+    expect(header).toContain('East Asian')
+    expect(header).toContain('Rich')
+    expect(header).not.toContain('Southeast Asian')
+    expect(header).not.toContain('Spicy')
+  })
+
+  it('labels the cross-region transition after exhausting relevant Latin American candidates', () => {
+    useDiscoverySession.mockReturnValue({ ...PAINTED_SESSION, region: 'latin-america' })
+    const html = renderScreen()
+    expect(renderedMatches(html)).toEqual([
+      '#4 Feijoada, 42% match', '#5 Arroz Chaufa, 42% match', '#6 Ají de Gallina, 42% match',
+      '#7 Jerk Chicken, 42% match', '#8 Mofongo, 42% match', '#9 Lort Cha, 70% match', '#10 Reshteh Polow, 70% match',
+    ])
+    const label = html.indexOf('Similar dishes from other regions')
+    expect(label).toBeGreaterThan(html.indexOf('<article aria-label="#8 Mofongo'))
+    expect(label).toBeLessThan(html.indexOf('<article aria-label="#9 Lort Cha'))
+    expect(html.match(/Similar dishes from other regions/g)).toHaveLength(1)
+  })
+
+  it.each([null, 'surprise-me'])('retains the global seven-result behavior with region %s', region => {
+    const session = { ...PAINTED_SESSION, region }
+    useDiscoverySession.mockReturnValue(session)
+    const html = renderScreen()
     expect(renderedMatches(html)).toEqual(recommend(session, dishes).slice(3, 10).map(
       (result, index) => `#${index + 4} ${result.dish.name}, ${Math.round(result.score)}% match`,
     ))
-    expect(html).toContain('Familiar')
-    expect(html).toContain('East Asian')
-    expect(html).not.toContain('Southeast Asian')
-    expect(html).not.toContain('Spicy')
-  })
-
-  it('accepts a skipped region and omits its session chip', () => {
-    useDiscoverySession.mockReturnValue({ ...PAINTED_SESSION, region: null })
-    const html = renderScreen()
-    expect(renderedMatches(html)).toHaveLength(7)
+    expect(html).not.toContain('Similar dishes from other regions')
     expect(html).not.toContain('Southeast Asian')
     expect(html).not.toContain('data-redirect')
   })

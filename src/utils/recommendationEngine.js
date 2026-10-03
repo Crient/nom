@@ -37,6 +37,24 @@ export const SURPRISE_ME = 'surprise-me'
 export const REGION_PRIORITY_MIN_SCORE = 70
 export const TOP_MATCH_COUNT = 3
 
+// More Options can relax food type while retaining meaningful regional fit.
+// With all dimensions active, region + half the chosen flavors + a one-level
+// adventure fit earns 42. Region + adventure alone earns at most 35.
+export const MORE_OPTIONS_MIN_SCORE = 40
+
+/** Select the additional seven cards without changing Top Matches or scores.
+ * Stable partitioning preserves the engine's score/tie order within each group.
+ */
+export function selectMoreOptions(session, results) {
+  const remaining = results.slice(TOP_MATCH_COUNT)
+  if (!session.region || isSurpriseMe(session.region)) return remaining.slice(0, 7)
+  const relevant = remaining.filter(result => result.score >= MORE_OPTIONS_MIN_SCORE)
+  return [
+    ...relevant.filter(result => result.dish.region === session.region),
+    ...relevant.filter(result => result.dish.region !== session.region),
+  ].slice(0, 7)
+}
+
 const DIMENSIONS = ['foodType', 'flavor', 'adventure', 'region']
 
 export function isSurpriseMe(value) {
@@ -276,7 +294,7 @@ function prioritizeExplicitRegion(results, session) {
   // Food/region points are constant within each tier, so existing scores order
   // its flavor/adventure fit without changing percentages or tie policies.
   // Only a region with fewer than three dishes uses global Top 3 backfill.
-  // More Options consumes the unchanged, deduplicated global tail.
+  // The global tail stays intact; selectMoreOptions groups its additional cards.
   return [...selected, ...results.filter(result => !ids.has(result.dish.id))]
 }
 
