@@ -4,6 +4,8 @@ import SessionChip from './SessionChip'
 import backBackground from '../../assets/icons/detail-back-bg.svg'
 import backIcon from '../../assets/icons/detail-back.svg'
 import Image from '../ui/Image'
+import DishTitle from '../ui/DishTitle'
+import '../../styles/recommendations.css'
 
 export default function DishDetailHero({ result, chips, onBack, backLabel = 'Go back to recommendations' }) {
   const { dish, score } = result
@@ -33,7 +35,7 @@ export default function DishDetailHero({ result, chips, onBack, backLabel = 'Go 
           <MatchBadge percent={Math.round(score)} variant="detail" />
         </div>
         <h1 className="break-words pr-[78px] text-[35px] leading-[35px] font-bold text-strong-neutral">
-          {dish.name} <span className="whitespace-nowrap">{dish.flag}</span>
+          <DishTitle dish={dish} />
         </h1>
         <p className="mt-[13px] max-w-[265px] text-[16.5px] leading-[16px] font-light text-strong-neutral">
           {dish.shortDescription}

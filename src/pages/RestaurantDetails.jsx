@@ -12,6 +12,8 @@ import RestaurantPhoto from '../components/restaurants/RestaurantPhoto'
 import HeartButton from '../components/recommendations/HeartButton'
 import DishTag from '../components/recommendations/DishTag'
 import Image from '../components/ui/Image'
+import DishTitle from '../components/ui/DishTitle'
+import '../styles/recommendations.css'
 import star from '../assets/icons/restaurant-preview-star.svg'
 import directions from '../assets/experience/directions.svg'
 import phone from '../assets/experience/phone.svg'
@@ -71,7 +73,7 @@ export default function RestaurantDetails() {
       }}><Image src={ate} alt="" />I ate here</button>
       <section className="restaurant-about"><h2>About</h2><p>{presentation.about}</p><button type="button" className="restaurant-about-more" onClick={() => preview(`Development preview for ${restaurant.name} in ${restaurant.address}. Searching for ${dish.name}. Menus and availability are examples, and live contact details are not connected.`)}>See more</button></section>
       <section id="popular-menu" className="restaurant-menu"><h2>Popular dishes here</h2><div>{presentation.menu.map(item => <article key={item.name}>
-        <button type="button" aria-label={`View ${item.name} details`} onClick={() => navigate(`/recommendations/${item.dishId}`, { state: { returnTo: location.state?.returnTo } })}><Image src={item.image} alt="" /><strong>{item.name}</strong></button>
+        <button type="button" aria-label={`View ${item.name} details`} onClick={() => navigate(`/recommendations/${item.dishId}`, { state: { returnTo: location.state?.returnTo } })}><Image src={item.image} alt="" /><strong><DishTitle dish={dishes.find(dish => dish.id === item.dishId)} /></strong></button>
       </article>)}</div></section>
     </div>
     <EdgeStateModal kind={modal} message={message} onClose={() => setModal(null)} />

@@ -1,7 +1,15 @@
-import { FOOD_TYPE_LABELS, FLAVOR_LABELS, titleCase } from './sessionChips'
+import { FOOD_TYPE_LABELS, FLAVOR_LABELS, ADVENTURE_CHIP_LABELS } from './sessionChips'
+
+// Display-only descriptors stay distinct from the six scoring flavors.
+export const DESCRIPTOR_LABELS = {
+  savory: 'Savory', smoky: 'Smoky', bold: 'Bold', light: 'Light', sweet: 'Sweet',
+  umami: 'Umami', aromatic: 'Aromatic', herbal: 'Herbal', creamy: 'Creamy', nutty: 'Nutty',
+  charred: 'Charred', fermented: 'Fermented', garlicky: 'Garlicky', buttery: 'Buttery',
+  earthy: 'Earthy', chewy: 'Chewy', tender: 'Tender', juicy: 'Juicy',
+}
 
 function flavorLabel(id) {
-  return FLAVOR_LABELS[id] ?? titleCase(id)
+  return FLAVOR_LABELS[id]
 }
 
 /**
@@ -21,7 +29,7 @@ export function projectDishTags(dish, { matchedPreferenceFlavors = [], limit = 3
     tags.push(label)
   }
 
-  add(FOOD_TYPE_LABELS[dish.foodType] ?? titleCase(dish.foodType))
+  add(FOOD_TYPE_LABELS[dish.foodType])
 
   const preferenceFlavors = dish.preferenceFlavors ?? []
   const matched = matchedPreferenceFlavors.filter((flavor) => preferenceFlavors.includes(flavor))
@@ -32,11 +40,11 @@ export function projectDishTags(dish, { matchedPreferenceFlavors = [], limit = 3
   }
 
   for (const descriptor of dish.descriptors ?? []) {
-    add(titleCase(descriptor))
+    add(DESCRIPTOR_LABELS[descriptor])
   }
 
-  if (showAdventure && tags.length < limit && !seen.has('Adventure')) {
-    tags.push('Adventure')
+  if (showAdventure && tags.length < limit && !seen.has(ADVENTURE_CHIP_LABELS.adventurous)) {
+    tags.push(ADVENTURE_CHIP_LABELS.adventurous)
   }
 
   return tags

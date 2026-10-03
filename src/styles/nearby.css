@@ -3,7 +3,7 @@
 .nearby-dish-photo { width: 110px; height: 110px; flex-shrink: 0; border-radius: 6px; object-fit: cover; object-position: 75% center; }
 .nearby-dish-copy { flex: 1; min-width: 0; }
 .nearby-dish h1 { font-size: 30px; font-weight: 700; line-height: 30px; overflow-wrap: anywhere; }
-.nearby-flag { font-size: 20px; }
+.nearby-dish .dish-title-flag { font-size: 20px; }
 .nearby-dish p { max-width: 195px; font-size: 12px; line-height: 14px; margin-top: 3px; }
 .nearby-match { float: right; margin-top: -6px; margin-left: 8px; margin-bottom: 5px; }
 .nearby-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; clear: both; }

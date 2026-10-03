@@ -165,27 +165,26 @@
 .collectible-favorite { display: flex; align-items: center; justify-content: center; gap: 10px; margin: auto 32px 39px; }
 .collectible-favorite img { width: 24px; height: 24px; }
 
-.edge-modal-overlay { padding-inline: 0; }
-.edge-sheet { max-height: min(90dvh, 620px); overflow-y: auto; padding: 24px 26px 30px; border-radius: 25px; color: var(--color-text-primary); text-align: center; min-height: min(585px, 90dvh); }
-.edge-failed h2, .edge-counted h2 { font-size: 25px; }
-.edge-failed .edge-illustration { margin-top: -9px; }
-.edge-sheet h2 { font-size: 22px; line-height: 27px; font-weight: 700; margin-top: 15px; }
-.edge-close { position: absolute; top: 6px; right: 6px; width: 44px; height: 44px; font-size: 30px; line-height: 30px; color: var(--color-text-secondary); }
-.edge-illustration { width: 150px; height: 150px; object-fit: contain; margin: 13px auto 0; }
-.edge-body { font-size: 17px; line-height: 27px; margin: 18px 8px 0; }
+.edge-modal-overlay { padding: 0; }
+.edge-sheet { display: flex; flex-direction: column; width: min(87vw, 400px); max-height: min(58dvh, 520px); overflow: hidden; padding: 44px 20px 18px; border-radius: 25px; color: var(--color-text-primary); text-align: center; }
+.edge-scroll { min-height: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-gutter: stable; padding: 0 3px 3px; }
+.edge-sheet h2 { font-size: 20px; line-height: 25px; font-weight: 700; margin-top: 10px; }
+.edge-close { position: absolute; z-index: 1; top: 3px; right: 6px; width: 44px; height: 44px; font-size: 30px; line-height: 30px; color: var(--color-text-secondary); }
+.edge-illustration { width: 80px; height: 80px; object-fit: contain; margin: 0 auto; }
+.edge-body { font-size: 15px; line-height: 22px; margin: 12px 0 0; }
 ul.edge-body { text-align: left; padding-left: 19px; list-style: disc; }
-.edge-options { display: grid; gap: 12px; margin-top: 25px; }
-.edge-options > button { min-height: 80px; display: flex; align-items: center; gap: 8px; padding: 8px; box-shadow: var(--shadow-card); border-radius: 10px; text-align: left; border: 1px solid var(--color-text-muted); }
-.edge-options img { width: 75px; height: 60px; object-fit: contain; flex: none; }
-.edge-options strong { display: block; font-size: 17px; line-height: 22px; color: var(--color-accessible-teal); }
-.edge-options small { display: block; margin-top: 4px; font-size: 13px; line-height: 18px; }
-.edge-options > button:nth-child(2) { padding-left: 91px; }
-.edge-counted .edge-illustration { width: 190px; height: 190px; margin-top: -10px; }
-.edge-actions { display: grid; gap: 12px; margin-top: 40px; }
-.edge-actions button, .edge-confirm { width: 100%; min-height: 80px; border-radius: 15px; font-size: 23px; line-height: 27px; }
-.edge-confirm { margin-top: 34px; }
+.edge-footer { flex: none; margin-top: 15px; }
+.edge-options { display: grid; gap: 10px; }
+.edge-options.edge-footer { flex-shrink: 1; min-height: 62px; overflow-y: auto; overscroll-behavior: contain; }
+.edge-options > button { min-height: 62px; display: flex; align-items: center; gap: 8px; padding: 8px; box-shadow: var(--shadow-card); border-radius: 10px; text-align: left; border: 1px solid var(--color-text-muted); }
+.edge-options img { width: 44px; height: 44px; object-fit: contain; flex: none; }
+.edge-options strong { display: block; font-size: 15px; line-height: 20px; color: var(--color-accessible-teal); }
+.edge-options small { display: block; margin-top: 3px; font-size: 12px; line-height: 17px; }
+.edge-options > button:nth-child(2) { padding-left: 60px; }
+.edge-counted .edge-illustration { width: 100px; height: 100px; }
+.edge-actions { display: grid; gap: 10px; }
+.edge-actions button, .edge-confirm { width: 100%; min-height: 52px; padding: 10px 12px; border-radius: 15px; font-size: 17px; line-height: 22px; }
 .edge-feedback .flow-demo { margin-top: 10px; }
-.edge-preview { min-height: 250px; }
 @media (max-width: 390px) {
   .flow-title h1 { font-size: 26px; }
   .flow-title p { font-size: 18px; }
@@ -201,6 +200,6 @@ ul.edge-body { text-align: left; padding-left: 19px; list-style: disc; }
   .collectible-inspiration { margin-inline: 18px; }
   .collectible-inspiration p { font-size: 15px; }
   .edge-sheet { padding-inline: 17px; }
-  .edge-body { font-size: 15px; line-height: 24px; }
+  .edge-body { font-size: 15px; line-height: 22px; }
 }
 @media (prefers-reduced-motion: reduce) { .box-animated { animation: none; } }

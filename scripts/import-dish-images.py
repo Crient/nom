@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
-"""Import only visually approved photos, optimize locally, and generate ID maps.
+"""Import reviewed or conservatively metadata-matched photos and generate ID maps.
 
-Never selects a search result automatically, changes workbook/catalog data, or
-overwrites Nom's ten existing photos. Default mode is offline map/report generation.
+Selection belongs to the separate external fetcher; this importer validates its
+recorded identity evidence or a manual visual review. It never changes catalog
+data or overwrites the ten original photos. Default mode generates maps offline.
 """
 import argparse
 import hashlib
 import json
 from pathlib import Path
 import shutil
+import runpy
 import subprocess
 import tempfile
 from urllib.parse import urlparse
@@ -46,8 +48,15 @@ def dimensions(path):
 
 
 def check_source(entry):
-    if not entry.get('visuallyReviewed') or entry.get('license') not in LICENSES:
-        raise ValueError(f"{entry['dishId']}: visual review and a reusable license are required")
+    if entry.get('license') not in LICENSES:
+        raise ValueError(f"{entry['dishId']}: a reusable license is required")
+    if not entry.get('visuallyReviewed'):
+        if entry.get('selectionMethod') != 'commons-exact-identity':
+            raise ValueError(f"{entry['dishId']}: visual review or explicit exact-identity metadata matching is required")
+        canonical = next((dish for dish in read_json(RECORDS) if dish['id'] == entry['dishId']), None)
+        if canonical is None:
+            raise ValueError('Unknown canonical dish')
+        runpy.run_path(str(ROOT / 'scripts/commons_images.py'))['validate_automatic_selection'](entry, canonical)
     for field in ['sourcePageUrl', 'creator', 'licenseUrl']:
         if not isinstance(entry.get(field), str) or not entry[field].strip():
             raise ValueError(f"{entry['dishId']}: missing {field}")
@@ -135,7 +144,7 @@ def main():
     lines += ['export const licensedDishImages = {'] + [f"  {json.dumps(entry['dishId'])}: photo{index}," for index, entry in enumerate(licensed)] + ['}', 'export const licensedImageDimensions = {']
     lines += [f"  [photo{index}]: {{ width: {entry['width']}, height: {entry['height']} }}," for index, entry in enumerate(licensed)] + ['}', '']
     write(ROOT / 'src/data/dishImageAssets.js', '\n'.join(lines))
-    credits = [{key: entry.get(key) for key in ['dishId', 'status', 'sourcePageUrl', 'creator', 'license', 'licenseUrl', 'changes']} for entry in ready]
+    credits = [{key: entry.get(key) for key in ['dishId', 'status', 'sourcePageUrl', 'creator', 'license', 'licenseUrl', 'changes', 'credit', 'attribution', 'attributionRequired', 'selectionMethod', 'needsVisualReview']} for entry in ready]
     write(ROOT / 'src/data/dishImageCredits.json', credits)
     missing = [{'dishId': entry['dishId'], 'name': records[index]['name'], 'reason': entry.get('reason', 'Approved candidate still needs successful local import')} for index, entry in enumerate(entries) if entry['status'] not in {'existing-local', 'licensed-local'}]
     write(ROOT / 'catalog/images/coverage-report.json', {'total': 201, 'realBefore': 10, 'realAfter': len(ready), 'remainingPlaceholders': len(missing), 'missing': missing})

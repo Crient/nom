@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import { describe, expect, it } from 'vitest'
 import { dishes } from '../data/dishes'
 import taxonomy from '../data/catalog/taxonomy.json'
-import { recommend, scoreDish } from './recommendationEngine'
+import { recommend, scoreDish, REGION_PRIORITY_MIN_SCORE } from './recommendationEngine'
 
 const levels = { familiar: 1, different: 2, adventurous: 3 }
 const regions = [...taxonomy.regions, null, 'surprise-me']
@@ -25,13 +25,23 @@ describe('201-dish recommendation compatibility', () => {
       assert.equal(new Set(results.map(result => result.dish.id)).size, 201)
       assert.deepEqual(fingerprint(recommend(session, dishes)), fingerprint(results))
 
+      const explicitRegion = region && region !== 'surprise-me'
+      const regional = results.filter(result => result.dish.region === region)
+      const tierOneCount = explicitRegion && foodType !== 'anything' ? Math.min(3, regional.filter(result => result.dish.foodType === foodType).length) : 0
+      const promotedCount = explicitRegion ? Math.min(3, foodType === 'anything' ? regional.filter(result => result.score >= REGION_PRIORITY_MIN_SCORE).length : regional.length) : 0
+      assert.ok(results.slice(0, promotedCount).every(result => result.dish.region === region))
+      assert.ok(results.slice(0, tierOneCount).every(result => result.dish.foodType === foodType))
+      if (foodType === 'anything') assert.ok(results.slice(0, promotedCount).every(result => result.score >= REGION_PRIORITY_MIN_SCORE))
+
       for (let i = 0; i < results.length; i++) {
         const result = results[i]
         const dish = result.dish
         assert.equal(dish, dishes[indexById.get(dish.id)])
         assert.ok(Number.isFinite(result.score) && result.score >= 0 && result.score <= 100 + 1e-10)
         const previous = results[i - 1]
-        if (previous) {
+        // Scores/ties remain ordered within each candidate tier and the global
+        // tail; intentional tier/promotion boundaries need not descend by score.
+        if (previous && i !== promotedCount && i !== tierOneCount) {
           assert.ok(previous.score >= result.score)
           if (previous.score === result.score && region !== 'surprise-me' && adventurousness !== 'surprise-me') {
             assert.ok(indexById.get(previous.dish.id) < indexById.get(dish.id))

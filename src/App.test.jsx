@@ -33,6 +33,29 @@ async function choosePaintedSession() {
 }
 
 describe('Nom stabilization', () => {
+  it('uses the engine’s region-priority ranking across Top Matches and More Options without changing scores', async () => {
+    await mount('/discover/food-type')
+    await click('Grilled/Protein'); await click('Continue'); await click('Comforting'); await click('Continue')
+    await click('Try Something DifferentA little outside my usual picks'); await click('Continue')
+    await click('Latin AmericanMexico • Colombia • Peru'); await click('Continue')
+    expect([...document.querySelectorAll('article h2')].map(element => element.textContent.trim())).toEqual(['Ají de Gallina 🇵🇪', 'Ceviche 🇵🇪', 'Lomo Saltado 🇵🇪'])
+    expect(document.querySelector('article:nth-of-type(2)').getAttribute('aria-label')).toBe('#2 Ceviche, 70% match')
+    await click('See more options')
+    expect(document.querySelector('article').getAttribute('aria-label')).toBe('#4 Yakitori, 77% match')
+    expect(document.querySelectorAll('article')).toHaveLength(7)
+  })
+
+  it('keeps Latin America noodle candidates ahead of global matches despite their lower scores', async () => {
+    await choosePaintedSession()
+    await click('Adjust preferences')
+    await click('Continue'); await click('Continue'); await click('Continue')
+    await click('Latin AmericanMexico • Colombia • Peru'); await click('Continue')
+    expect([...document.querySelectorAll('article h2')].map(element => element.textContent.trim())).toEqual(['Sopa de Fideo 🇲🇽', 'Tallarines Verdes 🇵🇪', 'Locro 🇦🇷'])
+    expect(document.querySelector('article:nth-of-type(2)').getAttribute('aria-label')).toBe('#2 Tallarines Verdes, 62% match')
+    await click('See more options')
+    expect(document.querySelector('article').getAttribute('aria-label')).toBe('#4 Lort Cha, 70% match')
+  })
+
   it('redirects unknown URLs to Home rather than an empty screen', async () => {
     await mount('/not-a-route')
     expect(window.location.pathname).toBe('/home')

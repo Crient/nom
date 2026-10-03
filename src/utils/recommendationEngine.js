@@ -32,6 +32,11 @@ export const ADVENTURE_FIT = {
 
 export const SURPRISE_ME = 'surprise-me'
 
+// Retain the previous relevance rule for Anything sessions only. Explicit
+// food-type + region sessions use candidate tiers, not a score threshold.
+export const REGION_PRIORITY_MIN_SCORE = 70
+export const TOP_MATCH_COUNT = 3
+
 const DIMENSIONS = ['foodType', 'flavor', 'adventure', 'region']
 
 export function isSurpriseMe(value) {
@@ -257,6 +262,24 @@ function applySurprisePolicies(results, session, index) {
   return ranked
 }
 
+function prioritizeExplicitRegion(results, session) {
+  if (!session.region || isSurpriseMe(session.region)) return results
+  const regional = results.filter(result => result.dish.region === session.region)
+  const selected = session.foodType === 'anything'
+    ? regional.filter(result => result.score >= REGION_PRIORITY_MIN_SCORE).slice(0, TOP_MATCH_COUNT)
+    : [
+      ...regional.filter(result => result.dish.foodType === session.foodType),
+      ...regional.filter(result => result.dish.foodType !== session.foodType),
+    ].slice(0, TOP_MATCH_COUNT)
+  if (!selected.length) return results
+  const ids = new Set(selected.map(result => result.dish.id))
+  // Food/region points are constant within each tier, so existing scores order
+  // its flavor/adventure fit without changing percentages or tie policies.
+  // Only a region with fewer than three dishes uses global Top 3 backfill.
+  // More Options consumes the unchanged, deduplicated global tail.
+  return [...selected, ...results.filter(result => !ids.has(result.dish.id))]
+}
+
 /**
  * Rank `catalog` for `session` without mutating either.
  */
@@ -266,5 +289,5 @@ export function recommend(session, catalog) {
   const scored = catalog.map((dish) => scoreDish(session, dish, weights))
   const ranked = sortByScore(scored, index)
 
-  return applySurprisePolicies(ranked, session, index)
+  return prioritizeExplicitRegion(applySurprisePolicies(ranked, session, index), session)
 }

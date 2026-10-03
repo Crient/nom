@@ -5,6 +5,11 @@ dist-ssr
 .DS_Store
 .vite
 
+# External photo acquisition cache and process lock; optimized assets stay tracked.
+src/assets/food/incoming/
+catalog/images/.fetch.lock/
+scripts/__pycache__/
+
 # Environment — Supabase keys will live here
 .env
 .env.*
