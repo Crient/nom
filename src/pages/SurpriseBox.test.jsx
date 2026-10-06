@@ -64,8 +64,8 @@ describe('Mystery Box canonical reward sequence', () => {
       expect(scene.dataset.stage).toBe(stage === 'settle' ? 'settled' : stage)
     }
     expect(saved().openedBoxes).toHaveLength(1)
-    expect(document.querySelectorAll('.box-sparkles i')).toHaveLength(4)
-    expect(document.querySelector('.box-halo')).toBeNull()
+    expect(document.querySelectorAll('.box-sparkles i')).toHaveLength(6)
+    expect(document.querySelectorAll('.box-burst i')).toHaveLength(1)
     expect(document.querySelector('[role="progressbar"] span').style.width).toBe('')
   })
   it('reuses its fixed scene through isolated preview phases without changing saved rewards or navigating', async () => {

@@ -8,7 +8,7 @@ import searchIcon from '../../assets/icons/search.svg'
 export default function SearchField({ placeholder, className, action, ...props }) {
   return (
     <div className={cn('bg-surface px-[18.778px] py-[14.084px]', className)}>
-      <div className={cn('flex w-full items-center gap-[9.389px] rounded-full bg-field pl-[18.778px]', action ? 'py-[3.736px] pr-[11.736px]' : 'py-[11.736px] pr-[56.334px]')}>
+      <div className={cn('nom-search-pill flex w-full items-center gap-[9.389px] rounded-full bg-field pl-[18.778px]', action ? 'py-[3.736px] pr-[11.736px]' : 'py-[11.736px] pr-[56.334px]')}>
         <img src={searchIcon} alt="" className="size-[28.167px] max-w-none shrink-0" />
         <input
           type="search"

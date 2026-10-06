@@ -9,11 +9,17 @@ export function saveRewardSoundPreference(enabled) {
 // Original synthesized one-shots; no sampled or third-party game audio.
 // frequency, offset seconds, duration seconds, peak gain, waveform, end frequency
 export const REWARD_SOUND_PROFILES = {
-  common: [[1174.66, 0, .6, .035, 'triangle']],
-  rare: [[1318.51, 0, .55, .035, 'triangle'], [1760, .18, .6, .025, 'triangle']],
-  epic: [[196, 0, .45, .05, 'sine', 98], [1568, .12, .7, .025, 'triangle'], [2093, .3, .75, .018, 'triangle']],
-  legendary: [[783.99, 0, .5, .018, 'triangle'], [1046.5, .16, .55, .023, 'triangle'],
-    [1318.51, .32, .65, .028, 'triangle'], [1568, .48, .9, .033, 'triangle'], [220, .68, .55, .05, 'sine', 110]],
+  // Warm impact + two-note glass ping.
+  common: [[330, 0, .18, .025, 'sine', 165], [1174.66, .02, .36, .028, 'triangle'], [1568, .13, .42, .014, 'sine']],
+  // Brighter rising three-note answer with a resonant low transient.
+  rare: [[220, 0, .26, .035, 'sine', 110], [1318.51, .02, .44, .028, 'triangle'], [1568, .16, .5, .024, 'triangle'], [2093, .32, .6, .015, 'sine']],
+  // Rounded bass drop under an ascending, layered crystal chord.
+  epic: [[196, 0, .45, .045, 'sine', 98], [783.99, .04, .6, .02, 'sine'], [1568, .12, .65, .026, 'triangle'],
+    [2093, .28, .7, .02, 'triangle'], [2637, .45, .75, .012, 'sine']],
+  // Broad low impact, major ascent and two soft high harmonic tails.
+  legendary: [[164.81, 0, .65, .05, 'sine', 82.4], [523.25, .04, .8, .022, 'sine'], [783.99, .08, .6, .022, 'triangle'],
+    [1046.5, .22, .7, .025, 'triangle'], [1318.51, .38, .8, .025, 'triangle'], [1568, .54, .95, .026, 'triangle'],
+    [2093, .68, 1.05, .014, 'sine'], [3136, .82, .9, .008, 'sine']],
 }
 
 /** Call play only from an explicit Open interaction. All boxes share the mute preference. */

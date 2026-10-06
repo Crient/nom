@@ -26,7 +26,7 @@ export default function MoreOptions() {
 
   return (
     <div className="min-h-[1205px] w-full bg-surface">
-      <header className="relative min-h-[271px] rounded-b-[25px] border border-strong-neutral/15 bg-surface-muted shadow-panel">
+      <header className="relative min-h-[calc(var(--nom-header-inset)+208px)] rounded-b-[25px] border border-strong-neutral/15 bg-surface-muted shadow-panel">
         <StatusBar className="bg-transparent" />
         <RecommendationHeader title="More Options" onBack={() => navigate('/recommendations')} />
         <p className="px-[17px] pt-[71px] text-body-tight text-strong-neutral">

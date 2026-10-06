@@ -43,7 +43,7 @@ export default function ListOption({
             className="discovery-adventure-art shrink-0 object-cover"
           />
 
-          <div className="min-w-0 flex-1 flex flex-col justify-center gap-[2.795px] py-[11.179px] pr-[11.179px] text-text-primary">
+          <div className="discovery-list-copy min-w-0 flex-1 flex flex-col justify-center gap-[2.795px] pr-[11.179px] text-text-primary">
             <p className="text-[16.903px] leading-[22.357px] font-semibold [text-shadow:0_2.113px_2.113px_rgb(0_0_0/0.25)]">
               {title}
             </p>

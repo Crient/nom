@@ -24,7 +24,7 @@ export default function RegionCard({
       aria-pressed={selected}
       onClick={onSelect}
       className={cn(
-        'relative flex min-h-[125px] py-[4px] min-w-0 w-full flex-col items-center justify-center gap-[2px] rounded-md',
+        'discovery-region-card relative flex min-h-[125px] py-[4px] min-w-0 w-full flex-col items-center justify-center gap-[2px] rounded-md',
         selected ? 'bg-soft-teal-2' : 'bg-surface shadow-card',
       )}
     >
@@ -35,7 +35,7 @@ export default function RegionCard({
         )}
       />
 
-      <span className="relative size-[80px] shrink-0 overflow-hidden">
+      <span className="discovery-region-art relative size-[80px] shrink-0 overflow-hidden">
         <Image
           src={image}
           alt=""
@@ -45,18 +45,18 @@ export default function RegionCard({
       </span>
 
       <span
-        className="font-semibold tracking-tile whitespace-nowrap text-text-primary"
+        className="discovery-region-title font-semibold tracking-tile whitespace-nowrap text-text-primary"
         style={{ fontSize: titleSize ?? 18, lineHeight: '22px' }}
       >
         {label}
       </span>
-      <span className="px-[3px] text-center text-[12px] leading-[16px] font-light tracking-tile text-text-primary">
+      <span className="discovery-region-subtitle px-[3px] text-center text-[12px] leading-[16px] font-light tracking-tile text-text-primary">
         {subtitle}
       </span>
 
       {selected && (
         <span
-          className="absolute size-[23.077px] rounded-full bg-alt-teal"
+          className="discovery-region-check absolute size-[23.077px] rounded-full bg-alt-teal"
           style={{ right: 7.323, top: CHECKBOX.top }}
         >
           <img

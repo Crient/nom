@@ -24,7 +24,7 @@ export default function DishDetailHero({ result, chips, onBack, backLabel = 'Go 
         type="button"
         onClick={onBack}
         aria-label={backLabel}
-        className="absolute top-[63.5px] left-[12.5px] z-20 size-[44px]"
+        className="dish-hero-back absolute left-[12.5px] z-20 size-[44px]"
       >
         <img src={backBackground} alt="" className="absolute top-[4.5px] left-[4.5px] max-w-none" />
         <img src={backIcon} alt="" className="absolute top-[12px] left-[15.5px] max-w-none rotate-180" />

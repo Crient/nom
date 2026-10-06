@@ -1,12 +1,14 @@
 // @vitest-environment happy-dom
 import { createRoot } from 'react-dom/client'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+vi.hoisted(() => { vi.stubEnv('VITE_ENABLE_REWARD_QA', 'true') })
 import App from '../App'
 import { actAndLoadRoutes as act } from '../test/routeAct'
 import { STORAGE_KEYS, writeLocalState } from '../data/localPersistence'
 import { createExperienceState, experienceReducer } from '../data/experienceState'
 import { serializeExperience } from '../data/persistedState'
 import { BOX_REVEAL_TIMING } from './SurpriseBox'
+import { rewardRevealTiming } from '../utils/rewardPresentation'
 
 let root
 beforeEach(() => {
@@ -41,7 +43,7 @@ describe('local reward playground', () => {
     await click('Replay last reward animation')
     expect(document.querySelector('.box-closed')).toBeTruthy()
     await click('Trigger rare reward'); await click('Open Mystery Box')
-    await act(() => vi.advanceTimersByTimeAsync(BOX_REVEAL_TIMING.settle))
+    await act(() => vi.advanceTimersByTimeAsync(rewardRevealTiming('rare').settle))
     expect(document.querySelector('.box-reward h2').textContent).toBe('FENN')
     expect(document.querySelector('.box-reward .rarity-badge').textContent).toBe('Rare')
     await click('Reset test reward state')

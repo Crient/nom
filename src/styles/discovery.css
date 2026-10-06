@@ -1,22 +1,42 @@
-/* Keep the reference rows and artwork, while questions and CTAs follow content. */
-.discovery-page { position: relative; display: flex; flex-direction: column; width: 100%; min-height: max(956px,100svh); background: var(--color-surface); padding-bottom: max(17px,env(safe-area-inset-bottom,0px)); }
-.discovery-header { position: relative; flex: none; height: 103px; }
-.discovery-question { margin: 3px 28px 0; width: min(308px,calc(100% - 56px)); }
-.discovery-support { margin: 8px 29px 0; line-height: 20px; }
-.discovery-options { display: grid; gap: 1px; margin-top: 28px; }
-.discovery-option-row { min-height: 144.538px; margin-inline: 6px; padding-block: 9px; }
+/* A dynamic viewport frame; intrinsic content can grow for larger text. */
+.discovery-page { --discovery-card-height: clamp(84px,13dvh,125px); --discovery-art-height: clamp(40px,7dvh,64px); position: relative; display: flex; flex-direction: column; width: 100%; min-height: 100dvh; background: var(--color-surface); padding-bottom: max(12px,env(safe-area-inset-bottom,0px)); }
+.discovery-header { position: relative; flex: none; height: clamp(60px,8dvh,88px); }
+.discovery-header > img { top: auto; bottom: 0; height: clamp(16px,2.4dvh,24px); }
+.discovery-question { flex: none; margin: clamp(4px,1dvh,12px) 28px 0; width: min(308px,calc(100% - 56px)); font-size: clamp(26px,3.5dvh,30px); line-height: 1.15; }
+.discovery-support { flex: none; margin: 6px 29px 0; line-height: 18px; }
+.discovery-options { display: grid; gap: clamp(4px,1dvh,10px); margin-top: clamp(8px,1.5dvh,20px); margin-bottom: clamp(8px,1.5dvh,20px); }
+.discovery-option-row { margin-inline: 6px; }
 .discovery-option-row > div { gap: clamp(14px,6.8cqw,30.27px) !important; }
+.discovery-option-card { min-height: var(--discovery-card-height); padding-block: 4px; gap: 5px; }
+.discovery-option-art { height: var(--discovery-art-height); width: calc(var(--discovery-art-height) * var(--option-art-ratio)); }
 .discovery-region .discovery-option-row > div { gap: 10px !important; }
-.discovery-list-option { min-height: 115px; margin-inline: 6px 7px; padding-block: 6px; }
-.discovery-adventure-art { width: clamp(80px,23cqw,101px); height: 101px; margin-left: 6.8%; }
-.discovery-surprise-region { margin-inline: 9px 6px; }
+.discovery-list-option { margin-inline: 6px 7px; }
+.discovery-list-option > div { min-height: 0; }
+.discovery-list-option button { min-height: clamp(64px,9.5dvh,100px); }
+.discovery-list-copy { padding-block: 4px; }
+.discovery-adventure-art { width: clamp(48px,8dvh,80px); height: clamp(48px,8dvh,80px); margin-left: 6.8%; }
+.discovery-surprise-region { margin-inline: 9px 6px; min-height: 64px; padding-bottom: 0; }
+.discovery-surprise-region > div { min-height: 0; }
+.surprise-region-button { min-height: clamp(56px,9dvh,92px); }
 .surprise-region-indicator-slot { position: absolute; inset: 0 0 0 auto; width: 38px; pointer-events: none; }
-.discovery-cta { flex: none; width: calc(100% - 54px); min-height: 80px; margin: auto 27px 0; padding-block: 16px; line-height: 24px; }
+.discovery-cta { flex: none; width: calc(100% - 54px); height: auto; min-height: clamp(52px,8dvh,80px); margin: auto 27px 0; padding-block: 12px; line-height: 24px; }
 .discovery-options + .discovery-cta { margin-top: auto; }
-.discovery-options { margin-bottom: 56px; }
-.discovery-region { min-height: max(1150px,100svh); }
-.discovery-region .discovery-options { margin-top: 25px; margin-bottom: 42px; }
-.discovery-region .discovery-cta { min-height: 63px; }
+/* Four two-column rows use compact art and copy on phones. Country examples
+   and selected check space remain visible, at readable sizes. */
+@media (max-height: 1000px) {
+  .discovery-region .discovery-question { width: calc(100% - 56px); }
+  .discovery-region .discovery-question br { display: none; }
+  .discovery-region .discovery-options { gap: 4px; margin-top: 8px; margin-bottom: 8px; }
+  .discovery-region .discovery-option-row > div { padding-inline: 12px; }
+  .discovery-region-card { display: grid; grid-template-columns: 24px minmax(0,1fr); align-items: center; min-height: 64px; gap: 2px 4px; padding: 4px 5px; }
+  .discovery-region-art { grid-column: 1; grid-row: 1; width: 24px; height: 24px; }
+  .discovery-region-title { grid-column: 2; align-self: end; font-size: 16px !important; line-height: 20px !important; white-space: normal; text-align: left; }
+  .discovery-region-subtitle { grid-column: 1/3; align-self: start; padding: 0; text-align: left; line-height: 14px; }
+  .discovery-region-title { padding-right: 16px; }
+  .discovery-region-card > .discovery-region-check { width: 16px; height: 16px; right: 3px !important; top: 3px !important; }
+  .discovery-region-check > img { inset: 3px; width: 10px; height: 10px; }
+  .surprise-region-button > span:first-child { height: 52px; }
+}
 @media (max-width: 390px) {
   .discovery-question { margin-inline: 24px; width: min(308px,calc(100% - 48px)); }
   .discovery-support { margin-inline: 24px; }

@@ -31,7 +31,7 @@ export default function OptionCard({
       aria-pressed={selected}
       onClick={onSelect}
       className={cn(
-        'relative flex min-h-[125px] py-[8px] min-w-0 w-full flex-col items-center justify-center gap-[8.075px] rounded-md',
+        'discovery-option-card relative flex min-w-0 w-full flex-col items-center justify-center rounded-md',
         selected && 'bg-soft-teal-2',
         raised && 'shadow-card',
       )}
@@ -45,8 +45,8 @@ export default function OptionCard({
 
       <span className={cn('shrink-0', flipped && '-scale-y-100 rotate-180')}>
         <span
-          className="relative block overflow-hidden"
-          style={{ width: imageBox.width, height: imageBox.height }}
+          className="discovery-option-art relative block overflow-hidden"
+          style={{ '--option-art-ratio': imageBox.width / imageBox.height }}
         >
           <Image
             src={image}

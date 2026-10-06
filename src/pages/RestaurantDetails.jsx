@@ -63,7 +63,7 @@ export default function RestaurantDetails() {
   ]
   return <div className="flow-page restaurant-details-page">
     <FlowHeader onBack={back} onInfo={() => preview('Restaurant details, menus, ratings, and opening hours are Figma development examples.')}>
-      <HeartButton dishName={restaurant.name} liked={isRestaurantFavorite(restaurant.id)} onToggle={() => toggleRestaurantFavorite(restaurant.id)} size={37} className="top-[64px] right-[49px]" />
+      <HeartButton dishName={restaurant.name} liked={isRestaurantFavorite(restaurant.id)} onToggle={() => toggleRestaurantFavorite(restaurant.id)} size={37} className="flow-header-favorite right-[49px]" />
     </FlowHeader>
     <RestaurantPhoto src={presentation.image} alt={restaurant.name} cropped={presentation.imageCrop} />
     <div className="restaurant-details-copy">

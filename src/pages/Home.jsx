@@ -94,7 +94,7 @@ export default function Home() {
 
       <div className="mt-[11.53px] flex items-center justify-between pl-[17.75px] pr-[24px]">
         <h2 className="text-section-title text-text-primary">Your Progress</h2>
-        <Link to="/progress" className="flex min-h-[44px] items-center text-link tracking-meta text-accessible-teal">View All Progress <img src={chevronSm} alt="" className="inline h-[10.665px] w-[6.301px]" /></Link>
+        <Link to="/progress" className="home-section-link text-link tracking-meta text-accessible-teal">View All Progress <img src={chevronSm} alt="" /></Link>
       </div>
       <div className="mx-[23.96px] mt-[5.03px] flex flex-col gap-[8.88px]">
         {collectionCountries.slice(0, 3).map(country => <Link key={country.id} to={`/collections/${country.id}`} state={{ returnTo: '/home' }} aria-label={`View ${country.name} progress`}><CountryProgressCard {...countryProgressPresentation(state, country)} /></Link>)}
@@ -102,7 +102,7 @@ export default function Home() {
 
       <div className="mt-[15.1px] flex items-center justify-between px-[23.07px]">
         <h2 className="text-section-title font-semibold text-text-primary">Recently Explored</h2>
-        <Link to="/history" className="flex min-h-[44px] items-center text-link tracking-meta text-accessible-teal">See all <img src={chevronSm} alt="" className="inline h-[10.665px] w-[6.301px]" /></Link>
+        <Link to="/history" className="home-section-link text-link tracking-meta text-accessible-teal">See all <img src={chevronSm} alt="" /></Link>
       </div>
       <section aria-label="Recently explored previews" tabIndex={0} className="flex gap-[9.316px] overflow-x-auto px-[9.76px] pb-[6px]">
         {recent.length ? recent.map(entry => <ActivityCard key={entry.id} entry={entry} returnTo="/home" compact />) : <Link className="hub-action px-4 text-body-sm" to="/explore">Explore a dish to start your history.</Link>}

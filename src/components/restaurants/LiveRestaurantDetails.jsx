@@ -43,7 +43,7 @@ export default function LiveRestaurantDetails({ restaurant, dish, back, returnSt
   return <div className="flow-page restaurant-details-page restaurant-live-page">
     <FlowHeader onBack={back} onInfo={() => setInfo(value => !value)}>
       <HeartButton dishName={venue.name} liked={favorite.liked}
-        onToggle={favorite.toggle} size={37} className="top-[64px] right-[49px]" />
+        onToggle={favorite.toggle} size={37} className="flow-header-favorite right-[49px]" />
     </FlowHeader>
     {info && <p className="restaurant-details-disclosure" role="status">Restaurant information comes from Google Maps. Search matches suggest places to try; menu availability is not confirmed. Distances are approximate.</p>}
     <PlacePhoto restaurant={venue} eager hero />

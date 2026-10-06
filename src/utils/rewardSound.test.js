@@ -19,12 +19,12 @@ describe('optional original reward chime', () => {
   it('schedules a quiet short chime after an enabled Open interaction', () => {
     expect(sound.play({ enabled: true, delayMs: 1080, rarity: 'rare' })).toBe(true)
     expect(Audio).toHaveBeenCalledTimes(1); expect(context.resume).toHaveBeenCalledTimes(1)
-    expect(nodes).toHaveLength(2)
+    expect(nodes).toHaveLength(REWARD_SOUND_PROFILES.rare.length)
     expect(nodes[0].start).toHaveBeenCalledWith(11.08)
-    expect(nodes.at(-1).stop.mock.calls[0][0]).toBeLessThan(12)
+    expect(nodes.at(-1).stop.mock.calls[0][0]).toBeLessThan(12.1)
     expect(context.createGain.mock.results[0].value.gain.value).toBe(.3)
   })
-  it.each([['common', .5, .7], ['rare', .7, .9], ['epic', .9, 1.2], ['legendary', 1.2, 1.6]])('schedules the original %s profile within its duration range', (rarity, min, max) => {
+  it.each([['common', .5, .7], ['rare', .9, 1], ['epic', 1.2, 1.3], ['legendary', 1.7, 1.8]])('schedules the original %s profile within its duration range', (rarity, min, max) => {
     sound.play({ enabled: true, delayMs: 0, rarity })
     const finish = Math.max(...nodes.map(node => node.stop.mock.calls[0][0])) - context.currentTime
     expect(finish).toBeGreaterThanOrEqual(min); expect(finish).toBeLessThanOrEqual(max)
@@ -32,6 +32,15 @@ describe('optional original reward chime', () => {
     expect(nodes.map(node => node.start.mock.calls[0][0] - 10)).toEqual(expect.arrayContaining(REWARD_SOUND_PROFILES[rarity].map(note => expect.closeTo(note[1], 5))))
     vi.advanceTimersByTime(2000)
     expect(nodes.every(node => node.disconnect.mock.calls.length === 1)).toBe(true)
+  })
+  it('keeps every richer profile quiet even at the worst-case combined peak', () => {
+    const tails = []
+    for (const profile of Object.values(REWARD_SOUND_PROFILES)) {
+      expect(profile.every(([, , , gain]) => gain <= .05)).toBe(true)
+      expect(profile.reduce((sum, [, , , gain]) => sum + gain, 0) * .3).toBeLessThan(.07)
+      tails.push(Math.max(...profile.map(([, offset, duration]) => offset + duration)))
+    }
+    expect(tails.every((duration, index) => index === 0 || duration > tails[index - 1])).toBe(true)
   })
   it('stops and disconnects scheduled notes on mute or abandonment', () => {
     sound.play({ enabled: true }); sound.stop()
@@ -57,8 +66,8 @@ describe('optional original reward chime', () => {
     context.resume.mockImplementationOnce(() => new Promise((_, reject) => { rejectFirst = reject }))
     sound.play({ enabled: true })
     sound.play({ enabled: true })
-    const second = nodes.slice(1)
-    expect(second).toHaveLength(1)
+    const second = nodes.slice(REWARD_SOUND_PROFILES.common.length)
+    expect(second).toHaveLength(REWARD_SOUND_PROFILES.common.length)
     rejectFirst(new Error('Old opening abandoned'))
     await Promise.resolve()
     expect(second.every(node => node.disconnect.mock.calls.length === 0)).toBe(true)

@@ -38,7 +38,7 @@ export default function Region() {
           cuisine
         </span>
         <br />
-        region
+        {' '}region
       </h1>
 
       <p className="discovery-support text-body-tight text-text-primary">

@@ -31,7 +31,7 @@ const Explore = lazy(() => import('./pages/Explore'))
 const Scan = lazy(() => import('./pages/Scan'))
 const ImageCredits = lazy(() => import('./pages/ImageCredits'))
 const PlacesPolicy = lazy(() => import('./pages/PlacesPolicy'))
-const RewardPlayground = import.meta.env.DEV ? lazy(() => import('./pages/RewardPlayground')) : null
+const RewardPlayground = import.meta.env.VITE_ENABLE_REWARD_QA === 'true' ? lazy(() => import('./pages/RewardPlayground')) : null
 
 /**
  * Central route table. Each Figma screen becomes one entry under the layout
@@ -45,7 +45,7 @@ export const routes = [
       { path: 'home', element: <Home /> },
       { path: 'progress', element: <Progress /> },
       { path: 'profile', element: <Profile /> },
-      ...(import.meta.env.DEV ? [{ path: 'dev/rewards', element: <RewardPlayground /> }] : []),
+      ...(import.meta.env.VITE_ENABLE_REWARD_QA === 'true' ? [{ path: 'dev/rewards', element: <RewardPlayground /> }] : []),
       { path: 'favorites', element: <Favorites /> },
       { path: 'history', element: <History /> },
       { path: 'explore', element: <Explore /> },

@@ -9,7 +9,7 @@ export default function RecommendationHeader({ onBack, onAdjust, title }) {
         type="button"
         onClick={onBack}
         aria-label="Go back"
-        className="absolute top-[64.5px] left-[13px] z-30 flex size-[44px] items-center justify-center"
+        className="recommendation-back absolute left-[13px] z-30 flex size-[44px] items-center justify-center"
       >
         <img
           src={title ? moreBackIcon : chevronLeft}
@@ -21,7 +21,7 @@ export default function RecommendationHeader({ onBack, onAdjust, title }) {
       </button>
 
       {title && (
-        <h1 className="absolute inset-x-0 top-[78px] text-center text-title-lg leading-[35px] text-strong-neutral">
+        <h1 className="recommendation-header-title absolute inset-x-0 text-center text-title-lg leading-[35px] text-strong-neutral">
           {title}
         </h1>
       )}
@@ -30,7 +30,7 @@ export default function RecommendationHeader({ onBack, onAdjust, title }) {
         <button
           type="button"
           onClick={onAdjust}
-          className="absolute top-[76px] right-[30px] z-30 flex min-h-[44px] w-[44px] flex-col items-center"
+          className="recommendation-adjust absolute right-[30px] z-30 flex min-h-[44px] w-[44px] flex-col items-center"
           aria-label="Adjust preferences"
         >
           <img src={settingsIcon} alt="" className="size-[32px] max-w-none" />

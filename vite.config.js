@@ -5,6 +5,9 @@ import { createNearbyRestaurantsHandler } from './server/nearbyRestaurantsHandle
 import { createPlaceExtrasHandler } from './server/placeExtrasHandler.js'
 
 export default defineConfig(({ mode }) => ({
+  // Reward QA belongs to local/Preview builds, even if a production env flag
+  // is accidentally set. This define does not expose any server secrets.
+  define: process.env.VERCEL_ENV === 'production' ? { 'import.meta.env.VITE_ENABLE_REWARD_QA': JSON.stringify('false') } : {},
   plugins: [react(), tailwindcss(), {
     name: 'nom-nearby-server',
     configureServer(server) {

@@ -10,17 +10,18 @@ import { collectionCountries, collectibleDefinitions, collectibleKey } from '../
 import { FlowHeader, FlowState } from '../components/experience/FlowLayout'
 import EdgeStateModal from '../components/experience/EdgeStateModal'
 import CollectibleArtwork, { RarityBadge } from '../components/experience/CollectibleArtwork'
+import { BOX_REVEAL_TIMING, BOX_REDUCED_TIMING, rewardPresentation, rewardRevealTiming } from '../utils/rewardPresentation'
 import closed from '../assets/experience/box-closed.webp'
 import opening from '../assets/experience/box-open.webp'
 
-export const BOX_REVEAL_TIMING = { energy: 300, pop: 550, silhouette: 600, reward: 950, rarity: 1050, progress: 1250, settle: 1550 }
-export const BOX_REDUCED_TIMING = { energy: 20, pop: 40, silhouette: 70, reward: 100, rarity: 130, progress: 170, settle: 220 }
+export { BOX_REVEAL_TIMING, BOX_REDUCED_TIMING }
 const stageOrder = ['anticipation', 'energy', 'pop', 'silhouette', 'reward', 'rarity', 'progress', 'settled']
 
-export default function SurpriseBox({ phase = 'closed', boxId: previewBoxId, onPhaseChange, onBack, onViewCollection }) {
+export default function SurpriseBox({ phase = 'closed', boxId: previewBoxId, onPhaseChange, onBack, onViewCollection, reducedMotionOverride, previewCollectedCount }) {
   const { boxId: routeBoxId } = useParams(), navigate = useNavigate(), location = useLocation()
   const boxId = previewBoxId ?? routeBoxId
-  const { state, beginBox, openBox } = useExperience(), reduced = useReducedMotion()
+  const { state, beginBox, openBox } = useExperience(), systemReduced = useReducedMotion()
+  const reduced = reducedMotionOverride ?? systemReduced
   const [modal, setModal] = useState(null), [stage, setStage] = useState('anticipation')
   const [soundOn, setSoundOn] = useState(rewardSoundEnabled), [soundNotice, setSoundNotice] = useState(() => location.state?.rewardSoundUnavailable ? 'Sound is unavailable. Your reward will still open.' : null)
   const pressed = useRef(false), soundHandoff = useRef(false), soundCleanup = useRef(null), sequence = useRef(null), route = useRef({ boxId, phase })
@@ -28,6 +29,10 @@ export default function SurpriseBox({ phase = 'closed', boxId: previewBoxId, onP
   previewPhase.current = onPhaseChange
   route.current = { boxId, phase }
   const box = state.boxes[boxId], country = collectionCountries.find(item => item.id === box?.countryId)
+  const collectible = collectibleDefinitions.find(item => item.id === box?.collectibleId)
+  // Preload the deterministic artwork; only openBox owns the real grant.
+  const artwork = collectible ?? collectibleDefinitions.find(item => country && !state.unlocks[collectibleKey(country.id, item.id)]) ?? collectibleDefinitions[0]
+  const energy = rewardPresentation(artwork.rarity)
   useEffect(() => {
     const key = `${boxId}:${phase}`
     if (soundCleanup.current?.key === key) clearTimeout(soundCleanup.current.timer)
@@ -46,7 +51,7 @@ export default function SurpriseBox({ phase = 'closed', boxId: previewBoxId, onP
   useEffect(() => {
     if (phase !== 'opening' || (box?.status !== 'opening' && sequence.current !== boxId)) return
     sequence.current = boxId
-    const timing = reduced ? BOX_REDUCED_TIMING : BOX_REVEAL_TIMING
+    const timing = rewardRevealTiming(artwork.rarity, reduced)
     setStage('anticipation')
     const timers = stageOrder.slice(1, -1).map(next => setTimeout(() => {
       if (next === 'silhouette') openBox(boxId)
@@ -65,24 +70,21 @@ export default function SurpriseBox({ phase = 'closed', boxId: previewBoxId, onP
       if (route.current.phase !== 'opening' || route.current.boxId !== boxId) sequence.current = null
     }
     // The route owns presentation timers; the guarded domain grant must not restart them.
-  }, [phase, boxId, reduced, navigate, openBox, location.state])
+  }, [phase, boxId, reduced, artwork.rarity, navigate, openBox, location.state])
   if (!box || !country) return <FlowState title="Mystery Box not found" onBack={() => navigate('/home')}>Log an eligible meal to earn a box. Check your country progress for available boxes.</FlowState>
   if (box.status === 'opened' && phase === 'closed') return <Navigate to={`/boxes/${boxId}/reveal`} replace state={location.state} />
   if (box.status === 'opening' && phase !== 'opening' && !pressed.current) return <Navigate to={`/boxes/${boxId}/opening`} replace state={location.state} />
   if (box.status === 'opened' && phase === 'opening' && sequence.current !== boxId) return <Navigate to={`/boxes/${boxId}/reveal`} replace state={location.state} />
   if (box.status === 'ready' && phase !== 'closed') return <Navigate to={`/boxes/${boxId}`} replace state={location.state} />
-  const collectible = collectibleDefinitions.find(item => item.id === box.collectibleId), revealed = !!collectible && box.status === 'opened'
-  // Pre-mount the deterministic reward artwork while the box is closed. This is
-  // presentation only; the existing guarded openBox action still owns the grant.
-  const artwork = collectible ?? collectibleDefinitions.find(item => !state.unlocks[collectibleKey(country.id, item.id)]) ?? collectibleDefinitions[0]
+  const revealed = !!collectible && box.status === 'opened'
   const presentation = phase === 'reveal' ? 'settled' : stage, rank = stageOrder.indexOf(presentation)
   const popped = phase !== 'closed' && rank >= 2, characterVisible = revealed && rank >= 3, resolved = rank >= 4
   const identityVisible = revealed && rank >= 5, progressVisible = revealed && rank >= 5, settled = presentation === 'settled'
-  const collected = unlockedCount(state, country.id), previous = collected - (revealed && !box.duplicate ? 1 : 0)
+  const collected = previewCollectedCount ?? unlockedCount(state, country.id), previous = collected - (revealed && !box.duplicate ? 1 : 0)
   const displayCount = rank >= 6 ? collected : Math.max(0, previous)
   const scene = countrySceneProps(country)
-  return <div {...scene} className={`flow-page box-page box-${phase} ${scene.className}`} data-reduced-motion={reduced}
-    style={{ ...scene.style, '--reward-accent': artwork.color, '--box-duration': `${BOX_REVEAL_TIMING.settle}ms` }}>
+  return <div {...scene} className={`flow-page box-page box-${phase} ${scene.className}`} data-reduced-motion={reduced} data-rarity={artwork.rarity}
+    style={{ ...scene.style, '--reward-accent': artwork.color, '--box-duration': `${energy.duration}ms`, '--box-lift': `${energy.lift}px`, '--box-shake': `${energy.shake}px`, '--box-climax': energy.climax, '--box-glow': energy.glow }}>
     <FlowHeader onBack={onBack ?? (() => navigate(recommendationReturnTo(location.state?.returnTo, '/home'), { state: { returnTo: recommendationReturnTo(location.state?.countryReturnTo, '/collections') } }))} onInfo={() => setModal('progress')} />
     <div className="country-title"><h1>{country.flag} {country.name.toUpperCase()}</h1><p>Mystery Box</p></div>
     <div className="box-sound-row"><button type="button" className="box-sound-toggle" aria-pressed={soundOn} onClick={() => {
@@ -96,6 +98,7 @@ export default function SurpriseBox({ phase = 'closed', boxId: previewBoxId, onP
       style={{ '--box-progress-before': Math.max(0, previous) / collectibleDefinitions.length, '--box-progress-after': collected / collectibleDefinitions.length }}>
       <div className="box-theatre">
         <div className="box-aura" aria-hidden="true" />
+        <div className="box-burst" aria-hidden="true">{Array.from({ length: energy.rings }, (_, index) => <i key={index} style={{ '--ring-delay': `${index * 65}ms` }} />)}</div>
         <div className={`box-gift ${popped ? 'is-open' : ''} ${characterVisible ? 'is-retired' : ''}`} aria-hidden="true">
           <div className="box-gift-art">
             <img className="box-scene-closed" src={closed} alt="" />
@@ -103,9 +106,9 @@ export default function SurpriseBox({ phase = 'closed', boxId: previewBoxId, onP
             <img className="box-scene-lid" src={opening} alt="" />
           </div>
         </div>
-        <div className="box-sparkles" aria-hidden="true">{Array.from({ length: 4 }, (_, index) => {
-          const angle = Math.PI / 4 + index * Math.PI / 2
-          return <i key={index} style={{ '--spark-x': `${Math.round(Math.cos(angle) * 100)}px`, '--spark-y': `${Math.round(Math.sin(angle) * 90)}px` }}>✦</i>
+        <div className="box-sparkles" aria-hidden="true">{Array.from({ length: energy.particles }, (_, index) => {
+          const angle = Math.PI / 4 + index * Math.PI * 2 / energy.particles
+          return <i key={index} style={{ '--spark-x': `${Math.round(Math.cos(angle) * energy.spread)}px`, '--spark-y': `${Math.round(Math.sin(angle) * energy.spread * .8)}px` }}>✦</i>
         })}</div>
         <div className={`box-character ${characterVisible ? 'is-visible' : ''} ${resolved ? 'is-resolved' : 'is-silhouette'}`} aria-hidden={!resolved}>
           <div className="box-character-silhouette" aria-hidden="true"><CollectibleArtwork collectible={artwork} country={country} isUnlocked /></div>
@@ -114,7 +117,7 @@ export default function SurpriseBox({ phase = 'closed', boxId: previewBoxId, onP
         {phase === 'closed' && <button type="button" className="box-tap" aria-label="Open Mystery Box" onClick={() => {
           if (pressed.current) return
           pressed.current = true
-          const rewardSoundUnavailable = soundOn && !reduced && !rewardSound.play({ enabled: soundOn, reducedMotion: reduced, delayMs: BOX_REVEAL_TIMING.reward, rarity: artwork.rarity })
+          const rewardSoundUnavailable = soundOn && !reduced && !rewardSound.play({ enabled: soundOn, reducedMotion: reduced, delayMs: rewardRevealTiming(artwork.rarity).reward, rarity: artwork.rarity })
           if (rewardSoundUnavailable) setSoundNotice('Sound is unavailable. Your reward will still open.')
           soundHandoff.current = true; beginBox(boxId)
           if (previewPhase.current) previewPhase.current('opening')
