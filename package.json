@@ -13,7 +13,8 @@
     "images:prepare": "python3 scripts/import-dish-images.py",
     "images:import": "python3 scripts/import-dish-images.py --import-approved",
     "images:remaining": "node scripts/export-missing-images.mjs",
-    "catalog:validate": "node scripts/validate-catalog.mjs"
+    "catalog:validate": "node scripts/validate-catalog.mjs",
+    "ship": "bash scripts/ship.sh"
   },
   "dependencies": {
     "react": "^19.3.0",

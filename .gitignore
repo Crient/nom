@@ -16,3 +16,23 @@ scripts/__pycache__/
 .env
 .env.*
 !.env.example
+
+# Local/generated Nom workspaces
+Background_Images/
+image-audit/
+src/assets/food/archive/
+src/assets/food/generated-incoming/*
+!src/assets/food/generated-incoming/.gitkeep
+catalog/images/import-backups/
+
+# Local image QA / generated reports
+catalog/images/*report*
+catalog/images/*review*
+catalog/images/*queue*
+catalog/images/selection-qa.json
+
+# Validation artifacts — keep final report.md files trackable
+docs/**/*-validation/*.log
+docs/**/*-validation/*.json
+docs/**/*-validation/*.png
+docs/**/*-validation/*.txt
