@@ -10,7 +10,8 @@ if (entries.size !== records.length || records.some(dish => !entries.has(dish.id
 
 // Search/description links are reference metadata only. They are never placed
 // in the runtime image map or treated as an approved photo/license.
-const missing = records.filter(dish => !['existing-local', 'licensed-local'].includes(entries.get(dish.id).status)).map(dish => {
+const completed = entry => ['existing-local', 'licensed-local', 'generated-local'].includes(entry.status) && ['approved', 'temporary'].includes(entry.reviewStatus)
+const missing = records.filter(dish => !completed(entries.get(dish.id))).map(dish => {
   const source = entries.get(dish.id)
   const country = countryNames.of(dish.countryCode)
   const searchQuery = `${dish.name} ${country} food`
@@ -24,7 +25,9 @@ const missing = records.filter(dish => !['existing-local', 'licensed-local'].inc
       commons: `https://commons.wikimedia.org/w/index.php?title=Special:MediaSearch&type=image&search=${encodeURIComponent(searchQuery)}`,
       openverse: `https://openverse.org/search/image?q=${encodeURIComponent(searchQuery)}`,
     },
-    reason: source.reason ?? 'Local photo still needs successful import',
+    currentImageStatus: source.reviewStatus, sourceType: source.sourceType,
+    currentImage: source.localPath ?? null,
+    reason: source.reviewReason ?? 'No visually approved local image is available.',
     visualReviewNote: source.reviewNote ?? 'Confirm exact dish identity, then record creator and reusable license before approval.',
     ...(source.candidate ? { unapprovedCandidate: source.candidate } : {}),
   }

@@ -10,7 +10,8 @@ import detailBackground from '../assets/experience/detail-background.webp'
 import detailOverlay from '../assets/experience/detail-overlay.webp'
 import calendar from '../assets/experience/calendar.svg'
 import pin from '../assets/experience/pin.svg'
-import star from '../assets/experience/star.svg'
+import FavoriteStar from '../components/icons/FavoriteStar'
+import { countrySceneProps } from '../utils/countryScene'
 
 export default function CollectibleDetails() {
   const { countryId, collectibleId } = useParams(), navigate = useNavigate()
@@ -22,7 +23,8 @@ export default function CollectibleDetails() {
   const favorite = state.favorites.includes(key), hasArtwork = country.id === 'cambodia'
   const discovered = new Date(unlock.discoveredAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
   const inspiration = hasArtwork ? collectible.inspiration : null
-  return <div className="flow-page collectible-details-page collection-background" style={{ '--collection-background': `url("${hasArtwork ? detailBackground : country.image}")` }}>
+  const scene = countrySceneProps(country, { portraitBackground: hasArtwork ? detailBackground : undefined })
+  return <div {...scene} className={`flow-page collectible-details-page ${scene.className}`}>
     {hasArtwork && <img className="collectible-detail-overlay" src={detailOverlay} alt="" />}
     <FlowHeader onBack={() => navigate(recommendationReturnTo(location.state?.returnTo, `/collections/${country.id}`), { state: { returnTo: recommendationReturnTo(location.state?.countryReturnTo, '/collections') } })} onInfo={() => setModal('progress')} />
     <div className="collectible-detail-hero"><CollectibleArtwork collectible={collectible} country={country} isUnlocked /><h1 style={{ color: collectible.detailColor ?? collectible.color }}>{collectible.name.toUpperCase()}</h1><RarityBadge rarity={collectible.rarity} /></div>
@@ -30,7 +32,7 @@ export default function CollectibleDetails() {
     <dl className="collectible-discovery"><div><dt><img src={calendar} alt="" />Discovered On</dt><dd>{discovered}</dd></div><div><dt><img src={pin} alt="" />Location</dt><dd>{country.name}</dd></div></dl>
     {inspiration && <section className="collectible-inspiration"><h2>Inspired by</h2><div>{inspiration.map(item => <article key={item.name}><img src={item.image} alt="" /><p>{item.name}</p></article>)}</div></section>}
     {!hasArtwork && <p className="flow-demo">This country’s character artwork uses a development placeholder.</p>}
-    <button type="button" className="collection-pill collectible-favorite" aria-pressed={favorite} onClick={() => toggleCollectibleFavorite(key)}><img src={star} alt="" />{favorite ? 'Remove from favorites' : 'Add to favorites'}</button>
+    <button type="button" className="collection-pill collectible-favorite" aria-pressed={favorite} onClick={() => toggleCollectibleFavorite(key)}><FavoriteStar saved={favorite} />{favorite ? 'Remove from favorites' : 'Add to favorites'}</button>
     <EdgeStateModal kind={modal} onClose={() => setModal(null)} />
   </div>
 }

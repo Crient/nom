@@ -29,8 +29,8 @@ export default function Collections() {
     <img className="collection-world" src={world} alt="" />
     <div className="collection-countries">{countries.map(country => {
       const count = unlockedCount(state, country.id)
-      return <button type="button" className="collection-country" key={country.id} aria-label={`${country.name}, ${count} of 6 collectibles`} onClick={() => navigate(`/collections/${country.id}`)}>
-        <img src={country.image} alt="" /><div><strong>{country.name}</strong><span>{count}/6 collectibles</span><div className="collection-dots" aria-hidden="true">{collectibleDefinitions.map((item, index) => <i key={item.id} className={index < count ? 'reached' : ''} />)}</div></div>
+      return <button type="button" className={`collection-country ${count === collectibleDefinitions.length ? 'is-complete' : ''}`} data-country={country.id} data-complete={count === collectibleDefinitions.length} key={country.id} aria-label={`${country.name}, ${count} of 6 collectibles`} onClick={() => navigate(`/collections/${country.id}`)}>
+        <span className="collection-country-art"><img src={country.image} alt="" loading="lazy" style={{ objectPosition: country.cardPosition }} /></span><div className="collection-country-meta"><strong>{country.name}</strong><span>{count}/6 collectibles</span><div className="collection-dots" aria-hidden="true">{collectibleDefinitions.map((item, index) => <i key={item.id} className={index < count ? 'reached' : ''} />)}</div></div>
       </button>
     })}</div>
     {!countries.length && <p className="collection-empty" role="status">{filter === 'Favorites' ? 'Favorite a collectible to see its country here.' : 'No collections in this view yet.'}</p>}

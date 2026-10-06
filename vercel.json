@@ -1,3 +1,19 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "functions": {
+    "api/nearby-restaurants.js": {
+      "maxDuration": 25,
+      "supportsCancellation": true,
+      "includeFiles": "src/data/catalog/records.json"
+    },
+    "api/place-*.js": {
+      "maxDuration": 12,
+      "supportsCancellation": true,
+      "includeFiles": "src/data/catalog/records.json"
+    }
+  },
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/api/(.*)", "status": 404 },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
 }

@@ -1,0 +1,30 @@
+:root {
+  --motion-quick: 140ms;
+  --motion-content: 200ms;
+  --motion-return: 380ms;
+  --motion-ease: cubic-bezier(.2,.7,.3,1);
+  --motion-spring: cubic-bezier(.22,1.2,.36,1);
+}
+.restaurant-skeleton .skeleton-block { animation: nom-skeleton-pulse 1.6s ease-in-out infinite alternate; }
+.restaurant-preview-live:not(.restaurant-skeleton), .restaurant-card-live:not(.restaurant-skeleton) { animation: nom-content-enter var(--motion-content) var(--motion-ease) both; }
+.place-photo-image { transition: opacity var(--motion-content) var(--motion-ease); }
+.nom-heart svg { transform-origin: center; transition: transform var(--motion-quick) var(--motion-ease); }
+.favorite-star { position: relative; flex: none; color: inherit; }
+.nom-heart[aria-pressed=true] svg { animation: nom-heart-pop 240ms ease-out backwards; }
+.nom-heart:active svg { transform: scale(.9); }
+.restaurant-actions-live a > span, .restaurant-actions-live button > span { transition: transform var(--motion-quick) var(--motion-ease),background-color var(--motion-quick) var(--motion-ease); }
+.restaurant-actions-live a:active > span, .restaurant-actions-live button:not(:disabled):active > span { transform: scale(.94); }
+.nearby-view button { transition: background-color var(--motion-content) var(--motion-ease),color var(--motion-content) var(--motion-ease); }
+.collection-country, .collectible-tile, .surprise-controls button, .box-sound-toggle, .box-collection { transition: transform var(--motion-quick) var(--motion-ease),box-shadow var(--motion-content) var(--motion-ease); }
+.collection-country:active, .collectible-tile:active, .surprise-controls button:not([aria-disabled=true]):active, .box-sound-toggle:active, .box-collection:not(:disabled):active { transform: translateY(1px) scale(.99); }
+@keyframes nom-heart-pop { 0% { transform: scale(.9); } 55% { transform: scale(1.14); } 100% { transform: scale(1); } }
+@keyframes nom-skeleton-pulse { from { opacity: .5; } to { opacity: .85; } }
+@keyframes nom-content-enter { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) {
+  .restaurant-skeleton .skeleton-block, .restaurant-preview-live, .restaurant-card-live { animation: none !important; }
+  .place-photo-image { transition: none; }
+  .nom-heart svg { animation: none !important; transition: none; }
+  .nom-heart:active svg, .restaurant-actions-live a:active > span, .restaurant-actions-live button:not(:disabled):active > span,
+  .collection-country:active, .collectible-tile:active, .surprise-controls button:not([aria-disabled=true]):active, .box-sound-toggle:active, .box-collection:not(:disabled):active { transform: none; }
+  .restaurant-actions-live a > span, .restaurant-actions-live button > span, .nearby-view button, .collection-country, .collectible-tile, .surprise-controls button, .box-sound-toggle, .box-collection { transition: none; }
+}

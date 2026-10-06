@@ -58,3 +58,10 @@
   .hub-summary > div, .hub-section { padding: 12px; }
   .hub-filters { gap: 5px; }
 }
+
+/* Home owns its status region; controls follow it in document flow. */
+.home-header { position: relative; isolation: isolate; padding-top: env(safe-area-inset-top,0px); }
+.home-header .home-status { position: relative; z-index: 2; flex: none; }
+.home-search { position: relative; width: 100%; }
+.home-quick-actions { position: relative; margin-inline: max(18.63px,env(safe-area-inset-left,0px)) max(23.94px,env(safe-area-inset-right,0px)); }
+.home-greeting-divider { display: block; width: 75.62%; height: 14.197px; margin-left: 9.28%; }

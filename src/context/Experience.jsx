@@ -6,6 +6,11 @@ import { normalizeExperience, serializeExperience } from '../data/persistedState
 const ExperienceContext = createContext(null)
 let visitSequence = 0
 
+/** A preview supplies an isolated in-memory value; it never uses persistence. */
+export function ExperiencePreviewProvider({ value, children }) {
+  return <ExperienceContext.Provider value={value}>{children}</ExperienceContext.Provider>
+}
+
 export function ExperienceProvider({ children }) {
   const [state, dispatch] = useReducer(experienceReducer, undefined, () => readLocalState(STORAGE_KEYS.experience, normalizeExperience, createExperienceState))
   useEffect(() => { writeLocalState(STORAGE_KEYS.experience, serializeExperience(state)) }, [state.logs, state.boxes, state.favorites])

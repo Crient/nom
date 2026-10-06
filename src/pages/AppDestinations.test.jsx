@@ -6,16 +6,18 @@ import { actAndLoadRoutes as act } from '../test/routeAct'
 import { STORAGE_KEYS, writeLocalState } from '../data/localPersistence'
 import { createExperienceState, experienceReducer } from '../data/experienceState'
 import { serializeExperience } from '../data/persistedState'
+import { installMockNearbyProvider } from '../test/mockNearbyProvider'
 
 let root
 const preferences = { foodType: 'noodle', flavors: ['spicy', 'comforting'], adventurousness: 'adventurous', region: 'southeast-asia' }
 beforeEach(() => {
+  installMockNearbyProvider()
   globalThis.IS_REACT_ACT_ENVIRONMENT = true
   document.body.innerHTML = '<div id="root"></div>'
   vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
   root = createRoot(document.getElementById('root'))
 })
-afterEach(async () => { await act(() => root.unmount()); vi.restoreAllMocks() })
+afterEach(async () => { await act(() => root.unmount()); vi.restoreAllMocks(); vi.unstubAllGlobals() })
 async function mount(path) {
   window.history.replaceState({}, '', path)
   await act(() => root.render(<App />))

@@ -1,5 +1,6 @@
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 
+import SurpriseMe from './SurpriseMe'
 import StatusBar from '../components/layout/StatusBar'
 import BestMatchCard from '../components/recommendations/BestMatchCard'
 import RecommendationCard from '../components/recommendations/RecommendationCard'
@@ -20,12 +21,15 @@ import recSync from '../assets/icons/rec-sync.svg'
 
 export default function Recommendations() {
   const navigate = useNavigate()
+  const location = useLocation()
   const { isFavorite, toggleFavorite } = useFavorites()
   const { ready, results, chips } = useRecommendations()
 
   if (!ready) {
     return <Navigate to="/discover/food-type" replace />
   }
+
+  if (location.state?.surpriseMode) return <SurpriseMe />
 
   const [best, second, third] = results.slice(0, 3)
 
@@ -128,6 +132,7 @@ export default function Recommendations() {
           See more options
         </span>
       </button>
+      <Button variant="secondary" className="mx-[21px] mt-[11px] min-h-[52px] w-[calc(100%-46px)]" onClick={() => navigate('/recommendations/surprise')}>Surprise me</Button>
     </div>
   )
 }
