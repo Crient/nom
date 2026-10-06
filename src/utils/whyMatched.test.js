@@ -41,7 +41,8 @@ describe('whyMatched', () => {
     const explanation = explain({ ...PAINTED_SESSION, region: SURPRISE_ME, adventurousness: SURPRISE_ME })
     expect(explanation).toContain('noodles')
     expect(explanation).toContain('comforting flavors')
-    expect(explanation).not.toMatch(/Southeast|region|cuisine|adventurous|surprise/i)
+    expect(explanation).toContain("You're open to any adventure level and region")
+    expect(explanation).not.toMatch(/Southeast|adventurous preference/i)
   })
 
   it('does not claim food type or region matches when neither matched', () => {
@@ -71,7 +72,7 @@ describe('whyMatched', () => {
     expect(explanation).toContain('Couscous matches comforting flavors')
     expect(explanation).toContain('a cozy, satisfying meal')
     expect(explanation).toContain('your familiar preference')
-    expect(explanation.split('. ').length).toBe(2)
-    expect(explanation.split(/\s+/).length).toBeLessThanOrEqual(35)
+    expect(explanation).toContain('compatible points')
+    expect(explanation).toContain('explicit-preference points')
   })
 })

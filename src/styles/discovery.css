@@ -15,20 +15,18 @@
 .discovery-list-option button { min-height: clamp(84px,11.8dvh,100px); }
 .discovery-list-copy { padding-block: 8px; gap: 5px; }
 .discovery-adventure-art { width: clamp(60px,8.5dvh,76px); height: clamp(60px,8.5dvh,76px); margin-left: 6.8%; }
-/* Moderate Region cards keep recognizable art, full-width examples and a
-   permanent top-right check reservation. No 24px / 64px compact mode. */
-.discovery-region .discovery-question { width: calc(100% - 56px); }
-.discovery-region .discovery-question br { display: none; }
-.discovery-region .discovery-options { gap: clamp(8px,1.4dvh,12px); }
-.discovery-region .discovery-option-row > div { gap: 12px !important; padding-inline: 12px; }
-.discovery-region-card { --region-art-height: clamp(38px,5.3dvh,46px); display: grid; grid-template-columns: var(--region-art-height) minmax(0,1fr); align-items: center; align-content: center; min-height: clamp(78px,10.5dvh,88px); gap: 4px 6px; padding: 6px 8px; }
-.discovery-region-art { grid-column: 1; grid-row: 1; width: var(--region-art-height); height: var(--region-art-height); }
-.discovery-region-title { grid-column: 2; font-size: clamp(16px,2dvh,17px) !important; line-height: 20px !important; white-space: normal; text-align: left; padding-right: 26px; }
-.discovery-region-subtitle { grid-column: 1/3; padding: 0; text-align: left; line-height: 16px; }
-.discovery-surprise-region { margin: 4px 6px 0 9px; min-height: 78px; padding-bottom: 0; }
+/* Restore the vertical Figma tiles. Their intrinsic height intentionally makes
+   smaller phones scroll; viewport height never changes their composition. */
+.discovery-region .discovery-options { gap: 16px; }
+.discovery-region .discovery-option-row > div { gap: 12px !important; padding-inline: 12px; align-items: stretch; }
+.discovery-region-card { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 156px; gap: 4px; padding: 12px 6px; }
+.discovery-region-art { width: 80px; height: 80px; }
+.discovery-region-title { font-size: min(var(--region-title-size),4.7cqw); white-space: nowrap; text-align: center; }
+.discovery-region-subtitle { min-height: 32px; padding-inline: 3px; text-align: center; line-height: 16px; }
+.discovery-surprise-region { margin: 8px 6px 0 9px; min-height: 92px; padding-bottom: 0; }
 .discovery-surprise-region > div { min-height: 0; }
-.surprise-region-button { min-height: clamp(78px,10.5dvh,92px); }
-.surprise-region-button > span:first-child { height: clamp(60px,8dvh,80px); }
+.surprise-region-button { min-height: 92px; }
+.surprise-region-button > span:first-child { height: 80px; }
 .surprise-region-indicator-slot { position: absolute; inset: 0 0 0 auto; width: 38px; pointer-events: none; }
 .discovery-cta { flex: none; width: calc(100% - 54px); height: auto; min-height: clamp(60px,8.5dvh,72px); margin: 0 27px; padding-block: 12px; line-height: 24px; }
 @media (max-width: 390px) {

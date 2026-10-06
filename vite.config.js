@@ -1,6 +1,7 @@
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import { createAccountHandler } from './server/accountHandler.js'
 import { createNearbyRestaurantsHandler } from './server/nearbyRestaurantsHandler.js'
 import { createPlaceExtrasHandler } from './server/placeExtrasHandler.js'
 
@@ -15,6 +16,7 @@ export default defineConfig(({ mode }) => ({
       const env = loadEnv(mode, process.cwd(), '')
       const getApiKey = () => process.env.GOOGLE_PLACES_API_KEY || env.GOOGLE_PLACES_API_KEY
       const endpoints = {
+        '/api/account': createAccountHandler({ getConfig: () => ({ url: process.env.VITE_SUPABASE_URL || env.VITE_SUPABASE_URL, secret: process.env.SUPABASE_SECRET_KEY || env.SUPABASE_SECRET_KEY }) }),
         '/api/nearby-restaurants': createNearbyRestaurantsHandler({ getApiKey, debug: (process.env.NOM_NEARBY_DEBUG || env.NOM_NEARBY_DEBUG) === '1' }),
         '/api/place-photo': createPlaceExtrasHandler('photo', { getApiKey }),
         '/api/place-details': createPlaceExtrasHandler('details', { getApiKey }),

@@ -1,11 +1,10 @@
 /**
- * Deterministic V1 recommendation scorer.
+ * Preference relevance and user-visible compatibility are separate scores.
  *
  * Session shape: { foodType, flavors, adventurousness, region }
- * surprise-me is never a numeric match value. It drops that dimension from
- * the score and, after ranking, spreads tied results so they are not all the
- * same country (region Surprise Me) or the same adventureLevel (adventure
- * Surprise Me).
+ * Open answers are excluded from relevance ranking and fully compatible for
+ * display. Completed Surprise sessions use an ephemeral seed to spread ties
+ * across countries/adventure levels without changing explicit relevance.
  *
  * Flavor scoring reads dish.preferenceFlavors only. dish.descriptors never
  * earn points.
@@ -48,15 +47,15 @@ export const MORE_OPTIONS_MIN_SCORE = 40
 export function selectMoreOptions(session, results) {
   const remaining = results.slice(TOP_MATCH_COUNT)
   if (!session.region || isSurpriseMe(session.region)) return remaining.slice(0, 7)
-  const relevant = remaining.filter(result => result.score >= MORE_OPTIONS_MIN_SCORE)
+  const relevant = remaining.filter(result => result.rankingScore >= MORE_OPTIONS_MIN_SCORE)
   // Anything + adventure Surprise Me can leave fewer than seven candidates
   // above the relevance threshold. Keep every relevant result, then fill only
   // the empty slots from the remaining regional/global ranking. Scores stay
   // attached to their original candidates; Top Matches is never changed.
   const fallback = relevant.length < 7
     ? [
-      ...remaining.filter(result => result.score < MORE_OPTIONS_MIN_SCORE && result.dish.region === session.region),
-      ...remaining.filter(result => result.score < MORE_OPTIONS_MIN_SCORE && result.dish.region !== session.region),
+      ...remaining.filter(result => result.rankingScore < MORE_OPTIONS_MIN_SCORE && result.dish.region === session.region),
+      ...remaining.filter(result => result.rankingScore < MORE_OPTIONS_MIN_SCORE && result.dish.region !== session.region),
     ].slice(0, 7 - relevant.length)
     : []
   const candidates = [...relevant, ...fallback]
@@ -198,11 +197,17 @@ export function scoreDish(session, dish, weights = normalizeWeights(session)) {
   const region = scoreRegion(session, dish, weights.region)
 
   const breakdown = { foodType, flavor, adventure, region }
-  const score = DIMENSIONS.reduce((sum, key) => sum + breakdown[key].earned, 0)
+  const rankingScore = DIMENSIONS.reduce((sum, key) => sum + breakdown[key].earned, 0)
+  const displayBreakdown = compatibilityBreakdown(session, dish)
+  const displayMatchPercent = DIMENSIONS.reduce((sum, key) => sum + displayBreakdown[key].earned, 0)
 
   return {
     dish,
-    score,
+    rankingScore,
+    // Legacy ranking alias retained for callers holding older result fixtures.
+    score: rankingScore,
+    displayMatchPercent,
+    displayBreakdown,
     breakdown,
     matchedAttributes: {
       foodType: foodType.matched && !foodType.skipped,
@@ -211,6 +216,66 @@ export function scoreDish(session, dish, weights = normalizeWeights(session)) {
       region: region.matched && !region.skipped,
     },
   }
+}
+
+/** Missing answers are excluded; intentional open answers earn compatibility.
+ * Relevance still uses only explicit evidence and preferenceFlavors. */
+function compatibilityBreakdown(session, dish) {
+  const open = {
+    foodType: session.foodType === 'anything',
+    adventure: isSurpriseMe(session.adventurousness),
+    region: isSurpriseMe(session.region),
+  }
+  const active = activeDimensions(session)
+  const included = DIMENSIONS.filter(key => open[key] || active.includes(key))
+  const total = included.reduce((sum, key) => sum + BASE_WEIGHTS[key], 0)
+  const weight = key => included.includes(key) ? BASE_WEIGHTS[key] * 100 / total : 0
+  const neutral = key => ({ available: weight(key), earned: weight(key), compatible: true, open: true, matched: false, skipped: false })
+  return {
+    foodType: open.foodType ? neutral('foodType') : scoreFoodType(session, dish, weight('foodType')),
+    flavor: scoreFlavor(session, dish, weight('flavor')),
+    adventure: open.adventure ? neutral('adventure') : scoreAdventure(session, dish, weight('adventure')),
+    region: open.region ? neutral('region') : scoreRegion(session, dish, weight('region')),
+  }
+}
+
+/** One independent seeded draw per identity: source order cannot dominate ties. */
+function seededDraw(seed, id) {
+  let hash = 2166136261
+  for (const char of `${seed}:${id}`) hash = Math.imul(hash ^ char.charCodeAt(0), 16777619)
+  hash ^= hash >>> 16
+  hash = Math.imul(hash, 0x7feb352d)
+  hash ^= hash >>> 15
+  hash = Math.imul(hash, 0x846ca68b)
+  hash ^= hash >>> 16
+  return ((hash >>> 0) + 1) / 4294967297
+}
+
+/** Weighted sampling without replacement within relevance tiers. Lower-score
+ * candidates never displace better evidence. Both open dimensions jointly
+ * penalize repeated countries/levels, rather than overwriting each other. */
+function sessionVariation(results, session, seed) {
+  const priorities = new Map(results.map(result => [result.dish.id,
+    -Math.log(seededDraw(seed, result.dish.id)) / Math.max(1, result.rankingScore) ** 2]))
+  const countries = new Map(), levels = new Map(), selected = []
+  let start = 0
+  while (start < results.length) {
+    let end = start + 1
+    while (end < results.length && results[end].rankingScore === results[start].rankingScore) end++
+    const remaining = results.slice(start, end)
+    const cost = result => priorities.get(result.dish.id)
+      * (isSurpriseMe(session.region) ? 1 + 3 * (countries.get(result.dish.country) ?? 0) : 1)
+      * (isSurpriseMe(session.adventurousness) ? 1 + 3 * (levels.get(result.dish.adventureLevel) ?? 0) : 1)
+    while (remaining.length) {
+      remaining.sort((a, b) => cost(a) - cost(b) || a.dish.id.localeCompare(b.dish.id))
+      const result = remaining.shift()
+      selected.push(result)
+      countries.set(result.dish.country, (countries.get(result.dish.country) ?? 0) + 1)
+      levels.set(result.dish.adventureLevel, (levels.get(result.dish.adventureLevel) ?? 0) + 1)
+    }
+    start = end
+  }
+  return selected
 }
 
 function catalogIndexMap(catalog) {
@@ -227,75 +292,16 @@ function compareCatalogOrder(a, b, index) {
 
 function sortByScore(results, index) {
   return [...results].sort((a, b) => {
-    if (b.score !== a.score) return b.score - a.score
+    if (b.rankingScore !== a.rankingScore) return b.rankingScore - a.rankingScore
     return compareCatalogOrder(a, b, index)
   })
-}
-
-function greedySpread(group, keyFn, index) {
-  if (group.length <= 1) return group
-
-  const remaining = [...group]
-  const selected = []
-
-  while (remaining.length > 0) {
-    const counts = {}
-    for (const item of selected) {
-      const key = String(keyFn(item))
-      counts[key] = (counts[key] || 0) + 1
-    }
-
-    remaining.sort((a, b) => {
-      const countA = counts[String(keyFn(a))] || 0
-      const countB = counts[String(keyFn(b))] || 0
-      if (countA !== countB) return countA - countB
-      return compareCatalogOrder(a, b, index)
-    })
-
-    selected.push(remaining.shift())
-  }
-
-  return selected
-}
-
-/**
- * Reorder only within equal-score groups. A lower score never jumps a higher
- * one; variety is a tie policy, not a second scorer.
- */
-function spreadEqualScores(results, keyFn, index) {
-  const groups = []
-
-  for (const item of results) {
-    const current = groups[groups.length - 1]
-    if (current && current[0].score === item.score) {
-      current.push(item)
-    } else {
-      groups.push([item])
-    }
-  }
-
-  return groups.flatMap((group) => greedySpread(group, keyFn, index))
-}
-
-function applySurprisePolicies(results, session, index) {
-  let ranked = results
-
-  if (isSurpriseMe(session.region)) {
-    ranked = spreadEqualScores(ranked, (item) => item.dish.country, index)
-  }
-
-  if (isSurpriseMe(session.adventurousness)) {
-    ranked = spreadEqualScores(ranked, (item) => item.dish.adventureLevel, index)
-  }
-
-  return ranked
 }
 
 function prioritizeExplicitRegion(results, session) {
   if (!session.region || isSurpriseMe(session.region)) return results
   const regional = results.filter(result => result.dish.region === session.region)
   const selected = session.foodType === 'anything'
-    ? regional.filter(result => result.score >= REGION_PRIORITY_MIN_SCORE).slice(0, TOP_MATCH_COUNT)
+    ? regional.filter(result => result.rankingScore >= REGION_PRIORITY_MIN_SCORE).slice(0, TOP_MATCH_COUNT)
     : [
       ...regional.filter(result => result.dish.foodType === session.foodType),
       ...regional.filter(result => result.dish.foodType !== session.foodType),
@@ -318,5 +324,11 @@ export function recommend(session, catalog) {
   const scored = catalog.map((dish) => scoreDish(session, dish, weights))
   const ranked = sortByScore(scored, index)
 
-  return prioritizeExplicitRegion(applySurprisePolicies(ranked, session, index), session)
+  const surprise = isSurpriseMe(session.region) || isSurpriseMe(session.adventurousness)
+  // Restored answers have no durable seed: a fixed fallback keeps them stable
+  // and independent of catalog order until the next completed discovery.
+  const varied = surprise
+    ? sessionVariation(ranked, session, session.recommendationSeed ?? 'restored-session')
+    : ranked
+  return prioritizeExplicitRegion(varied, session)
 }

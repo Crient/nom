@@ -1,4 +1,5 @@
 import { useId } from 'react'
+import { useAuth } from '../../context/Auth'
 import Modal from '../ui/Modal'
 import Button from '../ui/Button'
 import error from '../../assets/experience/verification-error.svg'
@@ -17,6 +18,7 @@ const CONTENT = {
 
 export default function EdgeStateModal({ kind, onClose, onVerify, onLogAnyway, onOtherDishes, message }) {
   const id = useId(), content = CONTENT[kind]
+  const auth = useAuth()
   return <Modal open={Boolean(kind)} onClose={onClose} labelledBy={id} overlayClassName="edge-modal-overlay" className={`edge-sheet edge-${kind}`}>
     <button type="button" className="edge-close" onClick={onClose} aria-label="Close dialog">×</button>
     <div className="edge-scroll" role="region" aria-labelledby={id} tabIndex={0}>
@@ -24,7 +26,7 @@ export default function EdgeStateModal({ kind, onClose, onVerify, onLogAnyway, o
     <h2 id={id}>{content?.title ?? 'About this feature'}</h2>
     {content?.body && <p className="edge-body">{content.body}</p>}
     {kind === 'progress' && <ul className="edge-body"><li>A dish can only earn progress once per day.</li><li>You can still log any meal anytime.</li><li>Try different dishes to explore more of the country.</li></ul>}
-    {kind === 'feedback' && <><p className="edge-body">Save what you enjoyed for future food adventures.<br /><br />Your responses won’t affect your Mystery Box progress.</p><p className="flow-demo">Your feedback is saved on this device. It doesn’t change your current matches.</p></>}
+    {kind === 'feedback' && <><p className="edge-body">Save what you enjoyed for future food adventures.<br /><br />Your responses won’t affect your Mystery Box progress.</p><p className="flow-demo">{auth.isAuthenticated ? 'Completed meal feedback syncs with your account. Test previews stay in memory.' : 'Your feedback is saved on this device.'} It doesn’t change your current matches.</p></>}
     {kind === 'preview' && <p className="edge-body">{message}</p>}
     </div>
     {kind === 'failed' && <div className="edge-options edge-footer">

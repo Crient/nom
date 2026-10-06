@@ -79,8 +79,8 @@ describe('Sections 03–06 connected experience', () => {
     expect(document.body.textContent).toContain('Lifetime total: 19 meals')
     expect(document.body.textContent).toContain('2 more experiences until your Mystery Box')
     expect(document.querySelector('.logged-unlocked')).toBeNull()
-    expect(JSON.parse(localStorage.getItem('nom.v1.experience')).data.logs.map(log => log.dishId)).toEqual(['num-banh-chok', 'lort-cha'])
-    expect(localStorage.getItem('nom.v1.experience')).not.toContain('returnState')
+    expect(JSON.parse(localStorage.getItem('nom.v2.guest.experience')).data.logs.map(log => log.dishId)).toEqual(['num-banh-chok', 'lort-cha'])
+    expect(localStorage.getItem('nom.v2.guest.experience')).not.toContain('returnState')
     expect(visitId).toBeTruthy()
   })
   it('logs the selected dish, earns and opens a box, updates collections, and retains favorite/reward state on navigation', async () => {

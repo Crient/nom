@@ -62,7 +62,7 @@ describe('Nom stabilization', () => {
   it('redirects unknown URLs to Home rather than an empty screen', async () => {
     await mount('/not-a-route')
     expect(window.location.pathname).toBe('/home')
-    expect(document.querySelector('h1').textContent).toBe('Hello, Leng!')
+    expect(document.querySelector('h1').textContent).toBe('Hello, Explorer!')
   })
 
   it.each(['/recommendations', '/recommendations/more', '/recommendations/lort-cha'])(

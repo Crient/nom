@@ -60,14 +60,26 @@ export function experienceReducer(state, action) {
       if (!box || box.status !== 'ready') return state
       return { ...state, boxes: { ...state.boxes, [box.id]: { ...box, status: 'opening' } } }
     }
+    case 'restore-box': {
+      // Event merges can shift a milestone to another visit. Consume an
+      // existing earned box credit while preserving the historical opening ID.
+      const credit = state.boxes[action.creditId], log = state.logs.find(log => log.id === action.visitId)
+      if (!credit || credit.status !== 'ready' || state.boxes[action.id] || !log?.verification?.verified || credit.countryId !== log.countryId) return state
+      const boxes = { ...state.boxes }
+      delete boxes[credit.id]
+      boxes[action.id] = { ...credit, id: action.id, visitId: log.id, createdAt: log.completedAt }
+      const logs = state.logs.map(item => ({ ...item, boxId: item.id === log.id ? action.id : item.boxId === credit.id ? null : item.boxId }))
+      return { ...state, boxes, logs }
+    }
     case 'open-box': {
       const box = state.boxes[action.id]
       if (!box || box.status !== 'opening') return state
-      const reward = collectibleDefinitions.find(item => !state.unlocks[collectibleKey(box.countryId, item.id)]) ?? collectibleDefinitions[0]
-      const key = collectibleKey(box.countryId, reward.id), duplicate = Boolean(state.unlocks[key])
+      const recorded = collectibleDefinitions.find(item => item.id === action.collectibleId)
+      const reward = recorded ?? collectibleDefinitions.find(item => !state.unlocks[collectibleKey(box.countryId, item.id)]) ?? collectibleDefinitions[0]
+      const key = collectibleKey(box.countryId, reward.id), duplicate = recorded && typeof action.duplicate === 'boolean' ? action.duplicate : Boolean(state.unlocks[key])
       return { ...state,
         boxes: { ...state.boxes, [box.id]: { ...box, status: 'opened', collectibleId: reward.id, duplicate, openedAt: action.at } },
-        unlocks: duplicate ? state.unlocks : { ...state.unlocks, [key]: { discoveredAt: action.at, source: box.id } },
+        unlocks: duplicate || state.unlocks[key] ? state.unlocks : { ...state.unlocks, [key]: { discoveredAt: action.at, source: box.id } },
       }
     }
     case 'favorite': {

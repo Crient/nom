@@ -6,8 +6,8 @@ const IMAGE_CROP = { height: '118.56%', left: '1.31%', top: '-0.04%', width: '95
 const CHECKBOX = { top: 5.23 }
 
 /**
- * 190×125 cuisine-region tile. Same check-badge treatment as OptionCard, but
- * the frame is a different size, includes a subtitle, and uses a fixed 80px
+ * Vertical cuisine-region tile. Same check-badge treatment as OptionCard, but
+ * the frame includes a subtitle and uses a fixed 80px
  * illustration — not a match for OptionCard or ListOption.
  */
 export default function RegionCard({
@@ -46,7 +46,7 @@ export default function RegionCard({
 
       <span
         className="discovery-region-title font-semibold tracking-tile whitespace-nowrap text-text-primary"
-        style={{ fontSize: titleSize ?? 18, lineHeight: '22px' }}
+        style={{ '--region-title-size': `${titleSize ?? 18}px`, lineHeight: '22px' }}
       >
         {label}
       </span>

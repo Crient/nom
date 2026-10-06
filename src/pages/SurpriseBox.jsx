@@ -17,7 +17,7 @@ import opening from '../assets/experience/box-open.webp'
 export { BOX_REVEAL_TIMING, BOX_REDUCED_TIMING }
 const stageOrder = ['anticipation', 'energy', 'pop', 'silhouette', 'reward', 'rarity', 'progress', 'settled']
 
-export default function SurpriseBox({ phase = 'closed', boxId: previewBoxId, onPhaseChange, onBack, onViewCollection, reducedMotionOverride, previewCollectedCount }) {
+export default function SurpriseBox({ phase = 'closed', boxId: previewBoxId, onPhaseChange, onBack, onViewCollection, reducedMotionOverride, previewCollectedCount, persistSoundPreference = true }) {
   const { boxId: routeBoxId } = useParams(), navigate = useNavigate(), location = useLocation()
   const boxId = previewBoxId ?? routeBoxId
   const { state, beginBox, openBox } = useExperience(), systemReduced = useReducedMotion()
@@ -88,7 +88,7 @@ export default function SurpriseBox({ phase = 'closed', boxId: previewBoxId, onP
     <FlowHeader onBack={onBack ?? (() => navigate(recommendationReturnTo(location.state?.returnTo, '/home'), { state: { returnTo: recommendationReturnTo(location.state?.countryReturnTo, '/collections') } }))} onInfo={() => setModal('progress')} />
     <div className="country-title"><h1>{country.flag} {country.name.toUpperCase()}</h1><p>Mystery Box</p></div>
     <div className="box-sound-row"><button type="button" className="box-sound-toggle" aria-pressed={soundOn} onClick={() => {
-      const enabled = !soundOn; setSoundOn(enabled); saveRewardSoundPreference(enabled)
+      const enabled = !soundOn; setSoundOn(enabled); if (persistSoundPreference) saveRewardSoundPreference(enabled)
       if (!enabled) rewardSound.stop()
       setSoundNotice(reduced && enabled ? 'Sound is paused with reduced motion.' : null)
     }}>{soundOn ? '♫ Sound on' : '♪ Sound off'}</button>

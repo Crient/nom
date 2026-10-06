@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
+import { ExperienceNavigate as Navigate, useExperienceRoute } from '../context/ExperienceFlow'
 import { dishes } from '../data/dishes'
 import { restaurantPresentation } from '../data/restaurantDetails'
 import { useRestaurant } from '../hooks/useRestaurant'
@@ -21,12 +21,14 @@ import website from '../assets/experience/website.svg'
 import friends from '../assets/experience/friends.svg'
 import share from '../assets/experience/share.svg'
 import ate from '../assets/experience/ate-here.webp'
+import AteHereSwipe from '../components/restaurants/AteHereSwipe'
 import LiveRestaurantDetails from '../components/restaurants/LiveRestaurantDetails'
 
 export default function RestaurantDetails() {
-  const { dishId, restaurantId } = useParams(), navigate = useNavigate(), location = useLocation()
+  const { params: { dishId, restaurantId }, navigate, location, testMode } = useExperienceRoute()
   const dish = dishes.find(item => item.id === dishId)
-  const { ready } = useRecommendations()
+  const recommendations = useRecommendations()
+  const ready = testMode || recommendations.ready
   const data = useRestaurant(ready ? dish?.id : undefined, restaurantId)
   const { startVisit } = useExperience()
   const { isRestaurantFavorite, toggleRestaurantFavorite } = useFavorites()
@@ -44,10 +46,11 @@ export default function RestaurantDetails() {
   if (!data.restaurant) return <FlowState title="Restaurant not found" backLabel="Back to nearby restaurants" onBack={back}>This restaurant is not available for {dish.name}.</FlowState>
   const restaurant = data.restaurant
   if (restaurant.source === 'google-places') return <LiveRestaurantDetails restaurant={restaurant} dish={dish} back={back} returnState={returnState} />
-  if (!import.meta.env.DEV) return <FlowState title="Restaurant unavailable" backLabel="Back to nearby restaurants" onBack={back}>Refresh nearby search for current restaurant details.</FlowState>
+  if (!import.meta.env.DEV && !testMode) return <FlowState title="Restaurant unavailable" backLabel="Back to nearby restaurants" onBack={back}>Refresh nearby search for current restaurant details.</FlowState>
   const presentation = restaurantPresentation(restaurant, dish)
   const preview = text => { setMessage(text); setModal('preview') }
   const shareLink = async () => {
+    if (testMode) { preview('Sharing is simulated in test mode.'); return }
     try {
       if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable')
       await navigator.clipboard.writeText(window.location.href)
@@ -72,9 +75,11 @@ export default function RestaurantDetails() {
       <p className="restaurant-details-rating"><img src={star} alt="" /><strong>{restaurant.rating}</strong> ({restaurant.reviewCount}) • <span>{restaurant.isOpen ? 'Open' : 'Closed'}</span></p>
       <div className="restaurant-details-tags">{[dish.name, ...restaurant.tags].map(tag => <DishTag key={tag} label={tag} />)}</div>
       <div className="restaurant-actions">{actions.map(action => <button key={action.label} type="button" onClick={action.action}><span><img src={action.icon} alt="" /></span><strong>{action.label}</strong></button>)}</div>
-      <button type="button" className="restaurant-ate" onClick={() => {
+      {testMode ? <AteHereSwipe onConfirm={() => {
         const id = startVisit({ dish, restaurant, returnState }); navigate(`/visits/${id}/verify`)
-      }}><Image src={ate} alt="" />I ate here</button>
+      }} /> : <button type="button" className="restaurant-ate" onClick={() => {
+        const id = startVisit({ dish, restaurant, returnState }); navigate(`/visits/${id}/verify`)
+      }}><Image src={ate} alt="" />I ate here</button>}
       <section className="restaurant-about"><h2>About</h2><p>{presentation.about}</p><button type="button" className="restaurant-about-more" onClick={() => preview(`Development preview for ${restaurant.name} in ${restaurant.address}. Searching for ${dish.name}. Menus and availability are examples, and live contact details are not connected.`)}>See more</button></section>
       <section id="popular-menu" className="restaurant-menu"><h2>More dishes from this cuisine</h2><p className="restaurant-availability-note">Explore Nom’s {presentation.cuisine} catalog. Check the restaurant’s menu for availability.</p><div>{presentation.menu.map(item => <article key={item.name}>
         <button type="button" aria-label={`View ${item.name} details`} onClick={() => navigate(`/recommendations/${item.dishId}`, { state: { returnTo: location.state?.returnTo } })}><Image src={item.image} alt="" /><strong><DishTitle dish={dishes.find(dish => dish.id === item.dishId)} /></strong></button>

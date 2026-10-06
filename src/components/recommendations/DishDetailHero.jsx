@@ -8,7 +8,7 @@ import DishTitle from '../ui/DishTitle'
 import '../../styles/recommendations.css'
 
 export default function DishDetailHero({ result, chips, onBack, backLabel = 'Go back to recommendations' }) {
-  const { dish, score } = result
+  const { dish, displayMatchPercent = result.score } = result
 
   return (
     <section className="relative overflow-hidden pt-[256px] pb-[5px]">
@@ -31,8 +31,8 @@ export default function DishDetailHero({ result, chips, onBack, backLabel = 'Go 
       </button>
 
       <div className="relative ml-[22px] mr-[21px] min-h-[195px] rounded-[17.261px] bg-surface px-[13px] pt-[14px] pb-[22px] shadow-card">
-        <div className="absolute top-[12px] right-[12px]" aria-label={`${Math.round(score)}% match`}>
-          <MatchBadge percent={Math.round(score)} variant="detail" />
+        <div className="absolute top-[12px] right-[12px]" aria-label={`${Math.round(displayMatchPercent)}% match`}>
+          <MatchBadge percent={Math.round(displayMatchPercent)} variant="detail" />
         </div>
         <h1 className="break-words pr-[78px] text-[35px] leading-[35px] font-bold text-strong-neutral">
           <DishTitle dish={dish} />

@@ -1,5 +1,5 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import { readLocalState, writeLocalState, STORAGE_KEYS } from '../data/localPersistence'
+import { createContext, useCallback, useContext, useMemo, useState } from 'react'
+import { usePersistedSection } from './LocalData'
 import { EMPTY_DISCOVERY, normalizeDiscovery } from '../data/persistedState'
 
 /**
@@ -12,8 +12,9 @@ const EMPTY_SESSION = EMPTY_DISCOVERY
 const DiscoverySessionContext = createContext(null)
 
 export function DiscoverySessionProvider({ children }) {
-  const [session, setSession] = useState(() => readLocalState(STORAGE_KEYS.discovery, normalizeDiscovery, () => EMPTY_SESSION))
-  useEffect(() => { writeLocalState(STORAGE_KEYS.discovery, session) }, [session])
+  const [session, setSession] = usePersistedSection('discovery', normalizeDiscovery, () => EMPTY_SESSION)
+  const [recommendationSeed, setRecommendationSeed] = useState(null)
+  const completeSession = useCallback(() => setRecommendationSeed(globalThis.crypto?.randomUUID?.() ?? `${Date.now()}:${Math.random()}`), [])
 
   /* Accepts a value or an updater, like useState, so callers that derive the
      next answer from the current one stay correct when React batches. */
@@ -22,18 +23,20 @@ export function DiscoverySessionProvider({ children }) {
       ...current,
       [key]: typeof value === 'function' ? value(current[key]) : value,
     }))
-  }, [])
+  }, [setSession])
 
   const value = useMemo(
     () => ({
       ...session,
+      recommendationSeed,
+      completeSession,
       setFoodType: (foodType) => setAnswer('foodType', foodType),
       setFlavors: (flavors) => setAnswer('flavors', flavors),
       setAdventurousness: (adventurousness) => setAnswer('adventurousness', adventurousness),
       setRegion: (region) => setAnswer('region', region),
-      resetSession: () => setSession(EMPTY_SESSION),
+      resetSession: () => { setSession(EMPTY_SESSION); setRecommendationSeed(null) },
     }),
-    [session, setAnswer],
+    [session, setSession, setAnswer, recommendationSeed, completeSession],
   )
 
   return (

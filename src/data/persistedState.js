@@ -9,7 +9,7 @@ import { feedbackObservations, feedbackReactions } from './mealFeedback'
 import { isGoogleRestaurantId } from '../../shared/nearbyRestaurants.js'
 
 export const EMPTY_DISCOVERY = { foodType: null, flavors: [], adventurousness: null, region: null }
-export const EMPTY_ACTIVITY = { displayName: 'Leng', recentDishes: [] }
+export const EMPTY_ACTIVITY = { displayName: 'Explorer', recentDishes: [] }
 const object = value => value !== null && typeof value === 'object' && !Array.isArray(value)
 const uniqueKnown = (value, allowed) => Array.isArray(value) ? [...new Set(value.filter(item => typeof item === 'string' && allowed.includes(item)))] : []
 const validDate = value => typeof value === 'string' && Number.isFinite(Date.parse(value))
@@ -24,7 +24,7 @@ export function normalizeActivity(value) {
     if (!object(item) || !known.has(item.dishId) || !validDate(item.viewedAt) || !/^\d{4}-\d{2}-\d{2}T/.test(item.viewedAt) || seen.has(item.dishId)) return false
     seen.add(item.dishId); return true
   }).map(({ dishId, viewedAt }) => ({ dishId, viewedAt })).slice(0, records.length) : []
-  const displayName = typeof value.displayName === 'string' ? value.displayName.replace(/[\u0000-\u001f\u007f]/g, '').trim().slice(0, 40) || 'Leng' : 'Leng'
+  const displayName = typeof value.displayName === 'string' ? value.displayName.replace(/[\u0000-\u001f\u007f]/g, '').trim().slice(0, 40) || 'Explorer' : 'Explorer'
   const result = { displayName, recentDishes }
   return JSON.stringify(result) === JSON.stringify(value) ? result : markRepaired(result)
 }
@@ -59,7 +59,7 @@ function normalizeLog(value) {
   const result = {
     id: value.id, dishId: dish.id, restaurantId: value.restaurantId, countryCode: dish.countryCode,
     startedAt: value.startedAt, completedAt: value.completedAt, day: value.day,
-    verification: { verified: value.verification.verified, method: value.verification.method, source: 'development', checkedAt: validDate(value.verification.checkedAt) ? value.verification.checkedAt : value.startedAt },
+    verification: { verified: value.verification.verified, method: value.verification.method, source: typeof value.verification.source === 'string' ? value.verification.source.replace(/[\u0000-\u001f\u007f]/g, '').slice(0, 100) || 'development' : 'development', checkedAt: validDate(value.verification.checkedAt) ? value.verification.checkedAt : value.startedAt },
     feedback: { reaction: value.feedback.reaction, observations: uniqueKnown(value.feedback.observations, feedbackObservations), note: typeof value.feedback.note === 'string' ? value.feedback.note.slice(0, 1000) : '' },
   }
   return result.countryCode !== value.countryCode || JSON.stringify(result.feedback) !== JSON.stringify(value.feedback) || result.verification.checkedAt !== value.verification.checkedAt ? markRepaired(result) : result
@@ -86,9 +86,17 @@ export function normalizeExperience(value) {
   const validOpened = opened.filter(box => object(box) && validDate(box.openedAt))
   if (validOpened.length !== opened.length || ('openedBoxes' in value && !Array.isArray(value.openedBoxes))) repaired = true
   for (const box of validOpened.sort((a, b) => Date.parse(a.openedAt) - Date.parse(b.openedAt))) {
+    const recordedReward = box.collectibleId !== undefined
+    if (recordedReward && (!collectibleDefinitions.some(item => item.id === box.collectibleId) || typeof box.duplicate !== 'boolean')) { repaired = true; continue }
+    const visitId = box.visitId ?? (typeof box.id === 'string' ? box.id.slice(4) : null), log = state.logs.find(log => log.id === visitId)
+    if ((box.countryId !== undefined && box.countryId !== log?.countryId) || !log || Date.parse(log.completedAt) > Date.parse(box.openedAt)) { repaired = true; continue }
+    if (!state.boxes[box.id] && typeof box.id === 'string' && box.id.startsWith('box-')) {
+      const credit = Object.values(state.boxes).find(item => item.status === 'ready' && item.countryId === log?.countryId && Date.parse(item.createdAt) <= Date.parse(box.openedAt))
+      if (credit) state = experienceReducer(state, { type: 'restore-box', id: box.id, visitId, creditId: credit.id })
+    }
     if (!state.boxes[box.id] || state.boxes[box.id].status === 'opened') { repaired = true; continue }
     state = experienceReducer(state, { type: 'begin-box', id: box.id })
-    state = experienceReducer(state, { type: 'open-box', id: box.id, at: box.openedAt })
+    state = experienceReducer(state, { type: 'open-box', id: box.id, at: box.openedAt, collectibleId: box.collectibleId, duplicate: box.duplicate })
   }
   const allowedFavorites = collectionCountries.flatMap(country => collectibleDefinitions.map(item => collectibleKey(country.id, item.id))).filter(key => state.unlocks[key])
   const favorites = uniqueKnown(value.favorites, allowedFavorites)
@@ -99,7 +107,7 @@ export function normalizeExperience(value) {
 export function serializeExperience(state) {
   return {
     logs: state.logs.map(({ returnState, ...log }) => log),
-    openedBoxes: Object.values(state.boxes).filter(box => box.status === 'opened').map(box => ({ id: box.id, openedAt: box.openedAt })),
+    openedBoxes: Object.values(state.boxes).filter(box => box.status === 'opened').map(({ id, visitId, countryId, collectibleId, duplicate, openedAt }) => ({ id, visitId, countryId, collectibleId, duplicate, openedAt })),
     favorites: state.favorites,
   }
 }

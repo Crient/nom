@@ -38,7 +38,7 @@ async function click(label) {
 async function checkCardToDetail(result, origin) {
   const link = document.querySelector(`a[href="/recommendations/${result.dish.id}"]`)
   const card = link.closest('article')
-  const percent = Math.round(result.score)
+  const percent = Math.round(result.displayMatchPercent)
   expect(card.textContent).toContain(`${percent} %`)
   const cardPercent = Number(card.textContent.match(/(\d+)\s+%/)[1])
   expect(card.textContent).toContain(result.dish.name)
@@ -83,7 +83,8 @@ describe('card/details identity audit', () => {
     const results = selectMoreOptions(session, recommend(session, dishes))
     const heading = [...document.querySelectorAll('h2')].find(e => e.textContent === 'Similar dishes from other regions')
     expect(heading).toBeTruthy()
-    expect(heading.nextElementSibling.getAttribute('aria-label')).toContain('Yassa')
+    const firstCrossRegion = results.find(result => result.dish.region !== session.region)
+    expect(heading.nextElementSibling.getAttribute('aria-label')).toContain(firstCrossRegion.dish.name)
     for (const result of results) await checkCardToDetail(result, '/recommendations/more')
   })
 })

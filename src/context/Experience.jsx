@@ -1,6 +1,6 @@
-import { createContext, useContext, useEffect, useMemo, useReducer } from 'react'
+import { createContext, useContext, useCallback, useMemo } from 'react'
 import { createExperienceState, experienceReducer, visitDay } from '../data/experienceState'
-import { readLocalState, writeLocalState, STORAGE_KEYS } from '../data/localPersistence'
+import { usePersistedSection } from './LocalData'
 import { normalizeExperience, serializeExperience } from '../data/persistedState'
 
 const ExperienceContext = createContext(null)
@@ -12,8 +12,8 @@ export function ExperiencePreviewProvider({ value, children }) {
 }
 
 export function ExperienceProvider({ children }) {
-  const [state, dispatch] = useReducer(experienceReducer, undefined, () => readLocalState(STORAGE_KEYS.experience, normalizeExperience, createExperienceState))
-  useEffect(() => { writeLocalState(STORAGE_KEYS.experience, serializeExperience(state)) }, [state.logs, state.boxes, state.favorites])
+  const [state, setState] = usePersistedSection('experience', normalizeExperience, createExperienceState, serializeExperience)
+  const dispatch = useCallback(action => setState(current => experienceReducer(current, action)), [setState])
   const actions = useMemo(() => ({
     startVisit({ dish, restaurant, returnState }) {
       const id = globalThis.crypto?.randomUUID?.() ?? `visit-${Date.now()}-${++visitSequence}`
@@ -27,7 +27,7 @@ export function ExperienceProvider({ children }) {
     beginBox: id => dispatch({ type: 'begin-box', id }),
     openBox: id => dispatch({ type: 'open-box', id, at: new Date().toISOString() }),
     toggleCollectibleFavorite: key => dispatch({ type: 'favorite', key }),
-  }), [])
+  }), [dispatch])
   const value = useMemo(() => ({ state, ...actions }), [state, actions])
   return <ExperienceContext.Provider value={value}>{children}</ExperienceContext.Provider>
 }

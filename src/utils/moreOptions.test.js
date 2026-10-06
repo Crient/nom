@@ -33,7 +33,7 @@ describe('More Options regional presentation', () => {
   })
 
   it('keeps relevant candidates and fills otherwise empty slots without changing scores', () => {
-    const fixture = (id, region, score) => ({ dish: { id, region }, score })
+    const fixture = (id, region, score) => ({ dish: { id, region }, rankingScore: score, displayMatchPercent: 100 })
     const top = [fixture('top-a', base.region, 90), fixture('top-b', base.region, 80), fixture('top-c', base.region, 70)]
     const strong = fixture('global', 'east-asia', 85)
     const boundary = fixture('regional-boundary', base.region, 40)

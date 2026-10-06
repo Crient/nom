@@ -11,9 +11,9 @@ import '../../styles/recommendations.css'
 
 export default function RecommendationCard({ result, rank, liked = false, onToggleLike, className, variant = 'ranked' }) {
   const list = variant === 'list'
-  const { dish, score, matchedAttributes } = result
+  const { dish, displayMatchPercent = result.score, matchedAttributes } = result
   const tags = projectDishTags(dish, { matchedPreferenceFlavors: matchedAttributes?.preferenceFlavors ?? [], limit: 3 })
-  const percent = Number.isFinite(score) ? Math.round(score) : null
+  const percent = Number.isFinite(displayMatchPercent) ? Math.round(displayMatchPercent) : null
 
   return (
     <article aria-label={`${rank ? `#${rank} ` : ''}${dish.name}${percent === null ? '' : `, ${percent}% match`}`}

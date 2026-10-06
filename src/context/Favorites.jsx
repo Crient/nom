@@ -1,26 +1,31 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import { readLocalState, writeLocalState, STORAGE_KEYS } from '../data/localPersistence'
+import { createContext, useCallback, useContext, useMemo } from 'react'
+import { usePersistedSection } from './LocalData'
 import { normalizeFavorites } from '../data/persistedState'
 
 const FavoritesContext = createContext(null)
 
+/** Memory-only test favorites supplied by the isolated experience playground. */
+export function FavoritesPreviewProvider({ value, children }) {
+  return <FavoritesContext.Provider value={value}>{children}</FavoritesContext.Provider>
+}
+
 /** Dish and restaurant IDs stay separate, shared, and locally persistent. */
 export function FavoritesProvider({ children }) {
-  const [saved] = useState(() => readLocalState(STORAGE_KEYS.favorites, normalizeFavorites, () => ({ dishIds: [], restaurantIds: [] })))
-  const [favoriteIds, setFavoriteIds] = useState(saved.dishIds)
-  const [restaurantIds, setRestaurantIds] = useState(saved.restaurantIds)
-  useEffect(() => { writeLocalState(STORAGE_KEYS.favorites, { dishIds: favoriteIds, restaurantIds }) }, [favoriteIds, restaurantIds])
+  const [saved, setSaved] = usePersistedSection('favorites', normalizeFavorites, () => ({ dishIds: [], restaurantIds: [] }))
+  const favoriteIds = saved.dishIds, restaurantIds = saved.restaurantIds
+  const setFavoriteIds = useCallback(updater => setSaved(current => ({ ...current, dishIds: updater(current.dishIds) })), [setSaved])
+  const setRestaurantIds = useCallback(updater => setSaved(current => ({ ...current, restaurantIds: updater(current.restaurantIds) })), [setSaved])
   const isRestaurantFavorite = useCallback(id => restaurantIds.includes(id), [restaurantIds])
   const toggleRestaurantFavorite = useCallback(id => {
     setRestaurantIds(current => current.includes(id) ? current.filter(value => value !== id) : [...current, id])
-  }, [])
+  }, [setRestaurantIds])
 
   const isFavorite = useCallback((id) => favoriteIds.includes(id), [favoriteIds])
   const toggleFavorite = useCallback((id) => {
     setFavoriteIds((current) =>
       current.includes(id) ? current.filter((favoriteId) => favoriteId !== id) : [...current, id],
     )
-  }, [])
+  }, [setFavoriteIds])
 
   const value = useMemo(() => ({ favoriteIds, restaurantIds, isFavorite, toggleFavorite, isRestaurantFavorite, toggleRestaurantFavorite }),
     [favoriteIds, restaurantIds, isFavorite, toggleFavorite, isRestaurantFavorite, toggleRestaurantFavorite])

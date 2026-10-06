@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run catalog:validate && vite build",
+    "build": "npm run catalog:validate && npm run accounts:validate && vite build && node scripts/validate-account-secrets.mjs --dist",
     "preview": "vite preview",
     "test": "vitest run",
     "catalog:import": "python3 scripts/import-catalog.py",
@@ -14,9 +14,11 @@
     "images:import": "python3 scripts/import-dish-images.py --import-approved",
     "images:remaining": "node scripts/export-missing-images.mjs",
     "catalog:validate": "node scripts/validate-catalog.mjs",
-    "ship": "bash scripts/ship.sh"
+    "ship": "bash scripts/ship.sh",
+    "accounts:validate": "node scripts/validate-account-secrets.mjs"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.93.3",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "react-router-dom": "^7.18.4"

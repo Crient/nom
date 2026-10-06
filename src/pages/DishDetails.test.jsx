@@ -45,7 +45,7 @@ describe('Dish Details', () => {
     const html = renderScreen(dish.id)
     expect(html).toContain(`alt="${escapeHtml(dish.name)}"`)
     expect(html).toContain(`src="${dish.image}"`)
-    expect(html).toContain(`${Math.round(result.score)}% match`)
+    expect(html).toContain(`${Math.round(result.displayMatchPercent)}% match`)
     expect(html).toContain(escapeHtml(dish.description))
     if (dish.id !== 'lort-cha') {
       expect(html).not.toContain('THMOR DA Restaurant')
@@ -69,7 +69,7 @@ describe('Dish Details', () => {
   it('accepts skipped region and computes its updated score', () => {
     const session = { ...PAINTED_SESSION, region: null }
     useDiscoverySession.mockReturnValue(session)
-    const score = recommend(session, dishes).find((item) => item.dish.id === 'lort-cha').score
+    const score = recommend(session, dishes).find((item) => item.dish.id === 'lort-cha').displayMatchPercent
     const html = renderScreen('lort-cha')
     expect(html).toContain(`${Math.round(score)}% match`)
     expect(html).not.toContain('Southeast Asian')

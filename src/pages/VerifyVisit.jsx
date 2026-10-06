@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Navigate, useNavigate, useParams } from 'react-router-dom'
+import { ExperienceNavigate as Navigate, useExperienceRoute } from '../context/ExperienceFlow'
 import { useVisit } from '../hooks/useVisit'
 import { useExperience } from '../context/Experience'
 import { hasCountedDish, visitDay } from '../data/experienceState'
@@ -14,10 +14,10 @@ import GooglePlacesAttribution from '../components/restaurants/GooglePlacesAttri
 import verified from '../assets/experience/verified.svg'
 
 export default function VerifyVisit() {
-  const { visitId } = useParams(), navigate = useNavigate()
+  const { params: { visitId }, navigate, initialModal } = useExperienceRoute()
   const { visit, log, dish, restaurant, status, retry } = useVisit(visitId)
   const { state, verifyVisit } = useExperience()
-  const [modal, setModal] = useState(null)
+  const [modal, setModal] = useState(initialModal ?? null)
   const home = () => navigate('/home')
   if (!visit || !dish) return <FlowState title="Visit not found" onBack={home}>This unfinished visit isn’t saved after a refresh. Start again from a restaurant.</FlowState>
   if (log) return <Navigate to={`/visits/${visitId}/logged`} replace />

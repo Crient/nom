@@ -25,7 +25,7 @@ import chevronCta from '../assets/icons/chevron-right-cta.svg'
 import chevronSm from '../assets/icons/chevron-right-sm.svg'
 
 const QUICK_ACTIONS = [
-  { label: 'Trending', icon: quickTrending, to: '/explore?view=trending' }, { label: 'Explore', icon: quickTrending, to: '/explore' },
+  { label: 'Explore', icon: quickTrending, to: '/explore' },
   { label: 'Log Meal', icon: quickLogMeal, to: '/explore?action=log' }, { label: 'Favorites', icon: quickFavorites, to: '/favorites' },
   { label: 'Progress', icon: quickProgress, to: '/progress' },
 ]
@@ -47,7 +47,7 @@ export default function Home() {
         <StatusBar className="home-status" />
         <form role="search" className="home-search" onSubmit={event => { event.preventDefault(); navigate(`/explore${query.trim() ? `?q=${encodeURIComponent(query.trim())}` : ''}`) }}><SearchField aria-label="Search for food" placeholder="Search for food..." value={query} onChange={event => setQuery(event.target.value)} action={<button type="submit" aria-label="Search dishes" className="flex min-h-[44px] min-w-[44px] items-center justify-center"><img src={chevronSm} alt="" /></button>} /></form>
         <div className="home-quick-actions bg-surface py-[16.017px]">
-          <div className="grid grid-cols-5 gap-[6px] px-[16.017px]">
+          <div className="grid grid-cols-4 gap-[6px] px-[16.017px]">
             {QUICK_ACTIONS.map(({ label, icon, to }) => {
               return <Link key={label} to={to} className="flex min-h-[44px] min-w-0 flex-col items-center gap-[6.007px] text-text-secondary">
                 <img src={icon} alt="" className="size-[24.026px] shrink-0" />

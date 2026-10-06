@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Navigate, useNavigate, useParams } from 'react-router-dom'
+import { ExperienceNavigate as Navigate, useExperienceRoute } from '../context/ExperienceFlow'
 import { useVisit } from '../hooks/useVisit'
 import { useExperience } from '../context/Experience'
 import { restaurantPresentation } from '../data/restaurantDetails'
@@ -18,7 +18,7 @@ import GooglePlacesAttribution from '../components/restaurants/GooglePlacesAttri
 const REACTION_IMAGES = { loved, liked, okay, 'not-for-me': notForMe }
 
 export default function MealFeedback() {
-  const { visitId } = useParams(), navigate = useNavigate()
+  const { params: { visitId }, navigate } = useExperienceRoute()
   const { visit, log, dish, restaurant, status, retry } = useVisit(visitId)
   const { saveFeedback, completeVisit } = useExperience()
   const [modal, setModal] = useState(null)

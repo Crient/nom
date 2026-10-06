@@ -24,7 +24,7 @@ beforeEach(() => {
 afterEach(async () => { await act(() => root.unmount()); vi.restoreAllMocks(); vi.unstubAllGlobals(); vi.unstubAllEnvs(); vi.useRealTimers() })
 async function mount(path) {
   window.history.replaceState({}, '', path)
-  await act(() => root.render(<App />))
+  await act(() => { root.render(<App />); window.dispatchEvent(new PopStateEvent('popstate')) })
 }
 async function click(label) {
   const button = [...document.querySelectorAll('button')].find(node => node.textContent.trim() === label || node.getAttribute('aria-label') === label)
@@ -50,7 +50,7 @@ describe('mobile acceptance regressions', () => {
     expect(css).toContain('min-height: 100dvh')
     expect(css).not.toMatch(/956px|1150px|overflow:\s*hidden/)
     expect(css).toContain('min-height: clamp(60px,8.5dvh,72px)')
-    expect(css).toContain('padding-right: 26px;')
+    expect(css).toContain('flex-direction: column; align-items: center; justify-content: center')
     expect(css).not.toContain('[aria-pressed=true] .discovery-region-title')
     expect(css).toContain('--discovery-card-height: clamp(104px,15dvh,125px)')
     expect(css).toContain('--discovery-art-height: clamp(52px,8dvh,64px)')
@@ -59,9 +59,9 @@ describe('mobile acceptance regressions', () => {
     expect(css).toContain('margin-top: clamp(16px,2.4dvh,24px)')
     expect(css).toContain('margin-bottom: clamp(16px,2.4dvh,24px)')
     expect(css).toContain('min-height: clamp(84px,11.8dvh,100px)')
-    expect(css).toContain('min-height: clamp(78px,10.5dvh,88px)')
-    expect(css).toContain('--region-art-height: clamp(38px,5.3dvh,46px)')
-    expect(css).toContain('gap: clamp(8px,1.4dvh,12px)')
+    expect(css).toContain('min-height: 156px')
+    expect(css).toContain('.discovery-region-art { width: 80px; height: 80px; }')
+    expect(css).toContain('.discovery-region .discovery-options { gap: 16px; }')
     expect(css).not.toMatch(/max-height: 1000px|clamp\(84px,13dvh|clamp\(40px,7dvh|min-height: 64px|width: 24px|margin: auto|margin-top: auto/)
 
   })
@@ -73,6 +73,32 @@ describe('mobile acceptance regressions', () => {
     expect(cta.disabled).toBe(false)
     await act(() => cta.focus())
     expect(document.activeElement).toBe(cta)
+  })
+  it('preserves all eight vertical centered Region tiles and the distinct illustrated full-width Surprise row', async () => {
+    await mount('/discover/region')
+    const cards = [...document.querySelectorAll('.discovery-region-card')]
+    expect(cards).toHaveLength(8)
+    for (const card of cards) {
+      expect(card.className).toContain('flex-col')
+      expect(card.className).toContain('items-center')
+      expect(card.querySelector('.discovery-region-art').nextElementSibling).toBe(card.querySelector('.discovery-region-title'))
+      expect(card.querySelector('.discovery-region-title').nextElementSibling).toBe(card.querySelector('.discovery-region-subtitle'))
+      await act(() => card.click())
+      expect(card.querySelector('.discovery-region-check').style.top).toBe('5.23px')
+      expect(card.querySelector('.discovery-region-check').style.right).toBe('7.323px')
+    }
+    const special = document.querySelector('.surprise-region-button')
+    expect(special.closest('.discovery-option-row')).toBeNull()
+    expect(special.querySelector('.surprise-region-copy')).toBeTruthy()
+    expect(special.querySelector('img')).toBeTruthy()
+    const css = source('../styles/discovery.css')
+    const tile = css.match(/\.discovery-region-card \{([^}]+)\}/)[1]
+    expect(tile).toContain('display: flex; flex-direction: column; align-items: center')
+    expect(tile).not.toContain('grid-template-columns')
+    expect(css).toMatch(/discovery-region-title[^}]*white-space: nowrap; text-align: center/)
+    expect(css).toMatch(/discovery-region-subtitle[^}]*text-align: center/)
+    expect(css).not.toMatch(/max-height:|discovery-region-card[^}]*dvh/)
+    expect(css).toContain('padding-bottom: max(12px,env(safe-area-inset-bottom,0px))')
   })
   it('shares Home arrow alignment and gives all recommendation actions one size and artwork anchor', async () => {
     await mount('/home')
@@ -152,6 +178,10 @@ describe('mobile acceptance regressions', () => {
     expect(document.querySelector('.reward-playground')).toBeNull()
     await mount('/profile')
     expect(document.querySelector('a[href="/dev/rewards"]')).toBeNull()
+    expect(document.querySelector('a[href="/dev/experience"]')).toBeNull()
+    await mount('/dev/experience?VITE_ENABLE_REWARD_QA=true')
+    expect(window.location.pathname).toBe('/home')
+    expect(document.querySelector('.experience-playground')).toBeNull()
     vi.stubEnv('VITE_ENABLE_REWARD_QA', 'false'); expect(rewardQaEnabled()).toBe(false)
     vi.stubEnv('VITE_ENABLE_REWARD_QA', 'true'); expect(rewardQaEnabled()).toBe(true)
   })

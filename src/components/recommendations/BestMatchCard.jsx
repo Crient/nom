@@ -9,12 +9,12 @@ import DishTitle from '../ui/DishTitle'
 import '../../styles/recommendations.css'
 
 export default function BestMatchCard({ result, liked = false, onToggleLike }) {
-  const { dish, score, matchedAttributes } = result
+  const { dish, displayMatchPercent = result.score, matchedAttributes } = result
   const tags = projectDishTags(dish, {
     matchedPreferenceFlavors: matchedAttributes.preferenceFlavors,
     limit: 4,
   })
-  const percent = Math.round(score)
+  const percent = Math.round(displayMatchPercent)
 
   return (
     <article className="relative min-h-[238.2px] rounded-[17.261px] bg-surface px-[9.21px] pb-[9px] shadow-card">

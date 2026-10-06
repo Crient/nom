@@ -1,7 +1,7 @@
 import { ADVENTURE_LEVEL, isSurpriseMe } from './recommendationEngine'
 
 export function surpriseContextKey(session) {
-  return JSON.stringify([session.foodType, [...(session.flavors ?? [])].sort(), session.adventurousness, session.region])
+  return JSON.stringify([session.foodType, [...(session.flavors ?? [])].sort(), session.adventurousness, session.region, ...(session.recommendationSeed == null ? [] : [session.recommendationSeed])])
 }
 
 /** Surprise eligibility is separate from the deterministic recommendation order. */
@@ -12,10 +12,10 @@ export function surpriseCandidates(session, results) {
     && (!(session.flavors?.length) || session.flavors.some(flavor => dish.preferenceFlavors.includes(flavor)))
     && (!ADVENTURE_LEVEL[session.adventurousness] || Math.abs(dish.adventureLevel - ADVENTURE_LEVEL[session.adventurousness]) <= 1),
   )
-  const bestScore = Math.max(...eligible.map(result => result.score))
+  const bestScore = Math.max(...eligible.map(result => (result.rankingScore ?? result.score)))
   // With only flavor scoring active, a two-flavor partial match scores 50.
   // Excluding it would reduce common Surprise contexts to a single perfect dish.
-  return eligible.filter(result => result.score >= Math.max(bestScore / 2, bestScore - 50))
+  return eligible.filter(result => (result.rankingScore ?? result.score) >= Math.max(bestScore / 2, bestScore - 50))
 }
 
 /** Weighted sampling without replacement. Only one active preference context is kept. */
@@ -23,7 +23,7 @@ export function createSurpriseSession({ random = Math.random } = {}) {
   let context = null, queue = [], preparedCycle = null, shown = new Set(), lastId = null, newCycle = false, history = [], position = -1
   const weightedQueue = (pool, avoidId) => {
     const draw = pool.map(result => ({ result,
-      priority: -Math.log(Math.max(Number.EPSILON, Math.min(1 - Number.EPSILON, random()))) / Math.max(1, result.score) ** 2,
+      priority: -Math.log(Math.max(Number.EPSILON, Math.min(1 - Number.EPSILON, random()))) / Math.max(1, (result.rankingScore ?? result.score)) ** 2,
     })).sort((a, b) => a.priority - b.priority).map(item => item.result)
     if (draw.length > 1 && draw[0].dish.id === avoidId) draw.push(draw.shift())
     return draw

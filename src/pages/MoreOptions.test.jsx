@@ -53,7 +53,7 @@ describe('More Options', () => {
     expect(html).not.toContain('Pancit Canton')
     expect(html).not.toContain('Similar dishes from other regions')
     expect(renderedMatches(html)).toEqual(selectMoreOptions(PAINTED_SESSION, recommend(PAINTED_SESSION, dishes)).map(
-      (result, index) => `#${index + 4} ${result.dish.name}, ${Math.round(result.score)}% match`,
+      (result, index) => `#${index + 4} ${result.dish.name}, ${Math.round(result.displayMatchPercent)}% match`,
     ))
   })
 
@@ -62,7 +62,7 @@ describe('More Options', () => {
     useDiscoverySession.mockReturnValue(session)
     const html = renderScreen()
     expect(renderedMatches(html)).toEqual(selectMoreOptions(session, recommend(session, dishes)).map(
-      (result, index) => `#${index + 4} ${result.dish.name}, ${Math.round(result.score)}% match`,
+      (result, index) => `#${index + 4} ${result.dish.name}, ${Math.round(result.displayMatchPercent)}% match`,
     ))
     const header = html.match(/<header\b[\s\S]*?<\/header>/)[0]
     expect(header).toContain('Familiar')
@@ -90,7 +90,7 @@ describe('More Options', () => {
     useDiscoverySession.mockReturnValue(session)
     const html = renderScreen()
     expect(renderedMatches(html)).toEqual(recommend(session, dishes).slice(3, 10).map(
-      (result, index) => `#${index + 4} ${result.dish.name}, ${Math.round(result.score)}% match`,
+      (result, index) => `#${index + 4} ${result.dish.name}, ${Math.round(result.displayMatchPercent)}% match`,
     ))
     expect(html).not.toContain('Similar dishes from other regions')
     expect(html).not.toContain('Southeast Asian')

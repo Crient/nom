@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/Auth'
 import NomNavigation from '../components/layout/NomNavigation'
 import Image from '../components/ui/Image'
 import Button from '../components/ui/Button'
@@ -14,7 +15,7 @@ import profileIcon from '../assets/icons/profile.svg'
  * composition overlaps; the sheet lays its buttons out in flow.
  */
 export default function Welcome() {
-  const navigate = useNavigate()
+  const navigate = useNavigate(), auth = useAuth()
 
   return (
     <div className="relative h-frame w-full overflow-hidden bg-canvas-cream">
@@ -49,8 +50,8 @@ export default function Welcome() {
           <img src={arrowRight} alt="" className="size-[30.634px]" />
         </Button>
 
-        <Button size="cta" variant="secondary" onClick={() => navigate('/profile')}>
-          Profile
+        <Button size="cta" variant="secondary" onClick={() => navigate(auth.isAuthenticated ? '/profile' : '/account')}>
+          {auth.isAuthenticated ? 'Your Profile' : 'Sign in to sync'}
           <img src={profileIcon} alt="" className="size-[25.352px]" />
         </Button>
       </div>

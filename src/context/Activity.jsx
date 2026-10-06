@@ -1,17 +1,16 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import { readLocalState, writeLocalState, STORAGE_KEYS } from '../data/localPersistence'
+import { createContext, useCallback, useContext, useMemo } from 'react'
+import { usePersistedSection } from './LocalData'
 import { EMPTY_ACTIVITY, normalizeActivity } from '../data/persistedState'
 
 const ActivityContext = createContext(null)
 
 /** Local display name and actual dish views. Meal history remains in Experience. */
 export function ActivityProvider({ children }) {
-  const [activity, setActivity] = useState(() => readLocalState(STORAGE_KEYS.activity, normalizeActivity, () => EMPTY_ACTIVITY))
-  useEffect(() => { writeLocalState(STORAGE_KEYS.activity, activity) }, [activity])
+  const [activity, setActivity] = usePersistedSection('activity', normalizeActivity, () => EMPTY_ACTIVITY)
   const recordDishView = useCallback(dishId => setActivity(current => normalizeActivity({ ...current,
     recentDishes: [{ dishId, viewedAt: new Date().toISOString() }, ...current.recentDishes.filter(item => item.dishId !== dishId)],
-  })), [])
-  const setDisplayName = useCallback(displayName => setActivity(current => normalizeActivity({ ...current, displayName })), [])
+  })), [setActivity])
+  const setDisplayName = useCallback(displayName => setActivity(current => normalizeActivity({ ...current, displayName })), [setActivity])
   const value = useMemo(() => ({ ...activity, recordDishView, setDisplayName }), [activity, recordDishView, setDisplayName])
   return <ActivityContext.Provider value={value}>{children}</ActivityContext.Provider>
 }

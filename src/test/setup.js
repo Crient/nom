@@ -6,5 +6,7 @@ beforeEach(() => {
   // Tests opt into synthetic Maps configuration; never inherit local credentials.
   vi.stubEnv('VITE_GOOGLE_MAPS_BROWSER_KEY', '')
   vi.stubEnv('VITE_GOOGLE_MAPS_MAP_ID', '')
+  vi.stubEnv('VITE_SUPABASE_URL', '')
+  vi.stubEnv('VITE_SUPABASE_PUBLISHABLE_KEY', '')
   if (typeof window !== 'undefined') window.localStorage.clear()
 })

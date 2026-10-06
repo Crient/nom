@@ -24,6 +24,9 @@ const Collections = lazy(() => import('./pages/Collections'))
 const CountryCollection = lazy(() => import('./pages/CountryCollection'))
 const CollectibleDetails = lazy(() => import('./pages/CollectibleDetails'))
 const Progress = lazy(() => import('./pages/Progress'))
+const Account = lazy(() => import('./pages/Account'))
+const AuthCallback = lazy(() => import('./pages/AuthCallback'))
+const ResetPassword = lazy(() => import('./pages/ResetPassword'))
 const Profile = lazy(() => import('./pages/Profile'))
 const Favorites = lazy(() => import('./pages/Favorites'))
 const History = lazy(() => import('./pages/History'))
@@ -32,6 +35,7 @@ const Scan = lazy(() => import('./pages/Scan'))
 const ImageCredits = lazy(() => import('./pages/ImageCredits'))
 const PlacesPolicy = lazy(() => import('./pages/PlacesPolicy'))
 const RewardPlayground = import.meta.env.VITE_ENABLE_REWARD_QA === 'true' ? lazy(() => import('./pages/RewardPlayground')) : null
+const ExperiencePlayground = import.meta.env.VITE_ENABLE_REWARD_QA === 'true' ? lazy(() => import('./pages/ExperiencePlayground')) : null
 
 /**
  * Central route table. Each Figma screen becomes one entry under the layout
@@ -45,7 +49,11 @@ export const routes = [
       { path: 'home', element: <Home /> },
       { path: 'progress', element: <Progress /> },
       { path: 'profile', element: <Profile /> },
+      { path: 'account', element: <Account /> },
+      { path: 'auth/callback', element: <AuthCallback /> },
+      { path: 'account/reset-password', element: <ResetPassword /> },
       ...(import.meta.env.VITE_ENABLE_REWARD_QA === 'true' ? [{ path: 'dev/rewards', element: <RewardPlayground /> }] : []),
+      ...(import.meta.env.VITE_ENABLE_REWARD_QA === 'true' ? [{ path: 'dev/experience', element: <ExperiencePlayground /> }] : []),
       { path: 'favorites', element: <Favorites /> },
       { path: 'history', element: <History /> },
       { path: 'explore', element: <Explore /> },

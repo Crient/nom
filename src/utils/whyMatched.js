@@ -17,8 +17,21 @@ function joinReasons(reasons) {
   return `${reasons.slice(0, -1).join(', ')}, and ${reasons.at(-1)}`
 }
 
-/** Explain earned matches only; display descriptors and inactive dimensions never count. */
+/** Explain explicit evidence and any neutral compatibility separately.
+ * Display descriptors never earn preference evidence. */
 export function whyMatched(session, result) {
+  const evidence = explainEvidence(session, result)
+  const display = result.displayBreakdown
+  const open = ['foodType', 'adventure', 'region'].filter(key => display?.[key].open)
+  if (!open.length) return evidence
+  const names = { foodType: 'food type', adventure: 'adventure level', region: 'region' }
+  const points = value => Number(value.toFixed(2))
+  const compatible = open.reduce((sum, key) => sum + display[key].earned, 0)
+  const explicit = Object.values(display).filter(part => !part.open).reduce((sum, part) => sum + part.earned, 0)
+  return `${evidence} You're open to any ${joinReasons(open.map(key => names[key]))}: ${points(compatible)} compatible points plus ${points(explicit)} explicit-preference points give ${Math.round(result.displayMatchPercent)}% compatibility (rounded).`
+}
+
+function explainEvidence(session, result) {
   const { dish, breakdown, matchedAttributes } = result
   const reasons = []
 

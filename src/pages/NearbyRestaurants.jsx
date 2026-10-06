@@ -84,7 +84,7 @@ export default function NearbyRestaurants() {
       <header className="nearby-dish">
         <Image src={dish.image} alt={dish.name} width={110} height={110} className="nearby-dish-photo" />
         <div className="nearby-dish-copy">
-          {result && <div className="nearby-match"><MatchBadge percent={Math.round(result.score)} variant="detail" /></div>}
+          {result && <div className="nearby-match"><MatchBadge percent={Math.round(result.displayMatchPercent ?? result.score)} variant="detail" /></div>}
           <h1><DishTitle dish={dish} /></h1>
           <p>{dish.shortDescription}</p>
           <div className="nearby-chips" aria-label="Your discovery preferences">
