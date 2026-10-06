@@ -22,7 +22,7 @@ export default function Region() {
   }
 
   return (
-    <div className="relative h-[1150px] w-full bg-surface">
+    <div className="discovery-page discovery-region">
       <StatusBar />
 
       <DiscoveryHeader
@@ -32,7 +32,7 @@ export default function Region() {
         onBack={() => navigate('/discover/adventure')}
       />
 
-      <h1 className="absolute top-[169px] left-[28px] w-[min(308px,calc(100%-56px))] text-display text-strong-neutral">
+      <h1 className="discovery-question text-display text-strong-neutral">
         Pick a{' '}
         <span className="text-accessible-teal underline decoration-solid decoration-from-font [text-decoration-skip-ink:none] [text-underline-position:from-font]">
           cuisine
@@ -41,13 +41,13 @@ export default function Region() {
         region
       </h1>
 
-      <p className="absolute top-[248px] left-[29px] w-[calc(100%-58px)] text-body-tight text-text-primary">
+      <p className="discovery-support text-body-tight text-text-primary">
         <span className="font-bold text-error">optional</span>
         {' - '}
         choose one region to narrow down the recommendation
       </p>
 
-      {regionRows.map((row) => (
+      <div className="discovery-options">{regionRows.map((row) => (
         <OptionRow key={row.top} top={row.top} left={row.left} gap={10}>
           {row.options.map((option) => (
             <RegionCard
@@ -63,13 +63,13 @@ export default function Region() {
       <SurpriseRegionCard
         selected={region === SURPRISE_REGION_ID}
         onSelect={() => selectRegion(SURPRISE_REGION_ID)}
-      />
+      /></div>
 
       <Button
         variant="soft"
         size="none"
         onClick={finish}
-        className="absolute top-[1063px] left-[27px] h-[63px] w-[calc(100%-54px)] rounded-lg text-button tracking-meta"
+        className="discovery-cta min-h-[63px] rounded-lg text-button tracking-meta"
       >
         Continue
       </Button>

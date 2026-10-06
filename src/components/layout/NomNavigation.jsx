@@ -13,5 +13,5 @@ const ITEMS = [
 ]
 
 export default function NomNavigation({ className, fixed = false }) {
-  return <BottomNav items={ITEMS} className={cn(fixed && 'fixed bottom-0 left-1/2 z-10 w-full max-w-app -translate-x-1/2 items-start bg-surface py-[9.389px]', className)} />
+  return <BottomNav items={ITEMS} className={cn(fixed && 'nom-navigation-fixed fixed bottom-0 left-1/2 z-10 w-full max-w-app -translate-x-1/2 items-start bg-surface py-[9.389px]', className)} />
 }

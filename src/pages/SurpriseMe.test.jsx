@@ -74,7 +74,7 @@ describe('Surprise Me recommendation flow', () => {
       const source = image.getAttribute('src'), queued = document.querySelector('.surprise-queued-card')
       const records = [], observer = new MutationObserver(changes => records.push(...changes))
       observer.observe(document.querySelector('.surprise-card-stack'), { childList: true })
-      expect(new Set([...document.querySelectorAll('[data-deck-key]')].map(node => node.dataset.deckKey)).size).toBe(3)
+      expect(new Set([...document.querySelectorAll('[data-deck-key]')].map(node => node.dataset.deckKey)).size).toBe(4)
       Object.defineProperty(front, 'clientWidth', { value: 320 })
       await act(() => front.dispatchEvent(new PointerEvent('pointerdown', { clientX: 200, clientY: 20, pointerId: index + 1, button: 0, isPrimary: true, bubbles: true })))
       await act(() => front.dispatchEvent(new PointerEvent('pointerup', { clientX: 60, clientY: 20, pointerId: index + 1, button: 0, isPrimary: true, bubbles: true })))

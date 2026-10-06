@@ -1,5 +1,5 @@
 /* App destinations compose the existing Home and Collections design roles. */
-.hub-page { min-height: 100dvh; padding-bottom: 100px; }
+.hub-page { min-height: 100dvh; padding-bottom: calc(100px + env(safe-area-inset-bottom,0px)); }
 .hub-title { margin: 25px 23px 0; }
 .hub-title h1 { font-size: var(--text-display); line-height: 36px; font-weight: 700; }
 .hub-title h1 span { color: var(--color-accessible-teal); }
@@ -20,7 +20,7 @@
 .profile-intro { display: flex; gap: 18px; align-items: center; }
 .profile-intro > img { width: 90px; height: 90px; object-fit: contain; }
 .profile-intro h2 { font-size: 25px; font-weight: 700; overflow-wrap: anywhere; }
-.profile-intro small { font-size: 11px; color: var(--color-text-secondary); }
+.profile-intro small { font-size: 12px; color: var(--color-text-secondary); }
 .profile-links { display: grid; gap: 12px; }
 .profile-links a { position: relative; display: grid; gap: 5px; padding: 15px 42px 15px 15px; border: 1px solid var(--color-progress-track); border-radius: var(--radius-md); background: var(--color-surface); box-shadow: var(--shadow-panel); }
 .profile-links strong { color: var(--color-accessible-teal); font-size: 17px; }
@@ -47,7 +47,7 @@
 .activity-card > img { width: 68px; height: 68px; object-fit: cover; flex: none; border-radius: var(--radius-sm); }
 .activity-card > span { min-width: 0; display: grid; gap: 3px; }
 .activity-card strong { overflow-wrap: anywhere; font-size: 15px; }
-.activity-card small, .activity-card time { font-size: 11px; color: var(--color-text-secondary); }
+.activity-card small, .activity-card time { font-size: 12px; color: var(--color-text-secondary); }
 .activity-card-compact { width: 220px; flex: none; padding: 8px; }
 .activity-card-compact > img { width: 55px; height: 55px; }
 .activity-card-compact strong { font-size: 13px; }
@@ -65,3 +65,26 @@
 .home-search { position: relative; width: 100%; }
 .home-quick-actions { position: relative; margin-inline: max(18.63px,env(safe-area-inset-left,0px)) max(23.94px,env(safe-area-inset-right,0px)); }
 .home-greeting-divider { display: block; width: 75.62%; height: 14.197px; margin-left: 9.28%; }
+
+.hub-summary > div { position: relative; }
+.hub-summary-link::after { content: ''; position: absolute; inset: 0; border-radius: var(--radius-md); }
+.hub-summary-link:focus-visible { outline: none; }
+.hub-summary-link:focus-visible::after { outline: 3px solid var(--color-accessible-teal); outline-offset: 3px; }
+.hub-summary > div:has(.hub-summary-link) { transition: transform var(--motion-quick) var(--motion-ease),border-color var(--motion-quick); }
+.hub-summary > div:has(.hub-summary-link):hover { border-color: var(--color-primary-teal); }
+.hub-summary > div:has(.hub-summary-link):active { transform: scale(.99); }
+.home-mystery-banner { margin: 11px var(--spacing-page-gutter) 0; display: grid; grid-template-columns: 56px minmax(0,1fr) auto; align-items: center; gap: 10px; padding: 12px; border-radius: var(--radius-card); border: 1px solid var(--color-teal-highlight); background: var(--color-soft-teal-2); }
+.home-mystery-art { width: 56px; height: 56px; object-fit: contain; }
+.home-mystery-copy { min-width: 0; }
+.home-mystery-copy > p + p { margin-top: 4px; font-size: 12px; line-height: 17px; color: var(--color-text-secondary); }
+.home-mystery-action { display: flex; min-height: 44px; align-items: center; justify-content: center; gap: 5px; padding: 8px 10px; border-radius: var(--radius-card); background: var(--color-accessible-teal); color: var(--color-surface); font-size: 12px; line-height: 17px; font-weight: 700; white-space: nowrap; }
+.home-mystery-action > span { font-size: 20px; line-height: 20px; }
+@container (max-width: 390px) {
+  .home-mystery-banner { grid-template-columns: 48px minmax(0,1fr); gap: 8px 10px; }
+  .home-mystery-art { width: 48px; height: 48px; }
+  .home-mystery-action { grid-column: 2; justify-self: start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hub-summary > div:has(.hub-summary-link) { transition: none; }
+  .hub-summary > div:has(.hub-summary-link):active { transform: none; }
+}

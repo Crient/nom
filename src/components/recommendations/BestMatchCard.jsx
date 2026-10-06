@@ -42,7 +42,7 @@ export default function BestMatchCard({ result, liked = false, onToggleLike }) {
       <h2 className="best-match-title relative pt-[138px] leading-[32px] font-bold text-strong-neutral">
         <DishTitle dish={dish} />
       </h2>
-      <p className="best-match-description relative mt-[3px] max-w-[227.843px] text-[11.507px] leading-[13.809px] font-light text-strong-neutral">
+      <p className="best-match-description relative mt-[3px] max-w-[227.843px] text-[12px] leading-[15px] font-light text-strong-neutral">
         {dish.shortDescription}
       </p>
 

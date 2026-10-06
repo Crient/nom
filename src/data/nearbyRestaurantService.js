@@ -17,8 +17,9 @@ export function nearbyErrorMessage(code) {
   if (code === 'LOCATION_UNAVAILABLE') return 'Your location is unavailable. Check your device location settings and try again.'
   if (code === 'LOCATION_TIMEOUT') return 'Finding your location took too long. Please try again.'
   if (code === 'LOCATION_ERROR') return 'We couldn’t find your location. Please try again.'
+  if (code === 'QUOTA_LIMIT') return 'Nearby search is busy right now. Try again in a minute.'
   if (code === 'NOT_CONFIGURED' && import.meta.env.DEV) return 'Nearby search is not configured locally. Set the server Places key in .env.local and restart the dev server.'
-  if (['QUOTA_LIMIT', 'NOT_CONFIGURED', 'PROVIDER_CONFIGURATION', 'PROVIDER_REQUEST', 'PROVIDER_UNAVAILABLE', 'FORBIDDEN'].includes(code)) return 'Nearby restaurant search is temporarily unavailable. Try again later.'
+  if (['NOT_CONFIGURED', 'PROVIDER_CONFIGURATION', 'PROVIDER_REQUEST', 'PROVIDER_UNAVAILABLE', 'FORBIDDEN'].includes(code)) return 'Nearby restaurant search is temporarily unavailable. Try again later.'
   if (code === 'TIMEOUT') return 'Finding nearby restaurants took too long. Please try again.'
   return 'We couldn’t load nearby restaurants. Check your connection and try again.'
 }

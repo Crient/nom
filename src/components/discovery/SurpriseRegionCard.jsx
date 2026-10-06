@@ -9,13 +9,13 @@ import surpriseImage from '../../assets/food/region-surprise.webp'
  */
 export default function SurpriseRegionCard({ selected = false, onSelect }) {
   return (
-    <div className="absolute top-[889px] left-[9px] right-[6px] flex h-[120px] flex-col items-center justify-center bg-surface pb-[22.111px]">
-      <div className="flex h-[109px] w-[calc(100%-34px)] items-center justify-center drop-shadow-tile">
+    <div className="discovery-surprise-region flex min-h-[120px] flex-col items-center justify-center bg-surface pb-[22.111px]">
+      <div className="flex min-h-[109px] w-[calc(100%-34px)] items-center justify-center drop-shadow-tile">
         <button
           type="button"
           aria-pressed={selected}
           onClick={onSelect}
-          className="relative flex h-[92px] w-full items-center justify-center overflow-hidden rounded-md border-[0.86px] border-solid border-yellow-accent bg-surprise-fill"
+          className="surprise-region-button relative flex min-h-[92px] w-full items-center justify-center overflow-hidden pr-[38px] rounded-md border-[0.86px] border-solid border-yellow-accent bg-surprise-fill"
         >
           <span className="relative h-[80px] min-w-0 flex-1 overflow-hidden">
             <Image
@@ -25,14 +25,14 @@ export default function SurpriseRegionCard({ selected = false, onSelect }) {
             />
           </span>
 
-          <span className="flex h-[51.512px] w-[117px] shrink-0 flex-col items-center justify-between p-[7.339px] text-text-primary">
-            <span className="text-[18px] leading-[14.677px] font-semibold whitespace-nowrap [text-shadow:0_1.387px_1.387px_rgb(0_0_0/0.25)]">
+          <span className="surprise-region-copy flex min-h-[51.512px] shrink-0 flex-col items-center gap-[4px] p-[7.339px] text-text-primary">
+            <span className="text-[18px] leading-[22px] font-semibold whitespace-nowrap [text-shadow:0_1.387px_1.387px_rgb(0_0_0/0.25)]">
               Surprise Me
             </span>
-            <span className="text-[10px] leading-[20px] whitespace-nowrap">Pick a region for me</span>
+            <span className="text-[12px] leading-[20px] whitespace-nowrap">Pick a region for me</span>
           </span>
 
-          {selected && (
+          <span className="surprise-region-indicator-slot" aria-hidden="true">{selected && (
             <span className="absolute top-[5.23px] right-[7.323px] size-[23.077px] rounded-full bg-alt-teal">
               <img
                 src={checkIcon}
@@ -40,7 +40,7 @@ export default function SurpriseRegionCard({ selected = false, onSelect }) {
                 className="absolute top-[4.44px] left-[4.44px] size-[13.314px] max-w-none"
               />
             </span>
-          )}
+          )}</span>
         </button>
       </div>
     </div>

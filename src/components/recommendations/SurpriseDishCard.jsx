@@ -15,29 +15,38 @@ const deckSlot = (id, key) => {
 }
 const rearTilt = slot => Number((-slot.tilt * .55).toFixed(2))
 
-export default function SurpriseDishCard({ result, nextResult, queuedResult, onSkip, onSelect, onUndo, canUndo = false, identity = result.dish.id }) {
+function reconcileDeck(deck, identity, result, nextResult, queuedResult, bufferedResult) {
+  if (deck.identity === identity && deck.front.id === result.dish.id && deck.rear?.id === nextResult?.dish.id
+    && deck.queued?.id === queuedResult?.dish.id && deck.buffered?.id === bufferedResult?.dish.id) return deck
+  let sequence = deck.sequence
+  const front = deck.rear?.id === result.dish.id ? deck.rear
+    : deck.front.id === result.dish.id ? deck.front : deckSlot(result.dish.id, sequence++)
+  const available = [deck.rear, deck.queued, deck.buffered].filter(slot => slot && slot !== front)
+  const take = item => {
+    if (!item) return null
+    const index = available.findIndex(slot => slot.id === item.dish.id)
+    return index >= 0 ? available.splice(index, 1)[0] : deckSlot(item.dish.id, sequence++)
+  }
+  // Each occurrence has its own key, including two-dish cycles. An outgoing
+  // front is never recycled from offscreen into a rear position.
+  const rear = take(nextResult), queued = take(queuedResult), buffered = take(bufferedResult)
+  return { identity, sequence, front, rear, queued, buffered }
+}
+
+export default function SurpriseDishCard({ result, nextResult, queuedResult, bufferedResult, onSkip, onSelect, onUndo, canUndo = false, identity = result.dish.id }) {
   const card = useRef(null), drag = useRef(null), timer = useRef(null), busy = useRef(false), reduced = useReducedMotion()
   const motionIdentity = useRef(identity)
   const [x, setX] = useState(0), [dragging, setDragging] = useState(false), [exit, setExit] = useState(null)
-  const [deck, setDeck] = useState(() => ({ identity, sequence: 3,
+  const [storedDeck, setDeck] = useState(() => ({ identity, sequence: 4,
     front: deckSlot(result.dish.id, 0), rear: nextResult ? deckSlot(nextResult.dish.id, 1) : null,
-    queued: queuedResult ? deckSlot(queuedResult.dish.id, 2) : null }))
-  if (deck.identity !== identity || deck.front.id !== result.dish.id || deck.rear?.id !== nextResult?.dish.id || deck.queued?.id !== queuedResult?.dish.id) {
-    let sequence = deck.sequence
-    const front = deck.rear?.id === result.dish.id ? deck.rear
-      : deck.front.id === result.dish.id ? deck.front : deckSlot(result.dish.id, sequence++)
-    const available = [deck.rear, deck.queued, ...(front === deck.rear ? [] : [deck.front])].filter(slot => slot && slot !== front)
-    const take = item => {
-      if (!item) return null
-      const index = available.findIndex(slot => slot.id === item.dish.id)
-      return index >= 0 ? available.splice(index, 1)[0] : deckSlot(item.dish.id, sequence++)
-    }
-    // Each occurrence has its own key, including two-dish cycles. An outgoing
-    // front is never recycled from offscreen into a rear position.
-    const rear = take(nextResult), queued = take(queuedResult)
-    // Capture the counter AFTER allocating slots, otherwise keys get reused.
-    setDeck({ identity, sequence, front, rear, queued })
-  }
+    queued: queuedResult ? deckSlot(queuedResult.dish.id, 2) : null,
+    buffered: bufferedResult ? deckSlot(bufferedResult.dish.id, 3) : null }))
+  // Project the next slots without changing state. Even the first commit after
+  // a draw keeps each mounted image paired with its original occurrence.
+  const deck = reconcileDeck(storedDeck, identity, result, nextResult, queuedResult, bufferedResult)
+  useLayoutEffect(() => {
+    setDeck(deck => reconcileDeck(deck, identity, result, nextResult, queuedResult, bufferedResult))
+  }, [identity, result.dish.id, nextResult?.dish.id, queuedResult?.dish.id, bufferedResult?.dish.id])
   useEffect(() => () => clearTimeout(timer.current), [])
   useLayoutEffect(() => {
     motionIdentity.current = identity
@@ -81,7 +90,8 @@ export default function SurpriseDishCard({ result, nextResult, queuedResult, onS
   const promotion = outgoing === 'skip' ? 1 : !outgoing ? Math.min(1, Math.abs(offset) / Math.max(400, (card.current?.clientWidth ?? 320) * 1.4)) : 0
   const cards = [{ slot: deck.front, item: result, role: 'front' },
     ...(deck.rear && nextResult ? [{ slot: deck.rear, item: nextResult, role: 'rear' }] : []),
-    ...(deck.queued && queuedResult ? [{ slot: deck.queued, item: queuedResult, role: 'queued' }] : [])]
+    ...(deck.queued && queuedResult ? [{ slot: deck.queued, item: queuedResult, role: 'queued' }] : []),
+    ...(deck.buffered && bufferedResult ? [{ slot: deck.buffered, item: bufferedResult, role: 'buffered' }] : [])]
     // Keep DOM/compositor order stable on promotion, not just React keys.
     .sort((a, b) => a.slot.key - b.slot.key)
   return <>
@@ -90,13 +100,14 @@ export default function SurpriseDishCard({ result, nextResult, queuedResult, onS
         const front = role === 'front'
         const transform = front ? `translateX(${offset}px) translateY(0px) scale(1) rotate(${reduced ? 0 : slot.tilt + Math.max(-7, Math.min(7, offset / 24))}deg)`
           : role === 'rear' ? `translateX(0px) translateY(${reduced ? -14 : -20 * (1 - promotion)}px) scale(${reduced ? .96 : .96 + .04 * promotion}) rotate(${reduced ? 0 : Number((rearTilt(slot) + (slot.tilt - rearTilt(slot)) * promotion).toFixed(2))}deg)`
-          : `translateX(0px) translateY(${reduced ? -14 : -20}px) scale(${reduced ? .92 : Number((.92 + .04 * promotion).toFixed(3))}) rotate(${reduced ? 0 : Number((rearTilt(deck.rear ?? slot) + (rearTilt(slot) - rearTilt(deck.rear ?? slot)) * promotion).toFixed(2))}deg)`
+          : role === 'queued' ? `translateX(0px) translateY(${reduced ? -14 : -20}px) scale(${reduced ? .92 : Number((.92 + .04 * promotion).toFixed(3))}) rotate(${reduced ? 0 : Number((rearTilt(deck.rear ?? slot) + (rearTilt(slot) - rearTilt(deck.rear ?? slot)) * promotion).toFixed(2))}deg)`
+          : `translateX(0px) translateY(${reduced ? -14 : -20}px) scale(${reduced ? .88 : Number((.88 + .04 * promotion).toFixed(3))}) rotate(${reduced ? 0 : rearTilt(deck.queued ?? slot)}deg)`
         return <article key={slot.key} ref={front ? card : null}
-        className={`surprise-deck-card ${front ? 'surprise-dish-card' : role === 'rear' ? 'surprise-next-card' : 'surprise-queued-card'} ${isDragging ? 'is-dragging' : ''} ${front && outgoing ? 'is-exiting' : ''}`}
+        className={`surprise-deck-card ${front ? 'surprise-dish-card' : role === 'rear' ? 'surprise-next-card' : role === 'queued' ? 'surprise-queued-card' : 'surprise-buffered-card'} ${isDragging ? 'is-dragging' : ''} ${front && outgoing ? 'is-exiting' : ''}`}
         aria-label={front ? item.dish.name : undefined} aria-hidden={front ? undefined : true} data-reduced-motion={reduced} data-deck-key={slot.key}
         onPointerDown={front ? begin : undefined} onPointerMove={front ? move : undefined} onPointerUp={front ? end : undefined} onPointerCancel={front ? cancel : undefined}
         onLostPointerCapture={front ? () => { if (drag.current) cancel() } : undefined}
-        style={{ transform, opacity: 1 }}>
+        style={{ transform, opacity: role === 'buffered' ? promotion : 1 }}>
         <Image src={item.dish.image} alt={front ? item.dish.name : ''} draggable="false" loading="eager" />
         <span className="surprise-swipe-cue surprise-swipe-skip" aria-hidden="true" style={{ opacity: front && offset < 0 ? amount : 0 }}>← Not this one</span>
         <span className="surprise-swipe-cue surprise-swipe-try" aria-hidden="true" style={{ opacity: front && offset > 0 ? amount : 0 }}>Try this →</span>

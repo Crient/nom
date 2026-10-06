@@ -27,10 +27,18 @@ export function currentCoordinates({ signal, geolocation = globalThis.navigator?
 }
 
 const EMPTY = Object.freeze({ status: 'idle', locationStatus: 'not-requested', restaurants: [] })
+const PROMPT_SESSION_KEY = 'nom.nearby.location-prompt-attempted'
+function promptSession(attempted) {
+  try {
+    if (attempted === true) globalThis.sessionStorage?.setItem(PROMPT_SESSION_KEY, '1')
+    if (attempted === false) globalThis.sessionStorage?.removeItem(PROMPT_SESSION_KEY)
+    return globalThis.sessionStorage?.getItem(PROMPT_SESSION_KEY) === '1'
+  } catch { return false }
+}
 export function createRestaurantSearchState({ provider = request => findRestaurantsForDish(request),
   locate = currentCoordinates, getCached = id => nearbyRestaurantService.getCachedByDish(id), now = Date.now } = {}) {
   const state = new Map(), listeners = new Map(), jobs = new Map(), locationChecks = new Map(), cachedRestaurants = new Map()
-  let locationGranted = false
+  let locationGranted = false, promptAttempted = promptSession(), permissionDenied = false
   const notify = (id, result) => { state.set(id, result); for (const callback of listeners.get(id) ?? []) callback() }
   return {
     getSnapshot(id) {
@@ -64,11 +72,15 @@ export function createRestaurantSearchState({ provider = request => findRestaura
       if (jobs.has(id)) return jobs.get(id).promise
       const controller = new AbortController(), job = { controller, handoff }
       jobs.set(id, job)
+      // Manual and automatic location attempts share this session guard.
+      promptAttempted = true
+      promptSession(true)
       notify(id, { status: 'requesting-location', locationStatus: 'requesting', restaurants: [] })
       job.promise = (async () => {
         try {
           const coordinates = await locate({ signal: controller.signal })
           locationGranted = true
+          permissionDenied = false
           if (controller.signal.aborted || jobs.get(id) !== job) return
           notify(id, { status: 'loading', locationStatus: 'granted', restaurants: [] })
           const data = await provider({ dishId: id, coordinates, signal: controller.signal, refresh })
@@ -81,6 +93,7 @@ export function createRestaurantSearchState({ provider = request => findRestaura
           if (jobs.get(id) !== job) return
           if (controller.signal.aborted) { notify(id, EMPTY); return }
           const code = error.code ?? 'NETWORK_ERROR'
+          if (code === 'LOCATION_DENIED') { permissionDenied = true; locationGranted = false }
           const locationStatus = ({ LOCATION_DENIED: 'denied', LOCATION_UNAVAILABLE: 'unavailable', LOCATION_TIMEOUT: 'timeout', LOCATION_ERROR: 'error' })[code] ?? 'granted'
           notify(id, { status: 'error', locationStatus, errorCode: code, restaurants: [] })
         } finally { if (jobs.get(id) === job) jobs.delete(id) }
@@ -89,12 +102,17 @@ export function createRestaurantSearchState({ provider = request => findRestaura
     },
     async autoSearch(id, { signal, permissions = globalThis.navigator?.permissions } = {}) {
       if (!id || signal?.aborted || this.getSnapshot(id).status !== 'idle') return
-      let permission = locationGranted ? 'granted' : 'prompt'
+      let permission = permissionDenied ? 'denied' : locationGranted ? 'granted' : 'prompt'
       try { if (permissions?.query) permission = (await permissions.query({ name: 'geolocation' })).state } catch { /* Unsupported permission query: reuse only a successful session grant. */ }
       if (signal?.aborted || this.getSnapshot(id).status !== 'idle') return
       if (permission === 'denied') {
         notify(id, { status: 'error', locationStatus: 'denied', errorCode: 'LOCATION_DENIED', restaurants: [] })
       } else if (permission === 'granted') return this.search(id)
+      else if (permission === 'prompt' && !promptAttempted) {
+        // Claim before requesting location so concurrent dish mounts cannot prompt twice.
+        promptAttempted = true
+        return this.search(id)
+      }
     },
     revalidateCached(id, { signal, permissions = globalThis.navigator?.permissions } = {}) {
       const cached = this.getSnapshot(id)
@@ -138,7 +156,8 @@ export function createRestaurantSearchState({ provider = request => findRestaura
     },
     reset() {
       for (const job of [...jobs.values(), ...locationChecks.values()]) job.controller.abort()
-      jobs.clear(); locationChecks.clear(); cachedRestaurants.clear(); state.clear(); listeners.clear(); locationGranted = false
+      jobs.clear(); locationChecks.clear(); cachedRestaurants.clear(); state.clear(); listeners.clear(); locationGranted = false; promptAttempted = false; permissionDenied = false
+      promptSession(false)
     },
   }
 }

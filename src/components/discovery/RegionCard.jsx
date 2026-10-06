@@ -24,7 +24,7 @@ export default function RegionCard({
       aria-pressed={selected}
       onClick={onSelect}
       className={cn(
-        'relative flex min-h-[125px] min-w-0 w-full flex-col items-center justify-center gap-[2px] rounded-md',
+        'relative flex min-h-[125px] py-[4px] min-w-0 w-full flex-col items-center justify-center gap-[2px] rounded-md',
         selected ? 'bg-soft-teal-2' : 'bg-surface shadow-card',
       )}
     >
@@ -50,7 +50,7 @@ export default function RegionCard({
       >
         {label}
       </span>
-      <span className="px-[3px] text-center text-[10px] leading-[14px] font-light tracking-tile text-text-primary">
+      <span className="px-[3px] text-center text-[12px] leading-[16px] font-light tracking-tile text-text-primary">
         {subtitle}
       </span>
 

@@ -1,7 +1,7 @@
 import { openingLabel, nearbyDistanceBand } from '../../../shared/nearbyRestaurants.js'
 
 export function restaurantMatchLabel(restaurant, dish) {
-  if (restaurant.source === 'legacy-preview') return 'Saved development example; not a live restaurant result'
+  if (restaurant.source === 'legacy-preview') return 'Saved preview; not a live restaurant result'
   if (restaurant.metadataOnly) return 'Saved search result; refresh for current details'
   return restaurant.matchType === 'cuisine-fallback' ? `${restaurant.cuisine} restaurant nearby`
     : `Matched for ${dish?.name ?? 'your dish'}`

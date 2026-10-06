@@ -10,12 +10,12 @@ import chevronLeft from '../../assets/icons/chevron-left.svg'
  */
 export default function DiscoveryHeader({ step, markers, markersAlt = '', onBack }) {
   return (
-    <>
+    <header className="discovery-header">
       <button
         type="button"
         onClick={onBack}
         aria-label="Go back"
-        className="absolute top-[64.5px] left-[13px] z-20 flex size-[44px] items-center justify-center"
+        className="absolute top-[1.124px] left-[13px] z-20 flex size-[44px] items-center justify-center"
       >
         <img
           src={chevronLeft}
@@ -24,15 +24,15 @@ export default function DiscoveryHeader({ step, markers, markersAlt = '', onBack
         />
       </button>
 
-      <p className="absolute top-[82px] right-[33px] text-body-tight whitespace-nowrap text-text-primary">
+      <p className="absolute top-[18.624px] right-[33px] text-body-tight whitespace-nowrap text-text-primary">
         {step}
       </p>
 
       <img
         src={markers}
         alt={markersAlt}
-        className="absolute top-[124px] left-[32px] h-[32px] w-[calc(100%-65px)]"
+        className="absolute top-[60.624px] left-[32px] h-[32px] w-[calc(100%-65px)]"
       />
-    </>
+    </header>
   )
 }

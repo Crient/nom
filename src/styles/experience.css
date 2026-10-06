@@ -14,7 +14,7 @@
 .flow-state h1 { font-size: var(--text-title-lg); font-weight: 700; }
 .flow-cta { margin: auto 26px 39px; padding-top: 8px; }
 .flow-cta > button { width: 100%; min-height: 80px; border-radius: 15px; font-size: 25px; line-height: 27px; font-weight: 700; }
-.flow-demo { font-size: 11px; line-height: 16px; color: var(--color-text-secondary); }
+.flow-demo { font-size: 12px; line-height: 16px; color: var(--color-text-secondary); }
 .flow-privacy { margin: 12px 26px 0; min-height: 74px; display: flex; align-items: center; gap: 10px; padding: 12px 15px; border-radius: 10px; background: var(--color-soft-teal-2); }
 .flow-privacy > img { width: 40px; height: 40px; flex: none; }
 .flow-privacy p { font-size: 13px; line-height: 20px; }
@@ -64,9 +64,9 @@
 .feedback-reactions button { border-radius: 10px; border: 1px solid var(--color-text-muted); background: var(--color-surface); min-height: 95px; display: flex; align-items: center; flex-direction: column; }
 .feedback-reactions button[aria-pressed='true'] { border-color: var(--color-accessible-teal); background: var(--color-teal-tint); }
 .feedback-reactions img { width: 100%; aspect-ratio: 1; object-fit: contain; }
-.feedback-reactions span { font-size: 10px; line-height: 15px; font-weight: 700; white-space: nowrap; padding: 2px; }
+.feedback-reactions span { font-size: 12px; line-height: 15px; font-weight: 700; padding: 2px; }
 .feedback-privacy { margin-top: 17px; min-height: 84px; text-align: left; }
-.feedback-privacy > span { font-size: 11px; line-height: 15px; }
+.feedback-privacy > span { font-size: 12px; line-height: 15px; }
 .feedback-observations { margin: 8px 24px 0; }
 .feedback-observations h2, .feedback-note label { font-size: 18px; line-height: 27px; font-weight: 700; }
 .feedback-observations > div { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 8px; }
@@ -87,16 +87,19 @@
 .logged-unlocked, .logged-note { position: relative; margin: 18px 26px 0; min-height: 77px; border-radius: 10px; background: var(--color-secondary-fill); padding: 8px 12px; display: flex; align-items: center; gap: 10px; text-align: left; }
 .logged-unlocked > img { width: 75px; height: 64px; object-fit: contain; }
 .logged-unlocked strong { display: block; font-size: 17px; line-height: 22px; }
-.logged-unlocked small { display: block; font-size: 11px; line-height: 15px; margin-top: 5px; }
+.logged-unlocked small { display: block; font-size: 12px; line-height: 15px; margin-top: 5px; }
 .logged-demo { position: relative; margin: 12px 26px; text-align: center; }
 
 .collection-background { isolation: isolate; overflow: visible; padding-top: env(safe-area-inset-top,0px); padding-bottom: env(safe-area-inset-bottom,0px); background: var(--collection-foundation,var(--color-background)); }
 .collection-background::before { content: ''; position: absolute; inset: env(safe-area-inset-top,0px) 0 0; z-index: -1; background: var(--collection-background) center top/100% auto no-repeat; opacity: var(--collection-art-opacity,.8); pointer-events: none; }
 .collection-background .flow-back { left: max(13px,env(safe-area-inset-left,0px)); }
 .collection-background .flow-more { right: max(14px,env(safe-area-inset-right,0px)); }
-.collection-portrait:not([data-country=cambodia])::after { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(180deg,transparent 5%,rgb(255 247 235 / .18) 28%,rgb(255 247 235 / .4875) 58%,var(--collection-foundation) 90%); }
+/* Fade only the portrait's lower edge into its sampled landscape palette.
+   Preserve the source aspect ratio even when content grows beyond the art. */
+.collection-portrait:not([data-country=cambodia]) { background-image: radial-gradient(ellipse at 20% 90%,color-mix(in srgb,var(--collection-foundation) 88%,var(--color-warm-surface)),transparent 70%); }
+.collection-portrait:not([data-country=cambodia])::before { inset: 0 0 auto; width: 100%; aspect-ratio: 941/1672; background-size: 100% 100%; opacity: 1; mask-image: linear-gradient(to bottom,#000 82%,transparent 100%); }
 .collection-fallback { background-image: radial-gradient(circle,color-mix(in srgb,var(--color-accessible-teal) 7%,transparent) 1px,transparent 1.5px),linear-gradient(180deg,transparent,var(--color-warm-surface)); background-size: 24px 24px,100% 100%; }
-/* All countries retain Cambodia's title, two-column grid and progress geometry. */
+/* Country scenes share the title and progress treatment; upcoming packs use a compact grid. */
 .country-title { position: relative; margin-top: 21px; text-align: center; padding: 0 15px; }
 .country-title h1 { font-size: 25px; line-height: 27px; font-weight: 700; }
 .country-title p { font-size: 18px; line-height: 27px; margin-top: 1px; }
@@ -188,13 +191,15 @@
 .collection-filters button { min-height: 44px; font-size: 13px; line-height: 18px; flex: 1; white-space: nowrap; }
 .collection-world { width: 103.4%; max-width: none; margin-left: -1.7%; height: 146px; object-fit: cover; margin-top: 0; }
 .collection-countries { margin: 29px 16px 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 9px; }
-.collection-country { position: relative; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; padding: 0; height: 128px; border-radius: 21px; box-shadow: var(--shadow-raised); text-align: left; background: var(--color-surface); }
+.collection-country { position: relative; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; padding: 0; height: 140px; border-radius: 21px; box-shadow: var(--shadow-raised); text-align: left; background: var(--color-surface); }
 .collection-country-art { display: block; flex: none; height: 77px; border-radius: 21px 21px 0 0; overflow: hidden; isolation: isolate; }
-.collection-country-art > img { display: block; width: 100%; height: 100%; object-fit: cover; opacity: 1; }
-.collection-country.is-complete { box-shadow: 0 0 0 1.5px #d6ad52,0 4px 15px rgb(214 173 82 / .24),var(--shadow-raised); }
-.collection-country-meta { position: absolute; inset-inline: 0; bottom: 0; height: 51px; border-radius: 0 0 21px 21px; background: var(--color-surface); padding: 6px 13px 4px; display: flex; flex-direction: column; gap: 1px; }
+.collection-country-art > img { display: block; width: 100%; height: 100%; object-fit: cover; opacity: 1; filter: none; }
+.collection-country.is-complete { box-shadow: 0 0 0 1px #d6ad52,0 0 24px 7px rgb(214 173 82 / .3),var(--shadow-raised); }
+.collection-complete-accent { position: absolute; top: 8px; right: 8px; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--color-warm-surface); color: var(--color-rarity-legendary); border: 1px solid #d6ad52; box-shadow: 0 0 12px rgb(214 173 82 / .3); }
+.collection-country-meta { position: absolute; inset-inline: 0; bottom: 0; height: 63px; border-radius: 0 0 21px 21px; background: var(--color-surface); padding: 6px 13px 4px; display: flex; flex-direction: column; gap: 1px; }
 .collection-country strong { font-size: 14px; line-height: 15px; }
-.collection-country span { font-size: 9px; line-height: 12px; font-weight: 700; }
+.collection-country-meta > span { font-size: 12px; line-height: 16px; font-weight: 600; }
+.collection-complete-accent { font-size: 15px; font-weight: 700; }
 .collection-dots { display: flex; gap: 2px; margin-top: 2px; }
 .collection-dots i { width: 7px; height: 7px; border: 1px solid var(--color-text-muted); background: var(--color-progress-track); border-radius: 50%; }
 .collection-dots i.reached { border-color: var(--color-success); background: var(--color-success); }
@@ -264,7 +269,7 @@ ul.edge-body { text-align: left; padding-left: 19px; list-style: disc; }
   .verify-check strong { font-size: 15px; line-height: 20px; }
   .verify-check p { font-size: 13px; line-height: 18px; }
   .feedback-reactions { gap: 8px; margin-inline: 8%; }
-  .feedback-reactions span { font-size: 9px; }
+  .feedback-reactions span { font-size: 12px; }
   .feedback-observations button > span { padding-inline: 5px; }
   .collection-filters { gap: 3px; padding-inline: 14px; }
   .collection-filters button { font-size: 12px; }
@@ -288,7 +293,7 @@ ul.edge-body { text-align: left; padding-left: 19px; list-style: disc; }
 
 /* Reserve the progress panel and optional ready-box button before sizing art.
    Short screens may scroll; no content is clipped to force a false fit. */
-.country-collection-page { min-height: 100svh; padding-bottom: max(12px,env(safe-area-inset-bottom,0px)); --collection-tile-height: clamp(132px,calc((100svh - 354px - var(--collection-footer-extra,0px) - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))/3),190px); }
+.country-collection-page { min-height: 100svh; padding-bottom: max(12px,env(safe-area-inset-bottom,0px)); --collection-tile-height: clamp(160px,43cqw,190px); }
 .country-collection-page .flow-header { height: 96px; }
 .country-collection-page .flow-back, .country-collection-page .flow-more { top: 52px; }
 .country-collection-page .country-title { margin-top: 8px; }
@@ -297,11 +302,19 @@ ul.edge-body { text-align: left; padding-left: 19px; list-style: disc; }
 .country-collection-page .collectible-art { width: clamp(90px,calc(var(--collection-tile-height) - 45px),144px); }
 .country-collection-page .collectible-tile h2 { margin-top: 3px; font-size: 24px; line-height: 24px; }
 .country-collection-page .country-progress-section { margin: 16px 20px 0; }
-.country-collection-page .country-progress-section > .collection-pill { margin-top: 10px; min-height: 40px; }
+.country-collection-page .country-progress-section > .collection-pill { margin-top: 10px; min-height: 44px; }
 .country-collection-page .country-progress-section .flow-demo { margin-top: 8px; }
-.collection-country:not([data-country=cambodia]) .collection-country-art > img { filter: contrast(1.32) saturate(1.22); }
+
 
 /* The portrait and fade share the page boundary. Safe-area spacing belongs to
    content, rather than cutting the top strip out of the artwork. */
-.country-collection-page { border-radius: 20px 20px 0 0; }
+.country-collection-page { border-radius: 0; }
 .country-collection-page::before, .country-collection-page::after { inset: 0; border-radius: inherit; }
+
+.country-pack-notice { position: relative; margin: 12px 20px 0; padding: 10px 12px; border-radius: var(--radius-md); background: color-mix(in srgb,var(--color-surface) 88%,transparent); color: var(--color-text-secondary); font-size: 13px; line-height: 19px; }
+.country-collection-page .collectibles-upcoming { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px 8px; }
+.country-collection-page .collectibles-upcoming .collectible-tile { height: auto; min-height: 118px; padding: 8px 2px; border-radius: var(--radius-md); background: color-mix(in srgb,var(--color-surface) 80%,transparent); }
+.country-collection-page .collectibles-upcoming .collectible-art { width: 68px; }
+.country-collection-page .collectibles-upcoming h2 { font-family: var(--font-ui); font-size: 12px; line-height: 16px; text-shadow: none; }
+.country-collection-page .collectibles-upcoming .rarity-badge { max-width: 100%; }
+.country-collection-page[data-upcoming=true] .country-title { margin-inline: 20px; padding: 8px; border-radius: var(--radius-md); background: color-mix(in srgb,var(--color-surface) 85%,transparent); }

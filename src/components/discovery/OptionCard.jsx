@@ -31,7 +31,7 @@ export default function OptionCard({
       aria-pressed={selected}
       onClick={onSelect}
       className={cn(
-        'relative flex h-[125px] min-w-0 w-full flex-col items-center justify-center gap-[8.075px] rounded-md',
+        'relative flex min-h-[125px] py-[8px] min-w-0 w-full flex-col items-center justify-center gap-[8.075px] rounded-md',
         selected && 'bg-soft-teal-2',
         raised && 'shadow-card',
       )}

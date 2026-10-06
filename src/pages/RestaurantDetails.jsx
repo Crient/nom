@@ -44,6 +44,7 @@ export default function RestaurantDetails() {
   if (!data.restaurant) return <FlowState title="Restaurant not found" backLabel="Back to nearby restaurants" onBack={back}>This restaurant is not available for {dish.name}.</FlowState>
   const restaurant = data.restaurant
   if (restaurant.source === 'google-places') return <LiveRestaurantDetails restaurant={restaurant} dish={dish} back={back} returnState={returnState} />
+  if (!import.meta.env.DEV) return <FlowState title="Restaurant unavailable" backLabel="Back to nearby restaurants" onBack={back}>Refresh nearby search for current restaurant details.</FlowState>
   const presentation = restaurantPresentation(restaurant, dish)
   const preview = text => { setMessage(text); setModal('preview') }
   const shareLink = async () => {

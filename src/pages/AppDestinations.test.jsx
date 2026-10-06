@@ -100,7 +100,7 @@ describe('Nom app destinations', () => {
     await click('Favorites'); await click('Go back')
     expect(window.location.pathname).toBe('/profile')
     await click('Home')
-    expect(document.querySelector('h1').textContent).toBe('Good Morning, Nora!')
+    expect(document.querySelector('h1').textContent).toBe('Hello, Nora!')
     await navigate('/recommendations/arepa')
     await act(() => root.unmount()); root = createRoot(document.getElementById('root'))
     await act(() => root.render(<App />))

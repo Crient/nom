@@ -27,7 +27,7 @@ export default function Flavor() {
   }
 
   return (
-    <div className="relative h-frame w-full bg-surface">
+    <div className="discovery-page discovery-flavor">
       <StatusBar />
 
       <DiscoveryHeader
@@ -37,7 +37,7 @@ export default function Flavor() {
         onBack={() => navigate('/discover/food-type')}
       />
 
-      <h1 className="absolute top-[169px] left-[28px] w-[min(308px,calc(100%-56px))] text-display text-strong-neutral">
+      <h1 className="discovery-question text-display text-strong-neutral">
         What{' '}
         <span className="text-accessible-teal underline decoration-solid decoration-from-font [text-decoration-skip-ink:none] [text-underline-position:from-font]">
           flavors
@@ -45,11 +45,11 @@ export default function Flavor() {
         are you looking for?
       </h1>
 
-      <p className="absolute top-[248px] left-[29px] w-[calc(100%-58px)] text-body-tight text-text-primary">
+      <p className="discovery-support text-body-tight text-text-primary">
         Choose up to two.
       </p>
 
-      {flavorRows.map((row) => (
+      <div className="discovery-options">{flavorRows.map((row) => (
         <OptionRow key={row.top} top={row.top} left={row.left}>
           {row.options.map((option) => (
             <OptionCard
@@ -60,14 +60,14 @@ export default function Flavor() {
             />
           ))}
         </OptionRow>
-      ))}
+      ))}</div>
 
       <Button
         variant="soft"
         size="discovery"
         disabled={flavors.length === 0}
         onClick={() => navigate('/discover/adventure')}
-        className="absolute top-[859px] left-[26px]"
+        className="discovery-cta"
       >
         Continue
       </Button>

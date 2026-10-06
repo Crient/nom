@@ -62,7 +62,7 @@ describe('Nom stabilization', () => {
   it('redirects unknown URLs to Home rather than an empty screen', async () => {
     await mount('/not-a-route')
     expect(window.location.pathname).toBe('/home')
-    expect(document.querySelector('h1').textContent).toBe('Good Morning, Leng!')
+    expect(document.querySelector('h1').textContent).toBe('Hello, Leng!')
   })
 
   it.each(['/recommendations', '/recommendations/more', '/recommendations/lort-cha'])(
@@ -106,7 +106,8 @@ describe('Nom stabilization', () => {
 
   it('connects Home actions and Discover to their destinations', async () => {
     await mount('/home')
-    expect(document.querySelector('a[href="/scan"]').textContent).toBe('Scan')
+    expect(document.querySelector('a[href="/scan"]')).toBeNull()
+    expect(document.querySelector('a[href="/explore"]').textContent).toBe('Explore')
     expect(document.querySelector('a[href="/profile"]').textContent).toBe('Profile')
     expect([...document.querySelectorAll('a')].find(link => link.textContent.trim().startsWith('Explore Now')).getAttribute('href')).toBe('/collections/cambodia')
     await click('Discover')

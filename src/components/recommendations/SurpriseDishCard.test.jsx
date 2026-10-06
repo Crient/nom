@@ -1,9 +1,11 @@
 // @vitest-environment happy-dom
-import { act } from 'react'
+import { act, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import SurpriseDishCard, { SURPRISE_EXIT_MS } from './SurpriseDishCard'
 import { dishes } from '../../data/dishes'
+import { createSurpriseSession, surpriseCandidates } from '../../utils/surpriseSession'
+import { recommend } from '../../utils/recommendationEngine'
 
 let root, card, skip, select
 beforeEach(async () => {
@@ -20,6 +22,47 @@ async function pointer(type, x, y = 10, id = 1) {
 }
 async function finish() { await act(() => vi.advanceTimersByTimeAsync(SURPRISE_EXIT_MS)) }
 describe('Surprise Me gestures and accessible controls', () => {
+  it.each([2, 3, 12])('keeps all upcoming DOM occurrences stable through 12 left swipes and Undo with %s candidates', async size => {
+    const session = { foodType: 'anything', flavors: ['comforting'], adventurousness: 'surprise-me', region: 'surprise-me' }
+    const pool = surpriseCandidates(session, recommend(session, dishes)).slice(0, size), queue = createSurpriseSession()
+    const errors = vi.spyOn(console, 'error')
+    function Deck() {
+      const [current, setCurrent] = useState(() => queue.next(session, pool)), [draw, setDraw] = useState(0)
+      const next = queue.peek(session, pool), queued = queue.peek(session, pool, 1), buffered = queue.peek(session, pool, 2)
+      return <SurpriseDishCard identity={`${draw}:${current.dish.id}`} result={current} nextResult={next} queuedResult={queued} bufferedResult={buffered}
+        canUndo={queue.canGoBack(session)} onUndo={() => { setCurrent(queue.previous(session, pool)); setDraw(value => value + 1) }}
+        onSkip={() => { setCurrent(queue.next(session, pool)); setDraw(value => value + 1) }} onSelect={select} />
+    }
+    await act(() => root.render(<Deck />))
+    const names = []
+    for (let index = 0; index < 12; index++) {
+      card = document.querySelector('.surprise-dish-card')
+      Object.defineProperty(card, 'clientWidth', { value: 320 })
+      const rear = document.querySelector('.surprise-next-card'), queued = document.querySelector('.surprise-queued-card'), buffered = document.querySelector('.surprise-buffered-card')
+      const image = rear.querySelector('img'), queuedImage = queued.querySelector('img'), bufferedImage = buffered.querySelector('img')
+      const imageWrites = [image, queuedImage, bufferedImage].map(node => vi.spyOn(node, 'setAttribute'))
+      names.push(card.getAttribute('aria-label'))
+      expect(new Set([...document.querySelectorAll('[data-deck-key]')].map(node => node.dataset.deckKey)).size).toBe(4)
+      expect(buffered.style.opacity).toBe('0')
+      await pointer('pointerdown', 200); await pointer('pointerup', 60)
+      const frontPose = rear.style.transform, rearPose = queued.style.transform, queuedPose = buffered.style.transform
+      await finish()
+      expect(document.querySelector('.surprise-dish-card')).toBe(rear); expect(rear.querySelector('img')).toBe(image)
+      expect(document.querySelector('.surprise-next-card')).toBe(queued); expect(queued.querySelector('img')).toBe(queuedImage)
+      expect(document.querySelector('.surprise-queued-card')).toBe(buffered); expect(buffered.querySelector('img')).toBe(bufferedImage)
+      expect(rear.style.transform).toBe(frontPose); expect(queued.style.transform).toBe(rearPose); expect(buffered.style.transform).toBe(queuedPose)
+      for (const writes of imageWrites) {
+        expect(writes.mock.calls.filter(([attribute]) => attribute === 'src')).toHaveLength(0)
+        writes.mockRestore()
+      }
+    }
+    const skipButton = document.querySelector('.surprise-controls button')
+    await act(() => [...document.querySelectorAll('button')].find(node => node.textContent.includes('Undo skip')).click())
+    expect(document.querySelector('.surprise-dish-card').getAttribute('aria-label')).toBe(names.at(-1))
+    await act(() => skipButton.focus()); await act(() => skipButton.click()); await finish()
+    expect(document.activeElement).toBe(skipButton)
+    expect(errors.mock.calls.flat().join(' ')).not.toMatch(/render|key|update/i)
+  })
   it('advances the existing rear image continuously and keeps it mounted on promotion', async () => {
     await act(() => root.render(<SurpriseDishCard result={{ dish: dishes[0] }} nextResult={{ dish: dishes[1] }} onSkip={skip} onSelect={select} />))
     const stack = document.querySelector('.surprise-card-stack'), rear = document.querySelector('.surprise-next-card')

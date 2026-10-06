@@ -3,7 +3,7 @@
 .restaurant-live-page .place-photo-hero { width: auto; flex: none; margin: 0 15px; }
 .restaurant-live-page .place-photo-hero > img, .restaurant-live-page .place-photo-hero > .place-photo-fallback { height: auto; aspect-ratio: 410/265; border-radius: var(--radius-md); box-shadow: var(--shadow-card); }
 .restaurant-live-page .place-photo-hero figcaption { padding: 5px 3px; background: transparent; }
-.restaurant-live-page .place-photo-hero .place-photo-credit { font-size: var(--text-label); }
+.restaurant-live-page .place-photo-hero .place-photo-credit { font-size: 12px; }
 .restaurant-live-page .place-photo-hero .place-photo-fallback { gap: 10px; font-size: var(--text-body-sm); }
 .restaurant-live-page .place-photo-hero .place-photo-monogram { width: 32px; height: 32px; font-size: var(--text-heading); }
 .restaurant-live-copy { margin-top: 16px; }
@@ -107,10 +107,10 @@
 .restaurant-ate-mascot.is-eating .restaurant-ate-rest { opacity: 0; }
 .restaurant-ate-mascot.is-eating .restaurant-ate-chew { opacity: 1; }
 .restaurant-ate-jaw { transform-box: view-box; transform-origin: 47.5% 48%; }
-.restaurant-ate-mascot.is-eating .restaurant-ate-jaw-upper { animation: nom-eat-upper 520ms ease-in-out infinite; }
-.restaurant-ate-mascot.is-eating .restaurant-ate-jaw-lower { animation: nom-eat-lower 520ms ease-in-out infinite; }
-@keyframes nom-eat-upper { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(6deg); } }
-@keyframes nom-eat-lower { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-6deg); } }
+.restaurant-ate-mascot.is-eating .restaurant-ate-jaw-upper { animation: nom-eat-upper 360ms ease-in-out infinite; }
+.restaurant-ate-mascot.is-eating .restaurant-ate-jaw-lower { animation: nom-eat-lower 360ms ease-in-out infinite; }
+@keyframes nom-eat-upper { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(11deg); } }
+@keyframes nom-eat-lower { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-11deg); } }
 @media (prefers-reduced-motion: reduce) {
   .restaurant-ate-mascot.is-eating .restaurant-ate-rest { opacity: 1; }
   .restaurant-ate-mascot.is-eating .restaurant-ate-chew { opacity: 0; }

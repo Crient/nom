@@ -136,7 +136,7 @@ describe('Nearby Restaurants flow', () => {
   it('shows the actual non-fixture dish in the empty-result state', async () => {
     await chooseSession(); await navigate('/recommendations/arepa/nearby'); await click('Find nearby restaurants')
     expect(document.querySelector('h1').textContent).toContain('Arepa')
-    expect(document.body.textContent).toContain('No development results for Arepa yet.')
+    expect(document.body.textContent).toContain('No sample results for Arepa yet.')
     expect(names()).toEqual([])
     await click('Back to dish')
     expect(window.location.pathname).toBe('/recommendations/arepa')

@@ -1,0 +1,23 @@
+/* Keep the reference rows and artwork, while questions and CTAs follow content. */
+.discovery-page { position: relative; display: flex; flex-direction: column; width: 100%; min-height: max(956px,100svh); background: var(--color-surface); padding-bottom: max(17px,env(safe-area-inset-bottom,0px)); }
+.discovery-header { position: relative; flex: none; height: 103px; }
+.discovery-question { margin: 3px 28px 0; width: min(308px,calc(100% - 56px)); }
+.discovery-support { margin: 8px 29px 0; line-height: 20px; }
+.discovery-options { display: grid; gap: 1px; margin-top: 28px; }
+.discovery-option-row { min-height: 144.538px; margin-inline: 6px; padding-block: 9px; }
+.discovery-option-row > div { gap: clamp(14px,6.8cqw,30.27px) !important; }
+.discovery-region .discovery-option-row > div { gap: 10px !important; }
+.discovery-list-option { min-height: 115px; margin-inline: 6px 7px; padding-block: 6px; }
+.discovery-adventure-art { width: clamp(80px,23cqw,101px); height: 101px; margin-left: 6.8%; }
+.discovery-surprise-region { margin-inline: 9px 6px; }
+.surprise-region-indicator-slot { position: absolute; inset: 0 0 0 auto; width: 38px; pointer-events: none; }
+.discovery-cta { flex: none; width: calc(100% - 54px); min-height: 80px; margin: auto 27px 0; padding-block: 16px; line-height: 24px; }
+.discovery-options + .discovery-cta { margin-top: auto; }
+.discovery-options { margin-bottom: 56px; }
+.discovery-region { min-height: max(1150px,100svh); }
+.discovery-region .discovery-options { margin-top: 25px; margin-bottom: 42px; }
+.discovery-region .discovery-cta { min-height: 63px; }
+@media (max-width: 390px) {
+  .discovery-question { margin-inline: 24px; width: min(308px,calc(100% - 48px)); }
+  .discovery-support { margin-inline: 24px; }
+}

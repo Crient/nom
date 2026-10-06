@@ -117,7 +117,7 @@ export default function NearbyRestaurants() {
           : !restaurants.length ? <div className="nearby-state" role="status">
             <h3 className="text-heading">No restaurants found</h3>
             <p>{data.restaurants.length ? 'Try changing your filters.' : data.source === 'mock'
-              ? `No development results for ${dish.name} yet.` : 'No nearby matches found.'}</p>
+              ? `No sample results for ${dish.name} yet.` : 'No nearby matches found.'}</p>
             {data.restaurants.length > 0 ? <Button variant="secondary" onClick={resetFilters}>Clear filters</Button> : <Button variant="secondary" onClick={back}>Back to dish</Button>}
           </div> : !mockMode ? <>
             <div className="nearby-results" hidden={view !== 'list'}>

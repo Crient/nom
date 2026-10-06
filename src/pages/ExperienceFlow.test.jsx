@@ -72,7 +72,7 @@ describe('Sections 03–06 connected experience', () => {
     await click('I ate here'); await click('Continue')
     expect(document.querySelector('[role="dialog"]').textContent).toContain('This visit was already counted')
     await click('View other dishes from this restaurant')
-    await click('View Lort Cha details'); expect(document.body.textContent).toContain('Refresh nearby restaurants')
+    await click('View Lort Cha details'); await click('Find nearby restaurants'); expect(document.body.textContent).toContain('Refresh nearby restaurants')
     await click('View THMOR DA Restaurant details'); await click('I ate here'); await click('Continue')
     expect(document.querySelector('[role="dialog"]')).toBeNull()
     await finishFeedback()
@@ -134,7 +134,7 @@ describe('Sections 03–06 connected experience', () => {
   it('simulates a QR verification, shows the feedback explanation, and handles a same-day repeat', async () => {
     await startVisit(); await click('Couldn’t verify automatically?'); await click('Scan restaurant QRSimulate a partnered restaurant QR')
     await click('Why we ask for feedback')
-    expect(document.querySelector('[role="dialog"]').textContent).toContain('Current recommendation rules are unchanged')
+    expect(document.querySelector('[role="dialog"]').textContent).toContain('It doesn’t change your current matches')
     await click('I got it'); await finishFeedback()
     await navigate('/recommendations/lort-cha/nearby/preview-golden-monkey'); await click('I ate here'); await click('Continue')
     expect(document.querySelector('[role="dialog"]').textContent).toContain('This visit was already counted')

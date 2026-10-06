@@ -30,7 +30,7 @@ export default function ExperienceLogged() {
     {country && <div className="logged-progress"><CountryProgressCard {...countryProgressPresentation(state, country)} /></div>}
     {log.boxId ? <button type="button" className="logged-unlocked" onClick={() => navigate(`/boxes/${log.boxId}`)}><img src={unlocked} alt="" /><span><strong>You have unlocked your Mystery Box!</strong><small>Tap to discover your reward.</small></span></button>
       : <div className="logged-note" role="status"><p>{log.earnedProgress ? 'One more experience added to your country progress.' : 'Meal saved to your session history. No extra box progress for this meal.'}</p></div>}
-    <p className="flow-demo logged-demo">Development experience. Meals and feedback save locally when storage is available.</p>
+    <p className="flow-demo logged-demo">Meals and feedback save on this device when storage is available.</p>
     <FlowCTA onClick={() => navigate('/home')}>Back to Home</FlowCTA>
     <EdgeStateModal kind={modal} onClose={() => setModal(null)} />
   </div>

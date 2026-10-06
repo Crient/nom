@@ -87,7 +87,7 @@ export default function MoreOptions() {
           <span className="relative block text-heading leading-[20px] tracking-meta">
             Not Quite Right?
           </span>
-          <span className="relative block text-[10px] leading-[11.751px] font-light">
+          <span className="relative block text-[12px] leading-[16px] font-light">
             Adjust your preferences to get better recommendations.
           </span>
         </span>

@@ -68,14 +68,14 @@ export default function DishDetails() {
       <WhyMatchedCard explanation={whyMatched(session, result)} />
 
       <section aria-labelledby="nearby-title" aria-describedby="restaurant-preview-note" className="mx-[21px] mt-[1px]">
-        <div className="flex h-[35px] items-center">
-          <h2 id="nearby-title" className="text-[17px] leading-[35px] font-bold text-strong-neutral [text-shadow:0_2px_4px_rgb(0_0_0/0.25)]">
+        <div className="dish-nearby-heading">
+          <h2 id="nearby-title" className="text-[17px] leading-[24px] font-bold text-strong-neutral [text-shadow:0_2px_4px_rgb(0_0_0/0.25)]">
             Where to try nearby
           </h2>
-          {previews.length > 0 && <span className="ml-[8px] text-[10px] text-text-secondary">Preview</span>}
-          <button type="button" onClick={seeAll} disabled={nearby.busy} className="relative top-[2px] ml-auto mr-[4px] flex min-h-[44px] items-center gap-[5px] text-[12px] font-bold text-accessible-teal">
+          {previews.length > 0 && <span className="text-[12px] text-text-secondary">Preview</span>}
+          <button type="button" onClick={seeAll} disabled={nearby.busy} className="ml-auto flex min-h-[44px] shrink-0 items-center gap-[5px] text-[12px] font-bold text-accessible-teal">
             See all
-            <img src={seeAllArrow} alt="" className="translate-y-[4px] max-w-none" />
+            <img src={seeAllArrow} alt="" className="h-[12px] w-[14px] object-contain" />
           </button>
         </div>
         {nearby.busy && !previews.length ? <RestaurantSkeletons compact /> : <div className="restaurant-preview-grid mt-[1px] grid min-h-[95px] grid-cols-3 gap-[16px]">
@@ -122,7 +122,7 @@ export default function DishDetails() {
             <span className="relative">See more options</span>
           </Button>
         </div>
-        <p id="restaurant-preview-note" role={nearby.status === 'error' ? 'alert' : 'status'} aria-live="polite" className="text-[10px] leading-[14px] text-text-secondary">
+        <p id="restaurant-preview-note" role={nearby.status === 'error' ? 'alert' : 'status'} aria-live="polite" className="text-[12px] leading-[18px] text-text-secondary">
           {nearby.status === 'error' ? nearbyErrorMessage(nearby.errorCode) : nearby.busy ? 'Finding restaurants near you…'
             : nearby.metadataOnly ? 'Refresh loads current names, ratings, hours, and available photos.'
             : previews.length ? "Search results suggest places to try. Dish availability isn't confirmed."

@@ -36,17 +36,17 @@ export default function VerifyVisit() {
   return <div className="flow-page verify-page">
     <FlowHeader onBack={back} onInfo={() => setModal('progress')} />
     <FlowTitle title="Verify Your Visit" subtitle={restaurant.name} />
-    {restaurant.source !== 'google-places' && <img className="verify-map" src={map} alt="Development map preview near the restaurant" />}
+    {restaurant.source !== 'google-places' && <img className="verify-map" src={map} alt="Illustrated restaurant location preview" />}
     {restaurant.source === 'google-places' && !restaurant.metadataOnly && <GooglePlacesAttribution restaurants={[restaurant]} />}
     <div className="verify-checks">
-      {[{ icon: check, title: restaurant.source === 'google-places' ? 'Demo location check' : `You are near ${restaurant.name}`,
-        text: restaurant.source === 'google-places' ? 'Nearby discovery does not verify your visit.' : 'Sample location matched (within 200 m)', green: true },
-        { icon: clock, title: 'Visit time detected', text: 'Sample visit: 17 minutes.' },
+      {[{ icon: check, title: 'Location check preview',
+        text: 'Nearby discovery does not verify your visit.', green: true },
+        { icon: clock, title: 'Visit time preview', text: 'No visit duration is measured.' },
         { icon: verified, title: 'All set!', text: `Ready to log ${dish.name}.` }].map(row => <div className={`verify-check ${row.green ? 'verify-check-green' : ''}`} key={row.title}>
           <span><img src={row.icon} alt="" /></span><div><strong>{row.title}</strong><p>{row.text}</p></div>
         </div>)}
     </div>
-    <div className="flow-privacy"><img src={shield} alt="" /><p>Development simulation. No GPS or visit time is being measured. QR and receipt checks are also simulated.</p></div>
+    <div className="flow-privacy"><img src={shield} alt="" /><p>Visit checks are a preview. No GPS or visit time is being measured. QR and receipt checks are also simulated.</p></div>
     <button type="button" className="verify-alternative" onClick={() => setModal('failed')}>Couldn’t verify automatically?</button>
     <FlowCTA onClick={() => attempt('location-demo')}>Continue</FlowCTA>
     <EdgeStateModal kind={modal} onClose={() => setModal(null)} onVerify={attempt} onLogAnyway={() => proceed(visit.verification?.method ?? 'location-demo')}

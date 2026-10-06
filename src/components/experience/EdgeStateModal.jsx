@@ -12,7 +12,7 @@ const CONTENT = {
   failed: { title: 'We couldn’t verify your visit automatically.', image: error, body: 'Choose another way to verify your visit.' },
   counted: { title: 'This visit was already counted.', image: counted, body: 'You can still log this meal, but this dish can only earn Mystery Box progress once per day.' },
   progress: { title: 'How Mystery Box Progress Works', image: progress },
-  feedback: { title: 'Personalized for you!', image: feedback },
+  feedback: { title: 'About your feedback', image: feedback },
 }
 
 export default function EdgeStateModal({ kind, onClose, onVerify, onLogAnyway, onOtherDishes, message }) {
@@ -21,10 +21,10 @@ export default function EdgeStateModal({ kind, onClose, onVerify, onLogAnyway, o
     <button type="button" className="edge-close" onClick={onClose} aria-label="Close dialog">×</button>
     <div className="edge-scroll" role="region" aria-labelledby={id} tabIndex={0}>
     {content?.image && <img className="edge-illustration" src={content.image} alt="" />}
-    <h2 id={id}>{content?.title ?? 'Development preview'}</h2>
+    <h2 id={id}>{content?.title ?? 'About this feature'}</h2>
     {content?.body && <p className="edge-body">{content.body}</p>}
     {kind === 'progress' && <ul className="edge-body"><li>A dish can only earn progress once per day.</li><li>You can still log any meal anytime.</li><li>Try different dishes to explore more of the country.</li></ul>}
-    {kind === 'feedback' && <><p className="edge-body">Your feedback helps us learn what you enjoy to improve future dish, cuisine, and restaurant recommendations.<br /><br />Your responses won’t affect your Mystery Box progress.</p><p className="flow-demo">Saved for future personalization. Current recommendation rules are unchanged.</p></>}
+    {kind === 'feedback' && <><p className="edge-body">Save what you enjoyed for future food adventures.<br /><br />Your responses won’t affect your Mystery Box progress.</p><p className="flow-demo">Your feedback is saved on this device. It doesn’t change your current matches.</p></>}
     {kind === 'preview' && <p className="edge-body">{message}</p>}
     </div>
     {kind === 'failed' && <div className="edge-options edge-footer">

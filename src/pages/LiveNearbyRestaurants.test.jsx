@@ -23,6 +23,8 @@ function data(places = [restaurant(1), restaurant(2), restaurant(3), restaurant(
 function ok(result) { return { ok: true, json: async () => result } }
 beforeEach(() => {
   restaurantSearchState.reset(); nearbyRestaurantService.clear()
+  // Isolate deliberate searches; first-time automatic permission flow has its own suite.
+  vi.spyOn(restaurantSearchState, 'autoSearch').mockResolvedValue()
   placeDetailsService.clear(); placePhotoService.clear()
   globalThis.IS_REACT_ACT_ENVIRONMENT = true
   document.body.innerHTML = '<div id="root"></div>'
@@ -145,7 +147,7 @@ describe('live nearby restaurant UI with mocked transport', () => {
   it.each(['QUOTA_LIMIT', 'PROVIDER_CONFIGURATION', 'NOT_CONFIGURED'])('recovers from %s without retries or fake data', async code => {
     fetchMock.mockResolvedValue({ ok: false, json: async () => ({ error: { code } }) })
     await mount(); await findAndOpenList()
-    expect(document.querySelector('[role="alert"]').textContent).toContain(code === 'NOT_CONFIGURED' ? 'not configured locally' : 'temporarily unavailable')
+    expect(document.querySelector('[role="alert"]').textContent).toContain(code === 'NOT_CONFIGURED' ? 'not configured locally' : code === 'QUOTA_LIMIT' ? 'busy right now' : 'temporarily unavailable')
     expect(names()).toEqual([]); expect(searchCalls()).toHaveLength(1)
     await click('Go back')
     expect(searchCalls()).toHaveLength(1)
@@ -255,7 +257,7 @@ describe('live nearby restaurant UI with mocked transport', () => {
   it('preserves legacy saved examples with an explicit label and no fabricated live facts', async () => {
     writeLocalState(STORAGE_KEYS.favorites, { dishIds: [], restaurantIds: ['preview-thmor-da'] })
     await mount('/favorites'); await click('Restaurants')
-    expect(document.body.textContent).toContain('Saved development example; not a live restaurant result')
+    expect(document.body.textContent).toContain('Saved preview; not a live restaurant result')
     expect(document.querySelector('.restaurant-rating')).toBeNull()
     expect(document.body.textContent).not.toContain('1.2 mi')
     expect(searchCalls()).toHaveLength(0)

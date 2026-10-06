@@ -43,7 +43,7 @@ export function whyMatched(session, result) {
     const profile = joinReasons(flavors.map(flavor => (FLAVOR_LABELS[flavor] ?? flavor).toLowerCase()))
     const feel = FLAVOR_FEEL[flavors[0]] ?? 'the flavor profile you selected'
     return `${dish.name} matches ${profile} flavors for ${feel}. ${reasons.length
-      ? `It also fits ${joinReasons(reasons)}.` : 'Those selected tags align with its flavor profile and your current craving.'}`
+      ? `It also fits ${joinReasons(reasons)}.` : `Your ${flavors.map(flavor => FLAVOR_LABELS[flavor] ?? flavor).join(' + ')} ${flavors.length === 1 ? 'choice contributes' : 'choices contribute'} to this match.`}`
   }
 
   if (reasons.length) {

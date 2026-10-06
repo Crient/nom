@@ -11,9 +11,10 @@ import statusCap from '../../assets/icons/status-cap.svg'
  * Figma uses SF Pro for the clock; the system font stack is the closest the
  * browser can get.
  */
-export default function StatusBar({ className, overlay = false }) {
+export default function StatusBar({ className, overlay = false, preview = import.meta.env.DEV }) {
+  if (!preview) return <div aria-hidden="true" data-status-bar="safe-area" className={cn(overlay ? 'absolute inset-x-0 top-0 z-10' : 'relative', 'nom-status-spacer w-full', className)} />
   return (
-    <div aria-hidden="true" className={cn(overlay ? 'absolute inset-x-0 top-0 z-10' : 'relative', 'h-status-bar w-full', className)}>
+    <div aria-hidden="true" data-status-bar="preview" className={cn(overlay ? 'absolute inset-x-0 top-0 z-10' : 'relative', 'h-status-bar w-full', className)}>
       <p
         className="absolute top-[21.52px] left-[55.79px] w-[44.6px] text-center text-[19.95px] leading-[25.82px] font-bold text-text-primary"
         style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}

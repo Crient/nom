@@ -3,7 +3,7 @@
 .surprise-intro h1 { font-size: var(--text-display); font-weight: 700; color: var(--color-accessible-teal); }
 .surprise-intro > p { margin-top: 8px; font-size: var(--text-body); color: var(--color-text-secondary); }
 .surprise-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-.surprise-deck-card { grid-area: 1/1; min-width: 0; margin: 0; position: relative; touch-action: pan-y; user-select: none; transition: transform 240ms cubic-bezier(.22,.8,.36,1); transform-origin: center; overflow: hidden; border-radius: var(--radius-lg); background: var(--color-surface); box-shadow: var(--shadow-raised); backface-visibility: hidden; will-change: transform; }
+.surprise-deck-card { grid-area: 1/1; min-width: 0; margin: 0; position: relative; touch-action: pan-y; user-select: none; transition: transform 240ms cubic-bezier(.22,.8,.36,1),opacity 240ms ease-out; transform-origin: center; overflow: hidden; border-radius: var(--radius-lg); background: var(--color-surface); box-shadow: var(--shadow-raised); backface-visibility: hidden; will-change: transform,opacity; }
 .surprise-dish-card { z-index: 2; }
 .surprise-deck-card > img { display: block; width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover; }
 .surprise-deck-card > div { padding: 20px; }
@@ -14,10 +14,11 @@
 .surprise-controls button { min-height: 52px; }
 .surprise-hint { margin: 0 24px 28px; text-align: center; font-size: var(--text-body-sm); color: var(--color-text-secondary); }
 
-.surprise-card-stack { display: grid; position: relative; margin: 0 24px; padding-top: 20px; }
+.surprise-card-stack { display: grid; position: relative; isolation: isolate; margin: 0 24px; padding-top: 20px; }
 .surprise-card-stack:not(:has(.surprise-next-card)) { padding-top: 0; }
 .surprise-next-card { z-index: 1; pointer-events: none; }
 .surprise-queued-card { z-index: 0; pointer-events: none; }
+.surprise-buffered-card { z-index: -1; pointer-events: none; }
 .surprise-deck-card.is-dragging { transition: none; }
 .surprise-dish-card.is-dragging { cursor: grabbing; }
 .surprise-swipe-cue { position: absolute; top: 18px; max-width: calc(100% - 32px); padding: 10px 14px; border-radius: var(--radius-md); background: var(--color-surface); font-size: var(--text-body-lg); font-weight: 700; pointer-events: none; box-shadow: var(--shadow-panel); }

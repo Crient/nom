@@ -7,6 +7,6 @@ export function countrySceneProps(country, { portraitBackground } = {}) {
   return { className: `collection-background ${portrait ? 'collection-portrait' : 'collection-fallback'}`,
     'data-country': country.id,
     style: { '--collection-background': portrait ? `url("${portrait}")` : 'none',
-      '--collection-foundation': portrait && country.id !== 'cambodia' ? '#fff7eb' : foundations[country.id] ?? '#fff7eb',
-      '--collection-art-opacity': country.id === 'cambodia' ? .8 : .625 } }
+      '--collection-foundation': country.foundation ?? foundations[country.id] ?? '#fff7eb',
+      '--collection-art-opacity': country.id === 'cambodia' ? .8 : 1 } }
 }

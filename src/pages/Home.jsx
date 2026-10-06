@@ -14,20 +14,18 @@ import { activityEntries } from '../utils/explorationSummary'
 import ActivityCard from '../components/experience/ActivityCard'
 import '../styles/hubs.css'
 import quickTrending from '../assets/icons/quick-trending.svg'
-import quickScan from '../assets/icons/quick-scan.svg'
 import quickLogMeal from '../assets/icons/quick-log-meal.svg'
 import quickFavorites from '../assets/icons/quick-favorites.svg'
 import quickProgress from '../assets/icons/quick-progress.svg'
 import greetingDivider from '../assets/icons/greeting-subtitle.svg'
 import letsEatImage from '../assets/food/lets-eat.webp'
 import surpriseMeImage from '../assets/food/surprise-me.webp'
-import mysteryBannerBg from '../assets/icons/mystery-banner-bg.svg'
 import mysteryBoxPromo from '../assets/collectibles/mystery-box-promo.webp'
 import chevronCta from '../assets/icons/chevron-right-cta.svg'
 import chevronSm from '../assets/icons/chevron-right-sm.svg'
 
 const QUICK_ACTIONS = [
-  { label: 'Trending', icon: quickTrending, to: '/explore?view=trending' }, { label: 'Scan', icon: quickScan, to: '/scan' },
+  { label: 'Trending', icon: quickTrending, to: '/explore?view=trending' }, { label: 'Explore', icon: quickTrending, to: '/explore' },
   { label: 'Log Meal', icon: quickLogMeal, to: '/explore?action=log' }, { label: 'Favorites', icon: quickFavorites, to: '/favorites' },
   { label: 'Progress', icon: quickProgress, to: '/progress' },
 ]
@@ -44,7 +42,7 @@ export default function Home() {
   const box = pendingBox(state, cambodia.id)
   const remaining = BOX_TARGET - state.progress.cambodia.count
   return (
-    <div className="home-page min-h-[1260px] w-full bg-surface pb-[90px]">
+    <div className="home-page min-h-[1260px] w-full bg-surface pb-[calc(90px+env(safe-area-inset-bottom,0px))]">
       <header className="home-header">
         <StatusBar className="home-status" />
         <form role="search" className="home-search" onSubmit={event => { event.preventDefault(); navigate(`/explore${query.trim() ? `?q=${encodeURIComponent(query.trim())}` : ''}`) }}><SearchField aria-label="Search for food" placeholder="Search for food..." value={query} onChange={event => setQuery(event.target.value)} action={<button type="submit" aria-label="Search dishes" className="flex min-h-[44px] min-w-[44px] items-center justify-center"><img src={chevronSm} alt="" /></button>} /></form>
@@ -60,7 +58,7 @@ export default function Home() {
         </div>
         <img src={greetingDivider} alt="" className="home-greeting-divider" />
         <div className="relative ml-[10.65px] flex flex-col gap-[4.695px] bg-surface p-[18.778px] text-text-primary">
-          <h1 className="text-greeting break-words [text-shadow:0_3.549px_3.549px_rgb(0_0_0/0.25)]">Good Morning, {activity.displayName}!</h1>
+          <h1 className="text-greeting break-words [text-shadow:0_3.549px_3.549px_rgb(0_0_0/0.25)]">Hello, {activity.displayName}!</h1>
           <p className="text-greeting-sub">Tell us what you are craving for.</p>
         </div>
       </header>
@@ -83,15 +81,14 @@ export default function Home() {
         <img src={chevronCta} alt="" className="absolute right-[48.18px] bottom-[.7px] h-[11.607px] w-[8.171px]" />
       </div>
 
-      <section aria-label="Mystery box preview" className="relative ml-[23.96px] mr-[25.62px] mt-[10.742px] grid min-h-[77.197px] grid-cols-[62.113px_minmax(0,1fr)_31.6%] items-center py-[8px] pl-[5.32px] pr-[14.08px]">
-        <img src={mysteryBannerBg} alt="" className="pointer-events-none absolute inset-0 size-full" />
-        <Image loading="lazy" src={mysteryBoxPromo} alt="" className="relative size-[62.113px] object-cover" />
-        <div className="relative min-w-0">
+      <section aria-label="Mystery box preview" className="home-mystery-banner">
+        <Image loading="lazy" src={mysteryBoxPromo} alt="" className="home-mystery-art" />
+        <div className="home-mystery-copy">
           <p className="text-card-title tracking-meta text-strong-neutral">🇰🇭 {box ? 'Mystery Box Ready!' : `${remaining === 1 ? 'One Meal' : `${remaining} Meals`} Away!`}</p>
-          <p className="mt-[11px] text-meta-sm font-bold tracking-meta text-text-secondary">{box ? 'Open your box to discover your collectible.' : 'Try another Cambodian dish to unlock your Mystery Box.'}</p>
+          <p>{box ? 'Open your box to discover your collectible.' : 'Try another Cambodian dish to unlock your Mystery Box.'}</p>
         </div>
-        <Link to={box ? `/boxes/${box.id}` : '/collections/cambodia'} state={{ returnTo: '/home' }} className="relative flex min-h-[44px] items-center justify-center gap-[5px] rounded-card bg-primary-teal px-[4px] text-action-label tracking-meta text-strong-neutral">
-          {box ? 'Open Box' : 'Explore Now'} <img src={chevronSm} alt="" className="h-[10.665px] w-[6.301px] shrink-0" />
+        <Link to={box ? `/boxes/${box.id}` : '/collections/cambodia'} state={{ returnTo: '/home' }} className="home-mystery-action">
+          {box ? 'Open Box' : 'Explore Now'} <span aria-hidden="true">›</span>
         </Link>
       </section>
 

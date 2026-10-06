@@ -31,7 +31,7 @@ export default function CollectibleDetails() {
     <p className="collectible-description">{hasArtwork && collectible.description ? collectible.description : `${collectible.name} is part of your ${country.name} collection. Discover country collectibles by exploring dishes and opening your earned Mystery Boxes.`}</p>
     <dl className="collectible-discovery"><div><dt><img src={calendar} alt="" />Discovered On</dt><dd>{discovered}</dd></div><div><dt><img src={pin} alt="" />Location</dt><dd>{country.name}</dd></div></dl>
     {inspiration && <section className="collectible-inspiration"><h2>Inspired by</h2><div>{inspiration.map(item => <article key={item.name}><img src={item.image} alt="" /><p>{item.name}</p></article>)}</div></section>}
-    {!hasArtwork && <p className="flow-demo">This country’s character artwork uses a development placeholder.</p>}
+    {!hasArtwork && <p className="flow-demo">Character artwork for this country is coming soon. This is a placeholder.</p>}
     <button type="button" className="collection-pill collectible-favorite" aria-pressed={favorite} onClick={() => toggleCollectibleFavorite(key)}><FavoriteStar saved={favorite} />{favorite ? 'Remove from favorites' : 'Add to favorites'}</button>
     <EdgeStateModal kind={modal} onClose={() => setModal(null)} />
   </div>

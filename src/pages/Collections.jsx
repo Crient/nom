@@ -21,7 +21,7 @@ export default function Collections() {
     if (filter === 'Favorites') return state.favorites.some(key => key.startsWith(`${country.id}:`))
     return true
   })
-  return <div className="flow-page collections-page pb-[100px]">
+  return <div className="flow-page collections-page pb-[calc(100px+env(safe-area-inset-bottom,0px))]">
     <img className="collection-wave" src={wave} alt="" />
     <FlowHeader onBack={() => navigate(recommendationReturnTo(location.state?.returnTo, '/home'))} onInfo={() => setModal('progress')} />
     <h1>Your <span>Collections</span></h1>
@@ -31,10 +31,11 @@ export default function Collections() {
       const count = unlockedCount(state, country.id)
       return <button type="button" className={`collection-country ${count === collectibleDefinitions.length ? 'is-complete' : ''}`} data-country={country.id} data-complete={count === collectibleDefinitions.length} key={country.id} aria-label={`${country.name}, ${count} of 6 collectibles`} onClick={() => navigate(`/collections/${country.id}`)}>
         <span className="collection-country-art"><img src={country.image} alt="" loading="lazy" style={{ objectPosition: country.cardPosition }} /></span><div className="collection-country-meta"><strong>{country.name}</strong><span>{count}/6 collectibles</span><div className="collection-dots" aria-hidden="true">{collectibleDefinitions.map((item, index) => <i key={item.id} className={index < count ? 'reached' : ''} />)}</div></div>
+        {count === collectibleDefinitions.length && <span className="collection-complete-accent" aria-label="Country complete">✓</span>}
       </button>
     })}</div>
     {!countries.length && <p className="collection-empty" role="status">{filter === 'Favorites' ? 'Favorite a collectible to see its country here.' : 'No collections in this view yet.'}</p>}
-    <p className="flow-demo collection-demo">Development collection previews • Local progress</p>
+    {import.meta.env.DEV && <p className="flow-demo collection-demo">Development collection previews • Local progress</p>}
     <NomNavigation fixed />
     <EdgeStateModal kind={modal} onClose={() => setModal(null)} />
   </div>

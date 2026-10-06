@@ -15,7 +15,7 @@ export default function FoodType() {
   const { foodType, setFoodType } = useDiscoverySession()
 
   return (
-    <div className="relative h-frame w-full bg-surface">
+    <div className="discovery-page discovery-foodtype">
       <StatusBar />
 
       <DiscoveryHeader
@@ -25,7 +25,7 @@ export default function FoodType() {
         onBack={() => navigate('/home')}
       />
 
-      <h1 className="absolute top-[169px] left-[28px] w-[min(308px,calc(100%-56px))] text-display text-strong-neutral">
+      <h1 className="discovery-question text-display text-strong-neutral">
         What{' '}
         <span className="text-accessible-teal underline decoration-solid decoration-from-font [text-decoration-skip-ink:none] [text-underline-position:from-font]">
           sounds
@@ -33,11 +33,11 @@ export default function FoodType() {
         good for you right now?
       </h1>
 
-      <p className="absolute top-[248px] left-[29px] w-[calc(100%-58px)] text-body-tight text-text-primary">
+      <p className="discovery-support text-body-tight text-text-primary">
         Choose one kind you’d like to eat.
       </p>
 
-      {foodTypeRows.map((row) => (
+      <div className="discovery-options">{foodTypeRows.map((row) => (
         <OptionRow key={row.top} top={row.top} left={row.left}>
           {row.options.map((option) => (
             <OptionCard
@@ -48,14 +48,14 @@ export default function FoodType() {
             />
           ))}
         </OptionRow>
-      ))}
+      ))}</div>
 
       <Button
         variant="soft"
         size="discovery"
         disabled={!foodType}
         onClick={() => navigate('/discover/flavor')}
-        className="absolute top-[859px] left-[26px]"
+        className="discovery-cta"
       >
         Continue
       </Button>

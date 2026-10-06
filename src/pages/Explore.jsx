@@ -21,6 +21,6 @@ export default function Explore() {
     <p role="status">{results.length} {results.length === 1 ? 'dish' : 'dishes'} found</p>
     {!results.length ? <HubEmpty action={<Link className="hub-action" to="/explore">Browse all dishes</Link>}>{trending && !state.logs.length ? 'Log a meal to start your local trends.' : 'No dishes found. Try another search or food type.'}</HubEmpty>
       : <div className="hub-dishes">{results.map(dish => <RecommendationCard key={dish.id} result={{ dish }} variant="list" liked={favorites.isFavorite(dish.id)} onToggleLike={() => favorites.toggleFavorite(dish.id)} />)}</div>}
-    <p className="flow-demo">Catalog review status remains unchanged. Photos use a placeholder when an accurate local image isn’t available.</p>
+    {import.meta.env.DEV && <p className="flow-demo">Catalog review status remains unchanged. Photos use a placeholder when an accurate local image isn’t available.</p>}
   </HubLayout>
 }

@@ -34,6 +34,9 @@ async function expose(selector, count = 1) {
 }
 beforeEach(() => {
   restaurantSearchState.reset(); nearbyRestaurantService.clear(); placePhotoService.clear(); placeDetailsService.clear(); restaurantMapSessions.clear(); surpriseSession.reset()
+  // Explicit permission fixtures retain the real automatic path; other cases isolate manual search.
+  const autoSearch = restaurantSearchState.autoSearch.bind(restaurantSearchState)
+  vi.spyOn(restaurantSearchState, 'autoSearch').mockImplementation((...args) => navigator.permissions ? autoSearch(...args) : Promise.resolve())
   globalThis.IS_REACT_ACT_ENVIRONMENT = true; document.body.innerHTML = '<div id="root"></div>'
   vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
   vi.stubGlobal('navigator', { geolocation: { getCurrentPosition: resolve => resolve({ coords: { latitude: 40, longitude: -75 } }) } })

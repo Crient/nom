@@ -33,12 +33,39 @@ describe('opened-dish automatic nearby search', () => {
     expect(f.state.getSnapshot('lort-cha').status).toBe('ready')
     expect(f.provider).not.toHaveBeenCalled(); expect(f.locate).not.toHaveBeenCalled(); expect(permission.query).not.toHaveBeenCalled()
   })
-  it('keeps ungranted permission deliberate and publishes denied state without a search', async () => {
+  it('requests first-time location, waits for success, and then searches', async () => {
     const f = fixture()
-    await f.state.autoSearch('lort-cha', { permissions: permissions('prompt') })
-    expect(f.state.getSnapshot('lort-cha').status).toBe('idle'); expect(f.provider).not.toHaveBeenCalled()
+    let accept
+    f.locate.mockImplementation(() => new Promise(resolve => { accept = resolve }))
+    const pending = f.state.autoSearch('lort-cha', { permissions: permissions('prompt') })
+    await Promise.resolve()
+    expect(f.state.getSnapshot('lort-cha').status).toBe('requesting-location'); expect(f.provider).not.toHaveBeenCalled()
+    accept({ latitude: 40, longitude: -75 }); await pending
+    expect(f.locate).toHaveBeenCalledTimes(1); expect(f.provider).toHaveBeenCalledTimes(1)
+    expect(f.state.getSnapshot('lort-cha').status).toBe('ready')
+  })
+  it('publishes already-denied permission without requesting location or Places', async () => {
+    const f = fixture()
     await f.state.autoSearch('lort-cha', { permissions: permissions('denied') })
-    expect(f.state.getSnapshot('lort-cha')).toMatchObject({ errorCode: 'LOCATION_DENIED', locationStatus: 'denied' }); expect(f.locate).not.toHaveBeenCalled()
+    expect(f.state.getSnapshot('lort-cha')).toMatchObject({ errorCode: 'LOCATION_DENIED', locationStatus: 'denied' })
+    expect(f.locate).not.toHaveBeenCalled(); expect(f.provider).not.toHaveBeenCalled()
+  })
+  it('prompts once across concurrent dishes and later mounts when the prompt is dismissed', async () => {
+    const f = fixture()
+    f.locate.mockRejectedValue(Object.assign(new Error(), { code: 'LOCATION_TIMEOUT' }))
+    await Promise.all(['lort-cha', 'ramen'].map(id => f.state.autoSearch(id, { permissions: permissions('prompt') })))
+    await f.state.autoSearch('harira', { permissions: permissions('prompt') })
+    expect(f.locate).toHaveBeenCalledTimes(1); expect(f.provider).not.toHaveBeenCalled()
+    expect(f.state.getSnapshot('lort-cha').errorCode).toBe('LOCATION_TIMEOUT')
+    expect(f.state.getSnapshot('ramen').status).toBe('idle')
+  })
+  it('shows friendly denial after the first prompt without sending a Places request', async () => {
+    const f = fixture()
+    f.locate.mockRejectedValue(Object.assign(new Error(), { code: 'LOCATION_DENIED' }))
+    await f.state.autoSearch('lort-cha', { permissions: permissions('prompt') })
+    await f.state.autoSearch('ramen', { permissions: permissions('denied') })
+    expect(f.locate).toHaveBeenCalledTimes(1); expect(f.provider).not.toHaveBeenCalled()
+    expect(f.state.getSnapshot('ramen').locationStatus).toBe('denied')
   })
   it('deduplicates concurrent granted checks and never automatically retries a failed search', async () => {
     const f = fixture(), permission = permissions('granted')
@@ -56,11 +83,10 @@ describe('opened-dish automatic nearby search', () => {
   })
   it('remembers a successful session grant when the Permissions API is unavailable', async () => {
     const f = fixture()
-    await f.state.autoSearch('lort-cha', { permissions: {} }); expect(f.provider).not.toHaveBeenCalled()
-    await f.state.search('lort-cha')
+    await f.state.autoSearch('lort-cha', { permissions: {} }); expect(f.provider).toHaveBeenCalledTimes(1)
     await f.state.autoSearch('ramen', { permissions: {} })
     expect(f.provider.mock.calls.map(([request]) => request.dishId)).toEqual(['lort-cha', 'ramen'])
-    f.state.reset(); await f.state.autoSearch('ramen', { permissions: {} }); expect(f.provider).toHaveBeenCalledTimes(2)
+    f.state.reset(); await f.state.autoSearch('ramen', { permissions: {} }); expect(f.provider).toHaveBeenCalledTimes(3)
   })
 })
 

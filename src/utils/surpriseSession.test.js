@@ -70,13 +70,14 @@ describe('ephemeral Surprise Me variety', () => {
     expect(queue.peek(session, ranked.slice(0, 1))).toBeNull()
     expect(queue.peek(session, [])).toBeNull()
   })
-  it.each([2, 3, 12])('preloads two draws without changing weighted order over three cycles of %s candidates', size => {
+  it.each([2, 3, 12])('preloads three draws without changing weighted order over three cycles of %s candidates', size => {
     const pool = ranked.slice(0, size), queue = createSurpriseSession({ random: seeded(19) }), control = createSurpriseSession({ random: seeded(19) })
     const expected = Array.from({ length: size * 3 + 3 }, () => control.next(session, pool).dish.id)
     expect(queue.next(session, pool).dish.id).toBe(expected[0])
-    for (let index = 1; index < expected.length - 1; index++) {
+    for (let index = 1; index < expected.length - 2; index++) {
       expect(queue.peek(session, pool, 0).dish.id).toBe(expected[index])
       expect(queue.peek(session, pool, 1).dish.id).toBe(expected[index + 1])
+      expect(queue.peek(session, pool, 2).dish.id).toBe(expected[index + 2])
       expect(queue.peek(session, pool, 1).dish.id).toBe(expected[index + 1])
       expect(queue.next(session, pool).dish.id).toBe(expected[index])
     }

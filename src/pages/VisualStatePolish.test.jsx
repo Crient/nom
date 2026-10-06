@@ -45,6 +45,7 @@ describe('favorite and collection visual state', () => {
     const before = [...document.querySelectorAll('.collection-country')].map(card => ({ id: card.dataset.country, image: card.querySelector('img').getAttribute('src'), style: card.querySelector('img').getAttribute('style') }))
     expect(document.querySelector('[data-country=cambodia]').textContent).toContain('5/6')
     expect(document.querySelector('[data-country=cambodia]').classList.contains('is-complete')).toBe(false)
+    expect(document.querySelector('[data-country=cambodia] .collection-complete-accent')).toBeNull()
     const at = '2026-10-05T12:00:00Z', draft = { id: 'visual-visit', dishId: 'lort-cha', countryCode: 'KH', restaurantId: 'preview-thmor-da', startedAt: at, verification: { verified: true, method: 'qr-demo', source: 'development', checkedAt: at }, feedback: { reaction: 'loved', observations: [], note: '' } }
     let state = experienceReducer(createExperienceState(), { type: 'start', draft })
     state = experienceReducer(state, { type: 'complete', id: draft.id, at, day: '2026-10-05' })
@@ -56,6 +57,7 @@ describe('favorite and collection visual state', () => {
     expect(before).toHaveLength(8)
     expect(document.querySelector('[data-country=cambodia]').textContent).toContain('6/6')
     expect(document.querySelector('[data-country=cambodia]').classList.contains('is-complete')).toBe(true)
+    expect(document.querySelector('[data-country=cambodia] .collection-complete-accent').getAttribute('aria-label')).toBe('Country complete')
     expect(document.querySelectorAll('.collection-country.is-complete')).toHaveLength(1)
     expect([...document.querySelectorAll('.collection-country:not(.is-complete)')].every(card => card.dataset.complete === 'false')).toBe(true)
   })
@@ -67,9 +69,9 @@ describe('favorite and collection visual state', () => {
     expect(document.querySelector('.country-progress-section')).toBeTruthy()
     expect(document.querySelector('.flow-back')).toBeTruthy(); expect(document.querySelector('.flow-more')).toBeTruthy()
     if (country.id !== 'cambodia') {
-      expect(country.background).toMatch(/country-backgrounds\/.*\.png/)
-      expect(country.image).toBe(country.background)
-      expect(page.style.getPropertyValue('--collection-art-opacity')).toBe('0.625')
+      expect(country.background).toMatch(/country-backgrounds\/.*-portrait\.webp/)
+      expect(country.image).toMatch(/-card\.webp/); expect(country.image).not.toBe(country.background)
+      expect(page.style.getPropertyValue('--collection-art-opacity')).toBe('1')
     } else expect(country.background).toContain('cambodia-background.webp')
   })
   it('reserves the Home status region before the controls in normal flow', async () => {

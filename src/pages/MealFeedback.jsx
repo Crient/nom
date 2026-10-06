@@ -38,10 +38,10 @@ export default function MealFeedback() {
     <div className="feedback-reactions" role="group" aria-label="How was your meal?">{feedbackReactions.map(reaction => <button type="button" key={reaction.id} aria-pressed={feedback.reaction === reaction.id} onClick={() => update({ reaction: reaction.id })}>
       <img src={REACTION_IMAGES[reaction.id]} alt="" /><span>{reaction.label}</span>
     </button>)}</div>
-    <button type="button" className="flow-privacy feedback-privacy" onClick={() => setModal('feedback')} aria-label="Why we ask for feedback"><img src={shield} alt="" /><span>Your feedback helps us learn what you enjoy and improve future dish, cuisine, and restaurant recommendations.<br /><br />Be honest—your feedback won’t affect Mystery Box progress.</span></button>
+    <button type="button" className="flow-privacy feedback-privacy" onClick={() => setModal('feedback')} aria-label="Why we ask for feedback"><img src={shield} alt="" /><span>Save what you enjoyed for future food adventures.<br /><br />Be honest—your feedback won’t affect Mystery Box progress.</span></button>
     <section className="feedback-observations"><h2>What stood out?</h2><div>{feedbackObservations.map(tag => <FilterChip key={tag} selected={feedback.observations.includes(tag)} onClick={() => update({ observations: feedback.observations.includes(tag) ? feedback.observations.filter(item => item !== tag) : [...feedback.observations, tag] })}>{tag}</FilterChip>)}</div></section>
     <div className="feedback-note"><label htmlFor="meal-note">Add a note (optional)</label><textarea id="meal-note" placeholder="Share your thoughts…" value={feedback.note} maxLength={1000} onChange={event => update({ note: event.target.value })} /></div>
-    <p className="flow-demo feedback-demo">Logging {dish.name} • {visit.verification.verified ? 'Demo verification' : 'Unverified — no box progress'}</p>
+    <p className="flow-demo feedback-demo">Logging {dish.name} • {visit.verification.verified ? 'Preview verification' : 'Unverified — no box progress'}</p>
     <FlowCTA disabled={!feedback.reaction} onClick={() => { completeVisit(visitId); navigate(`/visits/${visitId}/logged`) }}>Continue</FlowCTA>
     <EdgeStateModal kind={modal} onClose={() => setModal(null)} />
   </div>

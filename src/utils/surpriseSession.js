@@ -50,7 +50,7 @@ export function createSurpriseSession({ random = Math.random } = {}) {
     peek(session, results, offset = 0) {
       // Preparing a preview never records a shown dish or consumes a new cycle.
       const pool = prepare(session, results)
-      if (pool.length < 2 || !Number.isInteger(offset) || offset < 0 || offset > 1) return null
+      if (pool.length < 2 || !Number.isInteger(offset) || offset < 0 || offset > 2) return null
       const upcoming = [...history.slice(position + 1), ...queue]
       if (upcoming[offset]) return upcoming[offset]
       // Prepare the next cycle once, without recording a shown dish or moving

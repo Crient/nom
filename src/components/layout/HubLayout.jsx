@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { FlowHeader } from '../experience/FlowLayout'
 import NomNavigation from './NomNavigation'
 import '../../styles/hubs.css'
@@ -19,5 +19,8 @@ export function HubEmpty({ children, action }) {
 }
 
 export function SummaryGrid({ items }) {
-  return <dl className="hub-summary">{items.map(([label, count]) => <div key={label}><dt>{label}</dt><dd>{count}</dd></div>)}</dl>
+  const location = useLocation()
+  return <dl className="hub-summary">{items.map(([label, count, to]) => <div key={label}>
+    <dt>{to ? <Link className="hub-summary-link" to={to} state={{ returnTo: location.pathname }}>{label}</Link> : label}</dt><dd>{count}</dd>
+  </div>)}</dl>
 }

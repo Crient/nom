@@ -9,7 +9,6 @@ import { cn } from '../../utils/cn'
  * the "Categories Container" wrapping each row in Figma.
  */
 export default function ListOption({
-  top,
   icon,
   title,
   subtitle,
@@ -19,16 +18,15 @@ export default function ListOption({
 }) {
   return (
     <div
-      style={{ top }}
-      className="absolute left-[6px] right-[7px] flex h-[115px] flex-col items-center justify-center bg-surface"
+      className="discovery-list-option flex flex-col items-center justify-center bg-surface"
     >
-      <div className="flex h-[103px] w-[calc(100%-46px)] items-center justify-center drop-shadow-tile">
+      <div className="flex min-h-[103px] w-[calc(100%-46px)] items-center justify-center drop-shadow-tile">
         <button
           type="button"
           aria-pressed={selected}
           onClick={onSelect}
           className={cn(
-            'relative h-[100px] w-full overflow-hidden rounded-md shadow-card',
+            'relative flex min-h-[100px] w-full items-center overflow-hidden rounded-md shadow-card',
             selected ? 'bg-soft-teal-2' : 'bg-surface',
           )}
         >
@@ -42,14 +40,14 @@ export default function ListOption({
           <Image
             src={icon}
             alt=""
-            className="absolute top-[-0.5px] left-[6.8%] size-[101px] max-w-none object-cover"
+            className="discovery-adventure-art shrink-0 object-cover"
           />
 
-          <div className="absolute top-0 right-0 bottom-0 left-[calc(101px+6.8%)] flex flex-col justify-center gap-[2.795px] py-[11.179px] pr-[11.179px] text-text-primary">
+          <div className="min-w-0 flex-1 flex flex-col justify-center gap-[2.795px] py-[11.179px] pr-[11.179px] text-text-primary">
             <p className="text-[16.903px] leading-[22.357px] font-semibold [text-shadow:0_2.113px_2.113px_rgb(0_0_0/0.25)]">
               {title}
             </p>
-            <p className="text-[11.179px] leading-[12px]" style={subtitleWidth ? { maxWidth: subtitleWidth } : undefined}>
+            <p className="text-[12px] leading-[16px]" style={subtitleWidth ? { maxWidth: subtitleWidth } : undefined}>
               {subtitle}
             </p>
           </div>
