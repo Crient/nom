@@ -34,22 +34,33 @@
 }
 
 .dish-nearby-heading { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; min-height: 44px; margin-block: 4px; }
-/* Aqua foil stays legible after its single viewport entry flourish. */
-.why-matched-card { position: relative; isolation: isolate; overflow: hidden; margin: 14px 18px 0; padding: 12px 14px; min-height: 104px; border: 1px solid #81c8c0; border-radius: 18px; background: linear-gradient(120deg,#d7f5ed 0%,#edfdf6 37%,#c4ebe5 72%,#e9fff4 100%); box-shadow: inset 0 1px 0 #ffffffeb,inset 0 -1px 0 #68bdb74d,0 3px 10px #347d761a; color: var(--color-strong-neutral); }
+/* Pale aqua stars match detail-ai.svg; two bounded sheen passes leave a
+   crisp static foil card. All gloss stays behind the readable text layer. */
+.why-matched-card { --why-star-color: #CDF4F2; position: relative; isolation: isolate; overflow: hidden; margin: 14px 18px 0; padding: 12px 14px; min-height: 104px; border: 1px solid #81c8c0; border-radius: 18px; background: linear-gradient(120deg,#d7f5ed 0%,#edfdf6 37%,#c4ebe5 72%,#e9fff4 100%); box-shadow: inset 0 1px 0 #ffffffeb,inset 0 -1px 0 #68bdb74d,0 3px 10px #347d761a; color: var(--color-strong-neutral); }
 .why-matched-card::before { content: ''; position: absolute; inset: 1px; border-radius: 16px; pointer-events: none; background: linear-gradient(160deg,#ffffff70,transparent 45%); border: 1px solid #ffffff80; }
-.why-matched-content { position: relative; padding-left: 55px; }
-.why-matched-icon { position: absolute; top: 3px; left: 0; width: 44px; height: 44px; object-fit: contain; }
+.why-matched-card[data-entered=true] { animation: nom-match-enter 3000ms ease-out 1 both; }
+.why-matched-content { position: relative; z-index: 1; padding-left: 55px; }
+.why-matched-icon { position: absolute; top: 3px; left: 0; width: 44px; height: 44px; object-fit: contain; filter: drop-shadow(0 1px 1px #25878280); }
+.why-matched-card[data-entered=true] .why-matched-icon { animation: nom-match-icon-pulse 1700ms ease-in-out 700ms 1 both; }
 .why-matched-sweep { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-.why-matched-sweep::after { content: ''; position: absolute; inset: -30% -60%; background: linear-gradient(110deg,transparent 36%,#ffffffa6 47%,#b2ffeaa6 51%,transparent 62%); transform: translateX(-80%); opacity: 0; }
-.why-matched-card[data-entered=true] .why-matched-sweep::after { animation: nom-match-sweep 1800ms ease-out 1 both; }
-.why-matched-sparkles { position: absolute; top: 3px; left: 0; color: var(--color-accessible-teal); pointer-events: none; }
-.why-matched-sparkles i { position: absolute; font-style: normal; font-size: 12px; opacity: .5; }
+.why-matched-sweep::before, .why-matched-sweep::after { content: ''; position: absolute; inset: -30% -60%; transform: translateX(-80%); opacity: 0; }
+.why-matched-sweep::after { background: linear-gradient(110deg,transparent 36%,#ffffffd9 47%,#b2ffeabf 51%,transparent 62%); }
+.why-matched-sweep::before { background: linear-gradient(110deg,transparent 38%,#ffffff66 48%,#b2ffea59 53%,transparent 66%); }
+.why-matched-card[data-entered=true] .why-matched-sweep::after { animation: nom-match-sweep 1200ms ease-in-out 300ms 1 both; }
+.why-matched-card[data-entered=true] .why-matched-sweep::before { animation: nom-match-sweep 1400ms ease-out 1400ms 1 both; }
+.why-matched-sparkles { position: absolute; top: 3px; left: 0; color: var(--why-star-color); filter: drop-shadow(0 1px 1px #25878280); pointer-events: none; }
+.why-matched-sparkles i { position: absolute; font-style: normal; font-size: 12px; opacity: .65; }
 .why-matched-sparkles i + i { top: 28px; left: 35px; font-size: 8px; }
-.why-matched-card[data-entered=true] .why-matched-sparkles i { animation: nom-match-twinkle 950ms ease-in-out 1 both; }
-.why-matched-card[data-entered=true] .why-matched-sparkles i + i { animation-delay: 420ms; }
-@keyframes nom-match-sweep { 0% { transform: translateX(-80%); opacity: 0; } 25% { opacity: .85; } 100% { transform: translateX(80%); opacity: 0; } }
-@keyframes nom-match-twinkle { 0%,100% { opacity: .5; transform: scale(1); } 45% { opacity: 1; transform: scale(1.45); } }
+.why-matched-card[data-entered=true] .why-matched-sparkles i { animation: nom-match-twinkle 1400ms ease-in-out 700ms 1 both; }
+.why-matched-card[data-entered=true] .why-matched-sparkles i + i { animation-duration: 1700ms; animation-delay: 1000ms; }
+@keyframes nom-match-enter { 0%,100% { border-color: #81c8c0; box-shadow: inset 0 1px 0 #ffffffeb,inset 0 -1px 0 #68bdb74d,0 3px 10px #347d761a; } 13%,47% { border-color: #49bfb8; box-shadow: inset 0 1px 0 #fff,inset 0 0 8px #ffffffa6,0 0 16px #45c7bc55,0 3px 10px #347d761a; } 75% { border-color: #70cbc3; box-shadow: inset 0 1px 0 #fff,inset 0 0 5px #ffffff66,0 0 10px #45c7bc33,0 3px 10px #347d761a; } }
+@keyframes nom-match-sweep { 0% { transform: translateX(-80%); opacity: 0; } 25%,65% { opacity: 1; } 100% { transform: translateX(80%); opacity: 0; } }
+@keyframes nom-match-icon-pulse { 0%,100% { transform: scale(1); opacity: .85; } 40% { transform: scale(1.15); opacity: 1; } }
+@keyframes nom-match-twinkle { 0%,100% { opacity: .65; transform: translateY(0) scale(1); } 45% { opacity: 1; transform: translateY(-3px) scale(1.4); } }
+.why-matched-card[data-reduced-motion=true], .why-matched-card[data-reduced-motion=true] * { animation: none !important; }
+.why-matched-card[data-reduced-motion=true] .why-matched-sweep::before, .why-matched-card[data-reduced-motion=true] .why-matched-sweep::after { animation: none !important; opacity: 0; }
 @media (prefers-reduced-motion: reduce) {
-  .why-matched-card[data-entered=true] .why-matched-sweep::after { animation: none; opacity: 0; }
+  .why-matched-card[data-entered=true], .why-matched-card[data-entered=true] .why-matched-icon { animation: none; }
+  .why-matched-card[data-entered=true] .why-matched-sweep::before, .why-matched-card[data-entered=true] .why-matched-sweep::after { animation: none; opacity: 0; }
   .why-matched-card[data-entered=true] .why-matched-sparkles i { animation: none; }
 }

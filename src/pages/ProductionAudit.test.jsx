@@ -151,7 +151,7 @@ describe('production audit regressions', () => {
   })
   it('bounds match entry animation, strengthens active chewing, and includes static reduced-motion fallbacks', () => {
     const match = source('../styles/recommendations.css'), ate = source('../styles/restaurant-live.css'), deck = source('../components/recommendations/SurpriseDishCard.jsx')
-    expect(match).toContain('nom-match-sweep 1800ms ease-out 1 both')
+    expect(match).toContain('nom-match-enter 3000ms ease-out 1 both')
     expect(match).toContain('.why-matched-card[data-entered=true] .why-matched-sparkles i { animation: none; }')
     expect(ate).toContain('360ms ease-in-out infinite'); expect(ate).toContain('rotate(11deg)'); expect(ate).toContain('rotate(-11deg)')
     expect(ate).toContain('.restaurant-ate-jaw { animation: none !important; }')

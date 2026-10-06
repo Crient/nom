@@ -12,13 +12,14 @@ import { rewardRevealTiming } from '../utils/rewardPresentation'
 
 let root
 beforeEach(() => {
+  vi.stubEnv('VITE_ENABLE_REWARD_QA', 'true')
   vi.useFakeTimers(); globalThis.IS_REACT_ACT_ENVIRONMENT = true
   document.body.innerHTML = '<div id="root"></div>'
   vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
   root = createRoot(document.getElementById('root'))
   writeLocalState(STORAGE_KEYS.experience, serializeExperience(createExperienceState()))
 })
-afterEach(async () => { await act(() => root.unmount()); vi.useRealTimers(); vi.restoreAllMocks(); vi.unstubAllGlobals() })
+afterEach(async () => { await act(() => root.unmount()); vi.useRealTimers(); vi.restoreAllMocks(); vi.unstubAllGlobals(); vi.unstubAllEnvs() })
 async function mount(path = '/dev/rewards') {
   window.history.replaceState({}, '', path); await act(() => root.render(<App />))
 }
@@ -28,8 +29,10 @@ async function click(label) {
 }
 const saved = () => localStorage.getItem(STORAGE_KEYS.experience)
 describe('local reward playground', () => {
-  it('is accessible from Profile and grants/replays/resets only in-memory common and rare rewards', async () => {
+  it.each([true, false])('is accessible from Profile with DEV=%s and previews/replays/resets only in-memory common and rare rewards', async development => {
+    vi.stubEnv('DEV', development)
     await mount('/profile'); const before = saved()
+    expect(document.body.textContent).toContain('Developer tools')
     await click('Reward playground')
     expect(window.location.pathname).toBe('/dev/rewards')
     expect(document.querySelector('button:disabled').textContent).toBe('Replay last reward animation')

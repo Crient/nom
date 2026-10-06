@@ -11,12 +11,12 @@ export default function WhyMatchedCard({ explanation }) {
     const enter = () => { entered.current = true; setVisible(true) }
     if (!globalThis.IntersectionObserver) { enter(); return }
     const observer = new IntersectionObserver(entries => {
-      if (entries.some(entry => entry.isIntersecting)) { enter(); observer.disconnect() }
-    }, { threshold: .25 })
+      if (entries.some(entry => entry.isIntersecting && entry.intersectionRatio >= .6)) { enter(); observer.disconnect() }
+    }, { threshold: .6 })
     observer.observe(card.current)
     return () => observer.disconnect()
   }, [reduced])
-  return <section ref={card} aria-labelledby="why-matched-title" className="why-matched-card" data-entered={visible}>
+  return <section ref={card} aria-labelledby="why-matched-title" className="why-matched-card" data-entered={visible} data-reduced-motion={reduced}>
     <span className="why-matched-sweep" aria-hidden="true" />
     <div className="why-matched-content">
       <img src={aiIcon} alt="" className="why-matched-icon" />
