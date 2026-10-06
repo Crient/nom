@@ -49,9 +49,20 @@ export function selectMoreOptions(session, results) {
   const remaining = results.slice(TOP_MATCH_COUNT)
   if (!session.region || isSurpriseMe(session.region)) return remaining.slice(0, 7)
   const relevant = remaining.filter(result => result.score >= MORE_OPTIONS_MIN_SCORE)
+  // Anything + adventure Surprise Me can leave fewer than seven candidates
+  // above the relevance threshold. Keep every relevant result, then fill only
+  // the empty slots from the remaining regional/global ranking. Scores stay
+  // attached to their original candidates; Top Matches is never changed.
+  const fallback = relevant.length < 7
+    ? [
+      ...remaining.filter(result => result.score < MORE_OPTIONS_MIN_SCORE && result.dish.region === session.region),
+      ...remaining.filter(result => result.score < MORE_OPTIONS_MIN_SCORE && result.dish.region !== session.region),
+    ].slice(0, 7 - relevant.length)
+    : []
+  const candidates = [...relevant, ...fallback]
   return [
-    ...relevant.filter(result => result.dish.region === session.region),
-    ...relevant.filter(result => result.dish.region !== session.region),
+    ...candidates.filter(result => result.dish.region === session.region),
+    ...candidates.filter(result => result.dish.region !== session.region),
   ].slice(0, 7)
 }
 

@@ -1,145 +1,267 @@
-# Canonical dish photos
+# Nom dish image workflow
 
-`manifest.json` has one entry per canonical dish ID, in the same order as the
-201 generated catalog records. It is independent of workbook metadata and
-recommendation scoring. `coverage-report.json` and
-[`docs/missing-dish-images.md`](../../docs/missing-dish-images.md) enumerate every
-remaining placeholder, with the reason.
+Dish scoring, catalog taxonomy and workbook data are independent of this pipeline.
+`manifest.json` contains all 201 canonical IDs in catalog order. Search URLs are
+reference metadata, never runtime photos. Final human-reviewed integration now
+resolves all **201 dishes: 199 generated images and two retained real photos**.
+Raw candidates, previous pixels and attribution remain preserved. The execution
+record is [final-image-integration.md](../../image-audit/results/final-image-integration.md).
 
-## Current coverage
+## Image review is separate from storage
 
-Ten supplied local dish photos are preserved. No new photo was imported in this
-milestone: shell downloads failed with `Could not resolve host`, and the web
-connector returned source-page text rather than transferable image files.
-The workbook's Images sheet contains search-page references, no direct image
-files or completed creator/license fields. Remaining coverage is 191 placeholders.
+`status` describes storage (`needs-image`, `staged`, `existing-local`,
+`licensed-local`, `generated-local`; legacy staged `approved` is still supported).
+`reviewStatus` describes the visual decision:
 
-Run `npm run images:remaining` after preparation/import to regenerate
-`remaining-image-manifest.json`. Each outstanding record includes the dish ID,
-name, country, expected local WebP filename/path, alternate names, Commons and
-Openverse search queries/links, and visual-review notes. These are external-fill
-references, not approved runtime images. The existing import gates remain intact.
-The expected filenames are optimized outputs. The manual workflow below stages
-originals and records human review. The external fetcher uses a separate,
-explicit metadata-selection gate; it never claims a human reviewed a photo.
+| Review status | Meaning | Rendered / completed coverage |
+| --- | --- | --- |
+| `approved` | Explicit human approval | Yes |
+| `temporary` | Explicit, provisional human acceptance | Yes |
+| `needs-replacement` | Failed human QA; file/provenance retained | No |
+| `missing` | No imported local image | No |
+| `generated-pending` | Imported generated candidate awaiting review | No |
+| `pending-review` | Real local photo with no explicit manual decision | No |
 
-Source candidates for Arepa, Kuy Teav, and Fish Amok are recorded separately in
-the manifest. Candidates are **not** approved photos or runtime URLs. Reshteh
-Polow must not accidentally receive an Ash Reshteh soup or pastry photo.
-Existing supplied photos retain unknown attribution where none was supplied;
-the pipeline does not invent licenses for them.
+A download is not approval. Automatic fetches always remain `pending-review`,
+`visuallyReviewed: false`, `needsVisualReview: true`. Merely having a file or a
+metadata confidence score never makes it a runtime image. Pending/rejected images
+use Nom's existing placeholder. Stored originals stay available for review.
 
-## Automatic acquisition from your normal Mac Terminal
+Current explicit user QA:
 
-`scripts/fetch-dish-images.py` reads `remaining-image-manifest.json` and uses
-Wikimedia Commons without an API key. Run it **outside the Codex sandbox**; no
-downloads were attempted there for this correction milestone. Requirements:
-Python 3.9+, Node (already used by Nom), macOS `sips`, and `cwebp`. With Homebrew
-installed, the complete commands are:
+| Decision | Dishes | Count |
+| --- | --- | --- |
+| Keep existing real photo | Ramen, Harira | 2 |
+| Use generated instead of protected real photo | Jambalaya, Carbonara, Biryani, Yakitori | 4 |
+| Use reviewed generated image | All remaining canonical dishes, including new Ceviche and Lort Cha replacements | 195 |
+| Unresolved / placeholders | None | 0 |
+
+There are **201 approved runtime images and zero unresolved dishes**. Ten previous
+canonical photos have checksum archives; ten original supplied photos remain at
+their original paths. Previous metadata and attribution survive in image history.
+`image-review-decisions.json` retains the earlier source-specific real-photo
+decisions; these apply to archived sources after replacement.
+`image-audit/results/final-image-decisions.json` records all 201 final choices,
+bound to exact source/output checksums. Goulash uses B05-08; B05-10 remains a raw
+alternative. Catalog `reviewStatus` is factual metadata and is never changed by an
+image-review decision.
+
+## Review the current collection
 
 ```sh
 cd /Users/leng/Projects/nom
+open catalog/images/image-review.html
+```
+
+`image-review.html` shows every current local candidate (including rejected photos),
+status, country, source type, reason, generation prompt and target filename.
+It loads local files only. `image-review.json` contains the same structured data,
+provenance and image history. `coverage-report.json` separately counts approved real,
+temporary real, rejected real, unreviewed real, missing and generated candidates;
+`realAfter` now means renderable real coverage, not downloaded-file count.
+
+To record a human decision after actually checking a photo:
+
+```sh
+python3 scripts/review-dish-image.py lort-cha --status approved --reason 'Canonical dish and composition checked'
+```
+
+Use `--status temporary` for a provisional real image, or `--status
+needs-replacement` for a failed candidate. Approval requires a local imported file.
+The command updates the manifest, runtime mappings, credits, review/coverage
+reports and unresolved queue offline. Real-source decisions also update the
+selector's source-specific QA list. It never approves any other dish implicitly.
+Original supplied photos still have unknown creator/license provenance; visual
+approval does not invent or resolve those attribution facts.
+
+## Generated fallback queue — planning only
+
+**`catalog/images/generated-image-queue.json`** contains all unresolved dishes,
+including rejected and unreviewed local photos, in canonical catalog order.
+Each entry includes ID, country/code, aliases, both catalog descriptions, visible
+ingredient cues, catalog-supported presentation evidence, composition/orientation,
+input/output filename, current state/reason, prompt and `needsPromptReview`.
+
+Ingredient cues are extracted only when the phrase occurs in the catalog text.
+They may describe optional variants, not an instruction to combine all ingredients.
+Preparation/presentation sentences are retained verbatim. No regional garnish,
+protein, vessel or recipe is invented from a flavor tag or country. Prompts ask
+for one coherent finished version supported by that context, realistic food
+photography, natural light, a dominant food subject, 4:3/square-friendly framing
+and room to crop, without people, hands, text, logos or obstructing utensils.
+
+Any unresolved queue prompts require cultural review because the catalog still has
+`needs-review` factual metadata. Sparse descriptions additionally flag missing
+ingredient/presentation evidence. Review/correct a prompt before using it; do not
+mass-generate the queue. For an already imported generated candidate, the review
+report retains its submitted prompt (if supplied) or requested queue prompt.
+
+## Import one generated candidate
+
+Generation happens separately, using a tool of your choice. This importer never
+calls a generation provider and never claims generated imagery is documentary
+photography. Start with **one** rejected dish, such as Bibimbap:
+
+1. Review its queue prompt for culturally accurate ingredients and presentation.
+2. Generate a candidate yourself and save it under its canonical ID:
+   **`src/assets/food/generated-incoming/bibimbap.png`**. JPEG/WebP also work;
+   keep only one input image per ID. Inputs need a minimum edge of 480px and
+   must be no larger than 20 MB. Raw incoming files are ignored by Git.
+3. Prefer a matching optional `bibimbap.json` sidecar to record actual provenance:
+
+```json
+{
+  "tool": "Name of the tool you actually used",
+  "model": "Model if known",
+  "prompt": "Exact prompt actually used",
+  "createdAt": "Actual creation time if known",
+  "notes": "Optional factual/cultural review notes"
+}
+```
+
+Omit unknown fields. Without the sidecar, the tool and actual prompt used remain
+null; the requested queue prompt is preserved without pretending it was used.
+Do not include API keys, license claims or Wikimedia/Openverse attribution in
+this sidecar.
+
+4. Validate the planned import, then explicitly import locally:
+
+```sh
+python3 scripts/import-generated-images.py --dish bibimbap --dry-run
+python3 scripts/import-generated-images.py --dish bibimbap --apply
+open catalog/images/image-review.html
+```
+
+The importer validates the canonical ID and paths, decodes/resizes with macOS
+`sips`/`cwebp`, uses quality-82 WebP, caps the maximum edge at 1200px without
+upscaling, and writes **`src/assets/food/catalog/bibimbap.webp`**. It marks the
+candidate `generated-pending`, explicitly generated and non-documentary; it is
+not rendered until reviewed. Approved and temporary photos are protected.
+
+A rejected/unreviewed existing catalog image is archived under
+`src/assets/food/archive/<dish-id>/<old-sha256>.webp` before replacement.
+Original supplied files stay at their original paths. Complete old metadata,
+creator/license/source and review reason survive in manifest `history`, with a
+recovery snapshot in `catalog/images/import-backups/`. No prior attribution is
+silently transferred to the generated image. Failed conversion leaves the old
+image untouched. Identical already-imported candidates are skipped on resume.
+The generated importer shares the acquisition lock and writes
+`catalog/images/generated-import-report.json`.
+
+The generated importer defaults to dry run. For the separately audited
+manual batches, use the verified staging manifest rather than copying/renaming
+raw files into the incoming folder:
+
+```sh
+python3 scripts/import-generated-images.py --staged-manifest image-audit/staged-import/manifest.json --dry-run
+```
+
+This preflights every dish ID, canonical filename, path, confidence, decoded
+dimensions, staged checksum and raw source checksum before any asset mutation.
+The dry-run report lives under `image-audit/results/`. After reviewing it,
+`--apply` copies verified WebPs without another lossy conversion, preserves
+previous pixels/provenance and records raw batch provenance. Imported candidates
+remain `generated-pending` by default; use the existing individual review command with
+`--prompt-reviewed` only after human cultural and visual review. The raw ZIP and
+batch files are never changed. The complete audit uses the physical `nom_batch1`
+through `nom_batch20` folders under `image-audit/generated-batches/Dish Images/`;
+the ZIP is excluded. Current staging contains 201 HIGH/READY generated candidates,
+including two reviewed replacements supplied in `image-audit/replacements/`.
+Staged Ramen and Harira generations remain unused alternatives. The final
+selection contains 199 generated images and the two retained real photos.
+
+The completed human review authorizes only the exact selected assets. Supply its
+checksum-bound decisions with the staging manifest to retain Ramen/Harira and
+approve the expressly chosen generations:
+
+```sh
+python3 scripts/import-generated-images.py --staged-manifest image-audit/staged-import/manifest.json --review-decisions image-audit/results/final-image-decisions.json --dry-run
+```
+
+The authorized production import used the same command with `--apply`. It created
+189 canonical assets and replaced ten, preserving previous pixels and metadata.
+The post-import dry run reports 199 unchanged and two protected assets. Without
+`--review-decisions`, existing approval protection and pending-review defaults
+remain in force. The earlier `image-audit/NOM_FULL_AUDIT_REPORT.md` describes the
+pre-integration audit snapshot; use the final integration record for current
+coverage. No global audit or recommendation sweep was rerun during integration.
+Bulk optimization excludes catalog/archive
+assets and incoming originals; external fetching already protects local images.
+
+5. Inspect the actual image for canonical identity, composition and cultural
+   accuracy. Only after checking both prompt and image, approve explicitly:
+
+```sh
+python3 scripts/review-dish-image.py bibimbap --status approved --prompt-reviewed --reason 'Canonical presentation, cultural details and image checked'
+```
+
+If it fails, use `--status needs-replacement --reason 'Describe the problem'`.
+Do not use an approval command before doing the visual review. Approved generated
+assets retain generated provenance and are counted separately from real photos.
+
+## Real-source acquisition remains available
+
+Commons and Openverse adapters remain in `scripts/image_providers.py`. The default
+fetcher now requires a **strong** metadata candidate; lower-quality candidates
+remain unresolved instead of being imported as temporary final imagery. Known
+manual rejections are excluded. Even a strong automatic candidate is imported
+only as `pending-review`, never approved or mapped. Metadata cannot reliably
+assess pixels, authentic presentation, lighting or subject prominence.
+
+Run from normal Mac Terminal, not the network-restricted Codex sandbox:
+
+```sh
+python3 scripts/fetch-dish-images.py --dry-run --batch-size 10
+python3 scripts/fetch-dish-images.py --batch-size 10
+```
+
+No batch was run during this milestone. Default providers: `all`; options include
+`--provider commons|openverse|all`, `--min-confidence 80–100` (default 85),
+`--retry-failed`, `--retries 0–5` (default 2), and `--delay` (default 0.8s,
+minimum 0.5s). Every bounded name/alias query is considered before deterministic
+identity/visual ranking. Commons wins score ties; a better Openverse candidate
+can win. Reusable metadata must include creator and consistent CC BY/BY-SA
+2.0/3.0/4.0, CC0 or public-domain license URL.
+
+Only supported Wikimedia/Flickr/StockSnap sources and direct HTTPS image CDNs
+are accepted. No Google Images, Pinterest, recipe-blog scraping, arbitrary
+restaurant imagery, paid API or credentials. Redirect/MIME/20 MB checks and bounded
+retries remain. At most three eligible candidates are tried after download/decode
+failures. Existing local photos (including rejected candidates) are never replaced
+by a fetch; deliberate local generated replacement is a separate operation.
+
+`fetch-report.json` preserves history and distinguishes `downloaded`, `mapped`,
+`visuallyApproved` and `imageReviewStatus`. Downloaded means technical success,
+not visual success. `fetch-report.html` is a latest-fetch-batch view; **use the
+current `image-review.html` for manual status decisions**. Old dry-run/fetch HTML
+files are historical plans and may show prior technical classifications.
+
+## Preparation, tests and tracking
+
+Python 3.9+, Node and macOS `sips` are expected; install the encoder if needed:
+
+```sh
 brew install webp
-python3 scripts/fetch-dish-images.py --dry-run --batch-size 5
-python3 scripts/fetch-dish-images.py --batch-size 191
 ```
 
-The dry run makes Commons metadata searches and writes
-`catalog/images/fetch-dry-run-report.json`; it downloads **no image bytes** and
-does not change the source manifest, photos, attribution files or runtime maps.
-The normal run selects/imports eligible photos without a confirmation for each
-dish. It skips all good mapped local images and never replaces the original ten.
+`npm run images:prepare` regenerates runtime maps, dimensions, attribution,
+coverage, queue and review reports offline. `npm run images:remaining` updates
+`remaining-image-manifest.json`; it includes unresolved dishes regardless of
+whether a rejected local file exists and is currently empty. Generated mapping lives in
+`src/data/dishImageAssets.js`; existing image components and placeholders are reused.
+At `/image-credits`, generated imagery is labeled as generated; retained real
+source attribution and previous-source history remain available.
 
-Selection requires the complete canonical name or catalog alias in a filename
-or caption **and** dish-country evidence in that title/caption/categories. It
-does not accept query rank as proof. Exact name + country searches are preferred;
-up to three complete-name/alias queries are tried, followed by a complete-name
-search without the country query term if necessary. Country evidence remains
-mandatory in the returned metadata, accommodating demonyms such as “Japanese”.
-There is never a generic food fallback.
-Menus, logos, maps, obvious non-food captions, conflicting filename countries,
-small/unsupported images, extra restrictions, missing creators and incomplete
-or unsupported license declarations are rejected. Supported declarations are
-CC BY / CC BY-SA 2.0, 3.0 or 4.0, CC0 1.0, or a public-domain mark with the
-corresponding machine-readable URL. Uncertain dishes retain placeholders.
-
-The implementation follows [MediaWiki Search](https://www.mediawiki.org/wiki/API:Search),
-[Imageinfo](https://www.mediawiki.org/wiki/API:Imageinfo), and
-[Commons attribution metadata](https://commons.wikimedia.org/wiki/Commons:Machine-readable_data).
-It stores creator, source page, credit, original/normalized license, license URL,
-download URL, source checksum, selected query and original matching metadata.
-API metadata can be incomplete or wrong: automated matching is **not** human
-visual verification. Imported entries explicitly keep `visuallyReviewed: false`
-and `needsVisualReview: true`. Inspect successful imports before shipping them;
-the script leaves ambiguous cases unresolved rather than selecting random food.
-
-Downloads are direct HTTPS Wikimedia files with a 20 MB cap. Originals are staged
-under `src/assets/food/incoming/`. The existing importer validates the saved
-selection evidence, checks decoded dimensions, converts at WebP quality 82,
-limits the maximum edge to 1200px without upscaling, and writes
-`src/assets/food/catalog/<canonical-dish-id>.webp`. Runtime maps, dimensions,
-credits, coverage and remaining-image reports regenerate offline after the run.
-Neither catalog/workbook data nor recommendation scoring is changed.
-
-To run smaller resumable batches:
+Focused checks:
 
 ```sh
-python3 scripts/fetch-dish-images.py --batch-size 20
+python3 -B scripts/test_image_workflow.py
+python3 -B scripts/test_fetch_dish_images.py
+npm test -- src/data/imageWorkflow.test.js src/data/imageFetcher.test.js src/data/dishImages.test.js
 ```
 
-Repeat that command to advance through pending dishes. Completed imports are
-skipped without redownloading. Failed dishes are skipped on subsequent normal
-runs so they cannot block later batches. To retry them explicitly:
-
-```sh
-python3 scripts/fetch-dish-images.py --retry-failed --batch-size 20 --retries 2
-```
-
-Transient network failures get at most two retries by default, bounded backoff
-and rate-limit handling. `--retries` accepts 0–5; requests are spaced by 0.8s
-(configurable via `--delay`, minimum 0.5s). No Google Images, Pinterest or live
-runtime hotlinks are used. Individual failures do not stop other dishes.
-
-`catalog/images/fetch-report.json` checkpoints success/failure/pending status for
-every dish, with source/evidence or failure reasons. Successes from earlier
-batches remain in the report even after the remaining manifest shrinks. Staged
-sources can be reused on retry when their selection evidence and checksum match.
-Unmapped existing output files are reported for inspection rather than
-overwritten. Ctrl-C saves completed work and regenerates maps; rerun to resume.
-If a process was killed outright and left `.fetch.lock`, confirm it is no longer
-running before removing that empty lock directory. A second simultaneous fetch
-is blocked to protect mappings.
-
-Offline fixtures run with `python3 -B scripts/test_fetch_dish_images.py` and are
-included in `npm test`. Live API/download verification is still pending the
-first normal-Terminal run; the Codex sandbox did not run either fetching mode.
-
-## Local import workflow
-
-1. Identify the actual dish and review the photo, source, creator and license.
-2. For a `needs-image` entry, supply `creator`, `sourcePageUrl`, `license`,
-   `licenseUrl`, and either `imageDownloadUrl` (direct HTTPS Wikimedia image)
-   or `inputPath` (local photo under `src/assets/food`). A downloaded local file
-   from another reuse-permitting source can use `inputPath`.
-3. Only after visual/source review, set `visuallyReviewed: true` and
-   `status: "approved"`. Copy candidate metadata into the approved fields;
-   candidate fields alone never enable import.
-4. Run `npm run images:import`. Import requires macOS `sips` and `cwebp`.
-   The app itself does not require these tools. The importer checks metadata,
-   rejects search pages and existing-photo replacements, limits remote files
-   to 20 MB, and converts to quality-82 WebP with maximum edge 1200px and
-   no upscaling. Failed imports retain placeholders and report the error.
-5. Inspect the actual imported local photo in both a card and Dish Details.
-   Commit the photo, manifest, generated maps, credits and coverage report together.
-
-`npm run images:prepare` is offline: it validates mappings and regenerates maps,
-credits, dimensions and reports without downloading anything. Run it after an
-intentional metadata/mapping change. Runtime maps are generated in
-`src/data/dishImageAssets.js`, merged with the protected originals in
-`src/data/dishImages.js`, and used by the existing catalog adapter. Intrinsic
-dimensions feed the shared Image component; layout cropping remains a UI concern.
-
-Attribution is machine-readable in `src/data/dishImageCredits.json` and displayed
-at `/image-credits`. Runtime dishes never use manifest search references,
-candidate URLs or remote hotlinks. No dish descriptions, review status, taxonomy,
-ranking, weights or workbook cells change during image preparation/import.
+Tests use temporary files, including one offline encoder check; they do not fetch
+or generate catalog imagery. Commit optimized images, archives, manifest, maps,
+credits and reports together after a deliberate import/review. Raw inputs remain
+ignored. Do not deploy or generate/download the entire catalog before reviewing
+small batches.

@@ -14,6 +14,21 @@ const log = (state, id = 'visit-1', verified = true) => {
 }
 
 describe('Local V1 persistence and safe recovery', () => {
+  it('retains namespaced Google Place IDs in favorites without storing fetched restaurant content', () => {
+    const saved = normalizeFavorites({ dishIds: ['lort-cha'], restaurantIds: ['google:ChIJ_test-venue', 'google:ChIJ_test-venue', 'google:invalid id', 'unknown'] })
+    expect(saved).toEqual({ dishIds: ['lort-cha'], restaurantIds: ['google:ChIJ_test-venue'] })
+    writeLocalState(STORAGE_KEYS.favorites, saved)
+    expect(readLocalState(STORAGE_KEYS.favorites, normalizeFavorites, () => ({}))).toEqual(saved)
+  })
+  it('rehydrates an existing visit for a Google Place ID without changing meal progress semantics', () => {
+    const state = log(createExperienceState(), 'google-visit')
+    const payload = serializeExperience(state)
+    payload.logs[0].restaurantId = 'google:ChIJ_test-venue'
+    const restored = normalizeExperience(payload)
+    expect(restored.logs[0].restaurantId).toBe('google:ChIJ_test-venue')
+    expect(restored.progress).toEqual(state.progress)
+    expect(serializeExperience(restored).logs[0]).not.toHaveProperty('restaurantName')
+  })
   it('recovers canonical dish views and a bounded display name without touching meals or preferences', () => {
     const key = STORAGE_KEYS.activity
     const validView = { dishId: 'arepa', viewedAt: '2026-10-03T12:00:00.000Z' }

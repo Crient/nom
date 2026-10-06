@@ -1,11 +1,26 @@
 @import 'tailwindcss';
 @import './tokens.css';
+@import './motion.css';
 
 .nom-filter-chip { min-height: 44px; }
 .nom-filter-chip > span { display: block; padding: 3px 8px; border-radius: var(--radius-full); background: var(--color-surface); border: 1px solid var(--color-progress-track); box-shadow: var(--shadow-panel); font-weight: 600; }
 .nom-filter-chip[aria-pressed='true'] > span { background: var(--color-secondary-fill); border-color: var(--color-primary-teal); color: var(--color-accessible-teal); }
 .nom-filter-chip-solid > span { background: var(--color-secondary-fill); border-color: var(--color-teal-highlight); }
 .nom-filter-chip-solid[aria-pressed='true'] > span { background: var(--color-primary-teal); color: var(--color-text-primary); }
+
+.reward-playground { padding: 24px 16px 40px; }
+.reward-playground > h1 { margin: 18px 0 8px; font-size: 28px; font-weight: 700; }
+.reward-playground > p { font-size: 14px; line-height: 1.5; color: var(--color-text-secondary); }
+.reward-playground-controls { display: grid; gap: 10px; margin: 20px 0; }
+.reward-playground-controls label { font-weight: 600; }
+.reward-playground-controls select { min-height: 44px; padding: 8px 12px; border: 1px solid var(--color-progress-track); border-radius: 12px; background: var(--color-surface); }
+.reward-playground-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.reward-playground-actions button { min-height: 48px; padding: 10px; border: 1px solid var(--color-progress-track); border-radius: 12px; font-size: 13px; font-weight: 600; background: var(--color-secondary-fill); }
+.reward-playground-actions button:disabled { opacity: .45; }
+.reward-playground-preview { overflow: hidden; border: 1px solid var(--color-progress-track); border-radius: 20px; }
+.reward-playground-preview .flow-page { min-height: 820px; }
+.reward-playground-collection { display: grid; justify-items: center; gap: 16px; padding: 28px; background: var(--color-surface); }
+.reward-playground-collection .collectible-art { width: 240px; height: 280px; }
 
 @layer base {
   html {

@@ -21,6 +21,7 @@ import website from '../assets/experience/website.svg'
 import friends from '../assets/experience/friends.svg'
 import share from '../assets/experience/share.svg'
 import ate from '../assets/experience/ate-here.webp'
+import LiveRestaurantDetails from '../components/restaurants/LiveRestaurantDetails'
 
 export default function RestaurantDetails() {
   const { dishId, restaurantId } = useParams(), navigate = useNavigate(), location = useLocation()
@@ -41,7 +42,9 @@ export default function RestaurantDetails() {
   if (data.status === 'loading') return <FlowState title="Loading restaurant…" backLabel="Back to nearby restaurants" onBack={back}>Getting the restaurant preview.</FlowState>
   if (data.status === 'error') return <FlowState title="Restaurant unavailable" onBack={back} onRetry={data.retry}>Please try again.</FlowState>
   if (!data.restaurant) return <FlowState title="Restaurant not found" backLabel="Back to nearby restaurants" onBack={back}>This restaurant is not available for {dish.name}.</FlowState>
-  const restaurant = data.restaurant, presentation = restaurantPresentation(restaurant, dish)
+  const restaurant = data.restaurant
+  if (restaurant.source === 'google-places') return <LiveRestaurantDetails restaurant={restaurant} dish={dish} back={back} returnState={returnState} />
+  const presentation = restaurantPresentation(restaurant, dish)
   const preview = text => { setMessage(text); setModal('preview') }
   const shareLink = async () => {
     try {
@@ -54,7 +57,7 @@ export default function RestaurantDetails() {
     { label: 'Directions', icon: directions, action: () => navigate(nearby, { state: { ...returnState, view: 'map' } }) },
     { label: 'Call', icon: phone, action: () => preview('Phone numbers are not connected in this development preview.') },
     { label: 'Website', icon: website, action: () => preview('Restaurant websites are not connected in this development preview.') },
-    { label: 'Send to Friend', icon: friends, action: shareLink },
+    { label: 'Send to Friend', icon: friends, action: () => preview('Friends on Nom are coming soon.') },
     { label: 'Share', icon: share, action: shareLink },
   ]
   return <div className="flow-page restaurant-details-page">
@@ -72,7 +75,7 @@ export default function RestaurantDetails() {
         const id = startVisit({ dish, restaurant, returnState }); navigate(`/visits/${id}/verify`)
       }}><Image src={ate} alt="" />I ate here</button>
       <section className="restaurant-about"><h2>About</h2><p>{presentation.about}</p><button type="button" className="restaurant-about-more" onClick={() => preview(`Development preview for ${restaurant.name} in ${restaurant.address}. Searching for ${dish.name}. Menus and availability are examples, and live contact details are not connected.`)}>See more</button></section>
-      <section id="popular-menu" className="restaurant-menu"><h2>Popular dishes here</h2><div>{presentation.menu.map(item => <article key={item.name}>
+      <section id="popular-menu" className="restaurant-menu"><h2>More dishes from this cuisine</h2><p className="restaurant-availability-note">Explore Nom’s {presentation.cuisine} catalog. Check the restaurant’s menu for availability.</p><div>{presentation.menu.map(item => <article key={item.name}>
         <button type="button" aria-label={`View ${item.name} details`} onClick={() => navigate(`/recommendations/${item.dishId}`, { state: { returnTo: location.state?.returnTo } })}><Image src={item.image} alt="" /><strong><DishTitle dish={dishes.find(dish => dish.id === item.dishId)} /></strong></button>
       </article>)}</div></section>
     </div>

@@ -3,18 +3,23 @@ import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
 import DishDetailHero from '../components/recommendations/DishDetailHero'
 import WhyMatchedCard from '../components/recommendations/WhyMatchedCard'
 import RestaurantPreviewCard from '../components/recommendations/RestaurantPreviewCard'
+import RestaurantSkeletons from '../components/restaurants/RestaurantSkeletons'
 import Button from '../components/ui/Button'
 import { useDiscoverySession } from '../context/DiscoverySession'
 import { useFavorites } from '../context/Favorites'
 import { useActivity } from '../context/Activity'
 import { recommendationReturnTo } from '../utils/navigation'
-import { dishDetailsRestaurantDesignPreview } from '../data/dishDetailsRestaurantDesignPreview'
+import { useRestaurants } from '../hooks/useRestaurants'
+import GooglePlacesAttribution from '../components/restaurants/GooglePlacesAttribution'
+import { nearbyErrorMessage } from '../data/nearbyRestaurantService'
+import { selectRestaurantDetails } from '../data/placeExtrasService'
+import '../styles/nearby.css'
 import { useRecommendations } from '../hooks/useRecommendations'
 import { whyMatched } from '../utils/whyMatched'
 import nearbyLocation from '../assets/icons/rec-location.svg'
 import nearbyArrow from '../assets/icons/rec-arrow.svg'
 import saveBackground from '../assets/icons/detail-save-bg.svg'
-import saveStar from '../assets/icons/detail-save-star.svg'
+import FavoriteStar from '../components/icons/FavoriteStar'
 import moreBackground from '../assets/icons/detail-more-bg.svg'
 import moreSync from '../assets/icons/detail-more-sync.png'
 import seeAllArrow from '../assets/icons/detail-see-all.svg'
@@ -28,6 +33,16 @@ export default function DishDetails() {
   const { isFavorite, toggleFavorite } = useFavorites()
   const { recordDishView } = useActivity()
   const result = results.find((item) => item.dish.id === dishId)
+  const nearby = useRestaurants(ready ? result?.dish.id : undefined, { autoLoad: true })
+  useEffect(() => {
+    if (import.meta.env.DEV && nearby.searchDebug && nearby.status === 'ready') {
+      const eligible = nearby.restaurants.filter(place => !place.metadataOnly)
+      console.debug('[Nom nearby preview]', { dishId, receivedIds: nearby.restaurants.map(place => place.id),
+        renderedIds: eligible.slice(0, 3).map(place => place.id),
+        excluded: nearby.restaurants.filter(place => place.metadataOnly || !eligible.slice(0, 3).includes(place))
+          .map(place => ({ id: place.id, reason: place.metadataOnly ? 'metadata-only' : 'preview-limit-3' })) })
+    }
+  }, [dishId, nearby.restaurants, nearby.searchDebug, nearby.status])
   useEffect(() => { if (result) recordDishView(result.dish.id) }, [result?.dish.id, recordDishView])
 
   if (!ready) return <Navigate to="/discover/food-type" replace state={{ ...location.state, discoveryReturnTo: location.pathname }} />
@@ -36,9 +51,13 @@ export default function DishDetails() {
   const { dish } = result
   const favorite = isFavorite(dish.id)
   const returnTo = recommendationReturnTo(location.state?.returnTo)
-  const previews = dish.id === dishDetailsRestaurantDesignPreview.dishId
-    ? dishDetailsRestaurantDesignPreview.restaurants : []
-  const findNearby = () => navigate(`/recommendations/${dish.id}/nearby`, { state: { returnTo } })
+  const previews = nearby.restaurants.filter(restaurant => !restaurant.metadataOnly).slice(0, 3)
+  const findNearby = () => {
+    nearby.search({ refresh: nearby.status === 'ready' })
+  }
+  const seeAll = () => {
+    navigate(`/recommendations/${dish.id}/nearby`, { state: { returnTo } })
+  }
 
   return (
     <div className="min-h-[960px] bg-surface pb-[18px]">
@@ -54,27 +73,31 @@ export default function DishDetails() {
             Where to try nearby
           </h2>
           {previews.length > 0 && <span className="ml-[8px] text-[10px] text-text-secondary">Preview</span>}
-          <button type="button" onClick={findNearby} className="relative top-[2px] ml-auto mr-[4px] flex min-h-[44px] items-center gap-[5px] text-[12px] font-bold text-accessible-teal">
+          <button type="button" onClick={seeAll} disabled={nearby.busy} className="relative top-[2px] ml-auto mr-[4px] flex min-h-[44px] items-center gap-[5px] text-[12px] font-bold text-accessible-teal">
             See all
             <img src={seeAllArrow} alt="" className="translate-y-[4px] max-w-none" />
           </button>
         </div>
-        <div className="mt-[1px] grid min-h-[95px] grid-cols-3 gap-[16px]">
+        {nearby.busy && !previews.length ? <RestaurantSkeletons compact /> : <div className="restaurant-preview-grid mt-[1px] grid min-h-[95px] grid-cols-3 gap-[16px]">
           {previews.length > 0 ? previews.map((restaurant) => (
-            <RestaurantPreviewCard key={restaurant.id} restaurant={restaurant} onSelect={() => navigate(`/recommendations/${dish.id}/nearby/${restaurant.id}`, { state: { returnTo, view: 'list' } })} />
+            <RestaurantPreviewCard key={restaurant.id} restaurant={restaurant} dish={dish} onSelect={() => {
+              selectRestaurantDetails(restaurant)
+              navigate(`/recommendations/${dish.id}/nearby/${encodeURIComponent(restaurant.id)}`, { state: { returnTo, view: 'list' } })
+            }} />
           )) : (
-            <p className="col-span-3 self-center text-body-sm text-text-secondary">Find places serving {dish.name} nearby.</p>
+            <p className="col-span-3 self-center text-body-sm text-text-secondary" role="status">{nearby.busy ? 'Finding restaurants near you…' : nearby.metadataOnly
+              ? 'Your saved search is ready. Refresh to see current restaurant details.' : `Find restaurants relevant to ${dish.name} near you.`}</p>
           )}
-        </div>
+        </div>}
       </section>
 
       <div className="mx-[23px] mt-[18px] flex flex-col gap-[11px]">
         <Button
-          variant="nearby" size="none" onClick={findNearby}
+          variant="nearby" size="none" onClick={findNearby} disabled={nearby.busy}
           className="relative min-h-[63px] w-full rounded-lg px-[12px] text-[19px] leading-[23px] font-bold tracking-meta shadow-card"
         >
           <img src={nearbyLocation} alt="" className="shrink-0 max-w-none" />
-          <span>Find nearby restaurants</span>
+          <span>{nearby.busy ? 'Finding restaurants near you…' : nearby.status === 'ready' ? 'Refresh nearby restaurants' : 'Find nearby restaurants'}</span>
           <img src={nearbyArrow} alt="" className="shrink-0 max-w-none" />
         </Button>
         <div className="grid grid-cols-2 gap-[10px]">
@@ -86,7 +109,7 @@ export default function DishDetails() {
             className="relative min-h-[63px] rounded-[17px] px-[10px] text-[15px] leading-[18px] font-bold tracking-meta shadow-card"
           >
             <img src={saveBackground} alt="" className="absolute inset-0 size-full" />
-            <img src={saveStar} alt="" className="relative shrink-0 max-w-none" />
+            <FavoriteStar saved={favorite} size={22} />
             <span className="relative">{favorite ? 'Saved to favorites' : 'Save to favorites'}</span>
           </Button>
           <Button
@@ -99,11 +122,15 @@ export default function DishDetails() {
             <span className="relative">See more options</span>
           </Button>
         </div>
-        <p id="restaurant-preview-note" className="text-[10px] leading-[14px] text-text-secondary">
-          {previews.length > 0
-            ? 'Design preview only. Ratings and distances are examples.'
-            : 'Nearby results currently use development examples.'}
+        <p id="restaurant-preview-note" role={nearby.status === 'error' ? 'alert' : 'status'} aria-live="polite" className="text-[10px] leading-[14px] text-text-secondary">
+          {nearby.status === 'error' ? nearbyErrorMessage(nearby.errorCode) : nearby.busy ? 'Finding restaurants near you…'
+            : nearby.metadataOnly ? 'Refresh loads current names, ratings, hours, and available photos.'
+            : previews.length ? "Search results suggest places to try. Dish availability isn't confirmed."
+            : nearby.status === 'ready' ? 'No nearby matches found.' : 'Allow location to find places near you. Once allowed, nearby restaurants load when you open a dish.'}
         </p>
+        {nearby.partialError && <p className="restaurant-partial-notice" role="status">Some results are available. Additional nearby cuisine matches are temporarily unavailable.</p>}
+        {nearby.locationNotice && <p className="restaurant-partial-notice" role="status">{nearby.locationNotice}</p>}
+        {nearby.source === 'google-places' && previews.length > 0 && !nearby.metadataOnly && <GooglePlacesAttribution restaurants={previews} />}
       </div>
     </div>
   )

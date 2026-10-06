@@ -7,7 +7,7 @@ const HUBS = ['/home', '/explore', '/favorites', '/history', '/progress', '/prof
 export function recommendationReturnTo(value, fallback = '/recommendations') {
   if (typeof value !== 'string' || !value.startsWith('/')) return fallback
   const path = value.split(/[?#]/)[0]
-  return [...HUBS, '/recommendations', '/recommendations/more', ...collectionCountries.map(country => `/collections/${country.id}`)].includes(path) ? value : fallback
+  return [...HUBS, '/recommendations', '/recommendations/more', '/recommendations/surprise', ...collectionCountries.map(country => `/collections/${country.id}`)].includes(path) ? value : fallback
 }
 
 export function discoveryDestination(value) {

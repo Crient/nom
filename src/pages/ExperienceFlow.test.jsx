@@ -3,16 +3,18 @@ import { actAndLoadRoutes as act } from '../test/routeAct'
 import { createRoot } from 'react-dom/client'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from '../App'
+import { installMockNearbyProvider } from '../test/mockNearbyProvider'
 
 let root
 beforeEach(() => {
+  installMockNearbyProvider()
   globalThis.IS_REACT_ACT_ENVIRONMENT = true
   document.body.innerHTML = '<div id="root"></div>'
   window.history.replaceState({}, '', '/discover/food-type')
   vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
   root = createRoot(document.getElementById('root'))
 })
-afterEach(async () => { await act(() => root.unmount()); vi.restoreAllMocks(); vi.useRealTimers() })
+afterEach(async () => { await act(() => root.unmount()); vi.restoreAllMocks(); vi.unstubAllGlobals(); vi.useRealTimers() })
 async function click(label) {
   const control = [...document.querySelectorAll('button,a')].find(element => element.getAttribute('aria-label') === label || element.textContent.trim() === label)
   expect(control, `Missing ${label}`).toBeTruthy()
@@ -50,7 +52,7 @@ describe('Sections 03–06 connected experience', () => {
     const visitId = routeVisitId()
     await click('Continue'); await finishFeedback()
     await click('You have unlocked your Mystery Box!Tap to discover your reward.')
-    vi.useFakeTimers(); await click('Open Mystery Box'); await act(async () => vi.advanceTimersByTime(1200)); vi.useRealTimers()
+    vi.useFakeTimers(); await click('Open Mystery Box'); await act(async () => vi.advanceTimersByTime(1750)); vi.useRealTimers()
     await click('View Collection'); await click('View Ziggy'); await click('Add to favorites')
     // Reload the application at its current URL with the same local storage.
     await act(async () => root.unmount())
@@ -64,12 +66,14 @@ describe('Sections 03–06 connected experience', () => {
     await click('Let’s Eat'); await click('Continue'); await click('Continue'); await click('Continue'); await click('Continue')
     await click('See more options'); await click('View Num Banh Chok details')
     expect(document.querySelector('[aria-label="Remove Num Banh Chok from favorites"]')).toBeTruthy()
-    await click('Find nearby restaurants'); await click('View THMOR DA Restaurant details')
+    expect(document.body.textContent).toContain('Refresh nearby restaurants')
+    await click('View THMOR DA Restaurant details')
     expect(document.querySelector('[aria-label="Remove THMOR DA Restaurant from favorites"]')).toBeTruthy()
     await click('I ate here'); await click('Continue')
     expect(document.querySelector('[role="dialog"]').textContent).toContain('This visit was already counted')
     await click('View other dishes from this restaurant')
-    await click('View Lort Cha details'); await click('Find nearby restaurants'); await click('View THMOR DA Restaurant details'); await click('I ate here'); await click('Continue')
+    await click('View Lort Cha details'); expect(document.body.textContent).toContain('Refresh nearby restaurants')
+    await click('View THMOR DA Restaurant details'); await click('I ate here'); await click('Continue')
     expect(document.querySelector('[role="dialog"]')).toBeNull()
     await finishFeedback()
     expect(document.body.textContent).toContain('Lifetime total: 19 meals')
@@ -92,7 +96,7 @@ describe('Sections 03–06 connected experience', () => {
     vi.useFakeTimers()
     await click('Open Mystery Box')
     expect(window.location.pathname).toBe(`/boxes/box-${visitId}/opening`)
-    await act(async () => vi.advanceTimersByTime(1200))
+    await act(async () => vi.advanceTimersByTime(1750))
     vi.useRealTimers()
     expect(document.querySelector('h2').textContent).toBe('ZIGGY')
     await click('View Collection')

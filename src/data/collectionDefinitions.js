@@ -1,11 +1,11 @@
 import cambodia from '../assets/experience/country-cambodia.webp'
-import colombia from '../assets/experience/country-colombia.webp'
-import unitedStates from '../assets/experience/country-us.webp'
-import japan from '../assets/experience/country-japan.webp'
-import italy from '../assets/experience/country-italy.webp'
-import india from '../assets/experience/country-india.webp'
-import china from '../assets/experience/country-china.webp'
-import france from '../assets/experience/country-france.webp'
+import colombia from '../assets/experience/country-backgrounds/colombia.png'
+import unitedStates from '../assets/experience/country-backgrounds/united-states.png'
+import japan from '../assets/experience/country-backgrounds/japan.png'
+import italy from '../assets/experience/country-backgrounds/italy.png'
+import india from '../assets/experience/country-backgrounds/india.png'
+import china from '../assets/experience/country-backgrounds/china.png'
+import france from '../assets/experience/country-backgrounds/france.png'
 import background from '../assets/experience/cambodia-background.webp'
 import ziggy from '../assets/experience/ziggy.webp'
 import kiko from '../assets/experience/kiko.webp'
@@ -25,13 +25,13 @@ import lotus from '../assets/experience/lotus.webp'
 /** Figma demonstration collections; these are reward metadata, not dish taxonomy. */
 export const collectionCountries = [
   { id: 'cambodia', code: 'KH', name: 'Cambodia', flag: '🇰🇭', image: cambodia, background, seedUnlocked: 5, seedMeals: 17, seedProgress: 2 },
-  { id: 'colombia', code: 'CO', name: 'Colombia', flag: '🇨🇴', image: colombia, seedUnlocked: 3, seedMeals: 9, seedProgress: 1 },
-  { id: 'united-states', code: 'US', name: 'United States', flag: '🇺🇸', image: unitedStates, seedUnlocked: 2, seedMeals: 26, seedProgress: 2 },
-  { id: 'japan', code: 'JP', name: 'Japan', flag: '🇯🇵', image: japan, seedUnlocked: 4, seedMeals: 0, seedProgress: 0 },
-  { id: 'italy', code: 'IT', name: 'Italy', flag: '🇮🇹', image: italy, seedUnlocked: 5, seedMeals: 0, seedProgress: 0 },
-  { id: 'india', code: 'IN', name: 'India', flag: '🇮🇳', image: india, seedUnlocked: 1, seedMeals: 0, seedProgress: 0 },
-  { id: 'china', code: 'CN', name: 'China', flag: '🇨🇳', image: china, seedUnlocked: 5, seedMeals: 0, seedProgress: 0 },
-  { id: 'france', code: 'FR', name: 'France', flag: '🇫🇷', image: france, seedUnlocked: 2, seedMeals: 0, seedProgress: 0 },
+  { id: 'colombia', code: 'CO', name: 'Colombia', flag: '🇨🇴', image: colombia, background: colombia, cardPosition: 'center 22%', seedUnlocked: 3, seedMeals: 9, seedProgress: 1 },
+  { id: 'united-states', code: 'US', name: 'United States', flag: '🇺🇸', image: unitedStates, background: unitedStates, cardPosition: 'center 22%', seedUnlocked: 2, seedMeals: 26, seedProgress: 2 },
+  { id: 'japan', code: 'JP', name: 'Japan', flag: '🇯🇵', image: japan, background: japan, cardPosition: 'center 22%', seedUnlocked: 4, seedMeals: 0, seedProgress: 0 },
+  { id: 'italy', code: 'IT', name: 'Italy', flag: '🇮🇹', image: italy, background: italy, cardPosition: 'center 22%', seedUnlocked: 5, seedMeals: 0, seedProgress: 0 },
+  { id: 'india', code: 'IN', name: 'India', flag: '🇮🇳', image: india, background: india, cardPosition: 'center 22%', seedUnlocked: 1, seedMeals: 0, seedProgress: 0 },
+  { id: 'china', code: 'CN', name: 'China', flag: '🇨🇳', image: china, background: china, cardPosition: 'center 22%', seedUnlocked: 5, seedMeals: 0, seedProgress: 0 },
+  { id: 'france', code: 'FR', name: 'France', flag: '🇫🇷', image: france, background: france, cardPosition: 'center 22%', seedUnlocked: 2, seedMeals: 0, seedProgress: 0 },
 ]
 
 export const collectibleDefinitions = [

@@ -13,6 +13,7 @@ import liked from '../assets/experience/liked.webp'
 import okay from '../assets/experience/okay.webp'
 import notForMe from '../assets/experience/not-for-me.webp'
 import shield from '../assets/experience/shield.svg'
+import GooglePlacesAttribution from '../components/restaurants/GooglePlacesAttribution'
 
 const REACTION_IMAGES = { loved, liked, okay, 'not-for-me': notForMe }
 
@@ -32,7 +33,8 @@ export default function MealFeedback() {
   return <div className="flow-page feedback-page">
     <FlowHeader onBack={() => navigate(`/visits/${visitId}/verify`)} onInfo={() => setModal('feedback')} />
     <FlowTitle title="How was your meal?" subtitle={restaurant.name} />
-    <RestaurantPhoto src={presentation.image} alt={restaurant.name} cropped={presentation.imageCrop} className="feedback-photo" />
+    <RestaurantPhoto src={presentation.image} alt={restaurant.source === 'google-places' ? `${dish.name} — Nom dish image` : restaurant.name} cropped={presentation.imageCrop} className="feedback-photo" />
+    {restaurant.source === 'google-places' && <><p className="flow-demo">Nom dish image</p>{!restaurant.metadataOnly && <GooglePlacesAttribution restaurants={[restaurant]} />}</>}
     <div className="feedback-reactions" role="group" aria-label="How was your meal?">{feedbackReactions.map(reaction => <button type="button" key={reaction.id} aria-pressed={feedback.reaction === reaction.id} onClick={() => update({ reaction: reaction.id })}>
       <img src={REACTION_IMAGES[reaction.id]} alt="" /><span>{reaction.label}</span>
     </button>)}</div>
