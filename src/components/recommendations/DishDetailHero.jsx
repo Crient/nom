@@ -40,15 +40,11 @@ export default function DishDetailHero({ result, chips, onBack, backLabel = 'Go 
         <p className="mt-[13px] max-w-[265px] text-[16.5px] leading-[16px] font-light text-strong-neutral">
           {dish.shortDescription}
         </p>
-        <div className="mt-[14px] flex flex-wrap gap-x-[8px] gap-y-[10px]">
+        <div className="dish-detail-chips mt-[14px] flex flex-wrap gap-[8px]">
           {chips.map((chip) => (
             <SessionChip
               key={chip.id}
               chip={chip}
-              variant="detail"
-              className={chip.kind === 'adventure'
-                ? 'min-w-[129px]'
-                : chip.kind === 'region' ? 'min-w-[155px]' : 'min-w-[min(118px,calc((100%-16px)/3))]'}
             />
           ))}
         </div>

@@ -6,6 +6,7 @@ import { collectibleDefinitions, collectionCountries, collectibleKey } from './c
 import { createExperienceState, experienceReducer } from './experienceState'
 import { REPAIRED_STATE } from './localPersistence'
 import { feedbackObservations, feedbackReactions } from './mealFeedback'
+import { isGoogleRestaurantId } from '../../shared/nearbyRestaurants.js'
 
 export const EMPTY_DISCOVERY = { foodType: null, flavors: [], adventurousness: null, region: null }
 export const EMPTY_ACTIVITY = { displayName: 'Leng', recentDishes: [] }
@@ -42,7 +43,8 @@ export function normalizeDiscovery(value) {
 export function normalizeFavorites(value) {
   if (!object(value)) throw new Error('Invalid favorites data')
   const result = { dishIds: uniqueKnown(value.dishIds ?? value.favoriteIds, records.map(dish => dish.id)),
-    restaurantIds: uniqueKnown(value.restaurantIds, mockRestaurants.map(restaurant => restaurant.id)) }
+    restaurantIds: Array.isArray(value.restaurantIds) ? [...new Set(value.restaurantIds.filter(id => isGoogleRestaurantId(id)
+      || mockRestaurants.some(restaurant => restaurant.id === id)))] : [] }
   return JSON.stringify(result) === JSON.stringify({ dishIds: value.dishIds ?? value.favoriteIds, restaurantIds: value.restaurantIds }) ? result : markRepaired(result)
 }
 
@@ -50,12 +52,12 @@ function normalizeLog(value) {
   if (!object(value) || !validId(value.id) || !validDate(value.completedAt) || !validDate(value.startedAt) || !validDay(value.day)) return null
   const dish = records.find(item => item.id === value.dishId)
   const restaurant = mockRestaurants.find(item => item.id === value.restaurantId)
-  if (!dish || !restaurant || !restaurantServesDish(restaurant, dish.id)) return null
+  if (!dish || (!isGoogleRestaurantId(value.restaurantId) && (!restaurant || !restaurantServesDish(restaurant, dish.id)))) return null
   if (!object(value.verification) || typeof value.verification.verified !== 'boolean' || !['location-demo', 'qr-demo', 'receipt-demo', 'unverified'].includes(value.verification.method)) return null
   if (value.verification.verified !== (value.verification.method !== 'unverified')) return null
   if (!object(value.feedback) || !feedbackReactions.some(reaction => reaction.id === value.feedback.reaction)) return null
   const result = {
-    id: value.id, dishId: dish.id, restaurantId: restaurant.id, countryCode: dish.countryCode,
+    id: value.id, dishId: dish.id, restaurantId: value.restaurantId, countryCode: dish.countryCode,
     startedAt: value.startedAt, completedAt: value.completedAt, day: value.day,
     verification: { verified: value.verification.verified, method: value.verification.method, source: 'development', checkedAt: validDate(value.verification.checkedAt) ? value.verification.checkedAt : value.startedAt },
     feedback: { reaction: value.feedback.reaction, observations: uniqueKnown(value.feedback.observations, feedbackObservations), note: typeof value.feedback.note === 'string' ? value.feedback.note.slice(0, 1000) : '' },

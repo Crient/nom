@@ -7,6 +7,8 @@ dist-ssr
 
 # External photo acquisition cache and process lock; optimized assets stay tracked.
 src/assets/food/incoming/
+src/assets/food/generated-incoming/*
+!src/assets/food/generated-incoming/.gitkeep
 catalog/images/.fetch.lock/
 scripts/__pycache__/
 

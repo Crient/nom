@@ -9,7 +9,7 @@ import dishPancitBihon from '../assets/food/dish-pancit-bihon.webp'
 import dishCaoLau from '../assets/food/dish-cao-lau.webp'
 import dishNumBanhChok from '../assets/food/dish-num-banh-chok.webp'
 
-import { licensedDishImages } from './dishImageAssets'
+import { catalogDishImages, dishImageReview } from './dishImageAssets'
 
 export const existingDishImages = {
   'lort-cha': dishLortCha,
@@ -25,6 +25,11 @@ export const existingDishImages = {
 }
 
 
-// Preserve existing good photos even if a future manifest accidentally repeats an ID.
-export const dishImages = { ...licensedDishImages, ...existingDishImages }
-export { licensedDishImages }
+// Original files remain available for review. Only explicit approvals/temporary
+// decisions render, and a generated replacement must not be overridden by an old original.
+const reviewedOriginals = Object.fromEntries(Object.entries(existingDishImages).filter(([id]) => {
+  const review = dishImageReview[id]
+  return review?.storageStatus === 'existing-local' && ['approved', 'temporary'].includes(review.reviewStatus)
+}))
+export const dishImages = { ...catalogDishImages, ...reviewedOriginals }
+export { dishImageReview }

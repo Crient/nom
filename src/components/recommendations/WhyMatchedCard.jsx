@@ -13,7 +13,7 @@ export default function WhyMatchedCard({ explanation }) {
       <div className="relative mx-[22px] min-h-[84px] pt-[4px] pr-[11px] pb-[9px] pl-[66px] text-strong-neutral">
         <img src={aiIcon} alt="" className="absolute top-[7px] left-[11px] max-w-none" />
         <h2 id="why-matched-title" className="text-[17px] leading-[22px] font-bold">Why this matched</h2>
-        <p className="mt-[4px] text-[13px] leading-[15px]">{explanation}</p>
+        <p className="why-matched-explanation mt-[4px] min-h-[48px] text-[13px] leading-[16px]">{explanation}</p>
       </div>
     </section>
   )

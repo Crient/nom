@@ -38,17 +38,17 @@ export default function Home() {
   const recent = activityEntries(state.logs, activity.recentDishes).slice(0, 3)
   const surprise = () => {
     session.setFoodType('anything'); session.setAdventurousness('surprise-me'); session.setRegion('surprise-me')
-    navigate(session.flavors.length ? '/recommendations' : '/discover/flavor')
+    navigate(session.flavors.length ? '/recommendations' : '/discover/flavor', { state: { surpriseMode: true } })
   }
   const cambodia = collectionCountries[0]
   const box = pendingBox(state, cambodia.id)
   const remaining = BOX_TARGET - state.progress.cambodia.count
   return (
-    <div className="min-h-[1260px] w-full bg-surface pb-[90px]">
-      <header className="relative min-h-[295.48px] pt-[203.2px]">
-        <StatusBar />
-        <form role="search" className="absolute top-[55.01px] left-0 w-full" onSubmit={event => { event.preventDefault(); navigate(`/explore${query.trim() ? `?q=${encodeURIComponent(query.trim())}` : ''}`) }}><SearchField aria-label="Search for food" placeholder="Search for food..." value={query} onChange={event => setQuery(event.target.value)} action={<button type="submit" aria-label="Search dishes" className="flex min-h-[44px] min-w-[44px] items-center justify-center"><img src={chevronSm} alt="" /></button>} /></form>
-        <div className="absolute top-[126.89px] left-[18.63px] right-[23.94px] bg-surface py-[16.017px]">
+    <div className="home-page min-h-[1260px] w-full bg-surface pb-[90px]">
+      <header className="home-header">
+        <StatusBar className="home-status" />
+        <form role="search" className="home-search" onSubmit={event => { event.preventDefault(); navigate(`/explore${query.trim() ? `?q=${encodeURIComponent(query.trim())}` : ''}`) }}><SearchField aria-label="Search for food" placeholder="Search for food..." value={query} onChange={event => setQuery(event.target.value)} action={<button type="submit" aria-label="Search dishes" className="flex min-h-[44px] min-w-[44px] items-center justify-center"><img src={chevronSm} alt="" /></button>} /></form>
+        <div className="home-quick-actions bg-surface py-[16.017px]">
           <div className="grid grid-cols-5 gap-[6px] px-[16.017px]">
             {QUICK_ACTIONS.map(({ label, icon, to }) => {
               return <Link key={label} to={to} className="flex min-h-[44px] min-w-0 flex-col items-center gap-[6.007px] text-text-secondary">
@@ -58,7 +58,7 @@ export default function Home() {
             })}
           </div>
         </div>
-        <img src={greetingDivider} alt="" className="absolute top-[196.1px] left-[9.28%] h-[14.197px] w-[75.62%]" />
+        <img src={greetingDivider} alt="" className="home-greeting-divider" />
         <div className="relative ml-[10.65px] flex flex-col gap-[4.695px] bg-surface p-[18.778px] text-text-primary">
           <h1 className="text-greeting break-words [text-shadow:0_3.549px_3.549px_rgb(0_0_0/0.25)]">Good Morning, {activity.displayName}!</h1>
           <p className="text-greeting-sub">Tell us what you are craving for.</p>

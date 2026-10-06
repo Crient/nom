@@ -1,24 +1,27 @@
-import { useEffect, useState } from 'react'
-import { findRestaurantsForDish } from '../data/restaurantProvider'
+import { useCallback, useEffect, useState, useSyncExternalStore } from 'react'
+import { restaurantSearchState } from '../data/restaurantSearchState'
 
-export function useRestaurants(dishId) {
-  const [retry, setRetry] = useState(0)
-  const [result, setResult] = useState({ dishId: null, status: 'loading', restaurants: [] })
+export function useRestaurants(dishId, { autoLoad = false, revalidateLocation = autoLoad } = {}) {
+  const subscribe = useCallback(callback => restaurantSearchState.subscribe(dishId, callback), [dishId])
+  const getSnapshot = useCallback(() => restaurantSearchState.getSnapshot(dishId), [dishId])
+  const result = useSyncExternalStore(subscribe, getSnapshot, getSnapshot)
+  const [checkingLocation, setCheckingLocation] = useState(autoLoad && result.status === 'idle')
+  const search = useCallback(options => restaurantSearchState.search(dishId, options), [dishId])
   useEffect(() => {
-    if (!dishId) return
+    if (!revalidateLocation || !dishId) return
     const controller = new AbortController()
-    setResult({ dishId, status: 'loading', restaurants: [] })
-    Promise.resolve().then(() => findRestaurantsForDish({ dishId, signal: controller.signal }))
-      .then(data => {
-        if (!controller.signal.aborted) setResult({ ...data, dishId, status: 'ready' })
-      }).catch(() => {
-        if (!controller.signal.aborted) setResult({ dishId, status: 'error', restaurants: [] })
-      })
+    restaurantSearchState.revalidateCached(dishId, { signal: controller.signal })
     return () => controller.abort()
-  }, [dishId, retry])
-
-  return {
-    ...(result.dishId === dishId ? result : { status: 'loading', restaurants: [] }),
-    retry: () => setRetry(value => value + 1),
-  }
+  }, [dishId, revalidateLocation])
+  useEffect(() => {
+    if (!autoLoad || !dishId || result.status !== 'idle') { setCheckingLocation(false); return }
+    const controller = new AbortController()
+    setCheckingLocation(true)
+    restaurantSearchState.autoSearch(dishId, { signal: controller.signal }).finally(() => {
+      if (!controller.signal.aborted) setCheckingLocation(false)
+    })
+    return () => controller.abort()
+  }, [dishId, autoLoad, result.status])
+  return { ...result, search, retry: () => search({ refresh: true }),
+    busy: checkingLocation || ['requesting-location', 'loading'].includes(result.status) }
 }

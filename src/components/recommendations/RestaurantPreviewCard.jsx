@@ -1,28 +1,36 @@
 import starIcon from '../../assets/icons/restaurant-preview-star.svg'
 import locationIcon from '../../assets/icons/restaurant-preview-location.svg'
 import Image from '../ui/Image'
+import RestaurantFacts, { restaurantMatchLabel } from '../restaurants/RestaurantFacts'
+import PlacePhoto from '../restaurants/PlacePhoto'
+import RestaurantCardOpen, { restaurantCardClick } from '../restaurants/RestaurantCardOpen'
+import HeartButton from './HeartButton'
+import { useFavorites } from '../../context/Favorites'
+import { restaurantFavoriteActions } from '../../data/restaurantProvider'
 
-/** A development restaurant preview backed by the same adapter as Nearby. */
-export default function RestaurantPreviewCard({ restaurant, onSelect }) {
+/** Compact Nom venue cards backed by the shared nearby results. */
+export default function RestaurantPreviewCard({ restaurant, dish, onSelect }) {
+  const favorite = restaurantFavoriteActions(restaurant, useFavorites())
+  if (restaurant.source === 'google-places') return <article className="restaurant-preview-live" onClick={restaurantCardClick(onSelect)}>
+    <RestaurantCardOpen onSelect={onSelect} label={`View ${restaurant.name} details`} />
+    <PlacePhoto restaurant={restaurant} compact />
+    <div className="restaurant-preview-copy"><div className="restaurant-favorite-row"><h3 className="restaurant-preview-title">{restaurant.name}</h3>
+      <HeartButton dishName={restaurant.name} liked={favorite.liked} onToggle={favorite.toggle} size={18} className="restaurant-preview-heart" /></div>
+      <RestaurantFacts restaurant={restaurant} compact />
+      <p className="restaurant-meta restaurant-match">{restaurantMatchLabel(restaurant, dish)}</p>
+    </div>
+  </article>
   return (
-    <button type="button" onClick={onSelect} aria-label={`View ${restaurant.name} details`} className="relative min-h-[95px] min-w-0 rounded-sm bg-surface text-left shadow-card">
-      <Image loading="lazy"
-        src={restaurant.image}
-        alt={restaurant.name}
-        className="h-[63px] w-full rounded-t-sm object-cover"
-        style={restaurant.imagePosition ? { objectPosition: restaurant.imagePosition } : undefined}
-      />
-      <h3 className="relative -top-[2px] min-h-[14px] px-[5px] text-[8.729px] leading-[12px] font-bold tracking-[0.175px] text-strong-neutral">
-        {restaurant.name}
-      </h3>
-      <div className="flex min-h-[19px] flex-wrap items-center text-[6.547px] leading-[19px] tracking-[0.175px] text-text-secondary">
-        <img src={starIcon} alt="" className="ml-[1px] max-w-none" />
-        <p><strong>{restaurant.rating}</strong> ({restaurant.reviews})</p>
-        <div className="ml-auto mr-[5px] flex items-center">
-          <img src={locationIcon} alt="" className="max-w-none" />
-          <span className="font-bold">{restaurant.distance}</span>
-        </div>
+    <article className="restaurant-preview-live" onClick={restaurantCardClick(onSelect)}>
+      <RestaurantCardOpen onSelect={onSelect} label={`View ${restaurant.name} details`} />
+      <Image loading="lazy" src={restaurant.image} alt={restaurant.name}
+        className="restaurant-preview-photo" style={{ objectPosition: restaurant.imagePosition }} />
+      <div className="restaurant-preview-copy">
+        <div className="restaurant-favorite-row"><h3 className="restaurant-preview-title">{restaurant.name}</h3>
+          <HeartButton dishName={restaurant.name} liked={favorite.liked} onToggle={favorite.toggle} size={18} className="restaurant-preview-heart" /></div>
+        <div className="restaurant-facts-row"><span className="restaurant-meta restaurant-rating"><img src={starIcon} alt="" width={15} height={15} /><strong>{restaurant.rating}</strong> ({restaurant.reviews ?? restaurant.reviewCount})</span>
+          <span className="restaurant-meta restaurant-distance"><img src={locationIcon} alt="" width={12} height={12} />{restaurant.distance}</span></div>
       </div>
-    </button>
+    </article>
   )
 }

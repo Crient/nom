@@ -11,6 +11,7 @@ import background from '../assets/experience/logged-background.webp'
 import illustration from '../assets/experience/logged-illustration.webp'
 import unlocked from '../assets/experience/box-unlocked.webp'
 import { recommendationReturnTo } from '../utils/navigation'
+import GooglePlacesAttribution from '../components/restaurants/GooglePlacesAttribution'
 
 export default function ExperienceLogged() {
   const { visitId } = useParams(), navigate = useNavigate(), location = useLocation()
@@ -25,6 +26,7 @@ export default function ExperienceLogged() {
     <div className="logged-illustration"><img src={illustration} alt="" /></div>
     <FlowHeader onBack={() => navigate(recommendationReturnTo(location.state?.returnTo, '/home'))} onInfo={() => setModal('progress')} />
     <div className="logged-copy"><h1>Experience Logged!</h1><p>You enjoyed {dish.name} at<br />{restaurant?.name ?? (status === 'loading' ? 'your restaurant' : 'the selected restaurant')}.</p></div>
+    {restaurant?.source === 'google-places' && !restaurant.metadataOnly && <GooglePlacesAttribution restaurants={[restaurant]} />}
     {country && <div className="logged-progress"><CountryProgressCard {...countryProgressPresentation(state, country)} /></div>}
     {log.boxId ? <button type="button" className="logged-unlocked" onClick={() => navigate(`/boxes/${log.boxId}`)}><img src={unlocked} alt="" /><span><strong>You have unlocked your Mystery Box!</strong><small>Tap to discover your reward.</small></span></button>
       : <div className="logged-note" role="status"><p>{log.earnedProgress ? 'One more experience added to your country progress.' : 'Meal saved to your session history. No extra box progress for this meal.'}</p></div>}

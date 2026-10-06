@@ -1,5 +1,7 @@
 # Nearby Restaurants development flow
 
+This document describes the historical design/mock implementation. Production now uses the explicit Google Places provider; see [live Nearby Restaurants setup and behavior](nearby-restaurants-google-places.md). Static-map and fixture behavior below is retained for explicit design/test mode only.
+
 Visual references in the connected Nom Figma file:
 
 - `263:4540` — 03.01 Nearby Restaurant (List)

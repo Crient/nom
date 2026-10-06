@@ -32,16 +32,16 @@ describe('More Options regional presentation', () => {
     expect(recommend(session, dishes)).toEqual(results)
   })
 
-  it('includes the relevance boundary, excludes weak candidates and labels no region as a match by score alone', () => {
+  it('keeps relevant candidates and fills otherwise empty slots without changing scores', () => {
     const fixture = (id, region, score) => ({ dish: { id, region }, score })
     const top = [fixture('top-a', base.region, 90), fixture('top-b', base.region, 80), fixture('top-c', base.region, 70)]
     const strong = fixture('global', 'east-asia', 85)
     const boundary = fixture('regional-boundary', base.region, 40)
     const weak = fixture('regional-weak', base.region, 39)
     const irrelevantCross = fixture('cross-weak', 'europe', 39)
-    expect(selectMoreOptions(base, [...top, strong, boundary, weak, irrelevantCross])).toEqual([boundary, strong])
-    expect(selectMoreOptions(base, [...top, strong, weak])).toEqual([strong])
-    expect(selectMoreOptions(base, [...top, weak, irrelevantCross])).toEqual([])
+    expect(selectMoreOptions(base, [...top, strong, boundary, weak, irrelevantCross])).toEqual([boundary, weak, strong, irrelevantCross])
+    expect(selectMoreOptions(base, [...top, strong, weak])).toEqual([weak, strong])
+    expect(selectMoreOptions(base, [...top, weak, irrelevantCross])).toEqual([weak, irrelevantCross])
   })
 
   it.each([null, 'surprise-me'])('retains the exact global slice and tie policy with region %s', region => {

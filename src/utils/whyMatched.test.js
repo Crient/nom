@@ -64,6 +64,14 @@ describe('whyMatched', () => {
 
   it('handles a session with no active scoring dimensions', () => {
     expect(explain({ foodType: 'anything', flavors: [], adventurousness: SURPRISE_ME, region: null }))
-      .toBe('Lort Cha has no exact matches with the preferences scored in this session.')
+      .toContain('Lort Cha has no exact matches with the preferences scored in this session.')
+  })
+  it('adds concise mood context from matched tags and explains the selected familiar experience', () => {
+    const explanation = explain({ foodType: 'anything', flavors: ['comforting'], adventurousness: 'familiar', region: null }, dishes.find(dish => dish.id === 'couscous'))
+    expect(explanation).toContain('Couscous matches comforting flavors')
+    expect(explanation).toContain('a cozy, satisfying meal')
+    expect(explanation).toContain('your familiar preference')
+    expect(explanation.split('. ').length).toBe(2)
+    expect(explanation.split(/\s+/).length).toBeLessThanOrEqual(35)
   })
 })

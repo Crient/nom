@@ -76,14 +76,14 @@ describe('Dish Details', () => {
     expect(html).not.toContain('data-redirect')
   })
 
-  it('labels the Lort Cha restaurant fixtures and enables nearby navigation', () => {
+  it('shows an intentional nearby-search state without fake restaurant previews', () => {
     const html = renderScreen('lort-cha')
-    expect(html).toContain('Design preview only. Ratings and distances are examples.')
-    expect(html).toContain('THMOR DA Restaurant')
-    expect(html).toContain('The Golden Monkey Cafe')
-    expect(html).toContain('Peephuptmei Restaurant')
-    expect(html).toContain('16 mi')
-    expect(html).toContain('Find nearby restaurants')
-    expect(html).not.toContain('disabled=""')
+    expect(html).toContain('Finding restaurants near you')
+    expect(html.match(/restaurant-preview-live restaurant-skeleton/g)).toHaveLength(3)
+    expect(html).not.toContain('THMOR DA Restaurant')
+    expect(html).not.toContain('The Golden Monkey Cafe')
+    expect(html).not.toContain('Peephuptmei Restaurant')
+    expect(html).not.toContain('16 mi')
+    expect(html).toContain('Finding restaurants near you')
   })
 })

@@ -10,6 +10,7 @@ import map from '../assets/experience/verify-map.webp'
 import shield from '../assets/experience/shield.svg'
 import check from '../assets/experience/check.svg'
 import clock from '../assets/experience/clock.svg'
+import GooglePlacesAttribution from '../components/restaurants/GooglePlacesAttribution'
 import verified from '../assets/experience/verified.svg'
 
 export default function VerifyVisit() {
@@ -35,9 +36,11 @@ export default function VerifyVisit() {
   return <div className="flow-page verify-page">
     <FlowHeader onBack={back} onInfo={() => setModal('progress')} />
     <FlowTitle title="Verify Your Visit" subtitle={restaurant.name} />
-    <img className="verify-map" src={map} alt="Development map preview near the restaurant" />
+    {restaurant.source !== 'google-places' && <img className="verify-map" src={map} alt="Development map preview near the restaurant" />}
+    {restaurant.source === 'google-places' && !restaurant.metadataOnly && <GooglePlacesAttribution restaurants={[restaurant]} />}
     <div className="verify-checks">
-      {[{ icon: check, title: `You are near ${restaurant.name}`, text: 'Sample location matched (within 200 m)', green: true },
+      {[{ icon: check, title: restaurant.source === 'google-places' ? 'Demo location check' : `You are near ${restaurant.name}`,
+        text: restaurant.source === 'google-places' ? 'Nearby discovery does not verify your visit.' : 'Sample location matched (within 200 m)', green: true },
         { icon: clock, title: 'Visit time detected', text: 'Sample visit: 17 minutes.' },
         { icon: verified, title: 'All set!', text: `Ready to log ${dish.name}.` }].map(row => <div className={`verify-check ${row.green ? 'verify-check-green' : ''}`} key={row.title}>
           <span><img src={row.icon} alt="" /></span><div><strong>{row.title}</strong><p>{row.text}</p></div>

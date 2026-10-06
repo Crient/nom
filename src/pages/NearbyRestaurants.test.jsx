@@ -6,16 +6,18 @@ import App from '../App'
 import * as provider from '../data/restaurantProvider'
 import { mockRestaurants } from '../data/mockRestaurants'
 import placeholder from '../assets/food/dish-placeholder.svg'
+import { installMockNearbyProvider } from '../test/mockNearbyProvider'
 
 let root
 beforeEach(() => {
+  installMockNearbyProvider()
   globalThis.IS_REACT_ACT_ENVIRONMENT = true
   document.body.innerHTML = '<div id="root"></div>'
   window.history.replaceState({}, '', '/')
   vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
   root = createRoot(document.getElementById('root'))
 })
-afterEach(async () => { await act(() => root.unmount()); vi.restoreAllMocks() })
+afterEach(async () => { await act(() => root.unmount()); vi.restoreAllMocks(); vi.unstubAllGlobals() })
 async function click(text) {
   const button = [...document.querySelectorAll('button,a')].find(element =>
     element.getAttribute('aria-label') === text || element.textContent.trim() === text)
@@ -34,7 +36,7 @@ async function chooseSession() {
   await click('Southeast AsiaVietnam • Cambodia • Philippines'); await click('Continue')
 }
 async function openNearby() {
-  await chooseSession(); await click('View Lort Cha details'); await click('Find nearby restaurants')
+  await chooseSession(); await click('View Lort Cha details'); await click('Find nearby restaurants'); await click('See all')
 }
 async function select(label, value) {
   const control = [...document.querySelectorAll('select')].find(element => element.parentElement.textContent.includes(label))
@@ -78,7 +80,8 @@ describe('Nearby Restaurants flow', () => {
     await click('Go back')
     expect(window.location.pathname).toBe('/recommendations/lort-cha')
     expect(document.querySelector('[aria-label="Save Lort Cha to favorites"]').getAttribute('aria-pressed')).toBe('false')
-    await click('Find nearby restaurants')
+    expect(document.body.textContent).toContain('Refresh nearby restaurants')
+    await click('See all')
     expect(document.querySelector('[aria-label="Remove THMOR DA Restaurant from favorites"]')).toBeTruthy()
     expect(document.querySelector('.nearby-match').textContent).toBe('85 %match')
   })
@@ -131,7 +134,7 @@ describe('Nearby Restaurants flow', () => {
   })
 
   it('shows the actual non-fixture dish in the empty-result state', async () => {
-    await chooseSession(); await navigate('/recommendations/arepa/nearby')
+    await chooseSession(); await navigate('/recommendations/arepa/nearby'); await click('Find nearby restaurants')
     expect(document.querySelector('h1').textContent).toContain('Arepa')
     expect(document.body.textContent).toContain('No development results for Arepa yet.')
     expect(names()).toEqual([])
@@ -172,7 +175,7 @@ describe('Nearby Restaurants flow', () => {
       .mockImplementationOnce(() => new Promise(resolve => { resolveOld = resolve }))
       .mockResolvedValue({ restaurants: [], source: 'mock' })
     await openNearby()
-    expect(document.body.textContent).toContain('Loading restaurants')
+    expect(document.body.textContent).toContain('Finding restaurants near you')
     await navigate('/recommendations/arepa/nearby')
     await act(async () => resolveOld({ restaurants: mockRestaurants, source: 'mock' }))
     expect(document.querySelector('h1').textContent).toContain('Arepa')
