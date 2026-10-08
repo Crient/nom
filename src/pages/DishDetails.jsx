@@ -14,7 +14,8 @@ import GooglePlacesAttribution from '../components/restaurants/GooglePlacesAttri
 import { nearbyErrorMessage } from '../data/nearbyRestaurantService'
 import { selectRestaurantDetails } from '../data/placeExtrasService'
 import '../styles/nearby.css'
-import { useRecommendations } from '../hooks/useRecommendations'
+import { useDishRecommendation } from '../hooks/useDishRecommendation'
+import { surpriseQuery } from '../utils/surpriseStrategy'
 import { whyMatched } from '../utils/whyMatched'
 import nearbyLocation from '../assets/icons/rec-location.svg'
 import nearbyArrow from '../assets/icons/rec-arrow.svg'
@@ -23,13 +24,15 @@ import FavoriteStar from '../components/icons/FavoriteStar'
 import moreBackground from '../assets/icons/detail-more-bg.svg'
 import moreSync from '../assets/icons/detail-more-sync.png'
 import seeAllArrow from '../assets/icons/detail-see-all.svg'
+import SendToFriend from '../components/social/SendToFriend'
+import { sharedContextQuery } from '../data/sharedContent'
 
 export default function DishDetails() {
   const { dishId } = useParams()
   const location = useLocation()
   const navigate = useNavigate()
   const session = useDiscoverySession()
-  const { ready, results, chips } = useRecommendations()
+  const { ready, results, chips, surprise, shared } = useDishRecommendation(dishId)
   const { isFavorite, toggleFavorite } = useFavorites()
   const { recordDishView } = useActivity()
   const result = results.find((item) => item.dish.id === dishId)
@@ -46,7 +49,7 @@ export default function DishDetails() {
   useEffect(() => { if (result) recordDishView(result.dish.id) }, [result?.dish.id, recordDishView])
 
   if (!ready) return <Navigate to="/discover/food-type" replace state={{ ...location.state, discoveryReturnTo: location.pathname }} />
-  if (!result) return <Navigate to="/recommendations" replace />
+  if (!result) return shared ? <div className="flow-page"><p className="flow-state" role="status">This shared dish is no longer available.</p><Button onClick={() => navigate('/friends/inbox')}>Back to shared items</Button></div> : <Navigate to="/recommendations" replace />
 
   const { dish } = result
   const favorite = isFavorite(dish.id)
@@ -56,7 +59,7 @@ export default function DishDetails() {
     nearby.search({ refresh: nearby.status === 'ready' })
   }
   const seeAll = () => {
-    navigate(`/recommendations/${dish.id}/nearby`, { state: { returnTo } })
+    navigate(`/recommendations/${dish.id}/nearby${shared ? sharedContextQuery : surprise ? surpriseQuery : ''}`, { state: { returnTo } })
   }
 
   return (
@@ -65,7 +68,7 @@ export default function DishDetails() {
       <p className="mx-[25px] mt-[15px] min-h-[45px] text-body-sm text-strong-neutral">
         {dish.description}
       </p>
-      <WhyMatchedCard explanation={whyMatched(session, result)} />
+      {shared ? <p className="mx-[25px] my-[18px] text-body-sm text-text-secondary">A friend’s food suggestion. Choose your own preferences to find matches.</p> : surprise ? <p className="mx-[25px] my-[18px] text-body-sm text-text-secondary">A random pick from all 201 dishes. Your discovery preferences haven’t changed.</p> : <WhyMatchedCard explanation={whyMatched(session, result)} />}
 
       <section aria-labelledby="nearby-title" aria-describedby="restaurant-preview-note" className="mx-[21px] mt-[1px]">
         <div className="dish-nearby-heading">
@@ -82,7 +85,7 @@ export default function DishDetails() {
           {previews.length > 0 ? previews.map((restaurant) => (
             <RestaurantPreviewCard key={restaurant.id} restaurant={restaurant} dish={dish} onSelect={() => {
               selectRestaurantDetails(restaurant)
-              navigate(`/recommendations/${dish.id}/nearby/${encodeURIComponent(restaurant.id)}`, { state: { returnTo, view: 'list' } })
+              navigate(`/recommendations/${dish.id}/nearby/${encodeURIComponent(restaurant.id)}${shared ? sharedContextQuery : surprise ? surpriseQuery : ''}`, { state: { returnTo, view: 'list' } })
             }} />
           )) : (
             <p className="col-span-3 self-center text-body-sm text-text-secondary" role="status">{nearby.busy ? 'Finding restaurants near you…' : nearby.metadataOnly
@@ -114,7 +117,7 @@ export default function DishDetails() {
           </Button>
           <Button
             variant="artwork" size="none"
-            onClick={() => navigate('/recommendations/more')}
+            onClick={() => navigate(surprise ? '/recommendations/surprise' : '/recommendations/more')}
             className="relative min-h-[63px] rounded-[17px] px-[10px] text-[15px] leading-[18px] font-bold tracking-meta shadow-card"
           >
             <img src={moreBackground} alt="" className="absolute inset-0 size-full" />
@@ -122,6 +125,7 @@ export default function DishDetails() {
             <span className="relative">See more options</span>
           </Button>
         </div>
+        <div className="social-send-options"><SendToFriend content={{ type: 'dish', id: dish.id }}>Send dish to a friend</SendToFriend><SendToFriend content={{ type: 'recommendation', id: dish.id }}>Send recommendation to a friend</SendToFriend></div>
         <p id="restaurant-preview-note" role={nearby.status === 'error' ? 'alert' : 'status'} aria-live="polite" className="text-[12px] leading-[18px] text-text-secondary">
           {nearby.status === 'error' ? nearbyErrorMessage(nearby.errorCode) : nearby.busy ? 'Finding restaurants near you…'
             : nearby.metadataOnly ? 'Refresh loads current names, ratings, hours, and available photos.'

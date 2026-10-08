@@ -19,7 +19,7 @@ describe('evidence ranking and display compatibility', () => {
     expect(result.breakdown.flavor.earned).toBe(rank)
     expect(result.breakdown.region.skipped).toBe(true)
     expect(result.displayBreakdown.region.open).toBe(true)
-    expect(whyMatched(open, result)).toContain(`70 compatible points plus ${flavorPoints} explicit-preference points give ${percent}%`)
+    expect(whyMatched(open, result)).not.toMatch(/points|explicit-preference|rounded|\d+%/i)
   })
   it('does not score descriptors, inflate explicit mismatches or credit missing region answers', () => {
     const dish = dishes.find(item => item.id === 'lort-cha')

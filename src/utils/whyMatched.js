@@ -17,18 +17,9 @@ function joinReasons(reasons) {
   return `${reasons.slice(0, -1).join(', ')}, and ${reasons.at(-1)}`
 }
 
-/** Explain explicit evidence and any neutral compatibility separately.
- * Display descriptors never earn preference evidence. */
+/** Explain only actual preference matches; numeric compatibility lives in the badge. */
 export function whyMatched(session, result) {
-  const evidence = explainEvidence(session, result)
-  const display = result.displayBreakdown
-  const open = ['foodType', 'adventure', 'region'].filter(key => display?.[key].open)
-  if (!open.length) return evidence
-  const names = { foodType: 'food type', adventure: 'adventure level', region: 'region' }
-  const points = value => Number(value.toFixed(2))
-  const compatible = open.reduce((sum, key) => sum + display[key].earned, 0)
-  const explicit = Object.values(display).filter(part => !part.open).reduce((sum, part) => sum + part.earned, 0)
-  return `${evidence} You're open to any ${joinReasons(open.map(key => names[key]))}: ${points(compatible)} compatible points plus ${points(explicit)} explicit-preference points give ${Math.round(result.displayMatchPercent)}% compatibility (rounded).`
+  return explainEvidence(session, result)
 }
 
 function explainEvidence(session, result) {
@@ -56,16 +47,16 @@ function explainEvidence(session, result) {
     const profile = joinReasons(flavors.map(flavor => (FLAVOR_LABELS[flavor] ?? flavor).toLowerCase()))
     const feel = FLAVOR_FEEL[flavors[0]] ?? 'the flavor profile you selected'
     return `${dish.name} matches ${profile} flavors for ${feel}. ${reasons.length
-      ? `It also fits ${joinReasons(reasons)}.` : `Your ${flavors.map(flavor => FLAVOR_LABELS[flavor] ?? flavor).join(' + ')} ${flavors.length === 1 ? 'choice contributes' : 'choices contribute'} to this match.`}`
+      ? `It also fits ${joinReasons(reasons)}.` : 'These are flavors you picked.'}`
   }
 
   if (reasons.length) {
-    return `${dish.name} fits ${joinReasons(reasons)}. A meal choice shaped by the preferences you selected.`
+    return `${dish.name} fits ${joinReasons(reasons)}.`
   }
 
   if (!breakdown.adventure.skipped && breakdown.adventure.earned > 0) {
-    return `${dish.name}'s adventure level is a partial fit for your ${adventure} preference. Consider it an exploration option, or adjust your tags for a closer fit.`
+    return `${dish.name} offers something a little different to explore. Try changing your choices if you’d like a closer fit.`
   }
 
-  return `${dish.name} has no exact matches with the preferences scored in this session. Adjust your tags for a closer fit, or explore this dish for something new.`
+  return `${dish.name} is a dish worth discovering. Explore it for something new.`
 }

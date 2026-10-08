@@ -234,9 +234,9 @@ describe('Phase 2 shared preview/list/map/photo/review flow', () => {
     expect(ideas.textContent).not.toContain('Macaroni')
     const share = vi.fn(), writeText = vi.fn()
     navigator.share = share; navigator.clipboard = { writeText }
-    await click('Send to a friend')
-    expect(document.body.textContent).toContain('Friends on Nom are coming soon.')
-    expect(share).not.toHaveBeenCalled(); expect(writeText).not.toHaveBeenCalled()
+    await click('Share')
+    expect(document.body.textContent).toContain('Restaurant shared.')
+    expect(share).toHaveBeenCalledWith({ title: 'Venue 0', text: 'Try Venue 0 with Nom', url: window.location.href }); expect(writeText).not.toHaveBeenCalled()
     expect(calls('/api/nearby-restaurants')).toHaveLength(1)
   })
   it('discloses a partial cuisine fallback in the dish preview without retrying', async () => {
@@ -330,7 +330,6 @@ describe('Phase 2 shared preview/list/map/photo/review flow', () => {
     await mount(); await click('Find nearby restaurants'); await click('View Venue 0 details')
     expect(document.querySelector('[aria-label="Call unavailable"]').disabled).toBe(true)
     expect(document.querySelector('[aria-label="Website unavailable"]').disabled).toBe(true)
-    await click('Send to a friend'); expect(document.body.textContent).toContain('Friends on Nom are coming soon.'); expect(document.querySelector('.restaurant-share-fallback')).toBeNull()
     await click('Share'); expect(document.querySelector('.restaurant-share-fallback input').value).toBe(window.location.href)
     await click('Show location map'); expect(document.body.textContent).toContain('Map is not configured locally.')
     expect(document.querySelector('script[data-nom-google-maps]')).toBeNull()

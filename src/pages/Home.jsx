@@ -9,7 +9,7 @@ import { useExperience } from '../context/Experience'
 import { collectionCountries, BOX_TARGET } from '../data/collectionDefinitions'
 import { countryProgressPresentation, pendingBox } from '../utils/experienceProgress'
 import { useActivity } from '../context/Activity'
-import { useDiscoverySession } from '../context/DiscoverySession'
+import { useAuth } from '../context/Auth'
 import { activityEntries } from '../utils/explorationSummary'
 import ActivityCard from '../components/experience/ActivityCard'
 import '../styles/hubs.css'
@@ -32,12 +32,9 @@ const QUICK_ACTIONS = [
 
 export default function Home() {
   const { state } = useExperience()
-  const activity = useActivity(), session = useDiscoverySession(), navigate = useNavigate(), [query, setQuery] = useState('')
+  const activity = useActivity(), auth = useAuth(), navigate = useNavigate(), [query, setQuery] = useState('')
   const recent = activityEntries(state.logs, activity.recentDishes).slice(0, 3)
-  const surprise = () => {
-    session.setFoodType('anything'); session.setAdventurousness('surprise-me'); session.setRegion('surprise-me')
-    navigate(session.flavors.length ? '/recommendations' : '/discover/flavor', { state: { surpriseMode: true } })
-  }
+  const surprise = () => navigate('/recommendations/surprise')
   const cambodia = collectionCountries[0]
   const box = pendingBox(state, cambodia.id)
   const remaining = BOX_TARGET - state.progress.cambodia.count
@@ -45,7 +42,7 @@ export default function Home() {
     <div className="home-page min-h-[1260px] w-full bg-surface pb-[calc(90px+env(safe-area-inset-bottom,0px))]">
       <header className="home-header">
         <StatusBar className="home-status" />
-        <form role="search" className="home-search" onSubmit={event => { event.preventDefault(); navigate(`/explore${query.trim() ? `?q=${encodeURIComponent(query.trim())}` : ''}`) }}><SearchField aria-label="Search for food" placeholder="Search for food..." value={query} onChange={event => setQuery(event.target.value)} action={<button type="submit" aria-label="Search dishes" className="flex min-h-[44px] min-w-[44px] items-center justify-center"><img src={chevronSm} alt="" /></button>} /></form>
+        <form role="search" className="home-search" onSubmit={event => { event.preventDefault(); navigate(`/explore${query.trim() ? `?q=${encodeURIComponent(query.trim())}` : ''}`) }}><SearchField aria-label="Search for food" placeholder="Search for food..." value={query} onChange={event => setQuery(event.target.value)} onClear={() => setQuery('')} action={<button type="submit" aria-label="Search dishes" className="flex min-h-[44px] min-w-[44px] items-center justify-center"><img src={chevronSm} alt="" /></button>} /></form>
         <div className="home-quick-actions bg-surface py-[16.017px]">
           <div className="grid grid-cols-4 gap-[6px] px-[16.017px]">
             {QUICK_ACTIONS.map(({ label, icon, to }) => {
@@ -60,6 +57,7 @@ export default function Home() {
         <div className="relative ml-[10.65px] flex flex-col gap-[4.695px] bg-surface p-[18.778px] text-text-primary">
           <h1 className="text-greeting break-words [text-shadow:0_3.549px_3.549px_rgb(0_0_0/0.25)]">Hello, {activity.displayName}!</h1>
           <p className="text-greeting-sub">Tell us what you are craving for.</p>
+          <p className="text-body-sm text-accessible-teal">{auth.isAuthenticated ? 'Nom account' : 'Guest · Local Explorer'}</p>
         </div>
       </header>
 
@@ -85,7 +83,7 @@ export default function Home() {
         <Image loading="lazy" src={mysteryBoxPromo} alt="" className="home-mystery-art" />
         <div className="home-mystery-copy">
           <p className="text-card-title tracking-meta text-strong-neutral">🇰🇭 {box ? 'Mystery Box Ready!' : `${remaining === 1 ? 'One Meal' : `${remaining} Meals`} Away!`}</p>
-          <p>{box ? 'Open your box to discover your collectible.' : 'Try another Cambodian dish to unlock your Mystery Box.'}</p>
+          <p>{box ? 'Open your box to discover your collectible.' : 'Verify Cambodian meals to earn your Mystery Box.'}</p>
         </div>
         <Link to={box ? `/boxes/${box.id}` : '/collections/cambodia'} state={{ returnTo: '/home' }} className="home-mystery-action">
           {box ? 'Open Box' : 'Explore Now'} <span aria-hidden="true">›</span>
@@ -104,7 +102,7 @@ export default function Home() {
         <h2 className="text-section-title font-semibold text-text-primary">Recently Explored</h2>
         <Link to="/history" className="home-section-link text-link tracking-meta text-accessible-teal">See all <img src={chevronSm} alt="" /></Link>
       </div>
-      <section aria-label="Recently explored previews" tabIndex={0} className="flex gap-[9.316px] overflow-x-auto px-[9.76px] pb-[6px]">
+      <section aria-label="Recently explored previews" tabIndex={0} className="flex items-start gap-[12px] overflow-x-auto px-[23.07px] pt-[8px] pb-[6px]">
         {recent.length ? recent.map(entry => <ActivityCard key={entry.id} entry={entry} returnTo="/home" compact />) : <Link className="hub-action px-4 text-body-sm" to="/explore">Explore a dish to start your history.</Link>}
       </section>
       <NomNavigation fixed />

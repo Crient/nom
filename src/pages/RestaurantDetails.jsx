@@ -4,6 +4,7 @@ import { dishes } from '../data/dishes'
 import { restaurantPresentation } from '../data/restaurantDetails'
 import { useRestaurant } from '../hooks/useRestaurant'
 import { useRecommendations } from '../hooks/useRecommendations'
+import { isRandomSurprise, surpriseQuery } from '../utils/surpriseStrategy'
 import { useExperience } from '../context/Experience'
 import { useFavorites } from '../context/Favorites'
 import { FlowHeader, FlowState } from '../components/experience/FlowLayout'
@@ -23,12 +24,16 @@ import share from '../assets/experience/share.svg'
 import ate from '../assets/experience/ate-here.webp'
 import AteHereSwipe from '../components/restaurants/AteHereSwipe'
 import LiveRestaurantDetails from '../components/restaurants/LiveRestaurantDetails'
+import { shareRestaurant } from '../data/restaurantActions'
+import { isSharedContext, sharedContextQuery } from '../data/sharedContent'
 
 export default function RestaurantDetails() {
   const { params: { dishId, restaurantId }, navigate, location, testMode } = useExperienceRoute()
   const dish = dishes.find(item => item.id === dishId)
   const recommendations = useRecommendations()
-  const ready = testMode || recommendations.ready
+  const surprise = isRandomSurprise(location.search)
+  const shared = isSharedContext(location.search)
+  const ready = testMode || recommendations.ready || ((surprise || shared) && !!dish)
   const data = useRestaurant(ready ? dish?.id : undefined, restaurantId)
   const { startVisit } = useExperience()
   const { isRestaurantFavorite, toggleRestaurantFavorite } = useFavorites()
@@ -36,8 +41,8 @@ export default function RestaurantDetails() {
   useEffect(() => {
     if (location.hash === '#popular-menu' && data.restaurant) document.getElementById('popular-menu')?.scrollIntoView?.({ block: 'start' })
   }, [location.hash, data.restaurant?.id])
-  const nearby = `/recommendations/${dishId}/nearby`
-  const returnState = { returnTo: location.state?.returnTo, view: location.state?.view ?? 'list', selectedRestaurantId: restaurantId }
+  const nearby = `/recommendations/${dishId}/nearby${shared ? sharedContextQuery : surprise ? surpriseQuery : ''}`
+  const returnState = { returnTo: location.state?.returnTo, view: location.state?.view ?? 'list', selectedRestaurantId: restaurantId, ...(shared ? { shared: true } : {}), ...(surprise ? { surprise: true } : {}) }
   const back = () => navigate(dish ? nearby : '/home', { state: returnState })
   if (!dish) return <FlowState title="Dish not found" onBack={() => navigate('/home')}>Choose a dish before opening a restaurant.</FlowState>
   if (!ready) return <Navigate to="/discover/food-type" replace state={{ ...location.state, discoveryReturnTo: location.pathname }} />
@@ -51,22 +56,19 @@ export default function RestaurantDetails() {
   const preview = text => { setMessage(text); setModal('preview') }
   const shareLink = async () => {
     if (testMode) { preview('Sharing is simulated in test mode.'); return }
-    try {
-      if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable')
-      await navigator.clipboard.writeText(window.location.href)
-      preview('Restaurant link copied. You can paste it into a message to a friend.')
-    } catch { preview(`Share this restaurant by copying the page address: ${window.location.href}`) }
+    const notice = await shareRestaurant({ restaurant })
+    if (notice.message) preview(notice.manualUrl ? `${notice.message} ${notice.manualUrl}` : notice.message)
   }
   const actions = [
     { label: 'Directions', icon: directions, action: () => navigate(nearby, { state: { ...returnState, view: 'map' } }) },
     { label: 'Call', icon: phone, action: () => preview('Phone numbers are not connected in this development preview.') },
     { label: 'Website', icon: website, action: () => preview('Restaurant websites are not connected in this development preview.') },
-    { label: 'Send to Friend', icon: friends, action: () => preview('Friends on Nom are coming soon.') },
+    { label: 'Send to Friend', icon: friends, action: () => preview('In-app sharing is unavailable in the isolated restaurant preview. Open a real restaurant to send it to a Nom friend.') },
     { label: 'Share', icon: share, action: shareLink },
   ]
   return <div className="flow-page restaurant-details-page">
     <FlowHeader onBack={back} onInfo={() => preview('Restaurant details, menus, ratings, and opening hours are Figma development examples.')}>
-      <HeartButton dishName={restaurant.name} liked={isRestaurantFavorite(restaurant.id)} onToggle={() => toggleRestaurantFavorite(restaurant.id)} size={37} className="flow-header-favorite right-[49px]" />
+      <HeartButton dishName={restaurant.name} liked={isRestaurantFavorite(restaurant.id)} onToggle={() => toggleRestaurantFavorite(restaurant.id)} size={27.75} className="flow-header-favorite right-[49px]" />
     </FlowHeader>
     <RestaurantPhoto src={presentation.image} alt={restaurant.name} cropped={presentation.imageCrop} />
     <div className="restaurant-details-copy">

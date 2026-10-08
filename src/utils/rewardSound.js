@@ -1,6 +1,6 @@
 const SOUND_KEY = 'nom.reward-sound.v1'
 export function rewardSoundEnabled() {
-  try { return globalThis.localStorage?.getItem(SOUND_KEY) === 'on' } catch { return false }
+  try { return globalThis.localStorage?.getItem(SOUND_KEY) !== 'off' } catch { return true }
 }
 export function saveRewardSoundPreference(enabled) {
   try { globalThis.localStorage?.setItem(SOUND_KEY, enabled ? 'on' : 'off') } catch { /* Sound stays optional. */ }
@@ -22,7 +22,7 @@ export const REWARD_SOUND_PROFILES = {
     [2093, .68, 1.05, .014, 'sine'], [3136, .82, .9, .008, 'sine']],
 }
 
-/** Call play only from an explicit Open interaction. All boxes share the mute preference. */
+/** Play only from Open, replay, or unmute gestures. All boxes share the mute preference. */
 export function createRewardSound({ getAudioContext = () => globalThis.AudioContext ?? globalThis.webkitAudioContext } = {}) {
   let context, nodes = [], timer, generation = 0
   const stop = () => {
@@ -36,7 +36,7 @@ export function createRewardSound({ getAudioContext = () => globalThis.AudioCont
   }
   return {
     stop,
-    play({ enabled = false, reducedMotion = false, delayMs = 950, rarity = 'common' } = {}) {
+    play({ enabled = false, reducedMotion = false, delayMs = 0, rarity = 'common', onUnavailable } = {}) {
       if (!enabled || reducedMotion) return false
       try {
         const Audio = getAudioContext()
@@ -44,7 +44,7 @@ export function createRewardSound({ getAudioContext = () => globalThis.AudioCont
         stop(); context ??= new Audio()
         const playing = generation
         // Resume synchronously inside the user gesture, before route navigation.
-        Promise.resolve(context.resume()).catch(() => { if (generation === playing) stop() })
+        Promise.resolve(context.resume()).catch(() => { if (generation === playing) { stop(); onUnavailable?.() } })
         const start = context.currentTime + delayMs / 1000
         const master = context.createGain(); master.gain.value = .3; master.connect(context.destination); nodes.push(master)
         const profile = Object.hasOwn(REWARD_SOUND_PROFILES, rarity) ? REWARD_SOUND_PROFILES[rarity] : REWARD_SOUND_PROFILES.common

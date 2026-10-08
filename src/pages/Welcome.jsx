@@ -44,16 +44,18 @@ export default function Welcome() {
         Figure out your next bite
       </p>
 
-      <div className="absolute top-[594.28px] left-0 flex h-[361.111px] w-full flex-col gap-[7.39px] rounded-sheet bg-canvas-cream px-sheet-gutter pt-[50.1px] shadow-sheet">
+      <div className="absolute top-[594.28px] left-0 flex h-[361.111px] w-full flex-col gap-[7.39px] rounded-sheet bg-canvas-cream px-sheet-gutter pt-[22px] shadow-sheet">
         <Button size="cta" variant="primary" onClick={() => navigate('/home')}>
-          Get Started
+          {auth.isAuthenticated ? 'Continue to Home' : 'Continue as Guest'}
           <img src={arrowRight} alt="" className="size-[30.634px]" />
         </Button>
+        <p className="text-center text-[13px] leading-[18px] text-text-secondary">{auth.isAuthenticated ? 'Your synced journey.' : 'Stay on this device.'}</p>
 
         <Button size="cta" variant="secondary" onClick={() => navigate(auth.isAuthenticated ? '/profile' : '/account')}>
-          {auth.isAuthenticated ? 'Your Profile' : 'Sign in to sync'}
+          {auth.isAuthenticated ? 'Your Profile' : 'Sign in or create account'}
           <img src={profileIcon} alt="" className="size-[25.352px]" />
         </Button>
+        {!auth.isAuthenticated && <p className="text-center text-[13px] leading-[18px] text-text-secondary">Sync across devices.</p>}
       </div>
 
       <NomNavigation

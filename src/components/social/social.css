@@ -1,0 +1,22 @@
+.social-sheet { display: grid; gap: 14px; max-height: min(85dvh,650px); overflow-y: auto; overscroll-behavior: contain; }
+.social-sheet h2 { font-size: var(--text-title); font-weight: 700; }
+.social-sheet form, .social-identity, .social-search { display: grid; gap: 12px; min-width: 0; }
+.social-sheet label, .social-identity label, .social-search label { display: grid; gap: 6px; font-size: var(--text-body-sm); }
+.social-sheet input, .social-sheet textarea, .social-identity input, .social-search input { width: 100%; min-width: 0; min-height: 44px; padding: 10px 12px; border: 1px solid var(--color-text-muted); border-radius: var(--radius-md); background: var(--color-surface); }
+.social-person { display: flex; align-items: center; gap: 10px; min-height: 52px; min-width: 0; text-align: left; }
+.social-person > span:not(.social-avatar) { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.social-person strong, .social-person small { display: block; }
+.social-person small { color: var(--color-text-secondary); font-size: 12px; }
+.social-avatar { flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: var(--radius-full); background: var(--color-secondary-fill); color: var(--color-accessible-teal); font-weight: 700; }
+.social-picker-list { display: grid; gap: 8px; max-height: 230px; overflow-y: auto; }
+.social-picker-list button { padding: 8px; border: 1px solid var(--color-progress-track); border-radius: var(--radius-md); }
+.social-picker-list button[aria-pressed=true] { border-color: var(--color-accessible-teal); background: var(--color-soft-teal-2); }
+.social-list { display: grid; gap: 12px; min-width: 0; }
+.social-row-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.social-row-actions button { min-height: 44px; padding: 6px 10px; border-radius: var(--radius-md); color: var(--color-accessible-teal); background: var(--color-secondary-fill); }
+.social-share-card { display: grid; gap: 10px; border: 1px solid var(--color-progress-track); border-radius: var(--radius-md); padding: 12px; overflow-wrap: anywhere; }
+.social-share-card[data-unread=true] { border-color: var(--color-primary-teal); background: var(--color-soft-teal-2); }
+.social-share-card blockquote { font-size: var(--text-body-sm); white-space: pre-wrap; }
+.social-share-card time { font-size: 12px; color: var(--color-text-secondary); }
+.social-send-options { display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.social-badge { display: inline-block; border-radius: var(--radius-full); background: var(--color-secondary-fill); padding: 2px 8px; font-size: 12px; color: var(--color-accessible-teal); }

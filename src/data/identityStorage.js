@@ -1,10 +1,28 @@
 import { LEGACY_STORAGE_KEYS, STORAGE_KEYS, readLocalState } from './localPersistence'
-import { EMPTY_ACTIVITY, EMPTY_DISCOVERY, normalizeActivity, normalizeDiscovery, normalizeExperience, normalizeFavorites } from './persistedState'
+import { EMPTY_ACTIVITY, EMPTY_DISCOVERY, normalizeActivity, normalizeDiscovery, normalizeExperience, normalizeFavorites, serializeExperience } from './persistedState'
 import { createExperienceState } from './experienceState'
 
 export function identityCacheKey(userId) {
   if (!/^[a-zA-Z0-9-]{1,100}$/.test(userId)) throw new Error('Invalid account identity')
-  return `nom.v2.user.${userId}.cache`
+  return `nom.v3.user.${userId}.cache`
+}
+
+/** Copy only this account's previous cache/journal. Originals remain recoverable;
+ * acknowledgements take precedence and newer signed records are never replaced.
+ * Repeating this also adopts journal entries written by an older open tab. */
+export function migrateVerificationAccountStorage(userId) {
+  const current = identityCacheKey(userId), previous = current.replace('nom.v3.', 'nom.v2.')
+  try {
+    const storage = globalThis.localStorage
+    if (!storage) return false
+    const keys = Array.from({ length: storage.length }, (_, i) => storage.key(i))
+      .filter(key => key === previous || key?.startsWith(`${previous}.outbox.`) && !key.includes('.recovery.'))
+    for (const oldKey of keys) {
+      const key = current + oldKey.slice(previous.length), original = storage.getItem(oldKey)
+      if (original !== null && storage.getItem(key) === null) storage.setItem(key, original)
+    }
+    return true
+  } catch { return false }
 }
 
 /** Copy once, retaining original bytes. Partial copies safely resume without
@@ -13,6 +31,8 @@ export function migrateLegacyGuestStorage() {
   try {
     const storage = globalThis.localStorage
     if (!storage) return false
+    const oldExperience = storage.getItem('nom.v2.guest.experience')
+    if (storage.getItem(STORAGE_KEYS.experience) === null && oldExperience !== null) storage.setItem(STORAGE_KEYS.experience, oldExperience)
     if (storage.getItem('nom.v2.guest.legacy-migrated') === 'true') return true
     for (const [section, oldKey] of Object.entries(LEGACY_STORAGE_KEYS)) {
       const current = STORAGE_KEYS[section], original = storage.getItem(oldKey)
@@ -29,7 +49,13 @@ export function readGuestSection(section, normalize, fallback) {
   try {
     if (globalThis.localStorage?.getItem(key) === null && globalThis.localStorage?.getItem(LEGACY_STORAGE_KEYS[section]) !== null) key = LEGACY_STORAGE_KEYS[section]
   } catch { /* Normal reader handles disabled storage. */ }
-  return readLocalState(key, normalize, fallback)
+  const result = readLocalState(key, normalize, fallback)
+  if (section !== 'experience') return result
+  // History is append-only. Adopt late legacy Guest logs, but the new signed
+  // record wins for an existing ID. Keep both source snapshots intact.
+  const legacy = readLocalState('nom.v2.guest.experience', normalizeExperience, createExperienceState)
+  const ids = new Set(result.logs.map(log => log.id)), additions = legacy.logs.filter(log => !ids.has(log.id))
+  return additions.length ? normalizeExperience({ ...serializeExperience(result), logs: [...result.logs, ...additions] }) : result
 }
 
 export function readGuestJourney() {
@@ -62,9 +88,10 @@ export function guestJourneyFingerprint(data) {
 
 export function clearAccountCache(userId) {
   const key = identityCacheKey(userId)
+  const keys = [key, key.replace('nom.v3.', 'nom.v2.')]
   try {
     const storage = globalThis.localStorage
-    for (const item of Object.keys(storage ?? {})) if (item === key || item.startsWith(`${key}.recovery.`) || item.startsWith(`${key}.outbox.`)) storage.removeItem(item)
+    for (const item of Object.keys(storage ?? {})) if (keys.some(prefix => item === prefix || item.startsWith(`${prefix}.recovery.`) || item.startsWith(`${prefix}.outbox.`))) storage.removeItem(item)
     return true
   } catch { return false }
 }

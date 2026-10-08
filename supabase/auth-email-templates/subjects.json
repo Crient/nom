@@ -1,0 +1,15 @@
+{
+  "confirmation": "Confirm your Nom account",
+  "recovery": "Reset your Nom password",
+  "email-change": "Confirm your Nom email change",
+  "invite": "Your invitation to Nom",
+  "magic-link": "Sign in to your Nom account",
+  "reauthentication": "Confirm your Nom account action",
+  "password-changed-notification": "Your Nom password was changed",
+  "email-changed-notification": "Your Nom email address was changed",
+  "phone-changed-notification": "Your Nom phone number was changed",
+  "identity-linked-notification": "A sign-in method was added to Nom",
+  "identity-unlinked-notification": "A sign-in method was removed from Nom",
+  "mfa-factor-enrolled-notification": "A verification method was added to Nom",
+  "mfa-factor-unenrolled-notification": "A verification method was removed from Nom"
+}

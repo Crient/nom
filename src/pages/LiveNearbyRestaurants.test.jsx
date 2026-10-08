@@ -211,6 +211,19 @@ describe('live nearby restaurant UI with mocked transport', () => {
     expect(document.body.textContent).not.toMatch(/Popular dishes here|The Lort cha is a must try|Phone numbers|\$\$/)
     expect(searchCalls()).toHaveLength(1)
   })
+  it('shrinks only the detail heart glyph while preserving its accessible target and toggle', async () => {
+    await mount(); await findAndOpenList(); await click('View Test restaurant 1 details')
+    const heart = document.querySelector('.flow-header-favorite'), glyph = heart.querySelector('svg')
+    expect(heart.className).toContain('size-[44px]')
+    expect(glyph.style.width).toBe('27.75px'); expect(glyph.style.height).toBe('27.75px')
+    expect(heart.getAttribute('aria-pressed')).toBe('false')
+    expect(glyph.querySelector('path').getAttribute('fill')).toBe('none')
+    await act(() => heart.click())
+    expect(heart.getAttribute('aria-pressed')).toBe('true')
+    expect(glyph.querySelector('path').getAttribute('fill')).toBe('var(--color-favorite)')
+    expect(document.querySelector('.flow-more')).toBeTruthy()
+    expect(searchCalls()).toHaveLength(1)
+  })
   it('retains real Place IDs in favorites across a refresh without persisting names or adding requests', async () => {
     await mount(); await findAndOpenList(); await click('Save Test restaurant 1 to favorites')
     expect(JSON.parse(localStorage.getItem(STORAGE_KEYS.favorites)).data.restaurantIds).toEqual(['google:test-place-1'])
@@ -241,7 +254,7 @@ describe('live nearby restaurant UI with mocked transport', () => {
     await mount(); await findAndOpenList(); await click('View Test restaurant 1 details'); await confirmAteHere()
     expect(document.querySelector('.verify-map')).toBeNull()
     expect(document.body.textContent).not.toContain('You are near Test restaurant 1')
-    await click('Couldn’t verify automatically?'); await click('Log without verificationSave to history without adding progress')
+    await click('Couldn’t verify automatically?'); await click('Log without verificationSave to history without adding progress'); await click('Save without verification')
     expect(document.querySelector('img[alt="Lort Cha — Nom dish image"]')).toBeTruthy()
     await click('Loved it!'); await click('Continue')
     expect(document.body.textContent).toContain('Experience Logged!')
@@ -264,7 +277,7 @@ describe('live nearby restaurant UI with mocked transport', () => {
   })
   it('keeps a logged Place ID usable after the 24-hour restaurant metadata expires', async () => {
     await mount(); await findAndOpenList(); await click('View Test restaurant 1 details'); await confirmAteHere()
-    await click('Couldn’t verify automatically?'); await click('Log without verificationSave to history without adding progress')
+    await click('Couldn’t verify automatically?'); await click('Log without verificationSave to history without adding progress'); await click('Save without verification')
     await click('Loved it!'); await click('Continue')
     const metadataKey = 'nom.nearby.place-metadata.v1'
     const metadata = JSON.parse(localStorage.getItem(metadataKey))

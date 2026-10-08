@@ -1,5 +1,63 @@
 # Nom Supabase/account live validation
 
+## Current Production deployment and validation — October 6, 2026
+
+**Deployment PASS. Focused hosted validation: 13 PASS, 0 application FAIL, 3 BLOCKED interactive flows.** This section supersedes the preparation/blocker states below, which are retained as historical evidence.
+
+### Release identity
+
+- Commit: **`f2d726662f44b54cf7204cb746dc742417579f3d`** — `feat: add Supabase accounts auth and cross-device sync`.
+- Branch/repository: **`main`**, **`Crient/nom`**. GitHub push succeeded (`c7b834c..f2d7266 main -> main`); post-validation `git ls-remote origin refs/heads/main` matches the full commit.
+- Automatic Vercel **Production** deployment: **`dpl_Bz5M8S7aH1XCH7HjkWbrptJB6xa9`**, **READY**. Deployment metadata and lookup by the production domain both match the full new Git commit.
+- Production: **https://nom-coral.vercel.app**; unique deployment: **https://nom-qtnhzjt4d-lengs-projects-0ab9a61c.vercel.app**. The production alias is assigned to this deployment.
+- Supabase remains **Nom — `iwamwxsosrhxsdcsuoiu`**. No schema/migration, Auth/SMTP/provider setting, environment configuration, or other project was changed during this release validation.
+- The approved checkpoint contains exactly **84 files**; no real `.env`/`.env.local`, privileged keys, Google OAuth credentials, screenshots, browser artifacts, or temporary validation scripts. Existing excluded/unrelated files remain preserved.
+
+### Focused hosted results
+
+| Production flow | Status | Evidence and limits |
+|---|---|---|
+| Homepage / welcome / Home | PASS | HTTPS `/` returns 200 and renders Welcome; Get Started opens Home. |
+| Guest discovery / 201-dish catalog / recommendations | PASS | Explore rendered all **201** dish cards; four discovery steps produced ranked recommendations. Guest favorite and recent view persisted. Existing ranking/catalog/Places source was preserved. |
+| Email/password sign-in | PASS | Disposable confirmed email/password account authenticated through the deployed Account UI against real Nom Auth. Fixtures were provisioned without sending emails; this does not prove signup confirmation completion. |
+| Guest → Merge & Sync | PASS | Explicit consent synchronized Guest favorite, recent history, and profile; the harness waited for the merge to finish before navigating. |
+| Account hydration / profile / favorites / history sync | PASS | Production loaded the real repository and all seven table snapshots. Profile edit synced; an independently authenticated browser hydrated the same saved dish and recent view. Existing live validation remains authoritative for restaurant favorites, meal logs, opened boxes, collectible favorites, Experience replay, offline retry/idempotency, and all seven-table RLS. Those flows were not repeated. |
+| Cross-device behavior | PASS | Two isolated browser contexts signed into the same disposable account independently; profile/favorite/history hydration matched. This is a browser-context test, not a physical second device. |
+| Session restoration after reload | PASS | Full reload restored authenticated identity, Synced status, and saved profile. |
+| Signout / signin restoration | PASS | Signout restored the original Guest profile; signin restored account data. |
+| Use account data only | PASS | Fresh deletion browser explicitly selected account-only before deleting its disposable account; Guest was preserved. Earlier comprehensive identity-isolation results remain valid. |
+| Google OAuth initiation | PASS | Deployed Continue with Google generated PKCE authorization with the production callback; real Nom Supabase redirected to Google login. Tooling stopped at that interactive boundary. |
+| Google login / consent / authenticated callback | BLOCKED | Requires owner interaction with the configured Google test account. Connected in-app browser returned no available browsers. No Google credentials were requested or exposed. |
+| Confirmation email delivery | PASS | Prior real controlled-mailbox receipt remains authoritative; no additional confirmation email sent. |
+| `/auth/callback` route and safe error handling | PASS | Missing/invalid-code requests mounted the deployed handler and stayed on `/auth/callback`. No wildcard Home fallback. Source intentionally navigates to the remembered return route (default `/home`) only after successful code exchange. |
+| Successful emailed confirmation exchange | BLOCKED | Earlier delivered link belonged to the already-deleted test user and its verifier is unavailable. A fresh controlled-mailbox signup/link opened in its originating browser is needed to prove valid production PKCE completion. Home alone is not confirmation evidence. |
+| Password reset email delivery | PASS | Prior real controlled-mailbox receipt remains authoritative; no additional recovery email sent. |
+| `/account/reset-password` route and safe error handling | PASS | Missing/invalid-code requests remained on the explicit reset route and showed reset-specific errors. The old-production fallback to Home is resolved. |
+| Valid emailed recovery / new password submission | BLOCKED | Requires a fresh recovery link for an existing controlled account and the originating browser's PKCE verifier. No valid recovery code or completed password change was inferred from invalid-link testing or ordinary sign-in. |
+| `/api/account` availability / server credential | PASS | GET returned 200 with deletion capability enabled and `Cache-Control: no-store`. Successful real admin deletion proves the Production-only server secret is functional. No secret was retrieved/decrypted into test tooling. |
+| Account deletion protection | PASS | Anonymous/malformed-token DELETE returned 401; unsupported POST returned 405. Authenticated disposable B supplied A as query/body target; only B was deleted and A's profile survived. |
+| Account deletion UI / cache / Guest restoration | PASS | Freshly authenticated disposable A typed DELETE, received successful hosted deletion, had its account cache removed, and returned to its preserved Guest Home. No personal account was touched. |
+| Client/source/asset/response credential boundary | PASS | Final precommit source/emitted-client scanner passed. **122** deployed JavaScript assets contained no detected Supabase secret, Google OAuth secret, privileged service-role JWT, private key, or server-secret variable reference. Account API exposes capability/errors/deletion acknowledgment only; Auth tokens remain ordinary private session credentials. No environment values or credentials were printed. |
+| Browser / Vercel runtime | PASS | Focused browser checks observed no page exceptions or same-origin 5xx. After deletion validation, Vercel runtime-error clusters returned none for the last hour; deployment-scoped Production error/fatal log counts returned none for the last 30 minutes. This is a short observation window, not a long-term availability guarantee. |
+| Google Places / Guest / QA preservation | PASS | No implementation change during deployment validation and zero Places/Maps requests from these focused account/discovery checks. Production QA isolation and broader Guest/Places behavior remain covered by the authoritative baseline; no playground/demo data was synced. |
+| Disposable fixture cleanup | PASS | Read-only verification after hosted deletion: **0 disposable Auth users, 0 total Auth users, 0 Auth identities/sessions/refresh tokens, and 0 rows in each of the seven account tables**. Private fixture credentials and temporary production harness scripts were removed; sanitized result evidence contains no credentials. |
+
+### Validation scope and remaining manual work
+
+The validated source had not materially changed before commit. The final lightweight credential/artifact/whitespace check passed; full local/RLS suites were deliberately not replayed. Authoritative baseline: **971/971 Vitest tests across 58 files**, **16 + 40 Python checks**, **production build**, **201-dish catalog**, **source/client secret scanner**, **package/dependency checks**, and **npm audit with 0 vulnerabilities**, all PASS. Vercel's automatic Production build completed READY. No application fix was needed after release.
+
+Initial harness assertions assumed `/` was Home rather than Welcome, navigated before Guest merge completion, and used a test SDK's default global logout before UI deletion. Those test-only assumptions were corrected; only unresolved checks were rerun. The deployed application was not changed, and no second deployment was created.
+
+The remaining manual validation is:
+
+1. In the production Account screen, use **Continue with Google**, complete Google login/consent with the configured test account, and verify authenticated return/session. Google initiation and provider redirect already passed.
+2. For confirmation, create a fresh disposable account tied to the controlled mailbox `crient01@gmail.com` from Production, then open its confirmation link in that **same originating browser**. Validate code completion and authenticated return (default Home). The old delivered link is no longer suitable.
+3. Once a controlled account exists, request one password reset from Production, open the emailed link in that **same originating browser**, verify it stays on the reset route with the password form, submit a new password, and verify signin. Clean up that disposable account afterward. Default email delivery remains rate-limited; do not repeatedly resend links.
+
+**Hardening follow-up:** rotate the Google OAuth client secret previously exposed in a setup screenshot, with separate explicit approval; no automatic rotation occurred. Custom SMTP remains disabled and should be considered before broad public signup/email testing. Existing inspected `rls_auto_enable()` warnings remain unchanged; no new Nom data-access path was found.
+
+This post-deployment report is updated in the local working tree after the approved release commit. It has not been pushed separately, which would trigger another Production deployment. The deployed source is the exact approved checkpoint above.
+
 ## Production release authorization — October 6, 2026
 
 The owner explicitly approved the prepared 84-file checkpoint commit, push to **main**, and the resulting automatic **Nom Production deployment**. The owner confirmed GitHub `Crient/nom`, Production Branch `main`, automatic Production deployment on every main push, automatic Preview deployments for other unassigned branches, and production domain `https://nom-coral.vercel.app`. This resolves the earlier Git-control inspection blocker. No additional deployment/project-setting mutation is authorized or needed.
@@ -8,11 +66,11 @@ Connected environment metadata, with decryption disabled and values withheld, co
 
 Immediately before commit, all **84 files matched their recorded predeployment hashes**; branch/HEAD/index were unchanged. A lightweight candidate credential/artifact scan, source/emitted-bundle account scanner, env-placeholder check, and whitespace check passed. No actual env files, secret keys, OAuth credentials, screenshots, browser state, or `/private/tmp` scripts are selected. No full test/RLS audit was repeated because the validated source had not changed. Only documentation is updated with the newly confirmed authorization/configuration before committing. Full final baseline remains **971 tests PASS, build PASS, catalog 201 PASS, npm audit 0 vulnerabilities**.
 
-Production-facing results will be added after the automatic deployment is monitored and validated. No hosted PASS is inferred from the owner's configuration confirmation. Google client-secret rotation remains a separate explicitly approved hardening action; no rotation was performed.
+Production-facing results are recorded above after the automatic deployment was monitored and validated. No hosted PASS is inferred from the owner's configuration confirmation. Google client-secret rotation requires separate explicit approval as a hardening action; no rotation was performed.
 
-## Current production preparation — October 6, 2026 (checkpoint ready; dashboard/approval blocked)
+## Historical production preparation — October 6, 2026 (before release authorization)
 
-This section is the current handoff. Earlier live validation is authoritative and was not replayed. **Local implementation/security/final validation PASS; account production build NOT YET DEPLOYED.** No application change was needed in this preparation. The setup guide was corrected to reflect the completed migration, public environments, configured Auth/Google, successful delivery, and actual deployment boundaries.
+This section records the pre-authorization handoff; its deployment/blocker states are superseded by the current Production results above. Earlier live validation was authoritative and was not replayed. **At that handoff, local implementation/security/final validation PASS; account production build NOT YET DEPLOYED.** No application change was needed in that preparation. The setup guide was corrected to reflect the completed migration, public environments, configured Auth/Google, successful delivery, and actual deployment boundaries.
 
 ### Git and checkpoint scope
 

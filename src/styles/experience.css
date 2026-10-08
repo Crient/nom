@@ -3,10 +3,12 @@
 .flow-page { position: relative; display: flex; flex-direction: column; width: 100%; min-height: 961px; overflow: hidden; background: var(--color-background); }
 .flow-header { position: relative; z-index: 2; height: calc(var(--nom-header-inset) + 52px); flex: none; }
 .flow-back, .flow-more { position: absolute; top: calc(var(--nom-header-inset) + 4px); width: 44px; height: 44px; display: grid; place-items: center; }
-.flow-back { left: 13px; }
+.flow-back { left: 14px; }
 .flow-back img { width: 15px; height: 26px; transform: rotate(180deg); }
 .flow-more { right: 14px; }
 .flow-more img { width: 26px; height: 26px; }
+.flow-header .flow-header-favorite { right: 62px; display: grid; place-items: center; }
+.flow-header .flow-header-favorite svg { position: static; display: block; }
 .flow-title { text-align: center; padding: 0 24px; }
 .flow-title h1, .logged-copy h1 { font-size: 28px; line-height: 27px; font-weight: 700; }
 .flow-title p { margin-top: 3px; font-size: 20px; line-height: 27px; }
@@ -49,13 +51,36 @@
 .restaurant-menu button { width: 100%; text-align: left; }
 
 .verify-map { width: 251px; height: 251px; border-radius: 50%; object-fit: cover; margin: 11px auto 16px; }
-.verify-checks { display: grid; gap: 12px; margin: 0 26px; }
-.verify-check { min-height: 80px; border-radius: 10px; box-shadow: var(--shadow-card); display: flex; align-items: center; gap: 11px; padding: 10px 11px; background: var(--color-secondary-fill); }
+.visit-map { width: min(251px, calc(100% - 52px)); margin: 8px auto 4px; text-align: center; flex: none; }
+.visit-map-frame { position: relative; width: 100%; aspect-ratio: 251/299; border-radius: 16px; overflow: hidden; }
+.visit-map-frame:not([data-map-status=ready]) .visit-map-canvas { visibility: hidden; }
+.visit-map-canvas { width: 100%; height: 100%; }
+.visit-map-status { position: absolute; inset: 0; background: var(--color-soft-teal-2); display: grid; place-content: center; gap: 8px; padding: 30px; font-size: 13px; line-height: 18px; }
+.visit-map-status button, .visit-map-caption > a { min-height: 44px; display: grid; place-items: center; color: var(--color-accessible-teal); text-decoration: underline; font-size: 13px; }
+.visit-map-caption { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0 8px; }
+.visit-map-caption .places-attribution { min-width: 0; padding: 0; gap: 4px; justify-content: center; overflow-wrap: anywhere; }
+.visit-map-user-dot { width: 18px; height: 18px; border: 3px solid var(--color-surface); border-radius: 50%; background: var(--color-accessible-teal); box-shadow: var(--shadow-card); }
+.verify-demo { margin: 8px 26px; text-align: center; }
+.verify-check-pending > span { background: var(--color-primary-teal); }
+.verify-check-error > span { background: var(--color-secondary-fill); }
+.visit-fallback-flow { margin: 12px 26px; font-size: 14px; line-height: 20px; }
+.visit-fallback-flow h2 { font-size: 17px; font-weight: 700; }
+.visit-fallback-flow .visit-receipt, .visit-fallback-flow .visit-qr { margin: 12px 0; }
+.verify-page { min-height: 100dvh; }
+.verify-page .flow-cta { margin-bottom: max(16px,env(safe-area-inset-bottom,0px)); }
+.verify-page .flow-cta > button { min-height: 60px; font-size: 23px; }
+.verify-page .flow-privacy { min-height: 54px; margin-top: 4px; padding: 8px 12px; }
+.verify-page .flow-privacy > img { width: 30px; height: 30px; }
+.verify-page .flow-privacy p { line-height: 18px; }
+.verify-checks { display: grid; gap: 6px; margin: 0 26px; }
+.verify-check { min-height: 72px; border-radius: 10px; box-shadow: var(--shadow-card); display: flex; align-items: center; gap: 10px; padding: 8px 11px; background: var(--color-secondary-fill); }
 .verify-check-green { background: #e1fff0; }
-.verify-check > span { display: grid; place-items: center; width: 58px; height: 58px; border-radius: 50%; background: var(--color-primary-teal); flex: none; }
+.verify-check > span { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: var(--color-primary-teal); flex: none; }
 .verify-check-green > span { background: #39d999; }
 .verify-check > span img { width: 30px; height: 30px; }
 .verify-check strong { font-size: 17px; line-height: 22px; display: block; }
+.verify-check h2 { font-size: 17px; line-height: 22px; font-weight: 700; }
+.verify-check > div { min-width: 0; overflow-wrap: anywhere; }
 .verify-check p { margin-top: 3px; font-size: 15px; line-height: 20px; }
 .verify-alternative { min-height: 44px; margin: 3px 26px 0; font-size: 15px; text-decoration: underline; color: var(--color-accessible-teal); }
 .feedback-photo { height: auto; aspect-ratio: 352/236; margin: 21px 10% 15px; }
@@ -78,15 +103,17 @@
 
 .logged-background { position: absolute; top: 69px; left: 0; width: 100%; height: 500px; overflow: hidden; pointer-events: none; }
 .logged-background img { width: 100%; height: 156.6%; max-width: none; }
-.logged-illustration { position: absolute; top: 87px; left: -1.8%; width: 103.5%; height: 302px; overflow: hidden; pointer-events: none; }
+.logged-illustration { position: relative; flex: none; margin-top: 35px; left: -1.8%; width: 103.5%; height: clamp(240px,68.6cqw,302px); overflow: hidden; pointer-events: none; }
 .logged-illustration img { position: absolute; width: 100%; height: 193.2%; top: -21.9%; max-width: none; }
-.logged-copy { position: relative; margin-top: 289px; text-align: center; padding: 0 26px; }
+.logged-copy { position: relative; margin-top: 24px; text-align: center; padding: 0 26px; overflow-wrap: anywhere; }
 .logged-copy p { margin-top: 12px; font-size: 15px; line-height: 20px; }
 .logged-progress { position: relative; margin: 17px 25px 0; }
 .logged-unlocked, .logged-note { position: relative; margin: 18px 26px 0; min-height: 77px; border-radius: 10px; background: var(--color-secondary-fill); padding: 8px 12px; display: flex; align-items: center; gap: 10px; text-align: left; }
 .logged-unlocked > img { width: 75px; height: 64px; object-fit: contain; }
 .logged-unlocked strong { display: block; font-size: 17px; line-height: 22px; }
 .logged-unlocked small { display: block; font-size: 12px; line-height: 15px; margin-top: 5px; }
+.logged-note strong { display: block; font-size: 17px; line-height: 22px; }
+.logged-note p { font-size: 15px; line-height: 20px; }
 .logged-demo { position: relative; margin: 12px 26px; text-align: center; }
 
 .collection-background { isolation: isolate; overflow: visible; padding-bottom: env(safe-area-inset-bottom,0px); background: var(--collection-foundation,var(--color-background)); }
@@ -193,11 +220,15 @@
 .box-collection.is-visible { opacity: 1; visibility: visible; }
 
 .collections-page > h1 { position: relative; margin: 26px 18px 0; font-size: 30px; line-height: 36px; font-weight: 700; }
-.collection-wave { position: absolute; top: 131px; left: -1.5%; width: 103%; height: 223px; max-width: none; }
+.collection-banner { position: relative; isolation: isolate; flex: none; width: 103.4%; margin-left: -1.7%; height: 146px; }
+/* The existing SVG's lower notch reaches its tip at x=196.986 in its
+   454-unit viewBox (43.3889%), rather than at the canvas midpoint. Anchor
+   that point to the banner center and let the sides bleed past its edges. */
+.collection-wave { --collection-wave-anchor: .433889; position: absolute; z-index: 1; pointer-events: none; top: -30px; left: 50%; width: calc(50% / var(--collection-wave-anchor)); height: 223px; max-width: none; transform: translateX(calc(-100% * var(--collection-wave-anchor))); }
 .collections-page > h1 span { color: var(--color-accessible-teal); text-decoration: underline; text-decoration-color: var(--color-teal-highlight); text-underline-offset: 5px; }
 .collection-filters { display: flex; gap: 12px; padding: 0 25px; margin-top: 3px; position: relative; z-index: 1; }
 .collection-filters button { min-height: 44px; font-size: 13px; line-height: 18px; flex: 1; white-space: nowrap; }
-.collection-world { width: 103.4%; max-width: none; margin-left: -1.7%; height: 146px; object-fit: cover; margin-top: 0; }
+.collection-world { width: 100%; max-width: none; height: 146px; object-fit: cover; }
 .collection-countries { margin: 29px 16px 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 9px; }
 .collection-country { position: relative; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; padding: 0; height: 140px; border-radius: 21px; box-shadow: var(--shadow-raised); text-align: left; background: var(--color-surface); }
 .collection-country-art { display: block; flex: none; height: 77px; border-radius: 21px 21px 0 0; overflow: hidden; isolation: isolate; }
@@ -266,7 +297,18 @@ ul.edge-body { text-align: left; padding-left: 19px; list-style: disc; }
 .edge-options img { width: 44px; height: 44px; object-fit: contain; flex: none; }
 .edge-options strong { display: block; font-size: 15px; line-height: 20px; color: var(--color-accessible-teal); }
 .edge-options small { display: block; margin-top: 3px; font-size: 12px; line-height: 17px; }
-.edge-options > button:nth-child(2) { padding-left: 60px; }
+.edge-failed { width: min(90vw,380px); max-height: min(80dvh,560px); padding: 24px 16px max(14px,env(safe-area-inset-bottom,0px)); }
+.edge-failed .edge-illustration { width: 32px; height: 32px; }
+.edge-failed h2 { margin-top: 6px; font-size: 18px; line-height: 23px; }
+.edge-failed .edge-body { margin-top: 6px; font-size: 14px; line-height: 20px; }
+.edge-failed .edge-options { margin-top: 12px; gap: 6px; grid-auto-rows: minmax(60px,1fr); }
+.edge-failed .edge-options > button { min-height: 60px; padding: 6px 8px; }
+.edge-failed .edge-options img { width: 32px; height: 32px; }
+.edge-failed .edge-options > button > span { min-width: 0; }
+.edge-failed .edge-options strong { font-size: 14px; line-height: 18px; }
+.edge-failed .edge-options small { margin-top: 2px; font-size: 12px; line-height: 16px; }
+.edge-options .edge-log-fallback { margin-top: 10px; border-top: 2px solid var(--color-text-muted); }
+.edge-failed .edge-options .edge-log-fallback { margin-top: 0; border-top-width: 1px; }
 .edge-counted .edge-illustration { width: 100px; height: 100px; }
 .edge-actions { display: grid; gap: 10px; }
 .edge-actions button, .edge-confirm { width: 100%; min-height: 52px; padding: 10px 12px; border-radius: 15px; font-size: 17px; line-height: 22px; }
@@ -324,3 +366,11 @@ ul.edge-body { text-align: left; padding-left: 19px; list-style: disc; }
 .country-collection-page .collectibles-upcoming h2 { font-family: var(--font-ui); font-size: 12px; line-height: 16px; text-shadow: none; }
 .country-collection-page .collectibles-upcoming .rarity-badge { max-width: 100%; }
 .country-collection-page[data-upcoming=true] .country-title { margin-inline: 20px; padding: 8px; border-radius: var(--radius-md); background: color-mix(in srgb,var(--color-surface) 85%,transparent); }
+.visit-verification-result { margin-top: 4px; margin-bottom: 4px; }
+.visit-verification-result h2 { font-size: 17px; font-weight: 700; line-height: 22px; }
+.visit-location-action { margin: 0 26px; }
+.visit-location-action > button { width: 100%; min-height: 44px; }
+.visit-receipt, .visit-qr { display: grid; gap: 14px; margin: 24px; font-size: 14px; line-height: 1.5; }
+.visit-receipt label { font-weight: 700; }
+.visit-receipt input { max-width: 100%; min-height: 44px; }
+.visit-qr video { width: 100%; border-radius: 14px; }

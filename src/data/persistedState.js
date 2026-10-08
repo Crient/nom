@@ -7,6 +7,8 @@ import { createExperienceState, experienceReducer } from './experienceState'
 import { REPAIRED_STATE } from './localPersistence'
 import { feedbackObservations, feedbackReactions } from './mealFeedback'
 import { isGoogleRestaurantId } from '../../shared/nearbyRestaurants.js'
+import { normalizeVerification, rewardEligible } from '../../shared/visitVerification'
+import { recoverActiveVisits, serializeActiveVisits } from './activeVisitContext'
 
 export const EMPTY_DISCOVERY = { foodType: null, flavors: [], adventurousness: null, region: null }
 export const EMPTY_ACTIVITY = { displayName: 'Explorer', recentDishes: [] }
@@ -53,16 +55,17 @@ function normalizeLog(value) {
   const dish = records.find(item => item.id === value.dishId)
   const restaurant = mockRestaurants.find(item => item.id === value.restaurantId)
   if (!dish || (!isGoogleRestaurantId(value.restaurantId) && (!restaurant || !restaurantServesDish(restaurant, dish.id)))) return null
-  if (!object(value.verification) || typeof value.verification.verified !== 'boolean' || !['location-demo', 'qr-demo', 'receipt-demo', 'unverified'].includes(value.verification.method)) return null
-  if (value.verification.verified !== (value.verification.method !== 'unverified')) return null
+  if (!object(value.verification) || typeof value.verification.verified !== 'boolean') return null
+  const verification = normalizeVerification(value.verification,value)
+  if(!verification)return null
   if (!object(value.feedback) || !feedbackReactions.some(reaction => reaction.id === value.feedback.reaction)) return null
   const result = {
     id: value.id, dishId: dish.id, restaurantId: value.restaurantId, countryCode: dish.countryCode,
     startedAt: value.startedAt, completedAt: value.completedAt, day: value.day,
-    verification: { verified: value.verification.verified, method: value.verification.method, source: typeof value.verification.source === 'string' ? value.verification.source.replace(/[\u0000-\u001f\u007f]/g, '').slice(0, 100) || 'development' : 'development', checkedAt: validDate(value.verification.checkedAt) ? value.verification.checkedAt : value.startedAt },
+    verification,
     feedback: { reaction: value.feedback.reaction, observations: uniqueKnown(value.feedback.observations, feedbackObservations), note: typeof value.feedback.note === 'string' ? value.feedback.note.slice(0, 1000) : '' },
   }
-  return result.countryCode !== value.countryCode || JSON.stringify(result.feedback) !== JSON.stringify(value.feedback) || result.verification.checkedAt !== value.verification.checkedAt ? markRepaired(result) : result
+  return result.countryCode !== value.countryCode || JSON.stringify(result.feedback) !== JSON.stringify(value.feedback) || JSON.stringify(result.verification)!==JSON.stringify(value.verification) ? markRepaired(result) : result
 }
 
 /** Persist events, not competing progress/unlock snapshots. Rehydrate through the
@@ -75,6 +78,7 @@ export function normalizeExperience(value) {
   let repaired = false
   const seen = new Set()
   for (const valueLog of value.logs) {
+    if(/^qa-/i.test(valueLog?.id??'')||['qa-preview','demo-seed'].includes(valueLog?.verification?.source)){repaired=true;continue}
     const log = normalizeLog(valueLog)
     if (!log || seen.has(log.id)) { repaired = true; continue }
     if (log[REPAIRED_STATE]) repaired = true
@@ -89,7 +93,7 @@ export function normalizeExperience(value) {
     const recordedReward = box.collectibleId !== undefined
     if (recordedReward && (!collectibleDefinitions.some(item => item.id === box.collectibleId) || typeof box.duplicate !== 'boolean')) { repaired = true; continue }
     const visitId = box.visitId ?? (typeof box.id === 'string' ? box.id.slice(4) : null), log = state.logs.find(log => log.id === visitId)
-    if ((box.countryId !== undefined && box.countryId !== log?.countryId) || !log || Date.parse(log.completedAt) > Date.parse(box.openedAt)) { repaired = true; continue }
+    if ((box.countryId !== undefined && box.countryId !== log?.countryId) || !log || !rewardEligible(log) || Date.parse(log.completedAt) > Date.parse(box.openedAt)) { repaired = true; continue }
     if (!state.boxes[box.id] && typeof box.id === 'string' && box.id.startsWith('box-')) {
       const credit = Object.values(state.boxes).find(item => item.status === 'ready' && item.countryId === log?.countryId && Date.parse(item.createdAt) <= Date.parse(box.openedAt))
       if (credit) state = experienceReducer(state, { type: 'restore-box', id: box.id, visitId, creditId: credit.id })
@@ -100,14 +104,16 @@ export function normalizeExperience(value) {
   }
   const allowedFavorites = collectionCountries.flatMap(country => collectibleDefinitions.map(item => collectibleKey(country.id, item.id))).filter(key => state.unlocks[key])
   const favorites = uniqueKnown(value.favorites, allowedFavorites)
-  const result = { ...state, drafts: {}, favorites }
+  const result = { ...state, drafts: recoverActiveVisits(value.activeVisits, state.logs), favorites }
   return repaired || !Array.isArray(value.favorites) || favorites.length !== value.favorites.length ? markRepaired(result) : result
 }
 
 export function serializeExperience(state) {
+  const activeVisits = serializeActiveVisits(state)
   return {
-    logs: state.logs.map(({ returnState, ...log }) => log),
+    logs: state.logs.map(({ returnState, restaurantName, ...log }) => log),
     openedBoxes: Object.values(state.boxes).filter(box => box.status === 'opened').map(({ id, visitId, countryId, collectibleId, duplicate, openedAt }) => ({ id, visitId, countryId, collectibleId, duplicate, openedAt })),
     favorites: state.favorites,
+    ...(activeVisits.length ? { activeVisits } : {}),
   }
 }

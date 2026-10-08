@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "totalDishes": 201,
+  "queued": 0,
+  "note": "Fallback planning only. No images generated; prompts require cultural review before use.",
+  "dishes": []
+}

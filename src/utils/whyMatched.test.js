@@ -16,6 +16,11 @@ function explain(session = PAINTED_SESSION, dish = lortCha) {
 }
 
 describe('whyMatched', () => {
+  it('keeps every canonical dish explanation free of scoring language', () => {
+    for (const dish of dishes) {
+      expect(explain(PAINTED_SESSION, dish)).not.toMatch(/points|weight|score|compatibility|rounded|ranking|algorithm|explicit-preference|\d+%/i)
+    }
+  })
   it('explains every exact matched dimension without claiming missed flavors or descriptors', () => {
     const explanation = explain()
     expect(explanation).toContain('Lort Cha')
@@ -41,7 +46,7 @@ describe('whyMatched', () => {
     const explanation = explain({ ...PAINTED_SESSION, region: SURPRISE_ME, adventurousness: SURPRISE_ME })
     expect(explanation).toContain('noodles')
     expect(explanation).toContain('comforting flavors')
-    expect(explanation).toContain("You're open to any adventure level and region")
+    expect(explanation).not.toMatch(/points|weight|compatibility|rounded|ranking|algorithm/i)
     expect(explanation).not.toMatch(/Southeast|adventurous preference/i)
   })
 
@@ -55,7 +60,7 @@ describe('whyMatched', () => {
     const session = { ...PAINTED_SESSION, foodType: 'rice', flavors: ['tangy'], region: 'east-asia' }
     const explanation = explain(session, dishes.find((dish) => dish.id === 'mie-goreng'))
     expect(explanation).toContain('Mie Goreng')
-    expect(explanation).toContain('partial fit')
+    expect(explanation).toContain('something a little different to explore')
     expect(explanation).not.toMatch(/tangy|rice|Asian|matches your/i)
   })
 
@@ -65,14 +70,13 @@ describe('whyMatched', () => {
 
   it('handles a session with no active scoring dimensions', () => {
     expect(explain({ foodType: 'anything', flavors: [], adventurousness: SURPRISE_ME, region: null }))
-      .toContain('Lort Cha has no exact matches with the preferences scored in this session.')
+      .toBe('Lort Cha is a dish worth discovering. Explore it for something new.')
   })
   it('adds concise mood context from matched tags and explains the selected familiar experience', () => {
     const explanation = explain({ foodType: 'anything', flavors: ['comforting'], adventurousness: 'familiar', region: null }, dishes.find(dish => dish.id === 'couscous'))
     expect(explanation).toContain('Couscous matches comforting flavors')
     expect(explanation).toContain('a cozy, satisfying meal')
     expect(explanation).toContain('your familiar preference')
-    expect(explanation).toContain('compatible points')
-    expect(explanation).toContain('explicit-preference points')
+    expect(explanation).not.toMatch(/points|weight|compatibility|rounded|ranking|algorithm|\d+%/i)
   })
 })

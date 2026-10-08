@@ -43,14 +43,14 @@ describe('account routes and Guest-first entry', () => {
     expect([...document.querySelectorAll('.home-quick-actions a')].map(node => node.textContent)).toEqual(['Explore', 'Log Meal', 'Favorites', 'Progress'])
     expect(document.querySelector('.home-quick-actions .grid').className).toContain('grid-cols-4')
   })
-  it('keeps Get Started primary and offers optional signin', async () => {
-    await mount('/'); expect(document.body.textContent).toContain('Get Started'); await click('Sign in to sync')
+  it('makes Guest entry explicit and offers optional signin/signup', async () => {
+    await mount('/'); expect(document.body.textContent).toContain('Continue as Guest'); await click('Sign in or create account')
     expect(window.location.pathname).toBe('/account'); expect(document.body.textContent).toContain('not configured')
     expect(document.getElementById('account-email').disabled).toBe(true)
     await click('Continue exploring'); expect(window.location.pathname).toBe('/home')
   })
   it('shows device-only Guest Profile and account CTA', async () => {
-    await mount('/profile'); expect(document.body.textContent).toContain('Guest explorer'); expect(document.body.textContent).toContain('Saved on this device')
+    await mount('/profile'); expect(document.body.textContent).toContain('Guest · Local Explorer'); expect(document.body.textContent).toContain('Saved on this device')
     await click('Sign in to sync your journey'); expect(window.location.pathname).toBe('/account')
   })
   it('restores signed-in Profile identity and signout returns to Guest name', async () => {
@@ -174,7 +174,7 @@ describe('account routes and Guest-first entry', () => {
     const guest = defaultJourney()
     guest.activity = { displayName: 'Guest journey', recentDishes: [{ dishId: 'num-banh-chok', viewedAt: at }] }
     guest.favorites = { dishIds: ['num-banh-chok'], restaurantIds: ['google:nom-test-place'] }
-    guest.experience = normalizeExperience({ logs: [meal()], openedBoxes: [], favorites: [] })
+    guest.experience = normalizeExperience({ logs: [meal('prelude-one','2026-10-04'),meal('prelude-two','2026-10-05'),meal()], openedBoxes: [], favorites: [] })
     guest.experience = experienceReducer(guest.experience, { type: 'begin-box', id: 'box-visit-one' })
     guest.experience = experienceReducer(guest.experience, { type: 'open-box', id: 'box-visit-one', at })
     guest.experience = experienceReducer(guest.experience, { type: 'favorite', key: 'cambodia:ziggy' })
@@ -182,7 +182,7 @@ describe('account routes and Guest-first entry', () => {
     const sdk = mockSupabase(USER_A); await mount('/profile', sdk, true); await click('Merge & Sync')
     expect(sdk.rows.profiles[0].display_name).toBe('Guest journey')
     expect(sdk.rows.dish_favorites).toHaveLength(1); expect(sdk.rows.restaurant_favorites).toHaveLength(1)
-    expect(sdk.rows.recent_dish_views).toHaveLength(1); expect(sdk.rows.meal_logs[0]).toMatchObject({ feedback_note: 'Tasty', local_day: '2026-10-06' })
+    expect(sdk.rows.recent_dish_views).toHaveLength(1); expect(sdk.rows.meal_logs.at(-1)).toMatchObject({ feedback_note: 'Tasty', local_day: '2026-10-06' })
     expect(sdk.rows.opened_boxes[0]).toMatchObject({ collectible_id: 'ziggy', duplicate: false })
     expect(sdk.rows.collectible_favorites).toHaveLength(1)
     const expected = JSON.parse(localStorage.getItem(identityCacheKey(USER_A.id))).data.data

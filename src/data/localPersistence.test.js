@@ -2,13 +2,15 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { readLocalState, writeLocalState, STORAGE_KEYS } from './localPersistence'
 import { normalizeActivity, normalizeDiscovery, normalizeExperience, normalizeFavorites, serializeExperience, EMPTY_DISCOVERY } from './persistedState'
+import {verifiedFixture} from '../test/verificationFixtures'
+import {appendVerified} from '../test/earnedJourney'
 import { createExperienceState, experienceReducer } from './experienceState'
 
 afterEach(() => { vi.restoreAllMocks(); vi.unstubAllGlobals() })
 const log = (state, id = 'visit-1', verified = true) => {
   const at = '2026-10-03T12:00:00.000Z'
   const draft = { id, dishId: 'lort-cha', restaurantId: 'preview-thmor-da', countryCode: 'KH', startedAt: at,
-    returnState: { view: 'map' }, verification: { verified, method: verified ? 'qr-demo' : 'unverified', source: 'development', checkedAt: at },
+    returnState: { view: 'map' }, verification: verified ? verifiedFixture({id,at}) : {verified:false,method:'none',source:'manual',checkedAt:at},
     feedback: { reaction: 'loved', observations: ['Savory'], note: 'Great' } }
   return experienceReducer(experienceReducer(state, { type: 'start', draft }), { type: 'complete', id, day: '2026-10-03', at })
 }
@@ -24,6 +26,7 @@ describe('Local V1 persistence and safe recovery', () => {
     const state = log(createExperienceState(), 'google-visit')
     const payload = serializeExperience(state)
     payload.logs[0].restaurantId = 'google:ChIJ_test-venue'
+    payload.logs[0].verification=verifiedFixture({id:'google-visit',restaurantId:'google:ChIJ_test-venue'})
     const restored = normalizeExperience(payload)
     expect(restored.logs[0].restaurantId).toBe('google:ChIJ_test-venue')
     expect(restored.progress).toEqual(state.progress)
@@ -41,7 +44,7 @@ describe('Local V1 persistence and safe recovery', () => {
     expect(normalizeActivity({ displayName: 'x'.repeat(100), recentDishes: [] }).displayName).toHaveLength(40)
   })
   it('restores completed logs, daily credit, pending boxes, unlock dates, and collectible favorites without duplicate rewards', () => {
-    let state = log(createExperienceState())
+    let state = log(appendVerified(appendVerified(createExperienceState(),{id:'pre-one',day:'2026-10-01'}),{id:'pre-two',day:'2026-10-02'}))
     state = experienceReducer(state, { type: 'begin-box', id: 'box-visit-1' })
     state = experienceReducer(state, { type: 'open-box', id: 'box-visit-1', at: '2026-10-03T12:02:00.000Z' })
     state = experienceReducer(state, { type: 'favorite', key: 'cambodia:ziggy' })
@@ -54,12 +57,12 @@ describe('Local V1 persistence and safe recovery', () => {
     expect(restored.drafts).toEqual({})
     expect(restored.logs[0].returnState).toBeUndefined()
     const repeat = log(restored, 'visit-2')
-    expect(repeat.logs[1].earnedProgress).toBe(false)
+    expect(repeat.logs[3].earnedProgress).toBe(false)
     expect(Object.keys(repeat.boxes)).toHaveLength(1)
   })
 
   it('restores an interrupted box as ready so it can resume safely', () => {
-    let state = log(createExperienceState())
+    let state = log(appendVerified(appendVerified(createExperienceState(),{id:'pre-one',day:'2026-10-01'}),{id:'pre-two',day:'2026-10-02'}))
     state = experienceReducer(state, { type: 'begin-box', id: 'box-visit-1' })
     const restored = normalizeExperience(serializeExperience(state))
     expect(restored.boxes['box-visit-1'].status).toBe('ready')
@@ -70,7 +73,7 @@ describe('Local V1 persistence and safe recovery', () => {
     const state = log(createExperienceState(), 'visit-1', false)
     const restored = normalizeExperience({ ...serializeExperience(state), logs: [...state.logs, state.logs[0], { id: 'broken' }, { ...state.logs[0], id: 'bad-day', day: '2026-02-31' }], progress: { cambodia: { meals: 999, count: 100 } } })
     expect(restored.logs).toHaveLength(1)
-    expect(restored.progress.cambodia).toEqual({ meals: 18, count: 2 })
+    expect(restored.progress.cambodia).toEqual({ meals: 0, count: 0 })
     expect(restored.boxes).toEqual({})
   })
 

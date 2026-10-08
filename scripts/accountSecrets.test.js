@@ -9,7 +9,7 @@ const scanner = fileURLToPath(new URL('./validate-account-secrets.mjs', import.m
 const fixtures = []
 function fixture(files = {}) {
   const root = mkdtempSync(join(tmpdir(), 'nom-secret-scan-')); fixtures.push(root)
-  for (const dir of ['src', 'server', 'api', 'dist']) mkdirSync(join(root, dir))
+  for (const dir of ['src', 'shared', 'server', 'api', 'dist']) mkdirSync(join(root, dir))
   for (const [path, content] of Object.entries(files)) {
     const target = join(root, path); mkdirSync(join(target, '..'), { recursive: true }); writeFileSync(target, content)
   }

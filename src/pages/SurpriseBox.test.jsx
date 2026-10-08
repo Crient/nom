@@ -10,24 +10,21 @@ import { STORAGE_KEYS, writeLocalState } from '../data/localPersistence'
 import { serializeExperience } from '../data/persistedState'
 import SurpriseBox, { BOX_REVEAL_TIMING, BOX_REDUCED_TIMING } from './SurpriseBox'
 import { ExperiencePreviewProvider } from '../context/Experience'
+import {verifiedFixture} from '../test/verificationFixtures'
+import {earnedJourney} from '../test/earnedJourney'
 import { rewardSound } from '../utils/rewardSound'
 
 let root
 function readyState({ duplicate = false } = {}) {
-  let state = createExperienceState()
+  let state = duplicate ? earnedJourney(6) : createExperienceState()
   const log = (id, day) => {
     const at = `${day}T12:00:00Z`
     const draft = { id, dishId: 'lort-cha', restaurantId: 'preview-thmor-da', countryCode: 'KH', startedAt: at,
-      verification: { verified: true, method: 'qr-demo', source: 'development', checkedAt: at }, feedback: { reaction: 'loved', observations: [], note: '' } }
+      verification: verifiedFixture({id,at}), feedback: { reaction: 'loved', observations: [], note: '' } }
     state = experienceReducer(state, { type: 'start', draft })
     state = experienceReducer(state, { type: 'complete', id, at, day })
   }
-  if (duplicate) {
-    log('first-visit', '2026-10-01')
-    state = experienceReducer(state, { type: 'begin-box', id: 'box-first-visit' })
-    state = experienceReducer(state, { type: 'open-box', id: 'box-first-visit', at: '2026-10-01T12:01:00Z' })
-    log('second-visit', '2026-10-02'); log('third-visit', '2026-10-03')
-  }
+  log('prelude-one', '2026-10-01'); log('prelude-two', '2026-10-02')
   log('motion-visit', '2026-10-05')
   return state
 }
@@ -89,7 +86,7 @@ describe('Mystery Box canonical reward sequence', () => {
     expect(phaseChanged).toHaveBeenLastCalledWith('reveal')
     expect(document.querySelector('.box-scene')).toBe(scene)
     expect(document.querySelector('.box-gift-art')).toBe(artwork)
-    expect(scene.dataset.stage).toBe('settled'); expect(count()).toBe(6)
+    expect(scene.dataset.stage).toBe('settled'); expect(count()).toBe(1)
     await act(() => document.querySelector('.box-collection').click())
     expect(collection).toHaveBeenCalledTimes(1)
     expect(window.location.pathname).toBe(originalPath)
@@ -110,14 +107,14 @@ describe('Mystery Box canonical reward sequence', () => {
     await advance(BOX_REVEAL_TIMING.reward - BOX_REVEAL_TIMING.silhouette)
     expect(document.querySelector('.box-character.is-resolved')).toBeTruthy()
     expect(document.querySelector('.box-reward h2').textContent).toBe('ZIGGY')
-    expect(saved().openedBoxes).toHaveLength(1); expect(count()).toBe(5)
+    expect(saved().openedBoxes).toHaveLength(1); expect(count()).toBe(0)
     await advance(BOX_REVEAL_TIMING.rarity - BOX_REVEAL_TIMING.reward)
     expect(document.querySelector('.box-reward').getAttribute('aria-hidden')).toBe('false')
     expect(document.querySelector('.box-collection').disabled).toBe(true)
     expect(document.querySelector('.box-theatre')).toBe(theatre)
     expect(document.querySelector('.box-scene .box-reveal')).toBeNull()
     await advance(BOX_REVEAL_TIMING.progress - BOX_REVEAL_TIMING.rarity)
-    expect(count()).toBe(6)
+    expect(count()).toBe(1)
     await advance(BOX_REVEAL_TIMING.settle - BOX_REVEAL_TIMING.progress)
     expect(window.location.pathname).toBe('/boxes/box-motion-visit/reveal')
     expect(saved().logs).toEqual(beforeLogs); expect(saved().openedBoxes).toHaveLength(1)
@@ -132,14 +129,14 @@ describe('Mystery Box canonical reward sequence', () => {
     expect(count()).toBe(6)
     expect(document.querySelector('.box-reward').textContent).toContain('Already in your collection')
     await advance(BOX_REVEAL_TIMING.settle - BOX_REVEAL_TIMING.reward)
-    expect(count()).toBe(6); expect(saved().openedBoxes).toHaveLength(2)
+    expect(count()).toBe(6); expect(saved().openedBoxes).toHaveLength(7)
   })
   it('takes the short reduced-motion route and never repeats the reward on revisit', async () => {
     vi.stubGlobal('matchMedia', () => ({ matches: true, addEventListener: vi.fn(), removeEventListener: vi.fn() }))
     await mount(); await open()
     expect(document.querySelector('.box-page').dataset.reducedMotion).toBe('true')
     await advance(BOX_REDUCED_TIMING.settle)
-    expect(window.location.pathname).toBe('/boxes/box-motion-visit/reveal'); expect(count()).toBe(6)
+    expect(window.location.pathname).toBe('/boxes/box-motion-visit/reveal'); expect(count()).toBe(1)
     const before = localStorage.getItem(STORAGE_KEYS.experience)
     await act(() => { window.history.pushState({}, '', '/boxes/box-motion-visit'); window.dispatchEvent(new PopStateEvent('popstate')) })
     expect(window.location.pathname).toBe('/boxes/box-motion-visit/reveal')
@@ -152,30 +149,40 @@ describe('Mystery Box canonical reward sequence', () => {
     await act(() => root.render(<App />))
     expect(window.location.pathname).toBe('/boxes/box-motion-visit')
     await open(); await advance(BOX_REVEAL_TIMING.settle)
-    expect(saved().openedBoxes).toHaveLength(1); expect(count()).toBe(6)
+    expect(saved().openedBoxes).toHaveLength(1); expect(count()).toBe(1)
   })
   it('never starts audio on render or reload and only plays after an enabled Open tap', async () => {
     const play = vi.spyOn(rewardSound, 'play').mockReturnValue(true)
     await mount(); expect(play).not.toHaveBeenCalled()
     const sound = document.querySelector('.box-sound-toggle')
-    expect(sound.textContent).toContain('Sound off')
-    await act(() => sound.click()); expect(play).not.toHaveBeenCalled()
+    expect(sound.textContent).toContain('Sound on')
+    expect(play).not.toHaveBeenCalled()
     await act(() => { document.querySelector('[aria-label="Open Mystery Box"]').click(); document.querySelector('[aria-label="Open Mystery Box"]').click() })
     expect(play).toHaveBeenCalledTimes(1)
-    expect(play).toHaveBeenCalledWith(expect.objectContaining({ enabled: true, rarity: 'common' }))
+    expect(play).toHaveBeenCalledWith(expect.objectContaining({ enabled: true, delayMs: 0, rarity: 'common' }))
     await advance(BOX_REVEAL_TIMING.settle); expect(play).toHaveBeenCalledTimes(1)
     await act(() => root.unmount()); root = createRoot(document.getElementById('root'))
     await act(() => root.render(<App />)); expect(play).toHaveBeenCalledTimes(1)
   })
   it('keeps an unavailable sound nonblocking and stops sound on abandonment', async () => {
     const play = vi.spyOn(rewardSound, 'play').mockReturnValue(false), stop = vi.spyOn(rewardSound, 'stop')
-    await mount(); await act(() => document.querySelector('.box-sound-toggle').click()); await open()
+    await mount(); await open()
     expect(play).toHaveBeenCalledTimes(1)
     expect(document.body.textContent).toContain('Sound is unavailable')
     const stops = stop.mock.calls.length
     await act(() => root.unmount()); root = createRoot(document.getElementById('root'))
     await advance(0); expect(stop.mock.calls.length).toBeGreaterThan(stops)
     await advance(2000); expect(saved().openedBoxes).toHaveLength(0)
+  })
+  it('completes the visual reveal when playback is refused and keeps retries independent of the grant', async () => {
+    vi.spyOn(rewardSound, 'play').mockReturnValue(false)
+    await mount(); await open(); await advance(BOX_REVEAL_TIMING.settle)
+    expect(window.location.pathname).toBe('/boxes/box-motion-visit/reveal')
+    expect(saved().openedBoxes).toHaveLength(1)
+    const before = saved()
+    await act(() => [...document.querySelectorAll('button')].find(button => button.textContent === 'Replay sound').click())
+    expect(document.body.textContent).toContain('Sound is unavailable')
+    expect(saved()).toEqual(before)
   })
   it('renders an already-earned opening URL as a static reveal on reload', async () => {
     await mount(); await open(); await advance(BOX_REVEAL_TIMING.settle)
@@ -193,7 +200,6 @@ describe('Mystery Box canonical reward sequence', () => {
     writeLocalState(STORAGE_KEYS.experience, serializeExperience(readyState()))
     window.history.replaceState({}, '', '/boxes/box-motion-visit')
     await act(() => root.render(<StrictMode><App /></StrictMode>))
-    await act(() => document.querySelector('.box-sound-toggle').click())
     stop.mockClear(); await open(); await advance(0)
     expect(play).toHaveBeenCalledTimes(1); expect(stop).not.toHaveBeenCalled()
     await advance(BOX_REVEAL_TIMING.settle); await advance(0)
@@ -202,7 +208,7 @@ describe('Mystery Box canonical reward sequence', () => {
   })
   it('mutes scheduled sound immediately during an opening without interrupting the reward', async () => {
     const play = vi.spyOn(rewardSound, 'play').mockReturnValue(true), stop = vi.spyOn(rewardSound, 'stop')
-    await mount(); await act(() => document.querySelector('.box-sound-toggle').click()); await open()
+    await mount(); await open()
     stop.mockClear(); await act(() => document.querySelector('.box-sound-toggle').click())
     expect(stop).toHaveBeenCalled(); expect(document.querySelector('.box-sound-toggle').textContent).toContain('Sound off')
     await advance(BOX_REVEAL_TIMING.settle)
@@ -211,8 +217,29 @@ describe('Mystery Box canonical reward sequence', () => {
   it('suppresses enabled sound while reduced motion is active', async () => {
     vi.stubGlobal('matchMedia', () => ({ matches: true, addEventListener: vi.fn(), removeEventListener: vi.fn() }))
     const play = vi.spyOn(rewardSound, 'play')
-    await mount(); await act(() => document.querySelector('.box-sound-toggle').click()); await open()
+    await mount(); await open()
     await advance(BOX_REDUCED_TIMING.settle)
     expect(play).not.toHaveBeenCalled(); expect(saved().openedBoxes).toHaveLength(1)
+  })
+  it('respects saved mute and retriggers sound when enabled during opening, without regranting a reward', async () => {
+    localStorage.setItem('nom.reward-sound.v1', 'off')
+    const play = vi.spyOn(rewardSound, 'play').mockReturnValue(true)
+    await mount(); expect(document.querySelector('.box-sound-toggle').textContent).toContain('Sound off')
+    await open(); expect(play).not.toHaveBeenCalled()
+    await advance(BOX_REVEAL_TIMING.pop)
+    await act(() => document.querySelector('.box-sound-toggle').click())
+    expect(play).toHaveBeenCalledTimes(1)
+    expect(play).toHaveBeenCalledWith(expect.objectContaining({ enabled: true, rarity: 'common' }))
+    await advance(BOX_REVEAL_TIMING.settle)
+    const before = saved()
+    const replay = [...document.querySelectorAll('button')].find(button => button.textContent === 'Replay sound')
+    await act(() => { replay.click(); replay.click() })
+    expect(play).toHaveBeenCalledTimes(3); expect(saved()).toEqual(before)
+    await act(() => document.querySelector('.box-sound-toggle').click())
+    expect(localStorage.getItem('nom.reward-sound.v1')).toBe('off')
+    await act(() => root.unmount()); root = createRoot(document.getElementById('root'))
+    await act(() => root.render(<App />))
+    expect(document.querySelector('.box-sound-toggle').textContent).toContain('Sound off')
+    expect(play).toHaveBeenCalledTimes(3); expect(saved()).toEqual(before)
   })
 })

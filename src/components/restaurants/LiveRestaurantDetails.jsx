@@ -1,15 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useFavorites } from '../../context/Favorites'
 import { useExperience } from '../../context/Experience'
 import { useRestaurants } from '../../hooks/useRestaurants'
+import { surpriseQuery } from '../../utils/surpriseStrategy'
 import { usePlaceExtra } from '../../hooks/usePlaceExtra'
 import { placeDetailsService } from '../../data/placeExtrasService'
 import { dishes } from '../../data/dishes'
 import { restaurantPriceLabel } from '../../data/restaurantActions'
 import { restaurantFavoriteActions } from '../../data/restaurantProvider'
 import { CUISINE_LABELS, openingLabel, nearbyDistanceBand } from '../../../shared/nearbyRestaurants.js'
-import { FlowHeader } from '../experience/FlowLayout'
+import { FlowHeader, FlowState } from '../experience/FlowLayout'
 import HeartButton from '../recommendations/HeartButton'
 import DishTag from '../recommendations/DishTag'
 import DishTitle from '../ui/DishTitle'
@@ -24,6 +25,7 @@ import AteHereSwipe from './AteHereSwipe'
 import DishAvailabilityNotice from './DishAvailabilityNotice'
 import { restaurantMatchLabel } from './RestaurantFacts'
 import star from '../../assets/icons/restaurant-preview-star.svg'
+import { sharedContextQuery } from '../../data/sharedContent'
 import '../../styles/nearby.css'
 import '../../styles/restaurant-live.css'
 
@@ -31,6 +33,7 @@ export default function LiveRestaurantDetails({ restaurant, dish, back, returnSt
   const navigate = useNavigate(), nearby = useRestaurants(dish.id, { revalidateLocation: true }), { startVisit } = useExperience()
   const favorites = useFavorites()
   const details = usePlaceExtra(placeDetailsService, restaurant.placeId), [info, setInfo] = useState(false)
+  useEffect(() => { if (returnState?.shared && restaurant.metadataOnly) placeDetailsService.load(restaurant.placeId) }, [returnState?.shared, restaurant.metadataOnly, restaurant.placeId])
   const currentMatch = nearby.restaurants.find(place => place.id === restaurant.id)
   const currentRestaurant = nearby.status === 'ready' && nearby.source === 'google-places'
     ? currentMatch ?? { ...restaurant, approximateDistanceMiles: null } : restaurant
@@ -40,10 +43,12 @@ export default function LiveRestaurantDetails({ restaurant, dish, back, returnSt
   const cuisine = CUISINE_LABELS[dish.countryCode]
   const ideas = [dish, ...dishes.filter(item => item.countryCode === dish.countryCode && item.id !== dish.id)].slice(0, 3)
   const chips = [...new Set([dish.name, venue.cuisine, venue.primaryTypeDisplayName].filter(Boolean))]
+  const contextQuery = returnState?.shared ? sharedContextQuery : returnState?.surprise ? surpriseQuery : ''
+  if (returnState?.shared && restaurant.metadataOnly && details.status === 'error') return <FlowState title="Shared restaurant unavailable" onBack={back} backLabel="Back to nearby restaurants" onRetry={() => placeDetailsService.load(restaurant.placeId, { retry: true })}>We couldn’t load this restaurant’s current details. It may be unavailable; try again later.</FlowState>
   return <div className="flow-page restaurant-details-page restaurant-live-page">
     <FlowHeader onBack={back} onInfo={() => setInfo(value => !value)}>
       <HeartButton dishName={venue.name} liked={favorite.liked}
-        onToggle={favorite.toggle} size={37} className="flow-header-favorite right-[49px]" />
+        onToggle={favorite.toggle} size={27.75} className="flow-header-favorite right-[49px]" />
     </FlowHeader>
     {info && <p className="restaurant-details-disclosure" role="status">Restaurant information comes from Google Maps. Search matches suggest places to try; menu availability is not confirmed. Distances are approximate.</p>}
     <PlacePhoto restaurant={venue} eager hero />
@@ -59,12 +64,12 @@ export default function LiveRestaurantDetails({ restaurant, dish, back, returnSt
         {hours && <span className={`restaurant-opening ${hours === 'Open now' ? 'restaurant-opening-open' : ''}`}>{hours}</span>}
       </p>
       <div className="restaurant-details-tags">{chips.map(label => <DishTag key={label} label={label} />)}</div>
-      <RestaurantActions restaurant={venue} />
+      <RestaurantActions restaurant={venue} dishId={dish.id} />
       {nearby.locationNotice && <p className="restaurant-partial-notice" role="status">{nearby.locationNotice}</p>}
       <DishAvailabilityNotice dish={dish} restaurant={venue} />
       {venue.metadataOnly ? <div className="restaurant-saved-details"><p>Refresh nearby search to load current restaurant details.</p>
         <Button disabled={nearby.busy} onClick={() => {
-          nearby.search({ refresh: true, handoff: true }); navigate(`/recommendations/${dish.id}/nearby`, { state: returnState })
+          nearby.search({ refresh: true, handoff: true }); navigate(`/recommendations/${dish.id}/nearby${contextQuery}`, { state: returnState })
         }}>Refresh nearby search</Button>
       </div> : <AteHereSwipe onConfirm={() => {
         const id = startVisit({ dish, restaurant: venue, returnState }); navigate(`/visits/${id}/verify`)
@@ -83,7 +88,7 @@ export default function LiveRestaurantDetails({ restaurant, dish, back, returnSt
       <section className="restaurant-menu restaurant-dish-ideas"><h2>More dishes from this cuisine</h2>
         <p className="restaurant-availability-note">Explore dishes from Nom’s {cuisine} catalog. Check the restaurant’s menu for availability.</p>
         <div>{ideas.map(item => <article key={item.id}><button type="button" aria-label={`View ${item.name} details`}
-          onClick={() => navigate(`/recommendations/${item.id}`, { state: { returnTo: returnState?.returnTo } })}>
+          onClick={() => navigate(`/recommendations/${item.id}${returnState?.shared ? sharedContextQuery : ''}`, { state: { returnTo: returnState?.returnTo } })}>
           <Image src={item.image} alt="" loading="lazy" /><strong><DishTitle dish={item} /></strong>
         </button></article>)}</div>
       </section>

@@ -90,8 +90,13 @@ export default function SurpriseBox({ phase = 'closed', boxId: previewBoxId, onP
     <div className="box-sound-row"><button type="button" className="box-sound-toggle" aria-pressed={soundOn} onClick={() => {
       const enabled = !soundOn; setSoundOn(enabled); if (persistSoundPreference) saveRewardSoundPreference(enabled)
       if (!enabled) rewardSound.stop()
-      setSoundNotice(reduced && enabled ? 'Sound is paused with reduced motion.' : null)
+      const unavailable = enabled && !reduced && phase !== 'closed' && !rewardSound.play({ enabled: true, rarity: artwork.rarity, onUnavailable: () => setSoundNotice('Sound is unavailable. The visual reveal works without it.') })
+      setSoundNotice(reduced && enabled ? 'Sound is paused with reduced motion.' : unavailable ? 'Sound is unavailable. The visual reveal works without it.' : null)
     }}>{soundOn ? '♫ Sound on' : '♪ Sound off'}</button>
+      {phase === 'reveal' && soundOn && !reduced && <button type="button" className="box-sound-toggle" onClick={() => {
+        const available = rewardSound.play({ enabled: true, rarity: artwork.rarity, onUnavailable: () => setSoundNotice('Sound is unavailable. The visual reveal works without it.') })
+        setSoundNotice(available ? null : 'Sound is unavailable. The visual reveal works without it.')
+      }}>Replay sound</button>}
       {soundNotice && <p className="box-sound-notice" role="status">{soundNotice}</p>}
     </div>
     <div className={`box-scene box-stage-${presentation}`} data-stage={presentation}
@@ -117,7 +122,7 @@ export default function SurpriseBox({ phase = 'closed', boxId: previewBoxId, onP
         {phase === 'closed' && <button type="button" className="box-tap" aria-label="Open Mystery Box" onClick={() => {
           if (pressed.current) return
           pressed.current = true
-          const rewardSoundUnavailable = soundOn && !reduced && !rewardSound.play({ enabled: soundOn, reducedMotion: reduced, delayMs: rewardRevealTiming(artwork.rarity).reward, rarity: artwork.rarity })
+          const rewardSoundUnavailable = soundOn && !reduced && !rewardSound.play({ enabled: soundOn, reducedMotion: reduced, delayMs: 0, rarity: artwork.rarity, onUnavailable: () => setSoundNotice('Sound is unavailable. The visual reveal works without it.') })
           if (rewardSoundUnavailable) setSoundNotice('Sound is unavailable. Your reward will still open.')
           soundHandoff.current = true; beginBox(boxId)
           if (previewPhase.current) previewPhase.current('opening')

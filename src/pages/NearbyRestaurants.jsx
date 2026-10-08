@@ -5,7 +5,8 @@ import { selectRestaurants } from '../data/restaurantProvider'
 import { recommendationReturnTo } from '../utils/navigation'
 import DishTitle from '../components/ui/DishTitle'
 import '../styles/recommendations.css'
-import { useRecommendations } from '../hooks/useRecommendations'
+import { useDishRecommendation } from '../hooks/useDishRecommendation'
+import { surpriseQuery } from '../utils/surpriseStrategy'
 import { useRestaurants } from '../hooks/useRestaurants'
 import RecommendationHeader from '../components/recommendations/RecommendationHeader'
 import SessionChip from '../components/recommendations/SessionChip'
@@ -24,6 +25,7 @@ import GooglePlacesAttribution from '../components/restaurants/GooglePlacesAttri
 import { nearbyErrorMessage } from '../data/nearbyRestaurantService'
 import { selectRestaurantDetails } from '../data/placeExtrasService'
 import LiveRestaurantMap from '../components/restaurants/LiveRestaurantMap'
+import { sharedContextQuery } from '../data/sharedContent'
 
 function ViewIcon({ map = false }) {
   return <span aria-hidden="true" className="nearby-view-icon" style={{ maskImage: `url("${map ? mapsIcon : listIcon}")` }} />
@@ -34,7 +36,7 @@ export default function NearbyRestaurants() {
   const navigate = useNavigate()
   const location = useLocation()
   const dish = dishes.find(item => item.id === dishId)
-  const { ready, results, chips } = useRecommendations()
+  const { ready, results, chips, surprise, shared } = useDishRecommendation(dishId)
   const data = useRestaurants(ready ? dish?.id : undefined, { autoLoad: true })
   const [view, setView] = useState(location.state?.view === 'map' ? 'map' : 'list')
   const [mapActivated, setMapActivated] = useState(location.state?.view === 'map')
@@ -57,11 +59,12 @@ export default function NearbyRestaurants() {
   const selected = restaurants.find(restaurant => restaurant.id === selectedId) ?? restaurants[0]
   const mockMode = data.source === 'mock'
   const returnTo = recommendationReturnTo(location.state?.returnTo)
-  const back = () => navigate(dish ? `/recommendations/${dish.id}` : ready ? '/recommendations' : '/discover/food-type', { state: { returnTo } })
+  const contextQuery = shared ? sharedContextQuery : surprise ? surpriseQuery : ''
+  const back = () => navigate(dish ? `/recommendations/${dish.id}${contextQuery}` : ready ? '/recommendations' : '/discover/food-type', { state: { returnTo } })
   const resetFilters = () => { setRating(0); setPrice(0); setOpenOnly(false) }
   const showRestaurant = id => {
     selectRestaurantDetails(data.restaurants.find(place => place.id === id))
-    navigate(`/recommendations/${dishId}/nearby/${encodeURIComponent(id)}`, { state: { returnTo, view, selectedRestaurantId: id } })
+    navigate(`/recommendations/${dishId}/nearby/${encodeURIComponent(id)}${contextQuery}`, { state: { returnTo, view, selectedRestaurantId: id } })
   }
   const selectMap = () => { setView('map'); setMapActivated(true) }
 
@@ -84,7 +87,7 @@ export default function NearbyRestaurants() {
       <header className="nearby-dish">
         <Image src={dish.image} alt={dish.name} width={110} height={110} className="nearby-dish-photo" />
         <div className="nearby-dish-copy">
-          {result && <div className="nearby-match"><MatchBadge percent={Math.round(result.displayMatchPercent ?? result.score)} variant="detail" /></div>}
+          {result && !surprise && !shared && <div className="nearby-match"><MatchBadge percent={Math.round(result.displayMatchPercent ?? result.score)} variant="detail" /></div>}
           <h1><DishTitle dish={dish} /></h1>
           <p>{dish.shortDescription}</p>
           <div className="nearby-chips" aria-label="Your discovery preferences">

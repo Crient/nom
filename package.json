@@ -18,12 +18,14 @@
     "accounts:validate": "node scripts/validate-account-secrets.mjs"
   },
   "dependencies": {
+    "@noble/curves": "2.4.0",
     "@supabase/supabase-js": "^2.93.3",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "react-router-dom": "^7.18.4"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "0.5.8",
     "@tailwindcss/vite": "^4.3.3",
     "@vitejs/plugin-react": "^6.1.1",
     "happy-dom": "^20.14.5",

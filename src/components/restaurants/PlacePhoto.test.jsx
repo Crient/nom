@@ -1,5 +1,6 @@
 // @vitest-environment happy-dom
 import { act } from 'react'
+import { readFileSync } from 'node:fs'
 import { createRoot } from 'react-dom/client'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import PlacePhoto from './PlacePhoto'
@@ -20,6 +21,23 @@ beforeEach(() => {
 afterEach(async () => { await act(() => root.unmount()); placePhotoService.clear(); vi.restoreAllMocks(); vi.unstubAllGlobals() })
 const render = (restaurant = venue(), eager = true) => act(() => root.render(<PlacePhoto restaurant={restaurant} eager={eager} />))
 describe('restaurant photo rendering and recovery', () => {
+  it.each([true, false])('keeps a 44px target around a smaller visible overlay (compact=%s)', async compact => {
+    const style = document.createElement('style')
+    style.textContent = readFileSync('src/styles/nearby.css', 'utf8')
+    document.head.append(style)
+    try {
+      await act(() => root.render(<PlacePhoto restaurant={venue()} eager compact={compact} />))
+      const button = document.querySelector('.place-photo-expand')
+      expect(button.getAttribute('aria-label')).toBe('View larger photo and credits for Cafe Nom')
+      expect(getComputedStyle(button).width).toBe('44px')
+      expect(getComputedStyle(button).height).toBe('44px')
+      expect(getComputedStyle(button.querySelector('span')).width).toBe('26px')
+      expect(getComputedStyle(button.querySelector('span')).fontSize).toBe('14px')
+      await act(() => button.click())
+      expect(document.querySelector('[role="dialog"]')).toBeTruthy()
+      expect(fetchPhoto).toHaveBeenCalledTimes(1)
+    } finally { style.remove() }
+  })
   it('keeps a designed loading surface until the media URI finishes loading, then removes it', async () => {
     vi.spyOn(HTMLImageElement.prototype, 'complete', 'get').mockReturnValue(false)
     await render()

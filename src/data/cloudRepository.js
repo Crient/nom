@@ -1,4 +1,4 @@
-import { TABLES, cloudRowsToJourney } from './cloudState'
+import { TABLES, cloudRowsToJourney, normalizeLegacyMealPayload } from './cloudState'
 
 function checked(result) {
   if (result.error) {
@@ -45,6 +45,14 @@ export function createCloudRepository(client, userId, avatarUrl = null) {
     async applyMutation(mutation) {
       await assertIdentity()
       const { kind, payload } = mutation
+      if(kind==='meal'){
+        const {verification_claim_token,...meal}=normalizeLegacyMealPayload(payload)
+        if(meal.verified){
+          if(!verification_claim_token)throw new Error('Verified meal requires its server-issued claim')
+          checked(await client.rpc('record_nom_verified_meal',{p_meal:meal,p_claim_token:verification_claim_token}));return
+        }
+        checked(await client.from('meal_logs').upsert({...meal,user_id:userId},{onConflict:'user_id,id',ignoreDuplicates:true}));return
+      }
       if (kind === 'dishView') {
         checked(await client.rpc('record_nom_dish_view', { p_dish_id: payload.dish_id, p_viewed_at: payload.viewed_at })); return
       }

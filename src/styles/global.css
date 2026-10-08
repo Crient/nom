@@ -10,7 +10,7 @@
 .nom-filter-chip { min-height: 44px; }
 .nom-search-pill:focus-within { outline: 2px solid var(--color-accessible-teal); outline-offset: 3px; }
 .nom-search-pill > input:focus, .nom-search-pill > input:focus-visible { outline: none; box-shadow: none; }
-.nom-filter-chip > span { display: block; padding: 3px 8px; border-radius: var(--radius-full); background: var(--color-surface); border: 1px solid var(--color-progress-track); box-shadow: var(--shadow-panel); font-weight: 600; }
+.nom-filter-chip > span { display: flex; align-items: center; justify-content: center; min-height: 30px; padding: 4px 12px; line-height: 20px; border-radius: var(--radius-full); background: var(--color-surface); border: 1px solid var(--color-progress-track); box-shadow: var(--shadow-panel); font-weight: 600; }
 .nom-filter-chip[aria-pressed='true'] > span { background: var(--color-secondary-fill); border-color: var(--color-primary-teal); color: var(--color-accessible-teal); }
 .nom-filter-chip-solid > span { background: var(--color-secondary-fill); border-color: var(--color-teal-highlight); }
 .nom-filter-chip-solid[aria-pressed='true'] > span { background: var(--color-primary-teal); color: var(--color-text-primary); }

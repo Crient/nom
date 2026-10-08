@@ -1,18 +1,28 @@
 import { readLocalState, writeLocalState, STORAGE_KEYS, REPAIRED_STATE } from './localPersistence'
-import { identityCacheKey, readGuestJourney, meaningfulGuestData, guestJourneyFingerprint, meaningfulName } from './identityStorage'
+import { identityCacheKey, migrateVerificationAccountStorage, readGuestJourney, meaningfulGuestData, guestJourneyFingerprint, meaningfulName } from './identityStorage'
 import { normalizeActivity, normalizeDiscovery, normalizeExperience, normalizeFavorites, serializeExperience } from './persistedState'
-import { defaultJourney, journeyMutations, mergeJourneys, mealFromRow } from './cloudState'
+import { defaultJourney, journeyMutations, mergeJourneys, mealFromRow, normalizeLegacyMealPayload } from './cloudState'
 import { collectionCountries, collectibleDefinitions } from './collectionDefinitions'
 import { createAccountOutbox, withAccountSyncLock } from './accountOutbox'
 
 const fields = {
   profile: ['display_name', 'avatar_url'], dishFavorite: ['dish_id', 'is_active'], restaurantFavorite: ['restaurant_id', 'is_active'],
   dishView: ['dish_id', 'viewed_at'], collectibleFavorite: ['collectible_key', 'is_active'],
-  meal: ['id', 'dish_id', 'restaurant_id', 'country_code', 'started_at', 'completed_at', 'local_day', 'verification_method', 'verified', 'verification_source', 'verification_checked_at', 'feedback_reaction', 'feedback_observations', 'feedback_note'],
+  meal: ['id', 'dish_id', 'restaurant_id', 'country_code', 'started_at', 'completed_at', 'local_day', 'verification_method', 'verified', 'verification_source', 'verification_checked_at', 'feedback_reaction', 'feedback_observations', 'feedback_note',
+    'verification_status','verification_id','verification_distance_meters','verification_accuracy_meters','receipt_confidence','verification_version','verification_proof','verification_signature','verification_claim_token'],
   openedBox: ['box_id', 'visit_id', 'country_id', 'collectible_id', 'duplicate', 'opened_at'],
 }
 const order = ['profile', 'dishFavorite', 'restaurantFavorite', 'dishView', 'meal', 'openedBox', 'collectibleFavorite']
 const serializeJourney = data => ({ ...data, experience: serializeExperience(data.experience) })
+
+function normalizeOperation(item) {
+  if (item?.kind !== 'meal') return item
+  const payload = normalizeLegacyMealPayload(item.payload)
+  if (payload === item.payload) return item
+  const result = { ...item, payload }
+  Object.defineProperty(result, REPAIRED_STATE, { value: true })
+  return result
+}
 
 function validOperation(item) {
   if (!item || typeof item.id !== 'string' || !item.id || typeof item.target !== 'string' || !fields[item.kind]
@@ -37,7 +47,7 @@ function validOperation(item) {
   if (item.kind === 'meal') {
     if (item.target !== p.id || !timestamp(p.completed_at) || !timestamp(p.started_at) || !timestamp(p.verification_checked_at)) return false
     const log = normalizeExperience({ logs: [mealFromRow(p)], openedBoxes: [], favorites: [] }).logs[0]
-    return Boolean(log && log.countryCode === p.country_code && !/^qa-/i.test(log.id)
+    return Boolean(log && log.verification.verified===p.verified && log.countryCode === p.country_code && !/^qa-/i.test(log.id)
       && !['qa-preview', 'demo-seed'].includes(p.verification_source) && typeof p.verification_source === 'string')
   }
   return item.target === p.box_id && typeof p.visit_id === 'string' && /^[a-zA-Z0-9-]{1,100}$/.test(p.visit_id)
@@ -54,7 +64,8 @@ export function normalizeAccountCache(value) {
     catch { data[section] = defaults[section]; repaired = true }
   }
   const seen = new Set()
-  const outbox = Array.isArray(value.outbox) ? value.outbox.filter(item => {
+  const outbox = Array.isArray(value.outbox) ? value.outbox.map(normalizeOperation).filter(item => {
+    if (item?.[REPAIRED_STATE]) repaired = true
     try { if (!validOperation(item) || seen.has(item.id)) return false; seen.add(item.id); return true } catch { return false }
   }) : []
   if (outbox.length !== value.outbox?.length) repaired = true
@@ -98,8 +109,9 @@ export function overlayPending(cloud, outbox, cached) {
 
 export function createJourneyStore({ user = null, repository = null, online = () => globalThis.navigator?.onLine !== false, now = () => new Date(), timers = globalThis } = {}) {
   const userId = user?.id, guest = readGuestJourney(), cacheKey = userId ? identityCacheKey(userId) : null
+  if (userId) migrateVerificationAccountStorage(userId)
   const cache = userId ? readLocalState(cacheKey, normalizeAccountCache, () => ({ data: defaultJourney(), outbox: [], guestDecision: null })) : { data: guest, outbox: [], guestDecision: null }
-  const journal = userId ? createAccountOutbox(cacheKey, validOperation, cache.outbox) : null
+  const journal = userId ? createAccountOutbox(cacheKey, validOperation, cache.outbox, normalizeOperation) : null
   let outbox = journal?.read() ?? [], decision = cache.guestDecision, decisionDirty = false, active = true, flight = null, mergeFlight = null, retryTimer = null, retryCount = 0, lastCloud = null, sequence = 0, writerId = null
   const metadataName = normalizeActivity({ displayName: user?.user_metadata?.full_name ?? user?.user_metadata?.name ?? 'Explorer', recentDishes: [] }).displayName
   const avatar = /^https:\/\//.test(user?.user_metadata?.avatar_url ?? '') ? user.user_metadata.avatar_url : null
@@ -110,6 +122,7 @@ export function createJourneyStore({ user = null, repository = null, online = ()
   const listeners = new Set()
   const publish = patch => { snapshot = { ...snapshot, ...patch, outboxCount: outbox.length }; for (const listener of listeners) listener() }
   function reconcile(authoritative = false) {
+    migrateVerificationAccountStorage(userId)
     const shared = readLocalState(cacheKey, normalizeAccountCache, () => cache)
     outbox = journal.read()
     if (!decisionDirty) decision = shared.guestDecision
@@ -245,7 +258,9 @@ export function createJourneyStore({ user = null, repository = null, online = ()
     },
   }
   function storageChanged(event) {
-    if (!active || !userId || (event.key !== null && event.key !== cacheKey && !event.key?.startsWith(journal.prefix))) return
+    const previousKey = cacheKey?.replace('nom.v3.', 'nom.v2.')
+    if (!active || !userId || (event.key !== null && event.key !== cacheKey && !event.key?.startsWith(journal.prefix)
+      && event.key !== previousKey && !event.key?.startsWith(`${previousKey}.outbox.`))) return
     reconcile()
     if (outbox.length) queueMicrotask(synchronize)
   }

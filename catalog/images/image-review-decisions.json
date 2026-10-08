@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "note": "Explicit user manual QA; source-specific decisions, not automatic approvals.",
+  "dishes": [
+    {
+      "dishId": "ramen",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Soy_ramen.jpg",
+      "reviewStatus": "approved",
+      "reason": "Recognizable and food-focused.",
+      "decisionSource": "user-manual-qa"
+    },
+    {
+      "dishId": "bibimbap",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Tofu_Bi_Bim_Bap_-_Korpan.jpg",
+      "reviewStatus": "needs-replacement",
+      "reason": "Visually ambiguous; does not clearly communicate canonical bibimbap.",
+      "decisionSource": "user-manual-qa"
+    },
+    {
+      "dishId": "yakitori",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Cooking_yakitori.jpg",
+      "reviewStatus": "temporary",
+      "reason": "Correct dish, but cooking scene/person dominates.",
+      "decisionSource": "user-manual-qa"
+    },
+    {
+      "dishId": "biryani",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Dum_Biryani_Plate.jpg",
+      "reviewStatus": "temporary",
+      "reason": "Correct dish, but dated/flash-heavy.",
+      "decisionSource": "user-manual-qa"
+    },
+    {
+      "dishId": "shish-taouk",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Raw_Shish_Taouk.JPG",
+      "reviewStatus": "needs-replacement",
+      "reason": "Preparation/skewers on a tray rather than a finished dish.",
+      "decisionSource": "user-manual-qa"
+    },
+    {
+      "dishId": "harira",
+      "sourcePageUrl": "https://www.flickr.com/photos/199745331@N06/53525181373",
+      "reviewStatus": "approved",
+      "reason": "Recognizable and well framed.",
+      "decisionSource": "user-manual-qa"
+    },
+    {
+      "dishId": "suya",
+      "sourcePageUrl": "https://www.flickr.com/photos/119697633@N05/12997714615",
+      "reviewStatus": "needs-replacement",
+      "reason": "Night street/cooking scene dominates; dish barely visible.",
+      "decisionSource": "user-manual-qa"
+    },
+    {
+      "dishId": "carbonara",
+      "sourcePageUrl": "https://www.flickr.com/photos/35034346243@N01/34677096",
+      "reviewStatus": "temporary",
+      "reason": "Correct dish, but dated/flash-heavy.",
+      "decisionSource": "user-manual-qa"
+    },
+    {
+      "dishId": "french-onion-soup",
+      "sourcePageUrl": "https://www.flickr.com/photos/10019047@N05/12264336764",
+      "reviewStatus": "needs-replacement",
+      "reason": "Presentation is too atypical to immediately communicate the dish.",
+      "decisionSource": "user-manual-qa"
+    },
+    {
+      "dishId": "tacos-al-pastor",
+      "sourcePageUrl": "https://www.flickr.com/photos/22662305@N04/3107247878",
+      "reviewStatus": "needs-replacement",
+      "reason": "Does not visually communicate tacos al pastor.",
+      "decisionSource": "user-manual-qa"
+    },
+    {
+      "dishId": "jambalaya",
+      "sourcePageUrl": "https://www.flickr.com/photos/20119750@N00/2799144481",
+      "reviewStatus": "approved",
+      "reason": "Recognizable and acceptable.",
+      "decisionSource": "user-manual-qa"
+    },
+    {
+      "dishId": "lobster-roll",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Lobster_roll_-_San_Francisco.jpg",
+      "reviewStatus": "needs-replacement",
+      "reason": "Does not clearly read as the canonical dish.",
+      "decisionSource": "user-manual-qa"
+    }
+  ]
+}

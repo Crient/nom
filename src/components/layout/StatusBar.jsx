@@ -1,4 +1,5 @@
 import { cn } from '../../utils/cn'
+import { designPreviewEnabled } from '../../utils/designPreview'
 import statusCellular from '../../assets/icons/status-cellular.svg'
 import statusWifi from '../../assets/icons/status-wifi.svg'
 import statusCap from '../../assets/icons/status-cap.svg'
@@ -11,8 +12,8 @@ import statusCap from '../../assets/icons/status-cap.svg'
  * Figma uses SF Pro for the clock; the system font stack is the closest the
  * browser can get.
  */
-export default function StatusBar({ className, overlay = false, preview = import.meta.env.DEV }) {
-  if (!preview) return <div aria-hidden="true" data-status-bar="safe-area" className={cn(overlay ? 'absolute inset-x-0 top-0 z-10' : 'relative', 'nom-status-spacer w-full', className)} />
+export default function StatusBar({ className, overlay = false, preview }) {
+  if (!designPreviewEnabled(preview)) return <div aria-hidden="true" data-status-bar="safe-area" className={cn(overlay ? 'absolute inset-x-0 top-0 z-10' : 'relative', 'nom-status-spacer w-full', className)} />
   return (
     <div aria-hidden="true" data-status-bar="preview" className={cn(overlay ? 'absolute inset-x-0 top-0 z-10' : 'relative', 'h-status-bar w-full', className)}>
       <p

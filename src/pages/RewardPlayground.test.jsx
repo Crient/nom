@@ -5,6 +5,7 @@ vi.hoisted(() => { vi.stubEnv('VITE_ENABLE_REWARD_QA', 'true') })
 import App from '../App'
 import { actAndLoadRoutes as act } from '../test/routeAct'
 import { STORAGE_KEYS, writeLocalState } from '../data/localPersistence'
+import {earnedJourney} from '../test/earnedJourney'
 import { createExperienceState, experienceReducer } from '../data/experienceState'
 import { serializeExperience } from '../data/persistedState'
 import { BOX_REVEAL_TIMING } from './SurpriseBox'
@@ -69,12 +70,7 @@ describe('local reward playground', () => {
     await click('Back to reveal'); expect(document.querySelector('.box-reveal')).toBeTruthy()
   })
   it('can replay the last earned reward without changing that reward or the real collection', async () => {
-    const draft = { id: 'qa-earned-meal', dishId: 'lort-cha', restaurantId: 'preview-thmor-da', countryCode: 'KH', startedAt: '2026-10-05T12:00:00Z',
-      verification: { verified: true, method: 'qr-demo', source: 'development', checkedAt: '2026-10-05T12:00:00Z' }, feedback: { reaction: 'loved', observations: [], note: '' } }
-    let state = experienceReducer(createExperienceState(), { type: 'start', draft })
-    state = experienceReducer(state, { type: 'complete', id: draft.id, day: '2026-10-05', at: '2026-10-05T12:00:00Z' })
-    state = experienceReducer(state, { type: 'begin-box', id: 'box-qa-earned-meal' })
-    state = experienceReducer(state, { type: 'open-box', id: 'box-qa-earned-meal', at: '2026-10-05T12:01:00Z' })
+    const state = earnedJourney(1)
     writeLocalState(STORAGE_KEYS.experience, serializeExperience(state))
     await mount(); const before = saved()
     await click('Replay last reward animation'); await click('Open Mystery Box')

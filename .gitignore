@@ -11,6 +11,7 @@ src/assets/food/generated-incoming/*
 !src/assets/food/generated-incoming/.gitkeep
 catalog/images/.fetch.lock/
 scripts/__pycache__/
+supabase/.temp/
 
 # Environment — Supabase keys will live here
 .env

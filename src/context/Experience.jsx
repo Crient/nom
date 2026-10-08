@@ -18,6 +18,7 @@ export function ExperienceProvider({ children }) {
     startVisit({ dish, restaurant, returnState }) {
       const id = globalThis.crypto?.randomUUID?.() ?? `visit-${Date.now()}-${++visitSequence}`
       dispatch({ type: 'start', draft: { id, dishId: dish.id, restaurantId: restaurant.id, countryCode: dish.countryCode,
+        restaurantName: restaurant.name,
         startedAt: new Date().toISOString(), returnState, verification: null, feedback: null } })
       return id
     },

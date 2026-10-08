@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createRewardSound, REWARD_SOUND_PROFILES } from './rewardSound'
+import { createRewardSound, REWARD_SOUND_PROFILES, rewardSoundEnabled } from './rewardSound'
 
 let Audio, context, sound, nodes
 beforeEach(() => {
@@ -9,8 +9,25 @@ beforeEach(() => {
     createOscillator: vi.fn(() => { const node = { frequency: { setValueAtTime: vi.fn(), exponentialRampToValueAtTime: vi.fn() }, connect: vi.fn(), disconnect: vi.fn(), start: vi.fn(), stop: vi.fn() }; nodes.push(node); return node }) }
   Audio = vi.fn(function () { return context }); sound = createRewardSound({ getAudioContext: () => Audio })
 })
-afterEach(() => { sound.stop(); vi.useRealTimers() })
+afterEach(() => { sound.stop(); vi.useRealTimers(); vi.unstubAllGlobals() })
 describe('optional original reward chime', () => {
+  it('defaults on unless an explicit mute was saved, including unavailable storage', () => {
+    for (const [value, enabled] of [[null, true], ['on', true], ['off', false]]) {
+      vi.stubGlobal('localStorage', { getItem: () => value })
+      expect(rewardSoundEnabled()).toBe(enabled)
+    }
+    vi.stubGlobal('localStorage', { getItem: () => { throw new Error('Storage unavailable') } })
+    expect(rewardSoundEnabled()).toBe(true)
+  })
+  it('starts its first note immediately and reports a blocked resume without throwing', async () => {
+    const onUnavailable = vi.fn()
+    context.resume.mockRejectedValueOnce(new Error('Blocked'))
+    expect(sound.play({ enabled: true, onUnavailable })).toBe(true)
+    expect(nodes[0].start).toHaveBeenCalledWith(context.currentTime)
+    await Promise.resolve()
+    expect(onUnavailable).toHaveBeenCalledTimes(1)
+    expect(nodes.every(node => node.disconnect.mock.calls.length === 1)).toBe(true)
+  })
   it('creates no audio context while muted or with reduced motion', () => {
     expect(sound.play()).toBe(false)
     expect(sound.play({ enabled: true, reducedMotion: true })).toBe(false)

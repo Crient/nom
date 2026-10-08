@@ -8,5 +8,8 @@ export function useVisit(visitId) {
   const visit = log ?? state.drafts[visitId]
   const dish = dishes.find(item => item.id === visit?.dishId)
   const data = useRestaurant(dish?.id, visit?.restaurantId)
-  return { visit, log, dish, ...data }
+  // Fresh provider/session details win; a recovered name is display context only.
+  const restaurant = data.restaurant?.metadataOnly && visit?.restaurantName
+    ? { ...data.restaurant, name: visit.restaurantName } : data.restaurant
+  return { visit, log, dish, ...data, restaurant }
 }

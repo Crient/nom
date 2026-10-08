@@ -160,7 +160,8 @@
 .restaurant-preview-copy .restaurant-facts-row { gap: 3px 6px; }
 .place-photo-image { opacity: 0; }
 .place-photo-image.is-ready { opacity: 1; }
-.place-photo > .place-photo-expand { position: absolute; right: 4px; bottom: 4px; display: grid; place-items: center; width: 44px; height: 44px; border-radius: var(--radius-full); background: color-mix(in srgb,var(--color-surface) 90%,transparent); color: var(--color-text-secondary); font-size: 18px; }
+.place-photo > .place-photo-expand { position: absolute; right: 4px; bottom: 4px; display: grid; place-items: center; width: 44px; height: 44px; border-radius: var(--radius-full); background: transparent; color: var(--color-text-primary); }
+.place-photo > .place-photo-expand span { display: grid; place-items: center; width: 26px; height: 26px; border-radius: var(--radius-full); background: var(--color-surface); color: var(--color-text-primary); font-size: 14px; box-shadow: var(--shadow-card); }
 .place-photo-viewer { max-height: 85dvh; overflow-y: auto; }
 .place-photo-viewer header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
 .place-photo-viewer h2 { flex: 1; font-size: var(--text-heading); font-weight: 700; }

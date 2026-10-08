@@ -4,7 +4,7 @@ import { readLocalState, writeLocalState } from './localPersistence'
 // prevent concurrent snapshot writes from replacing another tab's mutations.
 // Receipts survive until account deletion so stale snapshots cannot resurrect
 // operations that another tab already acknowledged.
-export function createAccountOutbox(cacheKey, validOperation, legacy) {
+export function createAccountOutbox(cacheKey, validOperation, legacy, normalizeOperation = value => value) {
   const prefix = `${cacheKey}.outbox.`, encodeId = id => encodeURIComponent(id).replace(/\./g, '%2E')
   const operationKey = id => `${prefix}operation.${encodeId(id)}`, receiptKey = id => `${prefix}ack.${encodeId(id)}`
   const unsaved = new Map()
@@ -23,6 +23,9 @@ export function createAccountOutbox(cacheKey, validOperation, legacy) {
       let saved = true
       for (const [index, original] of legacy.entries()) {
         const operation = { ...original, clock: original.clock ?? index + 1 }
+        // An immutable journal record is more authoritative than a stale
+        // snapshot, including during the verification-compatible adoption.
+        if (globalThis.localStorage?.getItem(operationKey(operation.id)) != null) continue
         unsaved.set(operation.id, operation)
         if (!save(operation)) saved = false
       }
@@ -38,8 +41,9 @@ export function createAccountOutbox(cacheKey, validOperation, legacy) {
       for (const key of keys) {
         if (!key?.startsWith(`${prefix}operation.`) || key.includes('.recovery.')) continue
         const operation = readLocalState(key, value => {
-          if (!validOperation(value) || key !== operationKey(value.id)) throw new Error('Invalid outbox record')
-          return value
+          const normalized = normalizeOperation(value)
+          if (!validOperation(normalized) || key !== operationKey(normalized.id)) throw new Error('Invalid outbox record')
+          return normalized
         }, () => null)
         if (operation && !acknowledged(operation.id)) pending.set(operation.id, operation)
       }

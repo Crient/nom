@@ -28,6 +28,8 @@ const Account = lazy(() => import('./pages/Account'))
 const AuthCallback = lazy(() => import('./pages/AuthCallback'))
 const ResetPassword = lazy(() => import('./pages/ResetPassword'))
 const Profile = lazy(() => import('./pages/Profile'))
+const Friends = lazy(() => import('./pages/Friends'))
+const SharedInbox = lazy(() => import('./pages/SharedInbox'))
 const Favorites = lazy(() => import('./pages/Favorites'))
 const History = lazy(() => import('./pages/History'))
 const Explore = lazy(() => import('./pages/Explore'))
@@ -49,6 +51,8 @@ export const routes = [
       { path: 'home', element: <Home /> },
       { path: 'progress', element: <Progress /> },
       { path: 'profile', element: <Profile /> },
+      { path: 'friends', element: <Friends /> },
+      { path: 'friends/inbox', element: <SharedInbox /> },
       { path: 'account', element: <Account /> },
       { path: 'auth/callback', element: <AuthCallback /> },
       { path: 'account/reset-password', element: <ResetPassword /> },

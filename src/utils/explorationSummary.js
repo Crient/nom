@@ -14,7 +14,7 @@ export function explorationSummary(state, recentDishes) {
 
 export function activityEntries(logs, recentDishes) {
   return [...logs.map(log => ({ id: `meal:${log.id}`, dish: byId.get(log.dishId), date: log.completedAt, kind: 'meal',
-    to: `/visits/${log.id}/logged`, label: log.verification.verified ? 'Meal logged · Demo verified' : 'Meal logged · Unverified' })),
+    to: `/visits/${log.id}/logged`, label: log.verification.verified ? 'Meal logged · Verified' : 'Meal logged · Unverified' })),
   ...recentDishes.map(item => ({ id: `view:${item.dishId}`, dish: byId.get(item.dishId), date: item.viewedAt, kind: 'view',
     to: `/recommendations/${item.dishId}`, label: 'Dish explored' }))].filter(entry => entry.dish)
     .sort((a, b) => Date.parse(b.date) - Date.parse(a.date) || a.id.localeCompare(b.id))

@@ -5,23 +5,24 @@ import phone from '../../assets/experience/phone.svg'
 import website from '../../assets/experience/website.svg'
 import friends from '../../assets/experience/friends.svg'
 import share from '../../assets/experience/share.svg'
+import SendToFriend from '../social/SendToFriend'
 
-export default function RestaurantActions({ restaurant }) {
+export default function RestaurantActions({ restaurant, dishId = restaurant.dishId }) {
   const [notice, setNotice] = useState({ message: '' })
   const links = restaurantActionLinks(restaurant)
   const actions = [
     { label: 'Directions', icon: directions, href: links.directions },
     { label: 'Call', icon: phone, href: links.call },
     { label: 'Website', icon: website, href: links.website },
-    { label: 'Send to a friend', icon: friends, action: sendToNomFriend },
+    { label: 'Send to a friend', icon: friends, social: true },
     { label: 'Share', icon: share, action: send },
   ]
-  function sendToNomFriend() { setNotice({ message: 'Friends on Nom are coming soon.' }) }
   async function send() { setNotice(await shareRestaurant({ restaurant })) }
   return <div className="restaurant-action-section">
     <nav className="restaurant-actions restaurant-actions-live" aria-label="Restaurant actions">
       {actions.map(action => {
         const content = <><span><img src={action.icon} alt="" /></span><strong>{action.label}</strong></>
+        if (action.social) return <SendToFriend key={action.label} className="" content={{ type: 'restaurant', id: restaurant.id, dishId }}>{content}</SendToFriend>
         return action.href ? <a key={action.label} href={action.href} target={action.label === 'Call' ? undefined : '_blank'} rel="noopener noreferrer">{content}</a>
           : <button key={action.label} type="button" disabled={!action.action} aria-label={!action.action ? `${action.label} unavailable` : undefined} onClick={action.action}>{content}</button>
       })}

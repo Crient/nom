@@ -14,6 +14,11 @@ export function mealToRow(log) {
     started_at: log.startedAt, completed_at: log.completedAt, local_day: log.day,
     verification_method: log.verification.method, verified: log.verification.verified,
     verification_source: log.verification.source ?? null, verification_checked_at: log.verification.checkedAt ?? null,
+    verification_status:log.verification.status,verification_id:log.verification.id??null,
+    verification_distance_meters:log.verification.distanceMeters??null,verification_accuracy_meters:log.verification.accuracyMeters??null,
+    receipt_confidence:log.verification.confidence??null,verification_version:log.verification.version??1,
+    verification_proof:log.verification.proof??null,verification_signature:log.verification.signature??null,
+    ...(log.verification.claimToken?{verification_claim_token:log.verification.claimToken}:{}),
     feedback_reaction: log.feedback.reaction, feedback_observations: log.feedback.observations, feedback_note: log.feedback.note }
 }
 
@@ -22,10 +27,25 @@ export function boxToRow(box) {
     collectible_id: box.collectibleId, duplicate: box.duplicate, opened_at: box.openedAt }
 }
 
+/** Only the historical, evidence-free wire contract is downgraded. Never turn
+ * a malformed modern proof into an accepted verification or strip extra fields. */
+export function normalizeLegacyMealPayload(payload) {
+  if (!payload || typeof payload.verified !== 'boolean'
+    || !['location-demo', 'qr-demo', 'receipt-demo', 'unverified'].includes(payload.verification_method)
+    || ['verification_id', 'verification_proof', 'verification_signature', 'verification_claim_token'].some(key => payload[key] != null)) return payload
+  return { ...payload, verified: false, verification_method: 'none', verification_status: 'unverified',
+    verification_source: 'legacy', verification_version: 1, verification_id: null,
+    verification_distance_meters: null, verification_accuracy_meters: null, receipt_confidence: null,
+    verification_proof: null, verification_signature: null }
+}
+
 export function mealFromRow(row) {
   return { id: row.id, dishId: row.dish_id, restaurantId: row.restaurant_id, countryCode: row.country_code,
     startedAt: row.started_at, completedAt: row.completed_at, day: row.local_day,
-    verification: { verified: row.verified, method: row.verification_method, source: row.verification_source ?? 'development', checkedAt: row.verification_checked_at },
+    verification: { verified: row.verified, status:row.verification_status??'unverified',method: ({'location-demo':'location','qr-demo':'qr','receipt-demo':'receipt','unverified':'none'})[row.verification_method]??row.verification_method, source: row.verification_source ?? 'legacy', checkedAt: row.verification_checked_at,
+      version:row.verification_version??1,id:row.verification_id,visitId:row.id,dishId:row.dish_id,restaurantId:row.restaurant_id,countryCode:row.country_code,
+      distanceMeters:row.verification_distance_meters??null,accuracyMeters:row.verification_accuracy_meters??null,confidence:row.receipt_confidence??null,
+      proof:row.verification_proof,signature:row.verification_signature },
     feedback: { reaction: row.feedback_reaction, observations: row.feedback_observations, note: row.feedback_note } }
 }
 

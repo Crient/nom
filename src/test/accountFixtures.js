@@ -1,12 +1,13 @@
 import { vi } from 'vitest'
 import { TABLES } from '../data/cloudState'
+import {verifiedFixture} from './verificationFixtures'
 
 export const USER_A = { id: '00000000-0000-4000-8000-00000000000a', email: 'a@example.test', user_metadata: {}, app_metadata: { provider: 'email' } }
 export const USER_B = { ...USER_A, id: '00000000-0000-4000-8000-00000000000b', email: 'b@example.test' }
 export const at = '2026-10-06T12:00:00.000Z'
 export function meal(id = 'visit-one', day = '2026-10-06') {
   return { id, dishId: 'num-banh-chok', restaurantId: 'google:nom-test-place', countryCode: 'KH', startedAt: at, completedAt: `${day}T12:00:00.000Z`, day,
-    verification: { method: 'location-demo', verified: true, source: 'development', checkedAt: at },
+    verification: verifiedFixture({id,dishId:'num-banh-chok',restaurantId:'google:nom-test-place',at:`${day}T12:00:00.000Z`}),
     feedback: { reaction: 'loved', observations: [], note: 'Tasty' } }
 }
 
@@ -56,6 +57,16 @@ export function mockSupabase(initialUser = null, database) {
   })
   client.rpc = vi.fn(async (name, args) => {
     if (client.fail) return { error: { code: 'NETWORK' } }
+    if(name==='record_nom_verified_meal'){
+      const row={...args.p_meal,user_id:session?.user.id}
+      await client.beforeWrite?.('meal_logs',row)
+      if(client.fail)return {error:{code:'NETWORK'}}
+      writes.push({table:'meal_logs',row,options:{ignoreDuplicates:true},rpc:name})
+      if(!rows.meal_logs.some(r=>r.user_id===row.user_id&&r.id===row.id))rows.meal_logs.push(row)
+      return {data:null,error:null}
+    }
+    // Unknown/new read RPCs must not accidentally become dish-view writes.
+    if (name !== 'record_nom_dish_view') return { data: null, error: { code: 'PGRST202' } }
     const user_id = session?.user.id, row = rows.recent_dish_views.find(item => item.user_id === user_id && item.dish_id === args.p_dish_id)
     writes.push({ rpc: name, args })
     if (row) { if (Date.parse(row.viewed_at) < Date.parse(args.p_viewed_at)) row.viewed_at = args.p_viewed_at }

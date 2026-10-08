@@ -1,4 +1,5 @@
 import { BOX_TARGET, collectionCountries, collectibleDefinitions, collectibleKey } from './collectionDefinitions'
+import { rewardEligible } from '../../shared/visitVerification'
 
 /** Local calendar day: a dish may earn progress once per day, across restaurants. */
 export function visitDay(date = new Date()) {
@@ -8,10 +9,7 @@ export function visitDay(date = new Date()) {
 export function createExperienceState() {
   const progress = {}, unlocks = {}
   for (const country of collectionCountries) {
-    progress[country.id] = { meals: country.seedMeals, count: country.seedProgress }
-    // Cambodia's Figma grid has Ziggy locked; the other five are demo unlocks.
-    const seeds = country.id === 'cambodia' ? collectibleDefinitions.slice(1) : collectibleDefinitions.slice(0, country.seedUnlocked)
-    for (const reward of seeds) unlocks[collectibleKey(country.id, reward.id)] = { discoveredAt: '2026-09-27T12:00:00.000Z', source: 'demo-seed' }
+    progress[country.id] = { meals: 0, count: 0 }
   }
   return { drafts: {}, logs: [], progress, boxes: {}, unlocks, favorites: [] }
 }
@@ -39,7 +37,9 @@ export function experienceReducer(state, action) {
       const draft = state.drafts[action.id]
       if (!draft?.verification || !draft.feedback?.reaction || state.logs.some(log => log.id === action.id)) return state
       const country = collectionCountries.find(country => country.code === draft.countryCode)
-      const earnedProgress = Boolean(draft.verification.verified && !hasCountedDish(state, draft.dishId, action.day) && country)
+      const eligible = rewardEligible(draft) || Boolean(state.qaOnly && draft.verification.source==='qa-preview' && draft.verification.verified)
+      const day = eligible && !state.qaOnly ? draft.verification.checkedAt.slice(0,10) : action.day
+      const earnedProgress = Boolean(eligible && !hasCountedDish(state, draft.dishId, day) && country)
       const progress = { ...state.progress }, boxes = { ...state.boxes }
       let boxId = null
       if (country) {
@@ -50,9 +50,9 @@ export function experienceReducer(state, action) {
           boxes[boxId] = { id: boxId, countryId: country.id, visitId: action.id, status: 'ready', createdAt: action.at }
           count -= BOX_TARGET
         }
-        progress[country.id] = { meals: previous.meals + 1, count }
+        progress[country.id] = { meals: previous.meals + (earnedProgress ? 1 : 0), count }
       }
-      const log = { ...draft, day: action.day, completedAt: action.at, countryId: country?.id ?? null, earnedProgress, boxId }
+      const log = { ...draft, day, completedAt: eligible && !state.qaOnly ? draft.verification.checkedAt : action.at, countryId: country?.id ?? null, earnedProgress, boxId }
       return { ...state, logs: [...state.logs, log], progress, boxes }
     }
     case 'begin-box': {
@@ -75,8 +75,9 @@ export function experienceReducer(state, action) {
       const box = state.boxes[action.id]
       if (!box || box.status !== 'opening') return state
       const recorded = collectibleDefinitions.find(item => item.id === action.collectibleId)
-      const reward = recorded ?? collectibleDefinitions.find(item => !state.unlocks[collectibleKey(box.countryId, item.id)]) ?? collectibleDefinitions[0]
-      const key = collectibleKey(box.countryId, reward.id), duplicate = recorded && typeof action.duplicate === 'boolean' ? action.duplicate : Boolean(state.unlocks[key])
+      const next = collectibleDefinitions.find(item => !state.unlocks[collectibleKey(box.countryId, item.id)]) ?? collectibleDefinitions[0]
+      const reward = recorded && state.unlocks[collectibleKey(box.countryId, recorded.id)] ? recorded : next
+      const key = collectibleKey(box.countryId, reward.id), duplicate = Boolean(state.unlocks[key])
       return { ...state,
         boxes: { ...state.boxes, [box.id]: { ...box, status: 'opened', collectibleId: reward.id, duplicate, openedAt: action.at } },
         unlocks: duplicate || state.unlocks[key] ? state.unlocks : { ...state.unlocks, [key]: { discoveredAt: action.at, source: box.id } },

@@ -28,7 +28,7 @@
 .profile-links span { position: absolute; right: 17px; top: 18px; font-size: 25px; }
 .hub-chips { display: flex; gap: 6px; flex-wrap: wrap; }
 .hub-section input { width: 100%; min-height: 44px; border: 1px solid var(--color-text-muted); border-radius: var(--radius-md); padding: 10px; background: var(--color-surface); }
-.hub-filters { display: flex; flex-wrap: wrap; gap: 10px; }
+.hub-filters { display: flex; flex-wrap: wrap; gap: 8px 10px; padding-block: 4px; }
 .hub-filters button { font-size: 13px; }
 .hub-search { padding: 0; }
 .hub-search input { font-size: 15px; }
@@ -48,15 +48,16 @@
 .activity-card > span { min-width: 0; display: grid; gap: 3px; }
 .activity-card strong { overflow-wrap: anywhere; font-size: 15px; }
 .activity-card small, .activity-card time { font-size: 12px; color: var(--color-text-secondary); }
-.activity-card-compact { width: 220px; flex: none; padding: 8px; }
-.activity-card-compact > img { width: 55px; height: 55px; }
-.activity-card-compact strong { font-size: 13px; }
+.activity-card-compact { width: min(78cqw,290px); flex: 0 0 min(78cqw,290px); height: 112px; padding: 12px; gap: 12px; align-items: flex-start; }
+.activity-card-compact > img { width: 64px; height: 64px; align-self: center; }
+.activity-card-compact > span { flex: 1; gap: 4px; }
+.activity-card-compact strong { font-size: 13px; line-height: 18px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.activity-card-compact small, .activity-card-compact time { line-height: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 @container (max-width: 390px) {
   .hub-content { margin-inline: 18px; }
   .hub-title { margin-inline: 18px; }
   .hub-summary { gap: 10px; }
   .hub-summary > div, .hub-section { padding: 12px; }
-  .hub-filters { gap: 5px; }
 }
 
 /* Home owns its status region; controls follow it in document flow. */

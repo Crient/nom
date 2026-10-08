@@ -110,7 +110,7 @@ export default function SurpriseDishCard({ result, nextResult, queuedResult, buf
         style={{ transform, opacity: role === 'buffered' ? promotion : 1 }}>
         <Image src={item.dish.image} alt={front ? item.dish.name : ''} draggable="false" loading="eager" />
         <span className="surprise-swipe-cue surprise-swipe-skip" aria-hidden="true" style={{ opacity: front && offset < 0 ? amount : 0 }}>← Not this one</span>
-        <span className="surprise-swipe-cue surprise-swipe-try" aria-hidden="true" style={{ opacity: front && offset > 0 ? amount : 0 }}>Try this →</span>
+        <span className="surprise-swipe-cue surprise-swipe-try" aria-hidden="true" style={{ opacity: front && offset > 0 ? amount : 0 }}>Try this one →</span>
         <div><p className="surprise-eyebrow">Your next food adventure</p><h2><DishTitle dish={item.dish} /></h2><p>{item.dish.shortDescription}</p></div>
       </article>})}
     </div>

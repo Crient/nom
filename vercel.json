@@ -1,5 +1,9 @@
 {
   "functions": {
+    "api/visit-verification.js": {
+      "maxDuration": 30,
+      "includeFiles": "src/data/catalog/records.json"
+    },
     "api/nearby-restaurants.js": {
       "maxDuration": 25,
       "supportsCancellation": true,

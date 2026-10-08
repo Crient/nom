@@ -1,4 +1,5 @@
 import { beforeEach, vi } from 'vitest'
+import {fixturePublicKey} from './verificationFixtures.js'
 
 // Isolate synthetic happy-dom storage between tests, while allowing refresh
 // simulations to preserve data within a test. This never touches browser data.
@@ -8,5 +9,6 @@ beforeEach(() => {
   vi.stubEnv('VITE_GOOGLE_MAPS_MAP_ID', '')
   vi.stubEnv('VITE_SUPABASE_URL', '')
   vi.stubEnv('VITE_SUPABASE_PUBLISHABLE_KEY', '')
+  vi.stubEnv('VITE_NOM_VERIFICATION_PUBLIC_KEY',fixturePublicKey)
   if (typeof window !== 'undefined') window.localStorage.clear()
 })

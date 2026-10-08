@@ -13,7 +13,8 @@ import { createRestaurantSearchState } from '../data/restaurantSearchState'
 
 let root
 beforeEach(() => {
-  installMockNearbyProvider(); globalThis.IS_REACT_ACT_ENVIRONMENT = true
+  installMockNearbyProvider()
+  vi.stubGlobal('fetch',vi.fn(async()=>({ok:true,json:async()=>({location:false,receipt:false,qr:false})}))); globalThis.IS_REACT_ACT_ENVIRONMENT = true
   vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
   document.body.innerHTML = '<div id="root"></div>'
   writeLocalState(STORAGE_KEYS.discovery, { foodType: 'noodle', flavors: ['spicy', 'comforting'], adventurousness: 'adventurous', region: 'southeast-asia' })
@@ -82,23 +83,28 @@ describe('production audit regressions', () => {
     await act(() => document.querySelector('.flow-back').click())
     expect(window.location.pathname).toBe('/profile')
   })
-  it('discloses the verification preview and saved-only feedback without development copy in production', async () => {
+  it('shows real verification failure and saved-only feedback without development copy in production', async () => {
     await navigate('/recommendations/lort-cha/nearby/preview-thmor-da')
     await act(() => document.querySelector('.restaurant-ate').click())
     vi.stubEnv('DEV', false)
     await navigate(window.location.pathname)
-    expect(document.body.textContent).toContain('No GPS or visit time is being measured')
+    expect(document.body.textContent).toContain('Your exact location isn’t saved.')
     expect(document.body.textContent).not.toMatch(/200m|17 min|development|Figma/i)
-    await act(() => document.querySelector('.flow-cta button').click())
-    expect(document.body.textContent).toContain('Preview verification')
+    expect(document.querySelector('.flow-cta button').disabled).toBe(true)
+    await act(() => document.querySelector('.verify-alternative').click())
+    await act(() => [...document.querySelectorAll('button')].find(b=>b.textContent.includes('Save to history without adding progress')).click())
+    await act(() => [...document.querySelectorAll('button')].find(b=>b.textContent==='Save without verification').click())
+    expect(document.body.textContent).toContain('Unverified')
+    expect(document.body.textContent).not.toContain('Preview verification')
     await act(() => document.querySelector('.feedback-privacy').click())
     expect(document.querySelector('[role=dialog]').textContent).toContain('It doesn’t change your current matches')
     expect(document.body.textContent).not.toMatch(/Personalized for you|development|Figma|9:41/i)
   })
   it('derives collectible capacity from definitions and shows the same progress component everywhere', async () => {
     await navigate('/progress')
-    const total = [...document.querySelectorAll('dt')].find(item => item.textContent === 'Collectibles').nextElementSibling.textContent
-    expect(total.split('/')[1]).toBe(String(collectionCountries.length * collectibleDefinitions.length))
+    const owned = [...document.querySelectorAll('dt')].find(item => item.textContent === 'Owned collectibles').nextElementSibling.textContent
+    expect(owned).toBe('0')
+    expect(document.body.textContent).toContain(`${collectionCountries.length * collectibleDefinitions.length} collectibles in the catalog`)
     const reference = document.querySelector('.country-progress-card').innerHTML
     for (const path of ['/home', '/collections/cambodia']) {
       await navigate(path); expect(document.querySelector('.country-progress-card').innerHTML).toBe(reference)
@@ -136,10 +142,13 @@ describe('production audit regressions', () => {
     expect(document.querySelector('[data-status-bar=safe-area]')?.children).toHaveLength(0)
     if (path === '/home') expect(document.querySelector('a[href="/scan"]')).toBeNull()
   })
-  it('renders production safe-area spacing and an explicit design preview without fake chrome in production', async () => {
+  it('never renders fake chrome in production, even with an explicit preview request', async () => {
     vi.stubEnv('DEV', false)
     await act(() => root.render(<StatusBar />))
     expect(document.querySelector('[data-status-bar=safe-area]')).toBeTruthy(); expect(document.body.textContent).toBe('')
+    await act(() => root.render(<StatusBar preview />))
+    expect(document.body.textContent).toBe('')
+    vi.stubEnv('DEV', true)
     await act(() => root.render(<StatusBar preview />))
     expect(document.body.textContent).toBe('9:41'); expect(document.querySelectorAll('img')).toHaveLength(3)
   })

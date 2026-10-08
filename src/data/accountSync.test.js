@@ -19,7 +19,7 @@ function guestEvents() {
   const data = defaultJourney()
   data.activity = { displayName: 'Leng', recentDishes: [{ dishId: 'num-banh-chok', viewedAt: at }] }
   data.favorites = { dishIds: ['num-banh-chok'], restaurantIds: ['google:nom-test-place'] }
-  data.experience = normalizeExperience({ logs: [meal()], openedBoxes: [], favorites: [] })
+  data.experience = normalizeExperience({ logs: [meal('prelude-one','2026-10-04'),meal('prelude-two','2026-10-05'),meal()], openedBoxes: [], favorites: [] })
   const id = 'box-visit-one'
   data.experience = experienceReducer(data.experience, { type: 'begin-box', id })
   data.experience = experienceReducer(data.experience, { type: 'open-box', id, at })
@@ -106,7 +106,7 @@ describe('explicit Guest consent, idempotent events, and two-device hydration', 
     const store = account(sdk); await store.start()
     const [one, two] = await Promise.all([store.mergeGuest(), store.mergeGuest()]); expect(one && two).toBe(true)
     await store.mergeGuest()
-    expect(sdk.rows.meal_logs).toHaveLength(1); expect(sdk.rows.opened_boxes).toHaveLength(1)
+    expect(sdk.rows.meal_logs).toHaveLength(3); expect(sdk.rows.opened_boxes).toHaveLength(1)
     expect(sdk.rows.collectible_favorites).toHaveLength(1); expect(sdk.rows.restaurant_favorites).toHaveLength(1)
     expect(sdk.rows.opened_boxes[0]).toMatchObject({ collectible_id: 'ziggy', duplicate: false, box_id: 'box-visit-one' })
     expect(store.getSnapshot().data.activity.displayName).toBe('Cloud name')
@@ -116,7 +116,7 @@ describe('explicit Guest consent, idempotent events, and two-device hydration', 
     const secondDevice = account(mockSupabase(USER_A, sdk.rows)); await secondDevice.start()
     expect(serializeExperience(secondDevice.getSnapshot().data.experience)).toEqual(serializeExperience(store.getSnapshot().data.experience))
     expect(secondDevice.getSnapshot().data.favorites).toEqual(store.getSnapshot().data.favorites)
-    expect(secondDevice.getSnapshot().data.experience.logs[0].day).toBe('2026-10-06')
+    expect(secondDevice.getSnapshot().data.experience.logs.at(-1).day).toBe('2026-10-06')
   })
   it('uses approved Guest name before Google metadata, but meaningful cloud name wins', async () => {
     saveGuest(guestEvents()); const user = { ...USER_A, user_metadata: { full_name: 'Google name' } }
@@ -400,12 +400,12 @@ describe('durable offline outbox and server conflict rules', () => {
     saveGuest(guestEvents()); const sdk = mockSupabase(USER_A), store = account(sdk); await store.start()
     sdk.beforeWrite = table => { if (table === 'opened_boxes') sdk.fail = true }
     expect(await store.mergeGuest()).toBe(false)
-    expect(sdk.rows.meal_logs).toHaveLength(1); expect(sdk.rows.opened_boxes).toHaveLength(0)
+    expect(sdk.rows.meal_logs).toHaveLength(3); expect(sdk.rows.opened_boxes).toHaveLength(0)
     expect(store.getSnapshot().migrationInProgress).toBe(true)
     store.stop(); sdk.fail = false; sdk.beforeWrite = null
     const resumed = account(sdk); await resumed.start()
-    expect(sdk.rows.meal_logs).toHaveLength(1); expect(sdk.rows.opened_boxes).toHaveLength(1)
-    expect(sdk.writes.filter(item => item.table === 'meal_logs')).toHaveLength(1)
+    expect(sdk.rows.meal_logs).toHaveLength(3); expect(sdk.rows.opened_boxes).toHaveLength(1)
+    expect(sdk.writes.filter(item => item.table === 'meal_logs')).toHaveLength(3)
     expect(resumed.getSnapshot()).toMatchObject({ migrationPending: false, outboxCount: 0, syncStatus: 'synced' })
   })
 })
@@ -413,7 +413,7 @@ describe('durable offline outbox and server conflict rules', () => {
 describe('canonical source-event replay', () => {
   it('consumes an existing earned credit when merged chronology moves a historical box milestone', () => {
     const guest = guestEvents(), rows = Object.fromEntries(TABLES.map(table => [table, []]))
-    rows.meal_logs = [mealToRow(meal('cloud-earlier', '2026-10-05'))]
+    rows.meal_logs = [mealToRow(meal('cloud-earlier', '2026-10-03'))]
     const merged = mergeJourneys(cloudRowsToJourney(rows), guest)
     expect(merged.experience.boxes['box-visit-one']).toMatchObject({ status: 'opened', collectibleId: 'ziggy', duplicate: false })
     expect(merged.experience.boxes['box-cloud-earlier']).toBeUndefined()
@@ -422,25 +422,25 @@ describe('canonical source-event replay', () => {
   })
   it('never rerolls a malformed explicit reward or invents credit for an unverified opening', () => {
     const data = guestEvents(), event = serializeExperience(data.experience).openedBoxes[0]
-    const invalid = normalizeExperience({ logs: [meal()], openedBoxes: [{ ...event, collectibleId: 'unknown' }], favorites: [] })
+    const invalid = normalizeExperience({ logs: data.experience.logs, openedBoxes: [{ ...event, collectibleId: 'unknown' }], favorites: [] })
     expect(invalid.boxes['box-visit-one'].status).toBe('ready')
     const unverified = { ...meal(), verification: { ...meal().verification, method: 'unverified', verified: false } }
     expect(normalizeExperience({ logs: [unverified], openedBoxes: [event], favorites: [] }).boxes).toEqual({})
   })
   it('retains local_day and explicit collectible choices rather than rerolling', () => {
     const data = guestEvents(), rows = Object.fromEntries(TABLES.map(table => [table, []]))
-    rows.meal_logs = [mealToRow(data.experience.logs[0])]
-    rows.opened_boxes = [{ box_id: 'box-visit-one', visit_id: 'visit-one', country_id: 'cambodia', collectible_id: 'lumi', duplicate: true, opened_at: at }]
+    rows.meal_logs = data.experience.logs.map(mealToRow)
+    rows.opened_boxes = [{ box_id: 'box-visit-one', visit_id: 'visit-one', country_id: 'cambodia', collectible_id: 'ziggy', duplicate: false, opened_at: at }]
     const hydrated = cloudRowsToJourney(rows)
-    expect(hydrated.experience.boxes['box-visit-one']).toMatchObject({ collectibleId: 'lumi', duplicate: true, openedAt: at })
-    expect(hydrated.experience.logs[0].day).toBe('2026-10-06')
+    expect(hydrated.experience.boxes['box-visit-one']).toMatchObject({ collectibleId: 'ziggy', duplicate: false, openedAt: at })
+    expect(hydrated.experience.logs.at(-1).day).toBe('2026-10-06')
     expect(serializeExperience(normalizeExperience(serializeExperience(hydrated.experience)))).toEqual(serializeExperience(hydrated.experience))
   })
   it('merges stable IDs, ignores invalid locked favorites, and preserves account-local drafts', () => {
     const a = guestEvents(), g = guestEvents(); a.activity.displayName = 'Cloud'; a.experience.drafts.pending = meal('pending')
     g.experience.favorites.push('cambodia:invalid')
     const merged = mergeJourneys(a, g)
-    expect(merged.experience.logs).toHaveLength(1); expect(Object.values(merged.experience.boxes)).toHaveLength(1)
+    expect(merged.experience.logs).toHaveLength(3); expect(Object.values(merged.experience.boxes)).toHaveLength(1)
     expect(merged.experience.favorites).toEqual(['cambodia:ziggy']); expect(merged.experience.drafts.pending).toBeTruthy()
   })
 })

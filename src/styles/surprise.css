@@ -22,8 +22,8 @@
 .surprise-deck-card.is-dragging { transition: none; }
 .surprise-dish-card.is-dragging { cursor: grabbing; }
 .surprise-swipe-cue { position: absolute; top: 18px; max-width: calc(100% - 32px); padding: 10px 14px; border-radius: var(--radius-md); background: var(--color-surface); font-size: var(--text-body-lg); font-weight: 700; pointer-events: none; box-shadow: var(--shadow-panel); }
-.surprise-swipe-skip { left: 16px; color: var(--color-text-secondary); }
-.surprise-swipe-try { right: 16px; color: var(--color-accessible-teal); }
+.surprise-swipe-skip { right: 16px; color: var(--color-text-secondary); }
+.surprise-swipe-try { left: 16px; color: var(--color-accessible-teal); }
 .surprise-controls button { padding-inline: 12px; font-size: var(--text-body-lg); }
 @media (prefers-reduced-motion: reduce) { .surprise-deck-card { animation: none; transition: none !important; } }
 .surprise-dish-card[data-reduced-motion=true] { animation: none; transition: none !important; }

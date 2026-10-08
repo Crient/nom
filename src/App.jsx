@@ -10,6 +10,7 @@ import { DiscoverySessionProvider } from './context/DiscoverySession'
 import { FavoritesProvider } from './context/Favorites'
 import { ExperienceProvider } from './context/Experience'
 import { ActivityProvider } from './context/Activity'
+import { FriendsProvider } from './context/Friends'
 import { routes } from './routes'
 
 function AppRoutes() {
@@ -29,7 +30,7 @@ function JourneyBoundary() {
 function ScopedJourney({ user, client }) {
   const [store] = useState(() => createJourneyStore({ user, repository: user && client ? createCloudRepository(client, user.id, user.user_metadata?.avatar_url) : null }))
   return <LocalDataProvider store={store}><DiscoverySessionProvider><FavoritesProvider><ExperienceProvider><ActivityProvider>
-    <AppRoutes /><GuestMigration />
+    <FriendsProvider><AppRoutes /><GuestMigration /></FriendsProvider>
   </ActivityProvider></ExperienceProvider></FavoritesProvider></DiscoverySessionProvider></LocalDataProvider>
 }
 

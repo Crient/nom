@@ -2,7 +2,7 @@ export function safeAccountReturn(value, fallback = '/home') {
   if (typeof value !== 'string' || !value.startsWith('/') || /[\\\u0000-\u0020]/.test(value) || value.startsWith('//')) return fallback
   try {
     const url = new URL(value, 'https://nom.invalid')
-    if (url.origin !== 'https://nom.invalid' || !/^\/(home|profile|favorites|history|progress|collections|explore|scan|discover|recommendations|visits|boxes)(\/|$)/.test(url.pathname)) return fallback
+    if (url.origin !== 'https://nom.invalid' || !/^\/(home|profile|friends|favorites|history|progress|collections|explore|scan|discover|recommendations|visits|boxes)(\/|$)/.test(url.pathname)) return fallback
     return `${url.pathname}${url.search}${url.hash}`
   } catch { return fallback }
 }

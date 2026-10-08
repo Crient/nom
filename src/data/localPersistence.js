@@ -3,6 +3,9 @@ export const LEGACY_STORAGE_KEYS = {
   discovery: 'nom.v1.discovery', favorites: 'nom.v1.favorites', experience: 'nom.v1.experience', activity: 'nom.v1.activity',
 }
 export const STORAGE_KEYS = Object.fromEntries(Object.keys(LEGACY_STORAGE_KEYS).map(section => [section, `nom.v2.guest.${section}`]))
+// Older tabs cannot rewrite signed evidence using their legacy-only serializer.
+// Other Guest data retains its existing keys and behavior.
+STORAGE_KEYS.experience = 'nom.v3.guest.experience'
 const VERSION = 1
 const blockedWrites = new Set()
 export const REPAIRED_STATE = Symbol('repaired-local-state')

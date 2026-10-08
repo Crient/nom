@@ -4,6 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from '../App'
 import { actAndLoadRoutes as act } from '../test/routeAct'
 import { STORAGE_KEYS, writeLocalState } from '../data/localPersistence'
+import {earnedJourney} from '../test/earnedJourney'
 import { createExperienceState, experienceReducer } from '../data/experienceState'
 import { serializeExperience } from '../data/persistedState'
 import { installMockNearbyProvider } from '../test/mockNearbyProvider'
@@ -49,6 +50,25 @@ function seedMeal() {
 }
 
 describe('Nom app destinations', () => {
+  it('submits Home search through its form and clears Explore without removing active filters', async () => {
+    await mount('/home')
+    expect(document.querySelector('[aria-label="Clear search"]')).toBeNull()
+    await enter('input[aria-label="Search for food"]', 'arepa')
+    expect(document.querySelectorAll('[aria-label="Clear search"]')).toHaveLength(1)
+    await click('Clear search')
+    expect(document.querySelector('input').value).toBe('')
+    expect(window.location.pathname).toBe('/home')
+    await enter('input[aria-label="Search for food"]', 'arepa')
+    await act(() => document.querySelector('form[role="search"]').requestSubmit())
+    expect(window.location.pathname + window.location.search).toBe('/explore?q=arepa')
+    expect(cards().map(card => card.getAttribute('aria-label'))).toEqual(['Arepa'])
+    await navigate('/explore?q=arepa&foodType=noodle')
+    await click('Clear search')
+    expect(window.location.search).toBe('?foodType=noodle')
+    expect(document.querySelector('input').value).toBe('')
+    expect(document.activeElement).toBe(document.querySelector('input'))
+    expect(cards().length).toBeGreaterThan(0)
+  })
   it('searches, saves, carries the selected dish through discovery, and returns to the search and shared favorites', async () => {
     await mount('/home')
     await enter('input[aria-label="Search for food"]', 'arepa'); await click('Search dishes')
@@ -76,7 +96,7 @@ describe('Nom app destinations', () => {
   it('opens saved restaurants and collectibles with shared removal and return navigation', async () => {
     writeLocalState(STORAGE_KEYS.discovery, preferences)
     writeLocalState(STORAGE_KEYS.favorites, { dishIds: [], restaurantIds: ['preview-thmor-da'] })
-    writeLocalState(STORAGE_KEYS.experience, { logs: [], openedBoxes: [], favorites: ['cambodia:lumi'] })
+    writeLocalState(STORAGE_KEYS.experience, {...serializeExperience(earnedJourney(6)),favorites:['cambodia:lumi']})
     await mount('/favorites'); await click('Restaurants'); await click('View THMOR DA Restaurant details')
     expect(window.location.pathname).toBe('/recommendations/lort-cha/nearby/preview-thmor-da')
     await click('Remove THMOR DA Restaurant from favorites')
@@ -108,8 +128,8 @@ describe('Nom app destinations', () => {
     expect(summary('Dishes explored')).toBe('2')
     expect(summary('Meals logged')).toBe('1')
     expect(summary('Countries explored')).toBe('2')
-    expect(document.body.textContent).toContain('Open Cambodia Mystery Box')
-    await click('View Cambodia collection'); await click('View Lumi'); await click('Go back'); await click('Go back')
+    expect(document.body.textContent).not.toContain('Open Cambodia Mystery Box')
+    await click('View Cambodia collection'); expect(document.body.textContent).toContain('0 OF 6'); await click('Go back')
     expect(window.location.pathname).toBe('/progress')
     await click('View meal history'); await click('Go back')
     expect(window.location.pathname).toBe('/progress')
@@ -156,12 +176,14 @@ describe('Nom app destinations', () => {
     await mount('/'); await click('Profile')
     expect(window.location.pathname).toBe('/profile')
     await click('Home'); await click('Surprise me')
-    expect(window.location.pathname).toBe('/discover/flavor')
+    expect(window.location.pathname).toBe('/recommendations/surprise')
+    expect(document.querySelector('.surprise-card-stack')).toBeTruthy()
     const discovery = JSON.parse(localStorage.getItem(STORAGE_KEYS.discovery)).data
-    expect(discovery).toEqual({ foodType: 'anything', flavors: [], adventurousness: 'surprise-me', region: 'surprise-me' })
-    await click('Spicy'); await click('Continue'); await click('Continue'); await click('Continue')
+    expect(discovery).toEqual({ foodType: null, flavors: [], adventurousness: null, region: null })
+    const first = document.querySelector('.surprise-dish-card').getAttribute('aria-label')
     await navigate('/home'); await click('Surprise me')
-    expect(window.location.pathname).toBe('/recommendations')
-    expect(JSON.parse(localStorage.getItem(STORAGE_KEYS.discovery)).data.flavors).toEqual(['spicy'])
+    expect(window.location.pathname).toBe('/recommendations/surprise')
+    expect(document.querySelector('.surprise-dish-card').getAttribute('aria-label')).not.toBe(first)
+    expect(JSON.parse(localStorage.getItem(STORAGE_KEYS.discovery)).data).toEqual(discovery)
   })
 })

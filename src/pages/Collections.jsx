@@ -22,11 +22,13 @@ export default function Collections() {
     return true
   })
   return <div className="flow-page collections-page pb-[calc(100px+env(safe-area-inset-bottom,0px))]">
-    <img className="collection-wave" src={wave} alt="" />
     <FlowHeader onBack={() => navigate(recommendationReturnTo(location.state?.returnTo, '/home'))} onInfo={() => setModal('progress')} />
     <h1>Your <span>Collections</span></h1>
     <div className="collection-filters" role="group" aria-label="Filter collections">{['All', 'In progress', 'Completed', 'Favorites'].map(option => <FilterChip solid selected={filter === option} key={option} onClick={() => setFilter(option)}>{option}</FilterChip>)}</div>
-    <img className="collection-world" src={world} alt="" />
+    <div className="collection-banner" aria-hidden="true">
+      <img className="collection-wave" src={wave} alt="" />
+      <img className="collection-world" src={world} alt="" />
+    </div>
     <div className="collection-countries">{countries.map(country => {
       const count = unlockedCount(state, country.id)
       return <button type="button" className={`collection-country ${count === collectibleDefinitions.length ? 'is-complete' : ''}`} data-country={country.id} data-complete={count === collectibleDefinitions.length} key={country.id} aria-label={`${country.name}, ${count} of 6 collectibles`} onClick={() => navigate(`/collections/${country.id}`)}>

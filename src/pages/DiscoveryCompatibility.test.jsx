@@ -52,7 +52,7 @@ describe('completed discovery session compatibility and stable variation', () =>
     expect(document.querySelector(`[aria-label="${percent}% match"]`)).toBeTruthy()
     const explanation = document.querySelector('[aria-labelledby="why-matched-title"] p').textContent
     expect(explanation).toContain(`matches ${flavorCopy} flavors`)
-    expect(explanation).toContain(`${percent}% compatibility`)
+    expect(explanation).not.toMatch(/points|compatibility|rounded|explicit-preference|\d+%/i)
     if (percent === 85) expect(explanation).not.toContain('matches spicy and comforting')
   })
 })

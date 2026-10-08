@@ -34,6 +34,7 @@ function draft(id = visitId) {
 
 function fixture(mode) {
   let state = createExperienceState()
+  state.qaOnly = true
   state.progress.cambodia = { meals: 0, count: mode === 'unlocked' ? BOX_TARGET - 1 : 0 }
   const apply = action => { state = experienceReducer(state, action) }
   const verify = id => apply({ type: 'verify', id, verification: developmentVerificationProvider.verify({ method: 'location-demo' }) })
@@ -80,7 +81,7 @@ function Preview({ mode, onClose }) {
   }), [favorites])
   const [, routeVisitId, visitPage] = location.pathname.match(/^\/visits\/([^/]+)\/(verify|feedback|logged)$/) ?? []
   const [, boxId, boxPhase] = location.pathname.match(/^\/boxes\/([^/]+)(?:\/(opening|reveal))?$/) ?? []
-  const route = useMemo(() => ({ testMode: true, restaurant, navigate, location,
+  const route = useMemo(() => ({ testMode: true, restaurant, navigate, location, qaVerify:()=>developmentVerificationProvider.verify(),
     params: { dishId: dish.id, restaurantId: restaurant.id, visitId: routeVisitId },
     initialModal: mode === 'failed' && visitPage === 'verify' ? 'failed' : null,
   }), [navigate, location, routeVisitId, mode, visitPage])

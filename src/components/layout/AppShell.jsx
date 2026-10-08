@@ -1,4 +1,5 @@
 import { cn } from '../../utils/cn'
+import { designPreviewEnabled } from '../../utils/designPreview'
 
 /**
  * The mobile frame every screen renders inside. Constrains content to the
@@ -9,7 +10,7 @@ import { cn } from '../../utils/cn'
 export default function AppShell({ topBar, bottomNav, children, className }) {
   return (
     <div className="min-h-dvh bg-background">
-      <div data-chrome={import.meta.env.DEV ? 'preview' : 'web'} className="nom-app-shell mx-auto flex min-h-dvh w-full max-w-app flex-col bg-surface [container-type:inline-size]">
+      <div data-chrome={designPreviewEnabled() ? 'preview' : 'web'} className="nom-app-shell mx-auto flex min-h-dvh w-full max-w-app flex-col bg-surface [container-type:inline-size]">
         {topBar}
 
         <main id="main-content" tabIndex={-1} className={cn('min-w-0 flex-1', bottomNav && 'pb-bottom-nav', className)}>

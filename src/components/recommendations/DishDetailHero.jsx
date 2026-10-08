@@ -31,9 +31,9 @@ export default function DishDetailHero({ result, chips, onBack, backLabel = 'Go 
       </button>
 
       <div className="relative ml-[22px] mr-[21px] min-h-[195px] rounded-[17.261px] bg-surface px-[13px] pt-[14px] pb-[22px] shadow-card">
-        <div className="absolute top-[12px] right-[12px]" aria-label={`${Math.round(displayMatchPercent)}% match`}>
+        {result.selectionStrategy === 'sharedV1' ? <p className="mb-[10px] text-body-sm text-accessible-teal">Shared by a friend</p> : result.selectionStrategy === 'randomV1' ? <p className="mb-[10px] text-body-sm text-accessible-teal">Random surprise</p> : <div className="absolute top-[12px] right-[12px]" aria-label={`${Math.round(displayMatchPercent)}% match`}>
           <MatchBadge percent={Math.round(displayMatchPercent)} variant="detail" />
-        </div>
+        </div>}
         <h1 className="break-words pr-[78px] text-[35px] leading-[35px] font-bold text-strong-neutral">
           <DishTitle dish={dish} />
         </h1>

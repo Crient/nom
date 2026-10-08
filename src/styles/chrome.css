@@ -1,9 +1,11 @@
 /* One inset owner per screen: a flow spacer OR a header's absolute geometry.
    Only design previews reserve the simulated OS bar. */
-:root { --nom-safe-top: env(safe-area-inset-top,0px); --nom-header-inset: var(--nom-safe-top); }
-.nom-app-shell[data-chrome=preview] { --nom-header-inset: var(--spacing-status-bar); }
+/* Ordinary headers gain 8px; DiscoveryHeader and its safe-area spacer keep
+   their existing compact geometry and never consume this extra inset. */
+:root { --nom-safe-top: env(safe-area-inset-top,0px); --nom-standard-header-space: 8px; --nom-header-inset: calc(var(--nom-safe-top) + var(--nom-standard-header-space)); }
+.nom-app-shell[data-chrome=preview] { --nom-header-inset: calc(var(--spacing-status-bar) + var(--nom-standard-header-space)); }
 .recommendation-back { top: calc(var(--nom-header-inset) + 1.124px); }
 .recommendation-header-title { top: calc(var(--nom-header-inset) + 14.624px); }
 .recommendation-adjust { top: calc(var(--nom-header-inset) + 12.624px); }
-.dish-hero-back { top: calc(var(--nom-header-inset) + 4px); }
+.dish-hero-back { top: calc(var(--nom-header-inset) + 4px); left: 14px; }
 .flow-header .flow-header-favorite { top: calc(var(--nom-header-inset) + 4px); }
