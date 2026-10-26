@@ -1,5 +1,7 @@
 # Nom — free migration preview
 
+The owner's revised plan keeps Vercel permanent and preserves `nom-coral.vercel.app`. This separate Cloudflare preview is temporary while the Vercel team is disabled; it does not replace the original URL or GitHub integration.
+
 Branch `hosting/free-cloudflare-preview-20261026` preserves deployed baseline `da65f5f892d808d3ec981cba1e3d2cb214c496ce`. The React application, 201-dish catalog and database schema are preserved. Two server modules import the same catalog JSON instead of reading the local filesystem, so Workers can bundle it.
 
 `npm ci --ignore-scripts`, `npm test`, `npm run check:cloudflare`, then `npm run build:cloudflare`. All 84 Vitest suites / 1,360 tests and the three adapter checks pass. The existing build validates catalog data and browser/server credential separation.
