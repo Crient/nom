@@ -5,5 +5,12 @@
   "compatibility_date": "2026-10-26",
   "compatibility_flags": [
     "nodejs_compat"
-  ]
+  ],
+  "env": {
+    "preview": {
+      "vars": {
+        "VITE_SUPABASE_URL": "https://iwamwxsosrhxsdcsuoiu.supabase.co"
+      }
+    }
+  }
 }
