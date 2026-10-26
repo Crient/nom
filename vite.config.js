@@ -10,7 +10,7 @@ import { verificationPublicKey } from './server/verificationSignature.js'
 export default defineConfig(({ mode }) => {
   const serverEnv={...loadEnv(mode,process.cwd(),''),...process.env}
   // Only the derived public verification key enters the client build.
-  const publicKey=serverEnv.SUPABASE_SECRET_KEY?.startsWith('sb_secret_')?verificationPublicKey(serverEnv.SUPABASE_SECRET_KEY):''
+  const publicKey=/^[a-f\d]{64}$/i.test(serverEnv.VITE_NOM_VERIFICATION_PUBLIC_KEY??'')?serverEnv.VITE_NOM_VERIFICATION_PUBLIC_KEY.toLowerCase():serverEnv.SUPABASE_SECRET_KEY?.startsWith('sb_secret_')?verificationPublicKey(serverEnv.SUPABASE_SECRET_KEY):''
   return ({
   // Reward QA belongs to local/Preview builds, even if a production env flag
   // is accidentally set. This define does not expose any server secrets.

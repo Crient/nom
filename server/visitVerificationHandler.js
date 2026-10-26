@@ -1,5 +1,5 @@
 import { createHash, createHmac, randomUUID, timingSafeEqual } from 'node:crypto'
-import { readFileSync } from 'node:fs'
+import catalogRecords from '../src/data/catalog/records.json' with { type: 'json' }
 import { UUID } from '../shared/visitVerification.js'
 import { isGoogleRestaurantId } from '../shared/nearbyRestaurants.js'
 import { readBody } from './nearbyRestaurantsHandler.js'
@@ -10,7 +10,7 @@ import { validateRestaurantQr, verificationSigningKey } from './restaurantQr.js'
 import { createVerificationRepository, verificationClient } from './verificationRepository.js'
 import { signProof } from './verificationSignature.js'
 
-const catalog = new Map(JSON.parse(readFileSync(new URL('../src/data/catalog/records.json',import.meta.url),'utf8')).map(d=>[d.id,d]))
+const catalog = new Map(catalogRecords.map(d=>[d.id,d]))
 const hash = value => createHash('sha256').update(value).digest('hex')
 const claimToken = (id,key) => createHmac('sha256',key).update('claim:'+id).digest('base64url')
 const configFromEnv = () => ({url:process.env.VITE_SUPABASE_URL,secret:process.env.SUPABASE_SECRET_KEY,placesKey:process.env.GOOGLE_PLACES_API_KEY,

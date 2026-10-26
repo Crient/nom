@@ -16,8 +16,21 @@
     }
   },
   "routes": [
-    { "handle": "filesystem" },
-    { "src": "/api/(.*)", "status": 404 },
-    { "src": "/(.*)", "dest": "/index.html" }
-  ]
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/api/(.*)",
+      "status": 404
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "git": {
+    "deploymentEnabled": {
+      "hosting/free-cloudflare-preview-20261026": false
+    }
+  }
 }

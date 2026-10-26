@@ -1,8 +1,7 @@
-import { readFileSync } from 'node:fs'
+import catalog from '../src/data/catalog/records.json' with { type: 'json' }
 import { createGooglePlacesProvider, NearbySearchError } from './googlePlacesProvider.js'
 import { approximateArea, searchKey, validCoordinates } from '../shared/nearbyRestaurants.js'
 
-const catalog = JSON.parse(readFileSync(new URL('../src/data/catalog/records.json', import.meta.url), 'utf8'))
 const canonical = new Map(catalog.map(dish => [dish.id, dish]))
 const MAX_BODY_BYTES = 1024
 

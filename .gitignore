@@ -37,3 +37,12 @@ docs/**/*-validation/*.log
 docs/**/*-validation/*.json
 docs/**/*-validation/*.png
 docs/**/*-validation/*.txt
+
+# Cloudflare local state and secrets
+.wrangler/
+.dev.vars
+.dev.vars.*
+.cloudflare-build/
+
+# Deployment account metadata and migration-only credentials
+.vercel/

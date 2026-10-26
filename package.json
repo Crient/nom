@@ -15,7 +15,11 @@
     "images:remaining": "node scripts/export-missing-images.mjs",
     "catalog:validate": "node scripts/validate-catalog.mjs",
     "ship": "bash scripts/ship.sh",
-    "accounts:validate": "node scripts/validate-account-secrets.mjs"
+    "accounts:validate": "node scripts/validate-account-secrets.mjs",
+    "build:cloudflare": "npm run build && node cloudflare/prepare.mjs",
+    "preview:cloudflare": "wrangler pages dev dist --ip 127.0.0.1",
+    "check:cloudflare": "node --test cloudflare/*.check.mjs",
+    "deploy:cloudflare-preview": "npm run build:cloudflare && node cloudflare/deploy-preview.mjs"
   },
   "dependencies": {
     "@noble/curves": "2.4.0",
@@ -31,6 +35,7 @@
     "happy-dom": "^20.14.5",
     "tailwindcss": "^4.3.3",
     "vite": "^8.3.2",
-    "vitest": "^5.0.3"
+    "vitest": "^5.0.3",
+    "wrangler": "4.153.0"
   }
 }
